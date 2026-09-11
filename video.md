@@ -45,24 +45,34 @@ function startDownload() {
 async function fetchVideoData(videoUrl) {
     document.getElementById('result-box').innerHTML = '<span style="color: gray;">데이터를 변환하는 중입니다... 잠시만 기다려주세요.</span>';
 
-    const url = 'https://snap-video-api.p.rapidapi.com/video/info?url=' + encodeURIComponent(videoUrl);
+    // 회원님의 'Download All In One' API 주소로 완벽하게 교체되었습니다.
+    const url = 'https://download-all-in-one-ultimate.p.rapidapi.com/autolink?url=' + encodeURIComponent(videoUrl);
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': 'cac13e8cc6msha4ee1d5c412b577p1fd49ejsn92b2ab96d0b3',
-            'x-rapidapi-host': 'snap-video-api.p.rapidapi.com'
+            'x-rapidapi-key': 'cac13e8cc6msha4ee1d5c412b577p1fd49ejsn92b2ab96d0b3', // 캡처해주신 키값 적용 완료!
+            'x-rapidapi-host': 'download-all-in-one-ultimate.p.rapidapi.com'
         }
     };
 
     try {
         const response = await fetch(url, options);
         const result = await response.json();
+        console.log("API 응답:", result); // 에러 대비용 데이터 기록
         
-        if(result && result.data && result.data.videoUrl) {
+        // 해당 API의 결과값에서 다운로드 링크 추출
+        let downloadLink = '';
+        if (result && result.url) downloadLink = result.url;
+        else if (result && result.data && result.data.url) downloadLink = result.data.url;
+        else if (result && result.video) downloadLink = result.video;
+        else if (result && result.data && result.video_url) downloadLink = result.video_url;
+
+        if(downloadLink) {
             document.getElementById('result-box').innerHTML = 
-                `<a href="${result.data.videoUrl}" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">📥 비디오 다운로드</a>`;
+                `<a href="${downloadLink}" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">📥 비디오 다운로드</a>`;
         } else {
-            document.getElementById('result-box').innerHTML = '<span style="color: red;">다운로드 링크를 찾을 수 없습니다. 올바른 주소인지 확인해 주세요.</span>';
+            // API가 정상 작동했으나 링크를 못 찾은 경우
+            document.getElementById('result-box').innerHTML = '<span style="color: red;">변환은 성공했으나 다운로드 링크를 화면에 표시할 수 없습니다. (F12 콘솔창의 구조를 확인해야 합니다)</span>';
         }
     } catch (error) {
         document.getElementById('result-box').innerHTML = '<span style="color: red;">서버와 통신 중 오류가 발생했습니다.</span>';
