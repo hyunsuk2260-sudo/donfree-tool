@@ -43,7 +43,7 @@ function startDownload() {
 }
 
 async function fetchVideoData(videoUrl) {
-    document.getElementById('result-box').innerHTML = '<span style="color: gray;">데이터를 변환하는 중입니다... 잠시만 기다려주세요.</span>';
+    document.getElementById('result-box').innerHTML = '<span style="color: gray;">데이터를 불러오는 중입니다...</span>';
 
     const url = 'https://download-all-in-one-ultimate.p.rapidapi.com/autolink?url=' + encodeURIComponent(videoUrl);
     const options = {
@@ -58,24 +58,11 @@ async function fetchVideoData(videoUrl) {
         const response = await fetch(url, options);
         const result = await response.json();
         
-        let downloadLink = '';
-        if (result && result.url) {
-            downloadLink = result.url;
-        } else if (result && result.data && result.data.url) {
-            downloadLink = result.data.url;
-        } else if (result && result.video) {
-            downloadLink = result.video;
-        } else if (result && result.data && result.video_url) {
-            downloadLink = result.video_url;
-        }
-
-        if(downloadLink) {
-            document.getElementById('result-box').innerHTML = '<a href="' + downloadLink + '" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">📥 비디오 다운로드</a>';
-        } else {
-            document.getElementById('result-box').innerHTML = '<span style="color: red;">다운로드 링크를 찾을 수 없습니다. 올바른 주소인지 확인해 주세요.</span>';
-        }
+        // 💡 버튼 대신 API가 준 모든 데이터를 화면에 텍스트로 폭로합니다!
+        document.getElementById('result-box').innerHTML = '<div style="text-align:left; background:#f4f4f4; padding:15px; border-radius:5px; font-size:12px; overflow-x:auto;"><pre>' + JSON.stringify(result, null, 2) + '</pre></div><h4 style="color:red; margin-top:15px;">이 화면을 캡처해서 보여주세요!</h4>';
+        
     } catch (error) {
-        document.getElementById('result-box').innerHTML = '<span style="color: red;">서버와 통신 중 오류가 발생했습니다.</span>';
+        document.getElementById('result-box').innerHTML = '<span style="color: red;">서버 오류 발생</span>';
     } finally {
         document.getElementById('startBtn').disabled = false;
     }
