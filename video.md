@@ -58,7 +58,6 @@ async function fetchVideoData(videoUrl) {
         const response = await fetch(url, options);
         const result = await response.json();
         
-        // 💡 버튼 대신 API가 준 모든 데이터를 화면에 텍스트로 폭로합니다!
         document.getElementById('result-box').innerHTML = '<div style="text-align:left; background:#f4f4f4; padding:15px; border-radius:5px; font-size:12px; overflow-x:auto;"><pre>' + JSON.stringify(result, null, 2) + '</pre></div><h4 style="color:red; margin-top:15px;">이 화면을 캡처해서 보여주세요!</h4>';
         
     } catch (error) {
