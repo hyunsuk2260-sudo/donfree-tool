@@ -43,7 +43,7 @@ function startDownload() {
 }
 
 async function fetchVideoData(videoUrl) {
-    document.getElementById('result-box').innerHTML = '<span style="color: gray;">데이터를 불러오는 중입니다...</span>';
+    document.getElementById('result-box').innerHTML = '<span style="color: gray;">비디오 파일을 추출하는 중입니다... 잠시만 기다려주세요.</span>';
 
     const url = 'https://download-all-in-one-ultimate.p.rapidapi.com/autolink?url=' + encodeURIComponent(videoUrl);
     const options = {
@@ -58,10 +58,18 @@ async function fetchVideoData(videoUrl) {
         const response = await fetch(url, options);
         const result = await response.json();
         
-        document.getElementById('result-box').innerHTML = '<div style="text-align:left; background:#f4f4f4; padding:15px; border-radius:5px; font-size:12px; overflow-x:auto;"><pre>' + JSON.stringify(result, null, 2) + '</pre></div><h4 style="color:red; margin-top:15px;">이 화면을 캡처해서 보여주세요!</h4>';
+        let downloadLink = '';
+        if (result && result.medias && result.medias.length > 0) {
+            downloadLink = result.medias[0].url;
+        }
         
+        if(downloadLink) {
+            document.getElementById('result-box').innerHTML = '<a href="' + downloadLink + '" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">📥 워터마크 없는 비디오 다운로드</a>';
+        } else {
+            document.getElementById('result-box').innerHTML = '<span style="color: red;">비디오 파일을 찾을 수 없습니다. (지원되지 않는 링크이거나 비공개 영상입니다)</span>';
+        }
     } catch (error) {
-        document.getElementById('result-box').innerHTML = '<span style="color: red;">서버 오류 발생</span>';
+        document.getElementById('result-box').innerHTML = '<span style="color: red;">서버와 통신 중 오류가 발생했습니다.</span>';
     } finally {
         document.getElementById('startBtn').disabled = false;
     }
