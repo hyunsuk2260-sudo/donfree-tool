@@ -57,23 +57,25 @@ async function fetchVideoData(videoUrl) {
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        console.log("API 응답:", result);
         
         let downloadLink = '';
-        if (result && result.url) downloadLink = result.url;
-        else if (result && result.data && result.data.url) downloadLink = result.data.url;
-        else if (result && result.video) downloadLink = result.video;
-        else if (result && result.data && result.video_url) downloadLink = result.video_url;
+        if (result && result.url) {
+            downloadLink = result.url;
+        } else if (result && result.data && result.data.url) {
+            downloadLink = result.data.url;
+        } else if (result && result.video) {
+            downloadLink = result.video;
+        } else if (result && result.data && result.video_url) {
+            downloadLink = result.video_url;
+        }
 
         if(downloadLink) {
-            document.getElementById('result-box').innerHTML = 
-                `<a href="${downloadLink}" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">📥 비디오 다운로드</a>`;
+            document.getElementById('result-box').innerHTML = '<a href="' + downloadLink + '" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">📥 비디오 다운로드</a>';
         } else {
-            document.getElementById('result-box').innerHTML = '<span style="color: red;">변환은 성공했으나 다운로드 링크를 화면에 표시할 수 없습니다. (F12 콘솔창의 구조를 확인해야 합니다)</span>';
+            document.getElementById('result-box').innerHTML = '<span style="color: red;">다운로드 링크를 찾을 수 없습니다. 올바른 주소인지 확인해 주세요.</span>';
         }
     } catch (error) {
         document.getElementById('result-box').innerHTML = '<span style="color: red;">서버와 통신 중 오류가 발생했습니다.</span>';
-        console.error(error);
     } finally {
         document.getElementById('startBtn').disabled = false;
     }
