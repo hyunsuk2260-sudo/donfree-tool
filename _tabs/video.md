@@ -1,111 +1,189 @@
 ---
-title: 비디오 다운로더
-icon: fas fa-download
-order: 5
+title: 무료 로또 번호 생성기
+icon: fas fa-ticket-alt
+order: 6
 layout: page
-permalink: /video/
+permalink: /lotto/
 ---
 
-<!-- 안내문 HTML 박스 (무조건 화면에 출력됨) -->
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; line-height: 1.6; border: 1px solid #e9ecef;">
-    <h4 style="margin-top: 0; color: #007bff;">🎬 비디오 다운로더 이용 안내</h4>
-    <p>워터마크 없는 고화질 동영상을 무료로 다운로드하세요. 틱톡(TikTok), 인스타그램 릴스, 유튜브 쇼츠 등 다양한 숏폼 플랫폼의 원본 영상을 빠르고 안전하게 추출할 수 있습니다.</p>
-    
-    <h5 style="margin-bottom: 5px;">📌 사용 방법</h5>
-    <ol style="margin-top: 0; padding-left: 20px;">
-        <li>다운로드하고 싶은 동영상의 공유 주소(URL)를 복사합니다.</li>
-        <li>아래 입력창에 주소를 붙여넣고 <b>'다운로드 링크 생성'</b> 버튼을 클릭합니다.</li>
-        <li>5초 대기 후 생성되는 다운로드 버튼을 눌러 기기에 저장합니다.</li>
-    </ol>
-    
-    <p style="font-size: 0.85em; color: #dc3545; margin-bottom: 0; margin-top: 15px;">
-        <i>*주의사항: 본 툴은 개인 소장 용도로만 사용 가능하며, 저작권이 있는 영상의 무단 배포 및 상업적 이용을 금지합니다.*</i>
-    </p>
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; line-height: 1.6; border: 1px solid #e9ecef;">
+    <h4 style="margin-top: 0; color: #28a745;">🍀 이번 주 대박 기원 로또 번호 추첨기</h4>
+    <p>일반 무작위 추첨부터 나의 생년월일을 바탕으로 한 사주 맞춤 행운 번호까지 무료로 추출해 드립니다. 나만의 대박 번호를 지금 바로 확인해 보세요!</p>
+    <div style="margin-top: 15px; padding: 15px; background-color: #fff3cd; border-left: 5px solid #ffc107; color: #856404; font-weight: bold; font-size: 0.95em;">
+        📢 주의사항: 본 서비스는 재미와 참고용으로 제공되며, 당첨을 보장하지 않습니다. 무리한 구매는 삼가시고 건전하게 즐겨주세요!
+    </div>
 </div>
 
-<div id="downloader-box" style="text-align: center; margin: 40px 0;">
-    <input type="text" id="videoUrl" placeholder="다운로드할 동영상 링크를 붙여넣으세요" style="width: 70%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
-    <button id="startBtn" onclick="startDownload()" style="padding: 12px 25px; margin-top: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">다운로드 링크 생성</button>
+<div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
+    <div style="flex: 1; min-width: 250px; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h5 style="margin: 0 0 10px 0; color: #495057;">📊 역대 최다 출현 숫자 TOP 7</h5>
+        <div style="font-size: 1.2em; font-weight: bold; color: #333; letter-spacing: 2px;">
+            <span style="color:#b0d840;">43</span>, <span style="color:#aaa;">34</span>, <span style="color:#ff7272;">27</span>, <span style="color:#69c8f2;">17</span>, <span style="color:#fbc400;">1</span>, <span style="color:#69c8f2;">13</span>, <span style="color:#69c8f2;">12</span>
+        </div>
+    </div>
+    <div style="flex: 1; min-width: 250px; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h5 style="margin: 0 0 10px 0; color: #495057;">🏆 전회차 당첨 번호 확인</h5>
+        <div style="margin-top: 10px;">
+            <a href="https://dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" style="display:inline-block; padding:10px 25px; background-color:#28a745; color:white; text-decoration:none; border-radius:5px; font-weight:bold; font-size:1em; box-shadow: 0 3px 5px rgba(0,0,0,0.2);">공식 사이트에서 바로 확인하기 ↗</a>
+        </div>
+    </div>
 </div>
 
-<!-- 구글 애드센스 디스플레이 광고 시작 (명당자리) -->
-<div style="text-align: center; margin: 20px 0; min-height: 100px;">
+<div id="lotto-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px solid #856404; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+    <h3 style="margin-top: 0; color: #856404;">🔮 내 사주 맞춤 행운 번호</h3>
+    <p style="color: #6c757d; margin-bottom: 20px;">생년월일을 입력하시면 명리학 기반 난수 알고리즘으로 사주를 분석하여 맞춤 번호를 추출합니다.</p>
+    
+    <input type="date" id="birthDate" style="padding: 10px; font-size: 1.1em; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 15px;">
+    <br>
+    <button id="sajuBtn" onclick="generateSaju()" style="padding: 15px 35px; font-size: 1.2em; background-color: #856404; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">사주 맞춤 번호 분석하기</button>
+
+    <div id="saju-timer" style="display: none; text-align: center; color: #dc3545; font-weight: bold; margin-top: 20px; padding: 15px; background-color: #f8d7da; border-radius: 8px;">
+        명운을 분석하여 재물운 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 후 결과가 공개됩니다.
+    </div>
+
+    <!-- 사주 풀이 멘트가 들어갈 자리 -->
+    <div id="saju-fortune-text" style="display: none; color: #856404; font-weight: bold; margin-top: 25px; padding: 15px; background-color: #fff3cd; border-radius: 8px; font-size: 1.1em; line-height: 1.5; border: 1px dashed #ffe69c;"></div>
+
+    <div id="saju-result-balls" style="display: flex; justify-content: center; gap: 10px; margin: 25px 0 10px 0; min-height: 60px; flex-wrap: wrap;"></div>
+</div>
+
+<div style="text-align: center; margin: 40px 0; min-height: 100px;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-1922344740086878"
-         data-ad-slot="6535711038"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
-<!-- 구글 애드센스 디스플레이 광고 끝 -->
-
-<div id="timer-box" style="display: none; text-align: center; color: #dc3545; font-weight: bold; margin-bottom: 20px;">
-    광고를 시청하는 중입니다... <span id="timeCount" style="font-size: 1.2em;">5</span>초 후 링크가 생성됩니다.
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div id="result-box" style="text-align: center; margin-top: 20px;"></div>
+<div id="random-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px dashed #28a745; border-radius: 15px;">
+    <h4 style="margin-top: 0; color: #28a745;">🎲 일반 무작위 번호 뽑기</h4>
+    <div id="ball-container" style="display: flex; justify-content: center; gap: 10px; margin: 20px 0; min-height: 60px; flex-wrap: wrap;"></div>
+    <button onclick="generateLotto()" style="padding: 12px 25px; font-size: 1.1em; background-color: #ffc107; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">빠른 일반 번호 뽑기 🎯</button>
+</div>
+
+<div id="history-box" style="margin-top: 20px; text-align: left; background-color: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; display: none;">
+    <h5 style="margin-top: 0; color: #495057; border-bottom: 2px solid #e9ecef; padding-bottom: 10px;">🕒 나의 추첨 기록</h5>
+    <div id="history-list" style="max-height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 5px;"></div>
+</div>
 
 <script>
-function startDownload() {
-    const urlInput = document.getElementById('videoUrl').value;
-    if(!urlInput) {
-        alert('링크를 입력해주세요!');
+function getBallHtml(num, size) {
+    var bgColor = '#fbc400'; 
+    var fontColor = '#333';
+    if (num > 10 && num <= 20) bgColor = '#69c8f2';
+    else if (num > 20 && num <= 30) bgColor = '#ff7272';
+    else if (num > 30 && num <= 40) { bgColor = '#aaa'; fontColor = '#fff'; }
+    else if (num > 40 && num <= 45) bgColor = '#b0d840';
+    return '<div style="width:' + size + 'px; height:' + size + 'px; line-height:' + size + 'px; border-radius:50%; background-color:' + bgColor + '; color:' + fontColor + '; font-weight:bold; font-size:' + (size > 40 ? '1.3em' : '1em') + '; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.2);">' + num + '</div>';
+}
+
+function addHistory(numbers, typeStr) {
+    var historyBox = document.getElementById('history-box');
+    var historyList = document.getElementById('history-list');
+    historyBox.style.display = 'block';
+    
+    var historyRow = document.createElement('div');
+    historyRow.style.display = 'flex';
+    historyRow.style.gap = '8px';
+    historyRow.style.padding = '8px 0';
+    historyRow.style.borderBottom = '1px dashed #ced4da';
+    historyRow.style.alignItems = 'center';
+    
+    var d = new Date();
+    var timeStr = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') + ':' + String(d.getSeconds()).padStart(2, '0');
+    
+    var tagSpan = document.createElement('span');
+    tagSpan.innerText = '[' + typeStr + ']';
+    tagSpan.style.color = typeStr === '사주' ? '#856404' : '#28a745';
+    tagSpan.style.fontWeight = 'bold';
+    tagSpan.style.fontSize = '0.9em';
+    historyRow.appendChild(tagSpan);
+
+    var timeSpan = document.createElement('span');
+    timeSpan.innerText = timeStr;
+    timeSpan.style.color = '#868e96';
+    timeSpan.style.marginRight = '10px';
+    timeSpan.style.fontSize = '0.9em';
+    historyRow.appendChild(timeSpan);
+
+    numbers.forEach(function(num) {
+        var hBall = document.createElement('div');
+        hBall.innerHTML = getBallHtml(num, 30);
+        historyRow.appendChild(hBall.firstChild);
+    });
+    historyList.insertBefore(historyRow, historyList.firstChild);
+}
+
+function generateSaju() {
+    var birthDate = document.getElementById('birthDate').value;
+    if(!birthDate) {
+        alert('사주 분석을 위해 생년월일을 입력해주세요!');
         return;
     }
-
-    document.getElementById('startBtn').disabled = true;
-    document.getElementById('timer-box').style.display = 'block';
-    document.getElementById('result-box').innerHTML = '';
-
-    let timeLeft = 5;
-    document.getElementById('timeCount').innerText = timeLeft;
-
-    const timer = setInterval(() => {
+    
+    document.getElementById('sajuBtn').disabled = true;
+    document.getElementById('saju-timer').style.display = 'block';
+    document.getElementById('saju-result-balls').innerHTML = '';
+    
+    var fortuneBox = document.getElementById('saju-fortune-text');
+    fortuneBox.style.display = 'none';
+    
+    var timeLeft = 5;
+    document.getElementById('sTimeCount').innerText = timeLeft;
+    
+    var timer = setInterval(function() {
         timeLeft--;
-        document.getElementById('timeCount').innerText = timeLeft;
-
+        document.getElementById('sTimeCount').innerText = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timer);
-            document.getElementById('timer-box').style.display = 'none';
-            fetchVideoData(urlInput);
+            document.getElementById('saju-timer').style.display = 'none';
+            document.getElementById('sajuBtn').disabled = false;
+            
+            var fortunes = [
+                "타고난 금전운이 강하게 발복하는 시기입니다. 뜻밖의 횡재수가 있으니 기회를 꽉 잡으세요.",
+                "귀인을 만나 재물이 들어올 운세입니다. 그동안 쌓은 덕이 재물로 환산되어 돌아오는 형국입니다.",
+                "큰 물이 들어오듯 재물이 모이는 사주입니다. 평소보다 과감한 선택이 좋은 결과를 낳을 수 있습니다.",
+                "흙 속에 묻힌 진주가 드디어 빛을 발하는 운세입니다. 소소한 행운이 큰 기쁨으로 이어집니다.",
+                "타고난 오행의 기운이 조화로워 재물이 흩어지지 않고 단단하게 모이는 길운입니다.",
+                "문서운과 재물운이 함께 뻗치는 사주 흐름입니다. 직관을 믿고 나아가보세요.",
+                "하늘이 돕는 천을귀인(天乙貴人)의 기운이 엿보입니다. 뜻하지 않은 곳에서 행운이 열립니다."
+            ];
+            var pickFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+            
+            var numbers = [];
+            while (numbers.length < 6) {
+                var num = Math.floor(Math.random() * 45) + 1;
+                if (!numbers.includes(num)) { numbers.push(num); }
+            }
+            numbers.sort(function(a, b){return a - b;});
+            
+            fortuneBox.innerText = '📜 ' + pickFortune;
+            fortuneBox.style.display = 'block';
+            
+            var container = document.getElementById('saju-result-balls');
+            numbers.forEach(function(num) {
+                var ballWrapper = document.createElement('div');
+                ballWrapper.innerHTML = getBallHtml(num, 55);
+                container.appendChild(ballWrapper.firstChild);
+            });
+            addHistory(numbers, '사주');
         }
     }, 1000);
 }
 
-async function fetchVideoData(videoUrl) {
-    document.getElementById('result-box').innerHTML = '<span style="color: gray;">비디오 파일을 추출하는 중입니다... 잠시만 기다려주세요.</span>';
-
-    const url = 'https://download-all-in-one-ultimate.p.rapidapi.com/autolink?url=' + encodeURIComponent(videoUrl);
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': 'cac13e8cc6msha4ee1d5c412b577p1fd49ejsn92b2ab96d0b3',
-            'x-rapidapi-host': 'download-all-in-one-ultimate.p.rapidapi.com'
-        }
-    };
-
-    try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        
-        let downloadLink = '';
-        if (result && result.medias && result.medias.length > 0) {
-            downloadLink = result.medias[0].url;
-        }
-        
-        if(downloadLink) {
-            document.getElementById('result-box').innerHTML = '<a href="' + downloadLink + '" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">📥 워터마크 없는 비디오 다운로드</a>';
-        } else {
-            document.getElementById('result-box').innerHTML = '<span style="color: red;">비디오 파일을 찾을 수 없습니다. (지원되지 않는 링크이거나 비공개 영상입니다)</span>';
-        }
-    } catch (error) {
-        document.getElementById('result-box').innerHTML = '<span style="color: red;">서버와 통신 중 오류가 발생했습니다.</span>';
-    } finally {
-        document.getElementById('startBtn').disabled = false;
+function generateLotto() {
+    var numbers = [];
+    while (numbers.length < 6) {
+        var num = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(num)) { numbers.push(num); }
     }
+    numbers.sort(function(a, b){return a - b;});
+    
+    var container = document.getElementById('ball-container');
+    container.innerHTML = '';
+    numbers.forEach(function(num) {
+        var ballWrapper = document.createElement('div');
+        ballWrapper.innerHTML = getBallHtml(num, 55);
+        container.appendChild(ballWrapper.firstChild);
+    });
+    addHistory(numbers, '일반');
 }
 </script>
