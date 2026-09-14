@@ -31,13 +31,12 @@ permalink: /lotto/
 
 <div id="lotto-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px solid #856404; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
     <h3 style="margin-top: 0; color: #856404;">🔮 내 사주 맞춤 행운 번호</h3>
-    <p style="color: #6c757d; margin-bottom: 20px;">생년월일을 입력하시면 명리학 기반 난수 알고리즘으로 사주를 분석하여 맞춤 번호를 추출합니다.</p>
+    <p style="color: #6c757d; margin-bottom: 20px;">생년월일을 입력하시면 명리학 기반 알고리즘으로 사주를 분석하여 맞춤 번호를 추출합니다.</p>
     
     <input type="date" id="birthDate" style="padding: 10px; font-size: 1.1em; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 15px;">
     <br>
     <button id="sajuBtn" onclick="generateSaju()" style="padding: 15px 35px; font-size: 1.2em; background-color: #856404; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">사주 맞춤 번호 분석하기</button>
     
-    <!-- ✅ 개인정보 안심 문구 추가된 부분 -->
     <p style="font-size: 0.85em; color: #adb5bd; margin-top: 15px; margin-bottom: 0;">🔒 입력하신 생년월일 정보는 분석용으로만 사용되며, 서버에 절대 저장되지 않으니 안심하세요.</p>
 
     <div id="saju-timer" style="display: none; text-align: center; color: #dc3545; font-weight: bold; margin-top: 20px; padding: 15px; background-color: #f8d7da; border-radius: 8px;">
@@ -150,24 +149,31 @@ function generateSaju() {
             ];
             
             var today = new Date();
-            var dateString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            var combinedStr = birthDate + dateString;
+            var dateStr = today.getFullYear() + "" + (today.getMonth() + 1) + "" + today.getDate();
+            var cleanBirth = birthDate.replace(/-/g, '');
+            var combinedStr = cleanBirth + dateStr;
             
-            var hash = 0;
+            var seed = 0;
             for (var i = 0; i < combinedStr.length; i++) {
-                hash = combinedStr.charCodeAt(i) + ((hash << 5) - hash);
+                seed += combinedStr.charCodeAt(i) * (i + 1);
             }
-            var fortuneIndex = Math.abs(hash) % fortunes.length;
+            
+            function seededRandom() {
+                var x = Math.sin(seed++) * 10000;
+                return x - Math.floor(x);
+            }
+            
+            var fortuneIndex = seed % fortunes.length;
             var pickFortune = fortunes[fortuneIndex];
             
             var numbers = [];
             while (numbers.length < 6) {
-                var num = Math.floor(Math.random() * 45) + 1;
+                var num = Math.floor(seededRandom() * 45) + 1;
                 if (!numbers.includes(num)) { numbers.push(num); }
             }
             numbers.sort(function(a, b){return a - b;});
             
-            fortuneBox.innerText = '📜 ' + pickFortune;
+            fortuneBox.innerHTML = '📜 ' + pickFortune;
             fortuneBox.style.display = 'block';
             
             var container = document.getElementById('saju-result-balls');
