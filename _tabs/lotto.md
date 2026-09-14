@@ -26,10 +26,12 @@ permalink: /lotto/
         </div>
     </div>
     
-    <!-- 최신 당첨 번호 (자동 업데이트) -->
+    <!-- 최신 당첨 번호 (자동 업데이트 또는 대체 버튼) -->
     <div style="flex: 1; min-width: 250px; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-        <h5 style="margin: 0 0 10px 0; color: #495057;" id="last-round-title">🏆 전회차 당첨 번호 불러오는 중...</h5>
-        <div id="last-round-balls" style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 5px;"></div>
+        <h5 style="margin: 0 0 10px 0; color: #495057;" id="last-round-title">🏆 전회차 당첨 번호</h5>
+        <div id="last-round-balls" style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 5px;">
+            <span style="color: gray; font-size: 0.9em; margin-top: 10px;">데이터를 불러오는 중입니다...</span>
+        </div>
         <div style="font-size: 0.9em; font-weight: bold; color: #0c5460; margin-top: 5px;" id="last-round-bonus"></div>
     </div>
 </div>
@@ -127,12 +129,12 @@ async function loadLatestDraw() {
     let round = Math.floor((now - firstDraw) / (1000 * 60 * 60 * 24 * 7)) + 1;
     
     try {
-        let response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=' + round));
+        let response = await fetch('https://corsproxy.io/?https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=' + round);
         let data = await response.json();
         
         if(data.returnValue !== 'success') {
             round = round - 1;
-            response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=' + round));
+            response = await fetch('https://corsproxy.io/?https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=' + round);
             data = await response.json();
         }
 
@@ -146,10 +148,12 @@ async function loadLatestDraw() {
             document.getElementById('last-round-bonus').style.justifyContent = 'center';
             document.getElementById('last-round-bonus').style.gap = '5px';
         } else {
-            document.getElementById('last-round-title').innerText = '🏆 최신 당첨 번호 (집계 중)';
+            throw new Error("fail");
         }
     } catch (e) {
-        document.getElementById('last-round-title').innerText = '🏆 최신 당첨 번호 (불러오기 지연)';
+        // 보안 차단 시 예쁜 공식 홈페이지 이동 버튼으로 대체
+        document.getElementById('last-round-title').innerText = '🏆 ' + round + '회차 당첨 번호';
+        document.getElementById('last-round-balls').innerHTML = '<a href="https://dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" style="display:inline-block; padding:10px 20px; background-color:#28a745; color:white; text-decoration:none; border-radius:5px; font-weight:bold; font-size:0.9em; margin-top:10px;">공식 사이트에서 당첨 확인하기 ↗</a>';
     }
 }
 
