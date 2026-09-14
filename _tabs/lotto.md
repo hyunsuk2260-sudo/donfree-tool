@@ -148,13 +148,14 @@ function generateSaju() {
             
             var today = new Date();
             var dateString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            var storageKey = 'saju_fortune_' + birthDate + '_' + dateString;
+            var combinedStr = birthDate + dateString;
             
-            var pickFortune = localStorage.getItem(storageKey);
-            if (!pickFortune) {
-                pickFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-                localStorage.setItem(storageKey, pickFortune);
+            var hash = 0;
+            for (var i = 0; i < combinedStr.length; i++) {
+                hash = combinedStr.charCodeAt(i) + ((hash << 5) - hash);
             }
+            var fortuneIndex = Math.abs(hash) % fortunes.length;
+            var pickFortune = fortunes[fortuneIndex];
             
             var numbers = [];
             while (numbers.length < 6) {
