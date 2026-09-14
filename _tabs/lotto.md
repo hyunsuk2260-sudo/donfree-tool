@@ -12,6 +12,22 @@ permalink: /lotto/
     <p>나의 생년월일을 바탕으로 한 명리학 기운 분석을 통해 나만의 행운 번호를 무료로 추출해 드립니다.</p>
 </div>
 
+<!-- 💡 제가 빠뜨렸던 역대 TOP 7 & 전회차 당첨 번호 확인 영역 (복구 완료!) -->
+<div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
+    <div style="flex: 1; min-width: 250px; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6; text-align: center;">
+        <h5 style="margin: 0 0 10px 0; color: #495057;">📊 역대 최다 출현 숫자 TOP 7</h5>
+        <div style="font-size: 1.2em; font-weight: bold; color: #333; letter-spacing: 2px;">
+            <span style="color:#b0d840;">43</span>, <span style="color:#aaa;">34</span>, <span style="color:#ff7272;">27</span>, <span style="color:#69c8f2;">17</span>, <span style="color:#fbc400;">1</span>, <span style="color:#69c8f2;">13</span>, <span style="color:#69c8f2;">12</span>
+        </div>
+    </div>
+    <div style="flex: 1; min-width: 250px; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6; text-align: center;">
+        <h5 style="margin: 0 0 10px 0; color: #495057;">🏆 전회차 당첨 번호 확인</h5>
+        <div style="margin-top: 10px;">
+            <a href="https://dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" style="display:inline-block; padding:10px 25px; background-color:#28a745; color:white; text-decoration:none; border-radius:5px; font-weight:bold; font-size:1em;">공식 사이트에서 바로 확인하기 ↗</a>
+        </div>
+    </div>
+</div>
+
 <!-- 🔮 사주 맞춤 번호 추출 영역 -->
 <div id="lotto-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px solid #856404; border-radius: 15px;">
     <h3 style="margin-top: 0; color: #856404;">🔮 내 사주 맞춤 행운 번호</h3>
@@ -28,7 +44,7 @@ permalink: /lotto/
         명운을 분석하여 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 후 공개
     </div>
 
-    <!-- 💡 회원님이 원하셨던 1줄 고정 멘트 -->
+    <!-- 고정 멘트 1줄 -->
     <div id="saju-fortune-text" style="display: none; color: #856404; font-weight: bold; margin-top: 25px; padding: 15px; background-color: #fff3cd; border-radius: 8px; font-size: 1.1em; border: 1px dashed #ffe69c;">
         📜 명리학 사주 기반으로 분석된 회원님의 맞춤 추천 번호입니다.
     </div>
