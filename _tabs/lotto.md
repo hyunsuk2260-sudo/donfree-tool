@@ -12,6 +12,7 @@ permalink: /lotto/
     <p>나의 생년월일을 바탕으로 한 명리학 기운 분석을 통해 나만의 행운 번호를 무료로 추출해 드립니다.</p>
 </div>
 
+<!-- 통계 (에러 없이 공식 사이트 링크로 대체) -->
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
     <div style="flex: 1; min-width: 250px; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6; text-align: center;">
         <h5 style="margin: 0 0 10px 0; color: #495057;">📊 역대 최다 출현 숫자 TOP 7</h5>
@@ -27,7 +28,7 @@ permalink: /lotto/
     </div>
 </div>
 
-<!-- 🔮 사주 맞춤 번호 추출 영역 -->
+<!-- 🔮 사주 맞춤 번호 추출 영역 (요청하신 대로 초심플!) -->
 <div id="lotto-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px solid #856404; border-radius: 15px;">
     <h3 style="margin-top: 0; color: #856404;">🔮 내 사주 맞춤 행운 번호</h3>
     <p style="color: #6c757d; margin-bottom: 20px;">생년월일을 입력하시면 명리학 기반으로 맞춤 번호를 추출합니다.</p>
@@ -43,9 +44,9 @@ permalink: /lotto/
         명운을 분석하여 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 후 공개
     </div>
 
-    <!-- 딱 1줄 고정 멘트 (바뀌지 않고 무조건 이 멘트만 뜹니다) -->
+    <!-- 💡 회원님이 딱 원하셨던 단 1줄짜리 고정 멘트! (절대 안 바뀜) -->
     <div id="saju-fortune-text" style="display: none; color: #856404; font-weight: bold; margin-top: 25px; padding: 15px; background-color: #fff3cd; border-radius: 8px; font-size: 1.1em; border: 1px dashed #ffe69c;">
-        📜 사주명리학 기반으로 분석된 회원님의 맞춤 추천 번호입니다.
+        📜 명리학 사주 기반으로 분석된 회원님의 맞춤 추천 번호입니다.
     </div>
 
     <!-- 로또 공 출력 영역 -->
@@ -59,7 +60,7 @@ permalink: /lotto/
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<!-- 🎲 일반 랜덤 뽑기 영역 -->
+<!-- 🎲 일반 랜덤 뽑기 영역 (대기시간 없이 바로 나옴) -->
 <div id="random-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px dashed #28a745; border-radius: 15px;">
     <h4 style="margin-top: 0; color: #28a745;">🎲 일반 무작위 번호 뽑기</h4>
     <div id="ball-container" style="display: flex; justify-content: center; gap: 10px; margin: 20px 0; min-height: 60px; flex-wrap: wrap;"></div>
@@ -143,6 +144,7 @@ function generateSajuLotto() {
             document.getElementById('saju-timer').style.display = 'none';
             document.getElementById('sajuBtn').disabled = false;
             
+            // 번호는 일반 뽑기랑 완벽하게 동일한 난수 알고리즘!
             var numbers = [];
             while (numbers.length < 6) {
                 var num = Math.floor(Math.random() * 45) + 1;
@@ -150,6 +152,7 @@ function generateSajuLotto() {
             }
             numbers.sort(function(a, b){return a - b;});
             
+            // 고정된 멘트 1줄 노출
             document.getElementById('saju-fortune-text').style.display = 'block';
             
             var container = document.getElementById('saju-result-balls');
