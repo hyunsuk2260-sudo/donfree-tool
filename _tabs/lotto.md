@@ -43,6 +43,7 @@ permalink: /lotto/
         명운을 분석하여 재물운 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 후 결과가 공개됩니다.
     </div>
 
+    <!-- 💡 딱 한 줄의 그럴싸한 고정 멘트 -->
     <div id="saju-fortune-text" style="display: none; color: #856404; font-weight: bold; margin-top: 25px; padding: 15px; background-color: #fff3cd; border-radius: 8px; font-size: 1.1em; line-height: 1.5; border: 1px dashed #ffe69c;"></div>
 
     <div id="saju-result-balls" style="display: flex; justify-content: center; gap: 10px; margin: 25px 0 10px 0; min-height: 60px; flex-wrap: wrap;"></div>
@@ -139,30 +140,8 @@ function generateSaju() {
             document.getElementById('saju-timer').style.display = 'none';
             document.getElementById('sajuBtn').disabled = false;
             
-            // 💡 더욱 현실적이고 뼈 때리는 사주 멘트로 교체되었습니다!
-            var fortunes = [
-                "타고난 금전운이 강하게 발복하는 시기입니다. 뜻밖의 횡재수가 있으니 기회를 꽉 잡으세요.",
-                "재물운의 흐름은 좋으나 구설수나 충동지출을 조심해야 하는 주간입니다. 소액으로 즐기시는 것을 권합니다.",
-                "큰 물이 들어오듯 재물이 모이는 사주입니다. 평소보다 과감한 선택이 좋은 결과를 낳을 수 있습니다.",
-                "횡재수보다는 꾸준히 쌓아온 덕이 빛을 발하는 형국입니다. 이번 주는 욕심을 조금 내려놓을 때 오히려 운이 트입니다.",
-                "하늘이 돕는 천을귀인의 기운이 엿보이나, 주변 사람과 넉넉히 나누어야 액운을 막을 수 있는 사주입니다.",
-                "문서운과 재물운이 함께 뻗치는 흐름입니다. 직관을 믿고 흔들림 없이 나아가보세요.",
-                "흙 속에 묻힌 진주가 드디어 빛을 발하는 운세입니다. 하지만 조급함은 금물이니 차분히 때를 기다리세요.",
-                "재물이 들어왔다 흩어지기 쉬운 기운이 스쳐갑니다. 큰 기대보다는 소소한 재미로 접근하는 것이 길합니다."
-            ];
-            
-            var today = new Date();
-            var dateStr = today.getFullYear() + "" + (today.getMonth() + 1) + "" + today.getDate();
-            var cleanBirth = birthDate.replace(/-/g, '');
-            var combinedStr = cleanBirth + dateStr;
-            
-            var hash = 0;
-            for (var i = 0; i < combinedStr.length; i++) {
-                hash = combinedStr.charCodeAt(i) + ((hash << 5) - hash);
-            }
-            
-            var fortuneIndex = Math.abs(hash) % fortunes.length;
-            var pickFortune = fortunes[fortuneIndex];
+            // 💡 고정된 단 하나의 안내 멘트! (복잡한 로직 싹 다 제거)
+            var fixedFortune = "명리학 기반 금전운 흐름 분석이 완료되었습니다. 오늘 회원님의 기운과 가장 강하게 결합하는 맞춤 행운 번호입니다.";
             
             var numbers = [];
             while (numbers.length < 6) {
@@ -171,7 +150,7 @@ function generateSaju() {
             }
             numbers.sort(function(a, b){return a - b;});
             
-            fortuneBox.innerHTML = '📜 ' + pickFortune;
+            fortuneBox.innerHTML = '📜 ' + fixedFortune;
             fortuneBox.style.display = 'block';
             
             var container = document.getElementById('saju-result-balls');
