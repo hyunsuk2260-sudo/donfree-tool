@@ -31,20 +31,22 @@ permalink: /lotto/
 
 <div id="lotto-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px solid #856404; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
     <h3 style="margin-top: 0; color: #856404;">🔮 내 사주 맞춤 행운 번호</h3>
-    <p style="color: #6c757d; margin-bottom: 20px;">생년월일을 입력하시면 명리학 기반 알고리즘으로 사주를 분석하여 맞춤 번호를 추출합니다.</p>
+    <p style="color: #6c757d; margin-bottom: 20px;">생년월일을 입력하시면 명리학 기반으로 사주를 분석하여 맞춤 번호를 추출합니다.</p>
     
     <input type="date" id="birthDate" style="padding: 10px; font-size: 1.1em; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 15px;">
     <br>
     <button id="sajuBtn" onclick="generateSaju()" style="padding: 15px 35px; font-size: 1.2em; background-color: #856404; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">사주 맞춤 번호 분석하기</button>
     
-    <p style="font-size: 0.85em; color: #adb5bd; margin-top: 15px; margin-bottom: 0;">🔒 입력하신 생년월일 정보는 분석용으로만 사용되며, 서버에 절대 저장되지 않으니 안심하세요.</p>
+    <p style="font-size: 0.85em; color: #adb5bd; margin-top: 15px; margin-bottom: 0;">🔒 입력하신 생년월일 정보는 분석용으로만 사용되며, 절대 저장되지 않습니다.</p>
 
     <div id="saju-timer" style="display: none; text-align: center; color: #dc3545; font-weight: bold; margin-top: 20px; padding: 15px; background-color: #f8d7da; border-radius: 8px;">
-        명운을 분석하여 재물운 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 후 결과가 공개됩니다.
+        사주를 분석하여 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 대기
     </div>
 
-    <!-- 💡 딱 한 줄의 그럴싸한 고정 멘트 -->
-    <div id="saju-fortune-text" style="display: none; color: #856404; font-weight: bold; margin-top: 25px; padding: 15px; background-color: #fff3cd; border-radius: 8px; font-size: 1.1em; line-height: 1.5; border: 1px dashed #ffe69c;"></div>
+    <!-- 가장 심플하게 고정된 멘트 -->
+    <div id="saju-fortune-text" style="display: none; color: #856404; font-weight: bold; margin-top: 25px; padding: 15px; background-color: #fff3cd; border-radius: 8px; font-size: 1.1em; line-height: 1.5; border: 1px dashed #ffe69c;">
+        📜 사주기반 로또 생성번호
+    </div>
 
     <div id="saju-result-balls" style="display: flex; justify-content: center; gap: 10px; margin: 25px 0 10px 0; min-height: 60px; flex-wrap: wrap;"></div>
 </div>
@@ -117,16 +119,14 @@ function addHistory(numbers, typeStr) {
 function generateSaju() {
     var birthDate = document.getElementById('birthDate').value;
     if(!birthDate) {
-        alert('사주 분석을 위해 생년월일을 입력해주세요!');
+        alert('생년월일을 입력해주세요!');
         return;
     }
     
     document.getElementById('sajuBtn').disabled = true;
     document.getElementById('saju-timer').style.display = 'block';
     document.getElementById('saju-result-balls').innerHTML = '';
-    
-    var fortuneBox = document.getElementById('saju-fortune-text');
-    fortuneBox.style.display = 'none';
+    document.getElementById('saju-fortune-text').style.display = 'none';
     
     var timeLeft = 5;
     document.getElementById('sTimeCount').innerText = timeLeft;
@@ -140,9 +140,7 @@ function generateSaju() {
             document.getElementById('saju-timer').style.display = 'none';
             document.getElementById('sajuBtn').disabled = false;
             
-            // 💡 고정된 단 하나의 안내 멘트! (복잡한 로직 싹 다 제거)
-            var fixedFortune = "명리학 기반 금전운 흐름 분석이 완료되었습니다. 오늘 회원님의 기운과 가장 강하게 결합하는 맞춤 행운 번호입니다.";
-            
+            // 랜덤 뽑기와 완전히 동일한 로직 적용 (5초 대기만 있음)
             var numbers = [];
             while (numbers.length < 6) {
                 var num = Math.floor(Math.random() * 45) + 1;
@@ -150,8 +148,8 @@ function generateSaju() {
             }
             numbers.sort(function(a, b){return a - b;});
             
-            fortuneBox.innerHTML = '📜 ' + fixedFortune;
-            fortuneBox.style.display = 'block';
+            // 지정해주신 멘트 고정 노출
+            document.getElementById('saju-fortune-text').style.display = 'block';
             
             var container = document.getElementById('saju-result-balls');
             numbers.forEach(function(num) {
