@@ -133,19 +133,22 @@ function generateSaju() {
     var timer = setInterval(function() {
         timeLeft--;
         document.getElementById('sTimeCount').innerText = timeLeft;
+        
         if (timeLeft <= 0) {
             clearInterval(timer);
             document.getElementById('saju-timer').style.display = 'none';
             document.getElementById('sajuBtn').disabled = false;
             
+            // 💡 더욱 현실적이고 뼈 때리는 사주 멘트로 교체되었습니다!
             var fortunes = [
                 "타고난 금전운이 강하게 발복하는 시기입니다. 뜻밖의 횡재수가 있으니 기회를 꽉 잡으세요.",
-                "귀인을 만나 재물이 들어올 운세입니다. 그동안 쌓은 덕이 재물로 환산되어 돌아오는 형국입니다.",
+                "재물운의 흐름은 좋으나 구설수나 충동지출을 조심해야 하는 주간입니다. 소액으로 즐기시는 것을 권합니다.",
                 "큰 물이 들어오듯 재물이 모이는 사주입니다. 평소보다 과감한 선택이 좋은 결과를 낳을 수 있습니다.",
-                "흙 속에 묻힌 진주가 드디어 빛을 발하는 운세입니다. 소소한 행운이 큰 기쁨으로 이어집니다.",
-                "타고난 오행의 기운이 조화로워 재물이 흩어지지 않고 단단하게 모이는 길운입니다.",
-                "문서운과 재물운이 함께 뻗치는 사주 흐름입니다. 직관을 믿고 나아가보세요.",
-                "하늘이 돕는 천을귀인(天乙貴人)의 기운이 엿보입니다. 뜻하지 않은 곳에서 행운이 열립니다."
+                "횡재수보다는 꾸준히 쌓아온 덕이 빛을 발하는 형국입니다. 이번 주는 욕심을 조금 내려놓을 때 오히려 운이 트입니다.",
+                "하늘이 돕는 천을귀인의 기운이 엿보이나, 주변 사람과 넉넉히 나누어야 액운을 막을 수 있는 사주입니다.",
+                "문서운과 재물운이 함께 뻗치는 흐름입니다. 직관을 믿고 흔들림 없이 나아가보세요.",
+                "흙 속에 묻힌 진주가 드디어 빛을 발하는 운세입니다. 하지만 조급함은 금물이니 차분히 때를 기다리세요.",
+                "재물이 들어왔다 흩어지기 쉬운 기운이 스쳐갑니다. 큰 기대보다는 소소한 재미로 접근하는 것이 길합니다."
             ];
             
             var today = new Date();
@@ -153,22 +156,17 @@ function generateSaju() {
             var cleanBirth = birthDate.replace(/-/g, '');
             var combinedStr = cleanBirth + dateStr;
             
-            var seed = 0;
+            var hash = 0;
             for (var i = 0; i < combinedStr.length; i++) {
-                seed += combinedStr.charCodeAt(i) * (i + 1);
+                hash = combinedStr.charCodeAt(i) + ((hash << 5) - hash);
             }
             
-            function seededRandom() {
-                var x = Math.sin(seed++) * 10000;
-                return x - Math.floor(x);
-            }
-            
-            var fortuneIndex = seed % fortunes.length;
+            var fortuneIndex = Math.abs(hash) % fortunes.length;
             var pickFortune = fortunes[fortuneIndex];
             
             var numbers = [];
             while (numbers.length < 6) {
-                var num = Math.floor(seededRandom() * 45) + 1;
+                var num = Math.floor(Math.random() * 45) + 1;
                 if (!numbers.includes(num)) { numbers.push(num); }
             }
             numbers.sort(function(a, b){return a - b;});
