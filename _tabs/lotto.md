@@ -36,6 +36,9 @@ permalink: /lotto/
     <input type="date" id="birthDate" style="padding: 10px; font-size: 1.1em; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 15px;">
     <br>
     <button id="sajuBtn" onclick="generateSaju()" style="padding: 15px 35px; font-size: 1.2em; background-color: #856404; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">사주 맞춤 번호 분석하기</button>
+    
+    <!-- ✅ 개인정보 안심 문구 추가된 부분 -->
+    <p style="font-size: 0.85em; color: #adb5bd; margin-top: 15px; margin-bottom: 0;">🔒 입력하신 생년월일 정보는 분석용으로만 사용되며, 서버에 절대 저장되지 않으니 안심하세요.</p>
 
     <div id="saju-timer" style="display: none; text-align: center; color: #dc3545; font-weight: bold; margin-top: 20px; padding: 15px; background-color: #f8d7da; border-radius: 8px;">
         명운을 분석하여 재물운 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 후 결과가 공개됩니다.
