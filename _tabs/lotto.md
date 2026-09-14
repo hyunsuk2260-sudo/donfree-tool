@@ -31,17 +31,19 @@ permalink: /lotto/
 
 <div id="lotto-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px solid #856404; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
     <h3 style="margin-top: 0; color: #856404;">🔮 내 사주 맞춤 행운 번호</h3>
-    <p style="color: #6c757d; margin-bottom: 20px;">생년월일을 입력하시면 명리학 기반 난수 알고리즘으로 맞춤 번호를 1세트 분석해 드립니다.</p>
+    <p style="color: #6c757d; margin-bottom: 20px;">생년월일을 입력하시면 명리학 기반 난수 알고리즘으로 사주를 분석하여 맞춤 번호를 추출합니다.</p>
     
     <input type="date" id="birthDate" style="padding: 10px; font-size: 1.1em; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 15px;">
     <br>
     <button id="sajuBtn" onclick="generateSaju()" style="padding: 15px 35px; font-size: 1.2em; background-color: #856404; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">사주 맞춤 번호 분석하기</button>
 
     <div id="saju-timer" style="display: none; text-align: center; color: #dc3545; font-weight: bold; margin-top: 20px; padding: 15px; background-color: #f8d7da; border-radius: 8px;">
-        명운을 분석하여 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 후 결과가 공개됩니다.
+        명운을 분석하여 재물운 번호를 추출하는 중입니다... <br><span id="sTimeCount" style="font-size: 1.5em;">5</span>초 후 결과가 공개됩니다.
     </div>
 
-    <div id="saju-result-balls" style="display: flex; justify-content: center; gap: 10px; margin: 20px 0; min-height: 60px; flex-wrap: wrap;"></div>
+    <div id="saju-fortune-text" style="display: none; color: #856404; font-weight: bold; margin-top: 25px; padding: 15px; background-color: #fff3cd; border-radius: 8px; font-size: 1.1em; line-height: 1.5; border: 1px dashed #ffe69c;"></div>
+
+    <div id="saju-result-balls" style="display: flex; justify-content: center; gap: 10px; margin: 25px 0 10px 0; min-height: 60px; flex-wrap: wrap;"></div>
 </div>
 
 <div style="text-align: center; margin: 40px 0; min-height: 100px;">
@@ -120,6 +122,9 @@ function generateSaju() {
     document.getElementById('saju-timer').style.display = 'block';
     document.getElementById('saju-result-balls').innerHTML = '';
     
+    var fortuneBox = document.getElementById('saju-fortune-text');
+    fortuneBox.style.display = 'none';
+    
     var timeLeft = 5;
     document.getElementById('sTimeCount').innerText = timeLeft;
     
@@ -131,12 +136,35 @@ function generateSaju() {
             document.getElementById('saju-timer').style.display = 'none';
             document.getElementById('sajuBtn').disabled = false;
             
+            var fortunes = [
+                "타고난 금전운이 강하게 발복하는 시기입니다. 뜻밖의 횡재수가 있으니 기회를 꽉 잡으세요.",
+                "귀인을 만나 재물이 들어올 운세입니다. 그동안 쌓은 덕이 재물로 환산되어 돌아오는 형국입니다.",
+                "큰 물이 들어오듯 재물이 모이는 사주입니다. 평소보다 과감한 선택이 좋은 결과를 낳을 수 있습니다.",
+                "흙 속에 묻힌 진주가 드디어 빛을 발하는 운세입니다. 소소한 행운이 큰 기쁨으로 이어집니다.",
+                "타고난 오행의 기운이 조화로워 재물이 흩어지지 않고 단단하게 모이는 길운입니다.",
+                "문서운과 재물운이 함께 뻗치는 사주 흐름입니다. 직관을 믿고 나아가보세요.",
+                "하늘이 돕는 천을귀인(天乙貴人)의 기운이 엿보입니다. 뜻하지 않은 곳에서 행운이 열립니다."
+            ];
+            
+            var today = new Date();
+            var dateString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            var storageKey = 'saju_fortune_' + birthDate + '_' + dateString;
+            
+            var pickFortune = localStorage.getItem(storageKey);
+            if (!pickFortune) {
+                pickFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+                localStorage.setItem(storageKey, pickFortune);
+            }
+            
             var numbers = [];
             while (numbers.length < 6) {
                 var num = Math.floor(Math.random() * 45) + 1;
                 if (!numbers.includes(num)) { numbers.push(num); }
             }
             numbers.sort(function(a, b){return a - b;});
+            
+            fortuneBox.innerText = '📜 ' + pickFortune;
+            fortuneBox.style.display = 'block';
             
             var container = document.getElementById('saju-result-balls');
             numbers.forEach(function(num) {
