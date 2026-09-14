@@ -5,6 +5,25 @@ order: 5
 layout: page
 permalink: /video/
 ---
+---
+title: 비디오 다운로더
+icon: fas fa-download
+order: 5
+layout: page
+permalink: /video/
+---
+
+**비디오 다운로더 이용 안내**  
+워터마크 없는 고화질 동영상을 무료로 다운로드하세요. 틱톡(TikTok), 인스타그램 릴스, 유튜브 쇼츠 등 다양한 숏폼 플랫폼의 원본 영상을 빠르고 안전하게 추출할 수 있습니다. 
+
+**사용 방법**  
+1. 다운로드하고 싶은 동영상의 공유 주소(URL)를 복사합니다.
+2. 아래 입력창에 주소를 붙여넣고 '다운로드 링크 생성' 버튼을 클릭합니다.
+3. 5초 대기 후 생성되는 다운로드 버튼을 눌러 기기에 저장합니다.
+
+*주의사항: 본 툴은 개인 소장 용도로만 사용 가능하며, 저작권이 있는 영상의 무단 배포 및 상업적 이용을 금지합니다.*
+
+<hr> <!-- 글씨와 다운로더 툴 사이에 가로줄 긋기 -->
 
 <div id="downloader-box" style="text-align: center; margin: 40px 0;">
     <input type="text" id="videoUrl" placeholder="다운로드할 동영상 링크를 붙여넣으세요" style="width: 70%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
