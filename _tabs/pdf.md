@@ -15,7 +15,7 @@ permalink: /pdf-tool/
 <!-- 1. 이미지 -> PDF 변환기 미니 툴 -->
 <div style="margin-bottom: 30px; padding: 25px; background-color: #ffffff; border: 2px solid #dc3545; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
     <h3 style="margin-top: 0; color: #dc3545;">1. 이미지 파일(JPG/PNG)을 PDF로 변환하기</h3>
-    <p style="color: #6c757d; line-height: 1.6;">변환할 이미지 파일을 선택하고 버튼을 누르면 5초 후 안전하게 처리됩니다.</p>
+    <p style="color: #6c757d; line-height: 1.6;">변환할 이미지 파일을 선택하고 버튼을 누르시면 5초 후 전용 변환 페이지로 안전하게 연결됩니다.</p>
     
     <div style="margin: 15px 0;">
         <input type="file" id="img-input" multiple accept="image/*" style="padding: 10px; border: 1px dashed #ccc; border-radius: 6px; width: 100%; box-sizing: border-box; cursor: pointer;">
@@ -24,11 +24,11 @@ permalink: /pdf-tool/
     <button type="button" id="convert-btn" style="padding: 12px 25px; background-color:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">PDF 변환 및 다운로드 ↗</button>
     
     <div id="pdf-timer" style="display:none; margin-top:15px; color:#dc3545; font-weight:bold; padding:10px; background-color:#f8d7da; border-radius:6px; text-align: center;">
-        안전한 연결을 준비 중입니다... <span id="pdf-count" style="font-size: 1.2em;">5</span>초 후 완료됩니다.
+        안전한 연결을 준비 중입니다... <span id="pdf-count" style="font-size: 1.2em;">5</span>초 후 이동합니다.
     </div>
 </div>
 
-<!-- 구글 애드센스 광고 영역 -->
+<!-- 구글 애드센스 광고 영역 (사용자가 대기하는 동안 광고 노출 극대화!) -->
 <div style="text-align: center; margin: 40px 0; min-height: 100px;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -69,9 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (timeLeft <= 0) {
                 clearInterval(countdown);
-                timerBox.innerHTML = '✨ 준비 완료! 전문 변환 페이지로 연결합니다.';
+                timerBox.innerHTML = '✨ 변환 준비 완료! 페이지가 열립니다.';
                 
-                // 에러 없이 가장 안전하게 작동하는 iLovePDF 이미지->PDF 변환 페이지로 연결 (광고 시청 효과 극대화)
+                // 새 창으로 변환 사이트 열기
                 window.open('https://www.ilovepdf.com/ko/jpg_to_pdf', '_blank');
 
                 setTimeout(function() {
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     convertBtn.style.opacity = '1';
                     convertBtn.style.cursor = 'pointer';
                     timerBox.style.display = 'none';
-                    timerBox.innerHTML = '안전한 연결을 준비 중입니다... <span id="pdf-count" style="font-size: 1.2em;">5</span>초 후 완료됩니다.';
+                    timerBox.innerHTML = '안전한 연결을 준비 중입니다... <span id="pdf-count" style="font-size: 1.2em;">5</span>초 후 이동합니다.';
                 }, 2000);
             }
         }, 1000);
