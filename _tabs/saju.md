@@ -120,7 +120,7 @@ permalink: /saju-tool/
                 gDesc.innerText = "생년월일을 입력하시면 타고난 오행 기운을 분석하여 부족한 기운을 채워줄 맞춤 솔루션을 제안해 드립니다.";
             } else if (currentTab === 'zodiac') {
                 gTitle.innerText = "🐾 띠별 오늘 운세";
-                gDesc.innerText = "생년월일 기반 십이지신(띠) 성향과 오늘의 금전·활력 흐름을 확인해 보세요.";
+                gDesc.innerText = "생년월일(연도) 기준 십이지신(띠) 성향과 오늘의 금전·활력 흐름을 확인해 보세요.";
             } else if (currentTab === 'constellation') {
                 gTitle.innerText = "⭐ 별자리 밸런스 운세";
                 gDesc.innerText = "생일 기준 12별자리 에너지 가이드와 집중 타이밍을 체크해 드립니다.";
@@ -147,8 +147,37 @@ permalink: /saju-tool/
         '수': { name: '수(水 - 순환·저력의 기운)', desc: '깊은 통찰력과 지구력이 있으나, 체내 수분 순환이 정체되거나 아침에 잘 붓고 하체가 무거워지기 쉬운 체질입니다. 깊은 혈행 순환이 보약입니다.', recName: '🖤 블랙푸드(서리태) 선식 / 혈행 개선 템', recDesc: '신장·순환 에너지를 묵직하게 채워줄 블랙 에너지 푸드' }
     };
 
-    const zodiacNames = ['쥐띠', '소띠', '호랑이띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠', '원숭이띠', '닭띠', '개띠', '돼지띠'];
-    const constellationNames = ['양자리', '황소자리', '쌍둥이자리', '게자리', '사자자리', '처녀자리', '천칭자리', '전갈자리', '사수자리', '염소자리', '물병자리', '물고기자리'];
+    // 띠 계산 함수 (12지신: 원숭이, 닭, 개, 돼지, 쥐, 소, 호랑이, 토끼, 용, 뱀, 말, 양)
+    // 1984년 = 쥐띠(0) 기준
+    const zodiacNames = ['원숭이띠', '닭띠', '개띠', '돼지띠', '쥐띠', '소띠', '호랑이띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠'];
+    function getZodiac(year) {
+        return zodiacNames[(year - 1960) % 12 >= 0 ? (year - 1960) % 12 : ((year - 1960) % 12) + 12];
+    }
+    // 더 직관적인 연도 모듈러 (1987 % 12 -> 1987년은 묘(토끼) = index 3/7 등 정확 매핑: (year - 4) % 12의 십이지 맵)
+    const exactZodiacMap = ['자(쥐)', '축(소)', '인(호랑이)', '묘(토끼)', '진(용)', '사(뱀)', '오(말)', '미(양)', '신(원숭이)', '유(닭)', '술(개)', '해(돼지)'];
+    function getAccurateZodiac(year) {
+        const idx = ((year - 4) % 12 + 12) % 12;
+        const names = ['쥐띠', '소띠', '호랑이띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠', '원숭이띠', '닭띠', '개띠', '돼지띠'];
+        return names[idx];
+    }
+
+    // 별자리 계산 함수 (월/일 기준)
+    function getConstellation(month, day) {
+        const md = month * 100 + day;
+        if (md >= 321 && md <= 419) return '양자리';
+        if (md >= 420 && md <= 520) return '황소자리';
+        if (md >= 521 && md <= 621) return '쌍둥이자리';
+        if (md >= 622 && md <= 722) return '게자리';
+        if (md >= 723 && md <= 822) return '사자자리';
+        if (md >= 823 && md <= 922) return '처녀자리';
+        if (md >= 923 && md <= 1023) return '천칭자리';
+        if (md >= 1024 && md <= 1122) return '전갈자리';
+        if (md >= 1123 && md <= 1224) return '사수자리';
+        if (md >= 1225 || md <= 101) return '염소자리';
+        if (md >= 102 && md <= 218) return '물병자리';
+        return '물고기자리';
+    }
+
     const cookieMsgs = [
         "“작은 시도가 내일의 커다란 기쁨으로 연결되는 하루입니다.”",
         "“뜻밖의 소중한 인연이나 기분 좋은 연락이 스치는 시점입니다.”",
@@ -163,7 +192,13 @@ permalink: /saju-tool/
             return;
         }
 
-        var dateNums = birthInput.value.replace(/-/g, '');
+        var valStr = birthInput.value; // YYYY-MM-DD
+        var parts = valStr.split('-');
+        var year = parseInt(parts[0], 10);
+        var month = parseInt(parts[1], 10);
+        var day = parseInt(parts[2], 10);
+
+        var dateNums = valStr.replace(/-/g, '');
         var sum = 0;
         for (var i = 0; i < dateNums.length; i++) {
             sum += parseInt(dateNums[i], 10);
@@ -190,14 +225,14 @@ permalink: /saju-tool/
             document.getElementById("coupang-link").href = cLink;
             coupangContainer.style.display = "block";
         } else if (currentTab === 'zodiac') {
-            var zIdx = sum % zodiacNames.length;
-            resTitle.innerText = "🐾 [띠별운세] " + zodiacNames[zIdx] + timeNote;
-            resDesc.innerText = "선택하신 생년월일 기준 기운 흐름: 주변의 협조가 돋보이며, 오후 시간대 실속 있는 성과가 기대되는 활력형 일일 운세입니다.";
+            var myZodiac = getAccurateZodiac(year);
+            resTitle.innerText = "🐾 [띠별운세] " + year + "년생 " + myZodiac + timeNote;
+            resDesc.innerText = "선택하신 생년월일(" + year + "년) 기준 " + myZodiac.replace('띠','') + " 기운 흐름: 주변의 협조가 돋보이며, 오후 시간대 실속 있는 성과가 기대되는 활력형 일일 운세입니다.";
             coupangContainer.style.display = "none";
         } else if (currentTab === 'constellation') {
-            var cIdx = sum % constellationNames.length;
-            resTitle.innerText = "⭐ [별자리운세] " + constellationNames[cIdx];
-            resDesc.innerText = "오늘의 별자리 에너지: 감성과 직관의 밸런스가 최고조에 달하는 시간입니다. 미뤄둔 일정을 가볍게 정리해 보세요.";
+            var myConstellation = getConstellation(month, day);
+            resTitle.innerText = "⭐ [별자리운세] " + month + "월 " + day + "일생 (" + myConstellation + ")";
+            resDesc.innerText = "오늘의 " + myConstellation + " 에너지: 감성과 직관의 밸런스가 최고조에 달하는 시간입니다. 미뤄둔 일정을 가볍게 정리해 보세요.";
             coupangContainer.style.display = "none";
         } else if (currentTab === 'cookie') {
             var cMsg = cookieMsgs[sum % cookieMsgs.length];
