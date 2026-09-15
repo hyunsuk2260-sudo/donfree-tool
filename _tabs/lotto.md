@@ -73,7 +73,7 @@ permalink: /lotto/
                 <div style="font-size: 1.8em; background: #fff8e1; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 6px; flex-shrink: 0;">💼</div>
                 <div>
                     <div style="font-size: 0.7em; font-weight: bold; color: #d97706; margin-bottom: 2px;">재물운 상승 아이템</div>
-                    <div style="font-size: 0.85em; font-weight: bold; color: #1f2937; margin-bottom: 2px;">자산을 지켜주는 프리미엄 천연 가죽 장지갑</div>
+                    <div style="font-size: 0.85em; font-weight: bold; color: #1f2937; margin-bottom: 2px;">자산을 지켜주는 프리미엄 가죽 카드 지갑</div>
                     <div style="font-size: 0.75em; font-weight: bold; color: #2563eb;">쿠팡 최저가 특가 보러가기 ↗</div>
                 </div>
             </a>
