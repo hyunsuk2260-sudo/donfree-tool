@@ -8,12 +8,9 @@ permalink: /font-tool/
 
 {% raw %}
 <style>
-/* 구글 웹폰트 */
+/* 폰트 불러오기 */
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Dongle:wght@400;700&family=Gowun+Dodum&family=Jua&family=Noto+Sans+KR:wght@400;700&family=Single+Day&display=swap');
-/* 프리텐다드 */
 @import url("https://fastly.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-
-/* 눈누 웹폰트 (트렌디 폰트들) */
 @font-face { font-family: 'TheJamsil5Bold'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
 @font-face { font-family: 'EF_jejudoldam'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'yg-jalnan'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -27,7 +24,6 @@ permalink: /font-tool/
 @font-face { font-family: 'Binggrae'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'ChosunCentennial'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ChosunCentennial.woff2') format('woff2'); font-weight: normal; font-style: normal; }
 
-/* 폰트 클래스 매핑 */
 .font-pretendard { font-family: 'Pretendard', sans-serif; }
 .font-jamsil { font-family: 'TheJamsil5Bold', sans-serif; }
 .font-jeju { font-family: 'EF_jejudoldam', sans-serif; }
@@ -68,12 +64,12 @@ permalink: /font-tool/
 
     <main class="max-w-3xl mx-auto w-full px-4 flex-1 py-6">
         <div id="fontGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- 자바스크립트로 폰트 목록이 렌더링됩니다 -->
+            <!-- 폰트 렌더링 영역 -->
         </div>
     </main>
 </div>
 
-<!-- 하단 구글 애드센스 광고 영역 -->
+<!-- 하단 구글 애드센스 -->
 <div style="text-align: center; margin: 40px 0; min-height: 100px;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -81,7 +77,6 @@ permalink: /font-tool/
 </div>
 
 <script>
-(function() {
     var fontData = [
         { name: '제주돌담체 (감성 릴스 추천)', css: 'font-jeju', url: 'https://noonnu.cc/font_page/1057' },
         { name: '더잠실체 (모던하고 세련된)', css: 'font-jamsil', url: 'https://noonnu.cc/font_page/1138' },
@@ -105,9 +100,13 @@ permalink: /font-tool/
         { name: '노토 산스 KR (구글 기본 고딕)', css: 'font-noto', url: 'https://fonts.google.com/specimen/Noto+Sans+KR' }
     ];
 
-    window.renderFonts = function() {
-        var text = document.getElementById('previewInput').value || '테스트 문구를 입력하세요';
+    function renderFonts() {
+        var previewInput = document.getElementById('previewInput');
+        if (!previewInput) return;
+        
+        var text = previewInput.value || '테스트 문구를 입력하세요';
         var grid = document.getElementById('fontGrid');
+        if (!grid) return;
         
         var htmlString = "";
         for (var i = 0; i < fontData.length; i++) {
@@ -123,15 +122,14 @@ permalink: /font-tool/
             htmlString += '</div>';
         }
         grid.innerHTML = htmlString;
-    };
-
-    var previewInput = document.getElementById('previewInput');
-    if (previewInput) {
-        previewInput.addEventListener('input', window.renderFonts);
     }
 
-    // 초기 화면 렌더링
-    window.renderFonts();
-})();
+    var inputEl = document.getElementById('previewInput');
+    if (inputEl) {
+        inputEl.addEventListener('input', renderFonts);
+    }
+    
+    // 화면 로딩 시 최초 1회 실행
+    renderFonts();
 </script>
 {% endraw %}
