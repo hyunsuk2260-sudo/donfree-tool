@@ -8,7 +8,6 @@ permalink: /font-tool/
 
 {% raw %}
 <style>
-/* 폰트 불러오기 */
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Dongle:wght@400;700&family=Gowun+Dodum&family=Jua&family=Noto+Sans+KR:wght@400;700&family=Single+Day&display=swap');
 @import url("https://fastly.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 @font-face { font-family: 'TheJamsil5Bold'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
@@ -48,7 +47,7 @@ permalink: /font-tool/
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<div class="bg-gray-50 text-gray-800 flex flex-col selection:bg-purple-200" style="min-height: 80vh;">
+<div class="bg-gray-50 text-gray-800 flex flex-col" style="min-height: 80vh;">
     <header class="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm rounded-t-xl mt-4">
         <div class="max-w-3xl mx-auto px-4 py-4">
             <div class="flex items-center justify-between mb-3">
@@ -64,13 +63,14 @@ permalink: /font-tool/
 
     <main class="max-w-3xl mx-auto w-full px-4 flex-1 py-6">
         <div id="fontGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- 폰트 렌더링 영역 -->
+            <!-- 폰트 목록 로딩 중 -->
+            <div class="col-span-full text-center py-10 text-gray-400 font-bold">트렌디 폰트를 불러오는 중입니다... ✨</div>
         </div>
     </main>
 </div>
 
-<!-- 하단 구글 애드센스 -->
-<div style="text-align: center; margin: 40px 0; min-height: 100px;">
+<!-- 광고 영역 (독립 분리) -->
+<div style="text-align: center; margin: 40px 0; min-height: 100px; clear: both;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -103,7 +103,6 @@ permalink: /font-tool/
     function renderFonts() {
         var previewInput = document.getElementById('previewInput');
         var grid = document.getElementById('fontGrid');
-        
         if (!previewInput || !grid) return;
         
         var text = previewInput.value || '테스트 문구를 입력하세요';
@@ -124,22 +123,16 @@ permalink: /font-tool/
         grid.innerHTML = htmlString;
     }
 
-    // [핵심 해결책] 0.1초마다 상자가 만들어졌는지 확인하고, 상자가 확인되면 즉시 폰트를 채우는 코드
-    function initFontTool() {
+    // 즉시 실행 및 안전 장치
+    window.addEventListener('DOMContentLoaded', function() {
         var inputEl = document.getElementById('previewInput');
-        var grid = document.getElementById('fontGrid');
-        
-        if (inputEl && grid) {
-            // 상자가 확인됨 -> 기능 시작!
+        if (inputEl) {
             inputEl.addEventListener('input', renderFonts);
-            renderFonts();
-        } else {
-            // 상자가 아직 없으면 0.1초 뒤에 다시 확인!
-            setTimeout(initFontTool, 100);
         }
-    }
+        renderFonts();
+    });
     
-    // 감시 시작!
-    initFontTool();
+    // 혹시 모를 지연 로딩 대비
+    setTimeout(renderFonts, 200);
 </script>
 {% endraw %}
