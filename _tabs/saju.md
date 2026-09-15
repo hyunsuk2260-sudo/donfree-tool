@@ -85,11 +85,21 @@ permalink: /saju-tool/
     </div>
 </div>
 
-<!-- 구글 애드센스 광고 영역 -->
+<!-- 구글 애드센스 광고 영역 (정상 위치) -->
 <div style="text-align: center; margin: 40px 0; min-height: 100px;">
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" 
+         style="display:block" 
+         data-ad-client="ca-pub-1922344740086878" 
+         data-ad-slot="6535711038" 
+         data-ad-format="auto" 
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </div>
 
+<!-- 자바스크립트 시작 -->
 <script>
 window.currentSajuTab = 'today';
 
@@ -229,25 +239,5 @@ window.runSajuAnalysis = function() {
 
     resultBox.style.display = "block";
     resultBox.scrollIntoView({ behavior: 'smooth' });
-
-    try {
-        if (window.adsbygoogle) {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        }
-    } catch(e) {}
 };
-  <!-- 구글 애드센스 광고 영역 -->
-<div style="text-align: center; margin: 40px 0; min-height: 100px;">
-    <!-- 이 스크립트가 있어야 광고가 정상적으로 뜹니다 -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
-    <ins class="adsbygoogle" 
-         style="display:block" 
-         data-ad-client="ca-pub-1922344740086878" 
-         data-ad-slot="6535711038" 
-         data-ad-format="auto" 
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
 </script>
