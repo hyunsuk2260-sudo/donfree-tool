@@ -21,7 +21,8 @@ permalink: /pdf-tool/
         <input type="file" id="img-input" multiple accept="image/*" style="padding: 10px; border: 1px dashed #ccc; border-radius: 6px; width: 100%; box-sizing: border-box; cursor: pointer;">
     </div>
     
-    <button type="button" id="convert-btn" style="padding: 12px 25px; background-color:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">PDF 변환 및 다운로드 ↗</button>
+    <!-- 버튼을 누르면 즉시 작동하는 인라인 함수 연결 -->
+    <button type="button" id="convert-btn" onclick="window.runPdfTimer()" style="padding: 12px 25px; background-color:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">PDF 변환 및 다운로드 ↗</button>
     
     <div id="pdf-timer" style="display:none; margin-top:15px; color:#dc3545; font-weight:bold; padding:10px; background-color:#f8d7da; border-radius:6px; text-align: center;">
         안전한 연결을 준비 중입니다... <span id="pdf-count" style="font-size: 1.2em;">5</span>초 후 이동합니다.
@@ -43,13 +44,12 @@ permalink: /pdf-tool/
 </div>
 
 <script>
-// 가장 안전하고 확실한 전역 함수 방식 (클릭 안 됨 현상 원천 차단)
-function startPdfTimer() {
+window.runPdfTimer = function() {
     var btn = document.getElementById("convert-btn");
     var timerBox = document.getElementById("pdf-timer");
     var countSpan = document.getElementById("pdf-count");
 
-    if (btn.disabled) return;
+    if (!btn || btn.disabled) return;
 
     btn.disabled = true;
     btn.style.opacity = '0.5';
@@ -57,11 +57,11 @@ function startPdfTimer() {
     timerBox.style.display = 'block';
 
     var timeLeft = 5;
-    countSpan.innerText = timeLeft;
+    if (countSpan) countSpan.innerText = timeLeft;
 
     var countdown = setInterval(function() {
         timeLeft--;
-        countSpan.innerText = timeLeft;
+        if (countSpan) countSpan.innerText = timeLeft;
 
         if (timeLeft <= 0) {
             clearInterval(countdown);
@@ -75,17 +75,11 @@ function startPdfTimer() {
                 btn.style.opacity = '1';
                 btn.style.cursor = 'pointer';
                 timerBox.style.display = 'none';
+                // span 태그가 날아가지 않도록 안전하게 원복
                 timerBox.innerHTML = '안전한 연결을 준비 중입니다... <span id="pdf-count" style="font-size: 1.2em;">5</span>초 후 이동합니다.';
+                countSpan = document.getElementById("pdf-count");
             }, 2000);
         }
     }, 1000);
-}
-
-// 버튼에 직접 이벤트 연결
-document.addEventListener("DOMContentLoaded", function() {
-    var convertBtn = document.getElementById("convert-btn");
-    if (convertBtn) {
-        convertBtn.onclick = startPdfTimer;
-    }
-});
+};
 </script>
