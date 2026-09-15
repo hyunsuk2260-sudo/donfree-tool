@@ -16,9 +16,9 @@ timezone:
 
 title: 돈프리 툴즈 # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline:실생활 유용 무료 웹 툴 A text-focused Jekyll theme # it will display as the subtitle
 
-description: >- # used by seo meta and the atom feed
+description:무료 사주 운세, 1초 이모지 복사, PDF 변환 및 통합 등 실생활에 유용한 무료 웹 툴 모음 사이트입니다. >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
 
 # Fill in the protocol & hostname for your site.
