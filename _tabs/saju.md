@@ -38,7 +38,11 @@ permalink: /saju-tool/
     <div style="margin-top: 25px; padding: 20px; background-color: #ffffff; border-radius: 8px; border: 1px dashed #d63384; text-align: center;">
         <h4 id="rec-item-title" style="margin-top: 0; color: #333;">🌿 부족한 기운 채우기 추천템</h4>
         <p id="rec-item-desc" style="font-size: 0.9em; color: #666; margin-bottom: 15px;"></p>
-        <a id="coupang-link" href="#" target="_blank" style="display:inline-block; padding: 14px 30px; background-color: #ff2f6e; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 8px rgba(255,47,110,0.3);">내 체질 맞춤 쿠팡 추천상품 보러 가기 ↗</a>
+        <a id="coupang-link" href="#" target="_blank" style="display:inline-block; padding: 14px 30px; background-color: #ff2f6e; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 8px rgba(255,47,110,0.3);">내 체질 맞춤상품 보러가기 ↗</a>
+        <!-- 공정위 문구 추가 -->
+        <p style="font-size: 0.75em; color: #888; margin-top: 15px; margin-bottom: 0; line-height: 1.4;">
+            이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+        </p>
     </div>
 </div>
 
@@ -89,7 +93,7 @@ permalink: /saju-tool/
         var info = ohaengInfo[selectedOhaeng];
         var cLink = coupangLinks[selectedOhaeng];
 
-        document.getElementById("res-titleinnerText" in document.getElementById("res-title") ? "res-title" : "res-title").innerText = "✨ 분석 완료: 당신의 타고난 체질은 [" + info.name + "] 입니다";
+        document.getElementById("res-title").innerText = "✨ 분석 완료: 당신의 타고난 체질은 [" + info.name + "] 입니다";
         document.getElementById("res-desc").innerText = info.desc;
         document.getElementById("rec-item-title").innerText = info.recName;
         document.getElementById("rec-item-desc").innerText = info.recDesc;
