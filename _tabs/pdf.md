@@ -26,8 +26,11 @@ permalink: /pdf-tool/
     </div>
 </div>
 
+<!-- 구글 애드센스 광고 영역 (정상 스크립트 추가 완료) -->
 <div style="text-align: center; margin: 40px 0; min-height: 100px;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <div style="margin-bottom: 25px; padding: 25px; background-color: #ffffff; border: 2px solid #6c757d; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
@@ -38,6 +41,7 @@ permalink: /pdf-tool/
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+{% raw %}
 <script>
 window.doPdf5SecDownload = function() {
     var fileInput = document.getElementById("img-input");
@@ -125,6 +129,5 @@ window.doPdf5SecDownload = function() {
         }
     }
 };
-
-try { if (window.adsbygoogle) { (adsbygoogle = window.adsbygoogle || []).push({}); } } catch(e) {}
 </script>
+{% endraw %}
