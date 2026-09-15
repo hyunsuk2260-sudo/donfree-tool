@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://tool.donfree.co.kr/sitemap.xml
+#DaumWebMasterTool:2a457c99241c65d1c16706f2a4e77fe72a54e91d7c7ba6863106fad62a015a63:sQJG/Wp2eeNqqbQj8JLcHA==
