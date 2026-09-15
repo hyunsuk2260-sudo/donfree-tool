@@ -30,7 +30,8 @@ permalink: /saju-tool/
         </div>
     </div>
     
-    <button type="button" onclick="analyzeSaju()" style="padding: 12px 25px; background-color:#d63384; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">내 체질 및 맞춤 처방 확인하기 ✨</button>
+    <!-- 인라인 onclick 대신 id 기반 리스너 매칭용 버튼 -->
+    <button type="button" id="saju-submit-btn" style="padding: 12px 25px; background-color:#d63384; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">내 체질 및 맞춤 처방 확인하기 ✨</button>
 </div>
 
 <!-- 결과 출력 영역 (기본 숨김) -->
@@ -53,75 +54,93 @@ permalink: /saju-tool/
 </div>
 
 <script>
-// 오행별 쿠팡 파트너스 링크 맵핑 (수 기운 교체 완료)
-const coupangLinks = {
-    '목': 'https://link.coupang.com/a/g3rA2pUvK0',
-    '화': 'https://link.coupang.com/a/g3rGUgf4Ue',
-    '토': 'https://link.coupang.com/a/g3rPsoqhqK',
-    '금': 'https://link.coupang.com/a/g3rUEbkg5A',
-    '수': 'https://link.coupang.com/a/g3r7BtHQrY'
-};
+(function() {
+    const coupangLinks = {
+        '목': 'https://link.coupang.com/a/g3rA2pUvK0',
+        '화': 'https://link.coupang.com/a/g3rGUgf4Ue',
+        '토': 'https://link.coupang.com/a/g3rPsoqhqK',
+        '금': 'https://link.coupang.com/a/g3rUEbkg5A',
+        '수': 'https://link.coupang.com/a/g3r7BtHQrY'
+    };
 
-const ohaengInfo = {
-    '목': {
-        name: '목(木 - 성장·해독의 기운)',
-        desc: '생각이 많고 추진력이 좋으나, 스트레스로 인해 눈이 쉽게 피로하고 긴장성 피로가 쌓이기 쉬운 체질입니다. 신선한 클렌즈·해독 성분으로 순환을 틔워줘야 합니다.',
-        recName: '🌿 그린 디톡스/클렌즈 주스류',
-        recDesc: '몸속 답답한 열기를 정돈하고 가벼운 활력을 채워줄 초록빛 해독 푸드'
-    },
-    '화': {
-        name: '화(火 - 열정·활력의 기운)',
-        desc: '행동력이 빠르고 열정이 넘치나, 에너지 소모가 커서 오후가 되면 체력 방전이 오고 속이 냉해지기 쉬운 체질입니다. 따뜻한 성질로 기력을 보강해야 합니다.',
-        recName: '🔥 온기 충전 홍삼정 / 생강·대추차',
-        recDesc: '떨어진 체온과 에너지를 속 깊이 데워줄 온열 활력 보조 식품'
-    },
-    '토': {
-        name: '토(土 - 안정·위장의 기운)',
-        desc: '중심을 잘 잡고 포용력이 있으나, 예민하거나 소화기가 약해지면 더부룩함과 가스가 쉽게 차는 체질입니다. 위장을 편안하게 보호하는 밸런스가 필요합니다.',
-        recName: '🌾 위장 보호 양배추즙 / 유산균',
-        recDesc: '예민해진 위장 장벽을 부드럽게 다스려 줄 베이직 케어 템'
-    },
-    '금': {
-        name: '금(金 - 결단·호흡의 기운)',
-        desc: '기준이 확실하고 깔끔하지만, 환절기나 건조할 때 기관지·호흡기 면역계가 예민해지기 쉬운 체질입니다. 폐와 호흡기 보호 관리가 핵심입니다.',
-        recName: '🍐 호흡기 보호 도라지배즙 / 프로폴리스',
-        recDesc: '건조하고 예민한 호흡기와 면역 밸런스를 든든하게 지켜줄 즙'
-    },
-    '수': {
-        name: '수(水 - 순환·저력의 기운)',
-        desc: '깊은 통찰력과 지구력이 있으나, 체내 수분 순환이 정체되거나 아침에 잘 붓고 하체가 무거워지기 쉬운 체질입니다. 깊은 혈행 순환이 보약입니다.',
-        recName: '🖤 블랙푸드(서리태) 선식 / 혈행 개선 템',
-        recDesc: '신장·순환 에너지를 묵직하게 채워줄 블랙 에너지 푸드'
+    const ohaengInfo = {
+        '목': {
+            name: '목(木 - 성장·해독의 기운)',
+            desc: '생각이 많고 추진력이 좋으나, 스트레스로 인해 눈이 쉽게 피로하고 긴장성 피로가 쌓이기 쉬운 체질입니다. 신선한 클렌즈·해독 성분으로 순환을 틔워줘야 합니다.',
+            recName: '🌿 그린 디톡스/클렌즈 주스류',
+            recDesc: '몸속 답답한 열기를 정돈하고 가벼운 활력을 채워줄 초록빛 해독 푸드'
+        },
+        '화': {
+            name: '화(火 - 열정·활력의 기운)',
+            desc: '행동력이 빠르고 열정이 넘치나, 에너지 소모가 커서 오후가 되면 체력 방전이 오고 속이 냉해지기 쉬운 체질입니다. 따뜻한 성질로 기력을 보강해야 합니다.',
+            recName: '🔥 온기 충전 홍삼정 / 생강·대추차',
+            recDesc: '떨어진 체온과 에너지를 속 깊이 데워줄 온열 활력 보조 식품'
+        },
+        '토': {
+            name: '토(土 - 안정·위장의 기운)',
+            desc: '중심을 잘 잡고 포용력이 있으나, 예민하거나 소화기가 약해지면 더부룩함과 가스가 쉽게 차는 체질입니다. 위장을 편안하게 보호하는 밸런스가 필요합니다.',
+            recName: '🌾 위장 보호 양배추즙 / 유산균',
+            recDesc: '예민해진 위장 장벽을 부드럽게 다스려 줄 베이직 케어 템'
+        },
+        '금': {
+            name: '금(金 - 결단·호흡의 기운)',
+            desc: '기준이 확실하고 깔끔하지만, 환절기나 건조할 때 기관지·호흡기 면역계가 예민해지기 쉬운 체질입니다. 폐와 호흡기 보호 관리가 핵심입니다.',
+            recName: '🍐 호흡기 보호 도라지배즙 / 프로폴리스',
+            recDesc: '건조하고 예민한 호흡기와 면역 밸런스를 든든하게 지켜줄 즙'
+        },
+        '수': {
+            name: '수(水 - 순환·저력의 기운)',
+            desc: '깊은 통찰력과 지구력이 있으나, 체내 수분 순환이 정체되거나 아침에 잘 붓고 하체가 무거워지기 쉬운 체질입니다. 깊은 혈행 순환이 보약입니다.',
+            recName: '🖤 블랙푸드(서리태) 선식 / 혈행 개선 템',
+            recDesc: '신장·순환 에너지를 묵직하게 채워줄 블랙 에너지 푸드'
+        }
+    };
+
+    function runAnalysis() {
+        var birthInput = document.getElementById("birth-date").value;
+        if (!birthInput) {
+            alert("생년월일을 선택해 주세요!");
+            return;
+        }
+
+        var dateNums = birthInput.replace(/-/g, '');
+        var sum = 0;
+        for (var i = 0; i < dateNums.length; i++) {
+            sum += parseInt(dateNums[i], 10);
+        }
+        
+        const keys = ['목', '화', '토', '금', '수'];
+        var selectedOhaeng = keys[sum % 5];
+        
+        var info = ohaengInfo[selectedOhaeng];
+        var cLink = coupangLinks[selectedOhaeng];
+
+        document.getElementById("res-title").innerText = "✨ 분석 완료: 당신의 타고난 체질은 [" + info.name + "] 입니다";
+        document.getElementById("res-desc").innerText = info.desc;
+        document.getElementById("rec-item-title").innerText = info.recName;
+        document.getElementById("rec-item-desc").innerText = info.recDesc;
+        document.getElementById("coupang-link").href = cLink;
+
+        var resultBox = document.getElementById("result-box");
+        resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: 'smooth' });
     }
-};
 
-function analyzeSaju() {
-    var birthInput = document.getElementById("birth-date").value;
-    if (!birthInput) {
-        alert("생년월일을 선택해 주세요!");
-        return;
+    // DOM이 이미 로드되었거나 렌더링된 직후 안전하게 이벤트 부착
+    function bindEvent() {
+        var btn = document.getElementById("saju-submit-btn");
+        if (btn) {
+            btn.addEventListener("click", runAnalysis);
+        }
     }
 
-    var dateNums = birthInput.replace(/-/g, '');
-    var sum = 0;
-    for (var i = 0; i < dateNums.length; i++) {
-        sum += parseInt(dateNums[i]);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindEvent);
+    } else {
+        bindEvent();
     }
     
-    const keys = ['목', '화', '토', '금', '수'];
-    var selectedOhaeng = keys[sum % 5];
-    
-    var info = ohaengInfo[selectedOhaeng];
-    var cLink = coupangLinks[selectedOhaeng];
-
-    document.getElementById("res-title").innerText = "✨ 분석 완료: 당신의 타고난 체질은 [" + info.name + "] 입니다";
-    document.getElementById("res-desc").innerText = info.desc;
-    document.getElementById("rec-item-title").innerText = info.recName;
-    document.getElementById("rec-item-desc").innerText = info.recDesc;
-    document.getElementById("coupang-link").href = cLink;
-
-    var resultBox = document.getElementById("result-box");
-    resultBox.style.display = "block";
-    resultBox.scrollIntoView({ behavior: 'smooth' });
-}
+    // 테마 PJAX/Turbolinks 페이지 전환 대응
+    window.addEventListener('pageshow', bindEvent);
+})();
 </script>
