@@ -13,15 +13,15 @@ permalink: /pdf-tool/
 
 <div style="margin-bottom: 30px; padding: 25px; background-color: #ffffff; border: 2px solid #dc3545; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
     <h3 style="margin-top: 0; color: #dc3545;">1. 이미지 파일(JPG/PNG)을 PDF로 바로 변환·다운로드</h3>
-    <p style="color: #6c757d; line-height: 1.6;">변환할 이미지들을 선택한 뒤 버튼을 누르면 즉시 PDF로 합쳐져 다운로드됩니다.</p>
+    <p style="color: #6c757d; line-height: 1.6;">변환할 이미지들을 선택한 후 버튼을 누르면 5초 동안 처리 후 PDF로 자동 다운로드됩니다.</p>
     
     <div style="margin: 15px 0;">
         <input type="file" id="img-input" multiple accept="image/*" style="padding: 10px; border: 1px dashed #ccc; border-radius: 6px; width: 100%; box-sizing: border-box; cursor: pointer;">
     </div>
     
-    <button type="button" id="convert-btn" onclick="window.doPdfConvertImmediate()" style="padding: 12px 25px; background-color:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">PDF 변환 및 다운로드 ⬇️</button>
+    <button type="button" id="convert-btn" onclick="window.doPdf5SecDownload()" style="padding: 12px 25px; background-color:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">PDF 변환 및 다운로드 ⬇️</button>
     
-    <div id="pdf-status" style="display:none; margin-top:15px; color:#155724; font-weight:bold; padding:12px; background-color:#d4edda; border:1px solid #c3e6cb; border-radius:6px; text-align: center;">
+    <div id="pdf-status" style="display:none; margin-top:15px; color:#856404; font-weight:bold; padding:12px; background-color:#fff3cd; border:1px solid #ffeeba; border-radius:6px; text-align: center;">
         <span id="status-text">준비 중...</span>
     </div>
 </div>
@@ -39,7 +39,7 @@ permalink: /pdf-tool/
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-window.doPdfConvertImmediate = function() {
+window.doPdf5SecDownload = function() {
     var fileInput = document.getElementById("img-input");
     var statusBox = document.getElementById("pdf-status");
     var statusText = document.getElementById("status-text");
@@ -55,11 +55,25 @@ window.doPdfConvertImmediate = function() {
     btn.style.opacity = '0.5';
 
     statusBox.style.display = 'block';
-    statusBox.style.backgroundColor = '#d4edda';
-    statusBox.style.color = '#155724';
-    statusText.innerText = "⏳ 이미지 처리 및 PDF 조립 중 (" + fileInput.files.length + "개 파일)... 잠시만 기다려주세요!";
+    statusBox.style.backgroundColor = '#fff3cd';
+    statusBox.style.color = '#856404';
+    statusBox.style.borderColor = '#ffeeba';
 
-    setTimeout(function() {
+    var count = 5;
+    statusText.innerText = "⏳ PDF 변환 준비 중... (" + count + "초 남음)";
+
+    var timer = setInterval(function() {
+        count--;
+        if (count > 0) {
+            statusText.innerText = "⏳ PDF 변환 준비 중... (" + count + "초 남음)";
+        } else {
+            clearInterval(timer);
+            statusText.innerText = "이미지 처리 및 PDF 조립 중 (" + fileInput.files.length + "개 파일)...";
+            runBuildPdf();
+        }
+    }, 1000);
+
+    function runBuildPdf() {
         try {
             var jsPDF = window.jspdf.jsPDF;
             var pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
@@ -68,9 +82,10 @@ window.doPdfConvertImmediate = function() {
             function processFiles(idx) {
                 if (idx >= files.length) {
                     pdf.save('donfree-converted.pdf');
+                    statusBox.style.backgroundColor = '#d4edda';
+                    statusBox.style.color = '#155724';
+                    statusBox.style.borderColor = '#c3e6cb';
                     statusText.innerText = "✨ PDF 변환 및 다운로드 완료!";
-                    statusBox.style.backgroundColor = '#cce5ff';
-                    statusBox.style.color = '#004085';
                     btn.disabled = false;
                     btn.style.opacity = '1';
                     return;
@@ -108,7 +123,7 @@ window.doPdfConvertImmediate = function() {
             btn.disabled = false;
             btn.style.opacity = '1';
         }
-    }, 100);
+    }
 };
 
 try { if (window.adsbygoogle) { (adsbygoogle = window.adsbygoogle || []).push({}); } } catch(e) {}
