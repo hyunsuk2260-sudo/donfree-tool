@@ -236,4 +236,18 @@ window.runSajuAnalysis = function() {
         }
     } catch(e) {}
 };
+  <!-- 구글 애드센스 광고 영역 -->
+<div style="text-align: center; margin: 40px 0; min-height: 100px;">
+    <!-- 이 스크립트가 있어야 광고가 정상적으로 뜹니다 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" 
+         style="display:block" 
+         data-ad-client="ca-pub-1922344740086878" 
+         data-ad-slot="6535711038" 
+         data-ad-format="auto" 
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
 </script>
