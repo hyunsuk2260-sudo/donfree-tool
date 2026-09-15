@@ -12,7 +12,7 @@ permalink: /lotto/
     <p>나의 생년월일을 바탕으로 한 명리학 기운 분석을 통해 나만의 행운 번호를 무료로 추출해 드립니다.</p>
 </div>
 
-<!-- 💡 제가 빠뜨렸던 역대 TOP 7 & 전회차 당첨 번호 확인 영역 (복구 완료!) -->
+<!-- 역대 TOP 7 & 전회차 당첨 번호 확인 영역 -->
 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
     <div style="flex: 1; min-width: 250px; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6; text-align: center;">
         <h5 style="margin: 0 0 10px 0; color: #495057;">📊 역대 최다 출현 숫자 TOP 7</h5>
@@ -51,6 +51,40 @@ permalink: /lotto/
 
     <!-- 로또 공 출력 영역 -->
     <div id="saju-result-balls" style="display: flex; justify-content: center; gap: 10px; margin: 25px 0 10px 0; min-height: 60px; flex-wrap: wrap;"></div>
+
+    <!-- 💰 [추가] 금전운/재물복 맞춤형 쿠팡 파트너스 추천 박스 (사주 번호 결과 하단 연동) -->
+    <div id="lotto-coupang-box" style="display: none; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #fffdf0 0%, #fff3cd 100%); border: 1.5px solid #ffeeba; border-radius: 12px; text-align: left;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <span style="font-size: 1.4em;">💰</span>
+            <h4 style="margin: 0; color: #856404; font-size: 1.1em;">행운의 번호와 함께 기운을 높여줄 재물복 아이템</h4>
+        </div>
+        <p style="font-size: 0.85em; color: #856404; margin-bottom: 15px;">추출된 행운의 기운을 집안과 지갑 속에 든든하게 채워줄 인기 풍수 소품입니다.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr; sm:grid-template-columns: 1fr 1fr; gap: 10px;">
+            <!-- 상품 1: 해바라기 액자 -->
+            <a href="https://link.coupang.com/a/g4lMe8DHDE" target="_blank" style="display: flex; align-items: center; gap: 12px; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #fae184; text-decoration: none; transition: all 0.2s;">
+                <div style="font-size: 1.8em; background: #fff8e1; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 6px; flex-shrink: 0;">🌻</div>
+                <div>
+                    <div style="font-size: 0.7em; font-weight: bold; color: #d97706; margin-bottom: 2px;">풍수지리 인테리어</div>
+                    <div style="font-size: 0.85em; font-weight: bold; color: #1f2937; margin-bottom: 2px;">재물복 부르는 해바라기 황금 액자</div>
+                    <div style="font-size: 0.75em; font-weight: bold; color: #2563eb;">쿠팡 최저가 특가 보러가기 ↗</div>
+                </div>
+            </a>
+            <!-- 상품 2: 행운의 지갑 -->
+            <a href="https://link.coupang.com/a/g4mrK1xd4m" target="_blank" style="display: flex; align-items: center; gap: 12px; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #fae184; text-decoration: none; transition: all 0.2s;">
+                <div style="font-size: 1.8em; background: #fff8e1; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 6px; flex-shrink: 0;">💼</div>
+                <div>
+                    <div style="font-size: 0.7em; font-weight: bold; color: #d97706; margin-bottom: 2px;">재물운 상승 아이템</div>
+                    <div style="font-size: 0.85em; font-weight: bold; color: #1f2937; margin-bottom: 2px;">자산을 지켜주는 프리미엄 천연 가죽 장지갑</div>
+                    <div style="font-size: 0.75em; font-weight: bold; color: #2563eb;">쿠팡 최저가 특가 보러가기 ↗</div>
+                </div>
+            </a>
+        </div>
+
+        <div style="font-size: 0.7em; color: #adb5bd; text-align: center; margin-top: 15px; margin-bottom: 0;">
+            "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+        </div>
+    </div>
 </div>
 
 <!-- 구글 애드센스 광고 영역 -->
@@ -131,6 +165,7 @@ function generateSajuLotto() {
     document.getElementById('saju-timer').style.display = 'block';
     document.getElementById('saju-result-balls').innerHTML = '';
     document.getElementById('saju-fortune-text').style.display = 'none';
+    document.getElementById('lotto-coupang-box').style.display = 'none'; // 숨김 초기화
     
     var timeLeft = 5;
     document.getElementById('sTimeCount').innerText = timeLeft;
@@ -154,11 +189,16 @@ function generateSajuLotto() {
             document.getElementById('saju-fortune-text').style.display = 'block';
             
             var container = document.getElementById('saju-result-balls');
+            container.innerHTML = '';
             numbers.forEach(function(num) {
                 var ballWrapper = document.createElement('div');
                 ballWrapper.innerHTML = getBallHtml(num, 55);
                 container.appendChild(ballWrapper.firstChild);
             });
+            
+            // 번호가 다 만들어지면 쿠팡 추천 박스 슥 등장!
+            document.getElementById('lotto-coupang-box').style.display = 'block';
+            
             addHistory(numbers, '사주');
         }
     }, 1000);
