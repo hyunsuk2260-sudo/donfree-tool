@@ -6,10 +6,11 @@ layout: page
 permalink: /lotto/
 ---
 
+{% raw %}
 <!-- 상단 안내 영역 -->
 <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e9ecef;">
     <h4 style="margin-top: 0; color: #28a745;">🍀 이번 주 대박 기원 로또 번호 추첨기</h4>
-    <p>나의 생년월일을 바탕으로 한 명리학 기운 분석을 통해 나만의 행운 번호를 무료로 추출해 드립니다.</p>
+    <p style="margin-bottom: 0;">나의 생년월일을 바탕으로 한 명리학 기운 분석을 통해 나만의 행운 번호를 무료로 추출해 드립니다.</p>
 </div>
 
 <!-- 역대 TOP 7 & 전회차 당첨 번호 확인 영역 -->
@@ -35,7 +36,7 @@ permalink: /lotto/
     
     <input type="date" id="birthDate" style="padding: 10px; font-size: 1.1em; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 15px;">
     <br>
-    <button id="sajuBtn" onclick="generateSajuLotto()" style="padding: 15px 35px; font-size: 1.2em; background-color: #856404; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">사주 맞춤 번호 추출하기</button>
+    <button id="sajuBtn" onclick="window.generateSajuLotto()" style="padding: 15px 35px; font-size: 1.2em; background-color: #856404; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">사주 맞춤 번호 추출하기</button>
     
     <p style="font-size: 0.85em; color: #adb5bd; margin-top: 15px; margin-bottom: 0;">🔒 입력하신 정보는 분석용으로만 사용되며, 절대 저장되지 않습니다.</p>
 
@@ -52,7 +53,7 @@ permalink: /lotto/
     <!-- 로또 공 출력 영역 -->
     <div id="saju-result-balls" style="display: flex; justify-content: center; gap: 10px; margin: 25px 0 10px 0; min-height: 60px; flex-wrap: wrap;"></div>
 
-    <!-- 💰 [추가] 금전운/재물복 맞춤형 쿠팡 파트너스 추천 박스 (사주 번호 결과 하단 연동) -->
+    <!-- 💰 금전운/재물복 맞춤형 쿠팡 파트너스 추천 박스 (사주 번호 결과 하단 연동) -->
     <div id="lotto-coupang-box" style="display: none; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #fffdf0 0%, #fff3cd 100%); border: 1.5px solid #ffeeba; border-radius: 12px; text-align: left;">
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
             <span style="font-size: 1.4em;">💰</span>
@@ -60,9 +61,9 @@ permalink: /lotto/
         </div>
         <p style="font-size: 0.85em; color: #856404; margin-bottom: 15px;">추출된 행운의 기운을 집안과 지갑 속에 든든하게 채워줄 인기 풍수 소품입니다.</p>
         
-        <div style="display: grid; grid-template-columns: 1fr; sm:grid-template-columns: 1fr 1fr; gap: 10px;">
-            <!-- 상품 1: 해바라기 액자 -->
-            <a href="https://link.coupang.com/a/g4lMe8DHDE" target="_blank" style="display: flex; align-items: center; gap: 12px; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #fae184; text-decoration: none; transition: all 0.2s;">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+            <!-- 상품 1: 해바라기 액자 (대표님 링크 반영) -->
+            <a href="https://link.coupang.com/a/g4lMe8DHDE" target="_blank" style="display: flex; align-items: center; gap: 12px; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #fae184; text-decoration: none;">
                 <div style="font-size: 1.8em; background: #fff8e1; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 6px; flex-shrink: 0;">🌻</div>
                 <div>
                     <div style="font-size: 0.7em; font-weight: bold; color: #d97706; margin-bottom: 2px;">풍수지리 인테리어</div>
@@ -70,8 +71,8 @@ permalink: /lotto/
                     <div style="font-size: 0.75em; font-weight: bold; color: #2563eb;">쿠팡 최저가 특가 보러가기 ↗</div>
                 </div>
             </a>
-            <!-- 상품 2: 행운의 지갑 -->
-            <a href="https://link.coupang.com/a/g4mrK1xd4m" target="_blank" style="display: flex; align-items: center; gap: 12px; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #fae184; text-decoration: none; transition: all 0.2s;">
+            <!-- 상품 2: 행운의 지갑 (대표님 링크 반영) -->
+            <a href="https://link.coupang.com/a/g4mrK1xd4m" target="_blank" style="display: flex; align-items: center; gap: 12px; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #fae184; text-decoration: none;">
                 <div style="font-size: 1.8em; background: #fff8e1; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 6px; flex-shrink: 0;">💼</div>
                 <div>
                     <div style="font-size: 0.7em; font-weight: bold; color: #d97706; margin-bottom: 2px;">재물운 상승 아이템</div>
@@ -98,7 +99,7 @@ permalink: /lotto/
 <div id="random-box" style="text-align: center; margin: 20px 0; padding: 30px; background-color: #ffffff; border: 2px dashed #28a745; border-radius: 15px;">
     <h4 style="margin-top: 0; color: #28a745;">🎲 일반 무작위 번호 뽑기</h4>
     <div id="ball-container" style="display: flex; justify-content: center; gap: 10px; margin: 20px 0; min-height: 60px; flex-wrap: wrap;"></div>
-    <button onclick="generateLotto()" style="padding: 12px 25px; font-size: 1.1em; background-color: #ffc107; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">빠른 일반 번호 뽑기 🎯</button>
+    <button onclick="window.generateLotto()" style="padding: 12px 25px; font-size: 1.1em; background-color: #ffc107; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">빠른 일반 번호 뽑기 🎯</button>
 </div>
 
 <!-- 🕒 추첨 기록 영역 -->
@@ -108,18 +109,19 @@ permalink: /lotto/
 </div>
 
 <script>
-function getBallHtml(num, size) {
+window.getBallHtml = function(num, size) {
     var bgColor = '#fbc400'; var fontColor = '#333';
     if (num > 10 && num <= 20) bgColor = '#69c8f2';
     else if (num > 20 && num <= 30) bgColor = '#ff7272';
     else if (num > 30 && num <= 40) { bgColor = '#aaa'; fontColor = '#fff'; }
     else if (num > 40 && num <= 45) bgColor = '#b0d840';
     return '<div style="width:' + size + 'px; height:' + size + 'px; line-height:' + size + 'px; border-radius:50%; background-color:' + bgColor + '; color:' + fontColor + '; font-weight:bold; font-size:' + (size > 40 ? '1.3em' : '1em') + '; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.2);">' + num + '</div>';
-}
+};
 
-function addHistory(numbers, typeStr) {
+window.addHistory = function(numbers, typeStr) {
     var historyBox = document.getElementById('history-box');
     var historyList = document.getElementById('history-list');
+    if (!historyBox || !historyList) return;
     historyBox.style.display = 'block';
     
     var historyRow = document.createElement('div');
@@ -148,36 +150,43 @@ function addHistory(numbers, typeStr) {
 
     numbers.forEach(function(num) {
         var hBall = document.createElement('div');
-        hBall.innerHTML = getBallHtml(num, 30);
+        hBall.innerHTML = window.getBallHtml(num, 30);
         historyRow.appendChild(hBall.firstChild);
     });
     historyList.insertBefore(historyRow, historyList.firstChild);
-}
+};
 
-function generateSajuLotto() {
+window.generateSajuLotto = function() {
     var birthDate = document.getElementById('birthDate').value;
     if(!birthDate) {
         alert('생년월일을 입력해주세요!');
         return;
     }
     
-    document.getElementById('sajuBtn').disabled = true;
-    document.getElementById('saju-timer').style.display = 'block';
-    document.getElementById('saju-result-balls').innerHTML = '';
-    document.getElementById('saju-fortune-text').style.display = 'none';
-    document.getElementById('lotto-coupang-box').style.display = 'none'; // 숨김 초기화
+    var sajuBtn = document.getElementById('sajuBtn');
+    var timerBox = document.getElementById('saju-timer');
+    var resultBalls = document.getElementById('saju-result-balls');
+    var fortuneText = document.getElementById('saju-fortune-text');
+    var coupangBox = document.getElementById('lotto-coupang-box');
+    
+    if (sajuBtn) sajuBtn.disabled = true;
+    if (timerBox) timerBox.style.display = 'block';
+    if (resultBalls) resultBalls.innerHTML = '';
+    if (fortuneText) fortuneText.style.display = 'none';
+    if (coupangBox) coupangBox.style.display = 'none';
     
     var timeLeft = 5;
-    document.getElementById('sTimeCount').innerText = timeLeft;
+    var timeCount = document.getElementById('sTimeCount');
+    if (timeCount) timeCount.innerText = timeLeft;
     
     var timer = setInterval(function() {
         timeLeft--;
-        document.getElementById('sTimeCount').innerText = timeLeft;
+        if (timeCount) timeCount.innerText = timeLeft;
         
         if (timeLeft <= 0) {
             clearInterval(timer);
-            document.getElementById('saju-timer').style.display = 'none';
-            document.getElementById('sajuBtn').disabled = false;
+            if (timerBox) timerBox.style.display = 'none';
+            if (sajuBtn) sajuBtn.disabled = false;
             
             var numbers = [];
             while (numbers.length < 6) {
@@ -186,25 +195,24 @@ function generateSajuLotto() {
             }
             numbers.sort(function(a, b){return a - b;});
             
-            document.getElementById('saju-fortune-text').style.display = 'block';
+            if (fortuneText) fortuneText.style.display = 'block';
             
-            var container = document.getElementById('saju-result-balls');
-            container.innerHTML = '';
-            numbers.forEach(function(num) {
-                var ballWrapper = document.createElement('div');
-                ballWrapper.innerHTML = getBallHtml(num, 55);
-                container.appendChild(ballWrapper.firstChild);
-            });
+            if (resultBalls) {
+                resultBalls.innerHTML = '';
+                numbers.forEach(function(num) {
+                    var ballWrapper = document.createElement('div');
+                    ballWrapper.innerHTML = window.getBallHtml(num, 55);
+                    resultBalls.appendChild(ballWrapper.firstChild);
+                });
+            }
             
-            // 번호가 다 만들어지면 쿠팡 추천 박스 슥 등장!
-            document.getElementById('lotto-coupang-box').style.display = 'block';
-            
-            addHistory(numbers, '사주');
+            if (coupangBox) coupangBox.style.display = 'block';
+            window.addHistory(numbers, '사주');
         }
     }, 1000);
-}
+};
 
-function generateLotto() {
+window.generateLotto = function() {
     var numbers = [];
     while (numbers.length < 6) {
         var num = Math.floor(Math.random() * 45) + 1;
@@ -213,12 +221,14 @@ function generateLotto() {
     numbers.sort(function(a, b){return a - b;});
     
     var container = document.getElementById('ball-container');
+    if (!container) return;
     container.innerHTML = '';
     numbers.forEach(function(num) {
         var ballWrapper = document.createElement('div');
-        ballWrapper.innerHTML = getBallHtml(num, 55);
+        ballWrapper.innerHTML = window.getBallHtml(num, 55);
         container.appendChild(ballWrapper.firstChild);
     });
-    addHistory(numbers, '일반');
-}
+    window.addHistory(numbers, '일반');
+};
 </script>
+{% endraw %}
