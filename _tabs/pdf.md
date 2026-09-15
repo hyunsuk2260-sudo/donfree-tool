@@ -6,6 +6,7 @@ layout: page
 permalink: /pdf-tool/
 ---
 
+{% raw %}
 <!-- 상단 설명 영역 -->
 <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
     <h4 style="margin-top: 0; color: #dc3545;">📄 무료 온라인 PDF & 이미지 변환 툴</h4>
@@ -21,13 +22,13 @@ permalink: /pdf-tool/
         <input type="file" id="img-input" multiple accept="image/*" style="padding: 10px; border: 1px dashed #ccc; border-radius: 6px; width: 100%; box-sizing: border-box; cursor: pointer;">
     </div>
     
-    <!-- 버튼을 누르면 즉시 작동하는 인라인 함수 연결 -->
-    <button type="button" id="convert-btn" onclick="window.runPdfTimer()" style="padding: 12px 25px; background-color:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">PDF 변환 및 다운로드 ↗</button>
+    <button type="button" id="convert-btn" onclick="runPdfTimer()" style="padding: 12px 25px; background-color:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">PDF 변환 및 다운로드 ↗</button>
     
     <div id="pdf-timer" style="display:none; margin-top:15px; color:#dc3545; font-weight:bold; padding:10px; background-color:#f8d7da; border-radius:6px; text-align: center;">
         안전한 연결을 준비 중입니다... <span id="pdf-count" style="font-size: 1.2em;">5</span>초 후 이동합니다.
     </div>
 </div>
+{% endraw %}
 
 <!-- 구글 애드센스 광고 영역 -->
 <div style="text-align: center; margin: 40px 0; min-height: 100px;">
@@ -36,6 +37,7 @@ permalink: /pdf-tool/
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
+{% raw %}
 <!-- 외부 전문 무료 툴 안전 링크 섹션 -->
 <div style="margin-bottom: 25px; padding: 25px; background-color: #ffffff; border: 2px solid #6c757d; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
     <h3 style="margin-top: 0; color: #495057;">2. 전문 PDF 편집·분할·압축 사이트 바로가기</h3>
@@ -67,7 +69,6 @@ window.runPdfTimer = function() {
             clearInterval(countdown);
             timerBox.innerHTML = '✨ 변환 준비 완료! 페이지가 열립니다.';
             
-            // 새 창으로 변환 사이트 열기
             window.open('https://www.ilovepdf.com/ko/jpg_to_pdf', '_blank');
 
             setTimeout(function() {
@@ -75,11 +76,10 @@ window.runPdfTimer = function() {
                 btn.style.opacity = '1';
                 btn.style.cursor = 'pointer';
                 timerBox.style.display = 'none';
-                // span 태그가 날아가지 않도록 안전하게 원복
                 timerBox.innerHTML = '안전한 연결을 준비 중입니다... <span id="pdf-count" style="font-size: 1.2em;">5</span>초 후 이동합니다.';
-                countSpan = document.getElementById("pdf-count");
             }, 2000);
         }
     }, 1000);
 };
 </script>
+{% endraw %}
