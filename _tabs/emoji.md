@@ -6,6 +6,7 @@ layout: page
 permalink: /emoji-tool/
 ---
 
+{% raw %}
 <div id="emoji-app-wrapper">
 <style>
 .toast { transition: all 0.3s cubic-bezier(0.68, -0.55, 0.26, 1.55); }
@@ -93,7 +94,7 @@ setTimeout(function(){
 toast.classList.remove('opacity-100');
 toast.classList.add('opacity-0','pointer-events-none');
 },1500);
-}
+};
 window.filterEmojiCat=function(cat,btn){
 window.currentCat=cat;
 document.querySelectorAll('.cat-btn').forEach(function(b){
@@ -116,3 +117,4 @@ window.renderEmojis();
 window.renderEmojis();
 </script>
 </div>
+{% endraw %}
