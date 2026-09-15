@@ -7,11 +7,11 @@ permalink: /saju-tool/
 ---
 
 <!-- 상단 탭 메뉴 영역 -->
-<div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #e9ecef; padding-bottom: 10px;">
-    <button type="button" class="saju-tab-btn active" data-tab="today" style="background:#d63384; color:white; border:none; padding:8px 16px; border-radius:20px; font-weight:bold; cursor:pointer;">오늘운세</button>
-    <button type="button" class="saju-tab-btn" data-tab="zodiac" style="background:#f8f9fa; color:#495057; border:1px solid #ced4da; padding:8px 16px; border-radius:20px; font-weight:bold; cursor:pointer;">띠별운세</button>
-    <button type="button" class="saju-tab-btn" data-tab="constellation" style="background:#f8f9fa; color:#495057; border:1px solid #ced4da; padding:8px 16px; border-radius:20px; font-weight:bold; cursor:pointer;">별자리운세</button>
-    <button type="button" class="saju-tab-btn" data-tab="cookie" style="background:#f8f9fa; color:#495057; border:1px solid #ced4da; padding:8px 16px; border-radius:20px; font-weight:bold; cursor:pointer;">포춘쿠키</button>
+<div id="tab-menu-wrapper" style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #e9ecef; padding-bottom: 10px;">
+    <button type="button" id="btn-tab-today" onclick="window.changeSajuTab('today', this)" style="background:#d63384; color:white; border:none; padding:8px 16px; border-radius:20px; font-weight:bold; cursor:pointer;">오늘운세</button>
+    <button type="button" id="btn-tab-zodiac" onclick="window.changeSajuTab('zodiac', this)" style="background:#f8f9fa; color:#495057; border:1px solid #ced4da; padding:8px 16px; border-radius:20px; font-weight:bold; cursor:pointer;">띠별운세</button>
+    <button type="button" id="btn-tab-constellation" onclick="window.changeSajuTab('constellation', this)" style="background:#f8f9fa; color:#495057; border:1px solid #ced4da; padding:8px 16px; border-radius:20px; font-weight:bold; cursor:pointer;">별자리운세</button>
+    <button type="button" id="btn-tab-cookie" onclick="window.changeSajuTab('cookie', this)" style="background:#f8f9fa; color:#495057; border:1px solid #ced4da; padding:8px 16px; border-radius:20px; font-weight:bold; cursor:pointer;">포춘쿠키</button>
 </div>
 
 <!-- 상단 안내 영역 -->
@@ -20,7 +20,7 @@ permalink: /saju-tool/
     <p id="guide-desc" style="margin-bottom: 0;">생년월일을 입력하시면 타고난 오행 기운을 분석하여 부족한 기운을 채워줄 맞춤 솔루션을 제안해 드립니다.</p>
 </div>
 
-<!-- 입력 폼 영역 (기존 핑크 프레임 유지) -->
+<!-- 입력 폼 영역 -->
 <div style="margin-bottom: 30px; padding: 25px; background-color: #ffffff; border: 2px solid #d63384; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
     <h3 style="margin-top: 0; color: #d63384;">사주 정보 입력</h3>
     
@@ -65,16 +65,16 @@ permalink: /saju-tool/
         </div>
     </div>
     
-    <button type="button" id="saju-submit-btn" style="padding: 12px 25px; background-color:#d63384; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">운세 및 맞춤 처방 확인하기 ✨</button>
+    <button type="button" onclick="window.runSajuAnalysis()" style="padding: 12px 25px; background-color:#d63384; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">운세 및 맞춤 처방 확인하기 ✨</button>
 </div>
 
-<!-- 결과 출력 영역 (기존 핑크 프레임 유지) -->
+<!-- 결과 출력 영역 -->
 <div id="result-box" style="display:none; margin-bottom: 30px; padding: 25px; background-color: #fff8f9; border: 2px solid #ff85a1; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
     <h3 id="res-title" style="margin-top: 0; color: #d63384;">분석 결과</h3>
-    <p id="res-desc" style="color: #495057; line-height: 1.8; font-size: 1em;"></p>
+    <div id="res-desc" style="color: #495057; line-height: 1.8; font-size: 1em;"></div>
     
     <div id="coupang-container" style="display:none;">
-        <div style="margin-top: 25px; padding: 20px; background-color: #ffffff; border-radius: 8px; border: 1px dashed #d63384; text-align: center;">
+        <div style="margin-top: 25px; padding: 20px; background-color: #ffffff; border-radius: 8px; border: 1.5px dashed #d63384; text-align: center;">
             <h4 id="rec-item-title" style="margin-top: 0; color: #333;">🌿 부족한 기운 채우기 추천템</h4>
             <p id="rec-item-desc" style="font-size: 0.9em; color: #666; margin-bottom: 15px;"></p>
             <a id="coupang-link" href="#" target="_blank" style="display:inline-block; padding: 14px 30px; background-color: #ff2f6e; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 8px rgba(255,47,110,0.3);">내 체질 맞춤상품 보러가기 ↗</a>
@@ -91,47 +91,64 @@ permalink: /saju-tool/
 </div>
 
 <script>
-(function() {
-    try {
-        if (window.adsbygoogle) {
-            (adsbygoogle = window.adsbygoogle || []).push({});
+window.currentSajuTab = 'today';
+
+window.changeSajuTab = function(tabName, btnElem) {
+    window.currentSajuTab = tabName;
+    ['today', 'zodiac', 'constellation', 'cookie'].forEach(function(t) {
+        var b = document.getElementById('btn-tab-' + t);
+        if (b) {
+            b.style.background = '#f8f9fa';
+            b.style.color = '#495057';
+            b.style.border = '1px solid #ced4da';
         }
-    } catch(e) {}
-
-    let currentTab = 'today';
-
-    const tabBtns = document.querySelectorAll('.saju-tab-btn');
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            tabBtns.forEach(b => {
-                b.style.background = '#f8f9fa';
-                b.style.color = '#495057';
-                b.style.border = '1px solid #ced4da';
-            });
-            this.style.background = '#d63384';
-            this.style.color = 'white';
-            this.style.border = 'none';
-            currentTab = this.getAttribute('data-tab');
-
-            const gTitle = document.getElementById('guide-title');
-            const gDesc = document.getElementById('guide-desc');
-            if (currentTab === 'today') {
-                gTitle.innerText = "🔮 AI 사주 오행 & 체질 맞춤 큐레이션";
-                gDesc.innerText = "생년월일을 입력하시면 타고난 오행 기운을 분석하여 부족한 기운을 채워줄 맞춤 솔루션을 제안해 드립니다.";
-            } else if (currentTab === 'zodiac') {
-                gTitle.innerText = "🐾 띠별 오늘 운세";
-                gDesc.innerText = "생년월일(연도) 기준 십이지신(띠) 성향과 오늘의 금전·활력 흐름을 확인해 보세요.";
-            } else if (currentTab === 'constellation') {
-                gTitle.innerText = "⭐ 별자리 밸런스 운세";
-                gDesc.innerText = "생일 기준 12별자리 에너지 가이드와 집중 타이밍을 체크해 드립니다.";
-            } else if (currentTab === 'cookie') {
-                gTitle.innerText = "🥠 시크릿 포춘쿠키";
-                gDesc.innerText = "오늘 나에게 도착한 한 줄 메시지 포춘쿠키를 바로 열어보세요.";
-            }
-        });
     });
+    if (btnElem) {
+        btnElem.style.background = '#d63384';
+        btnElem.style.color = 'white';
+        btnElem.style.border = 'none';
+    }
 
-    const coupangLinks = {
+    var gTitle = document.getElementById('guide-title');
+    var gDesc = document.getElementById('guide-desc');
+    if (tabName === 'today') {
+        gTitle.innerText = "🔮 AI 사주 오행 & 체질 맞춤 큐레이션";
+        gDesc.innerText = "생년월일을 입력하시면 타고난 오행 기운을 분석하여 부족한 기운을 채워줄 맞춤 솔루션을 제안해 드립니다.";
+    } else if (tabName === 'zodiac') {
+        gTitle.innerText = "🐾 띠별 오늘 운세";
+        gDesc.innerText = "생년월일(연도) 기준 십이지신(띠) 성향과 오늘의 금전·활력 흐름을 확인해 보세요.";
+    } else if (tabName === 'constellation') {
+        gTitle.innerText = "⭐ 별자리 밸런스 운세";
+        gDesc.innerText = "생일 기준 12별자리 에너지 가이드와 집중 타이밍을 체크해 드립니다.";
+    } else if (tabName === 'cookie') {
+        gTitle.innerText = "🥠 시크릿 포춘쿠키";
+        gDesc.innerText = "오늘 나에게 도착한 한 줄 메시지 포춘쿠키를 바로 열어보세요.";
+    }
+};
+
+window.runSajuAnalysis = function() {
+    var birthInput = document.getElementById("birth-date");
+    if (!birthInput || !birthInput.value) {
+        alert("생년월일을 선택해 주세요!");
+        return;
+    }
+
+    var valStr = birthInput.value;
+    var parts = valStr.split('-');
+    var year = parseInt(parts[0], 10);
+    var month = parseInt(parts[1], 10);
+    var day = parseInt(parts[2], 10);
+
+    var dateNums = valStr.replace(/-/g, '');
+    var sum = 0;
+    for (var i = 0; i < dateNums.length; i++) {
+        sum += parseInt(dateNums[i], 10);
+    }
+
+    var birthTimeVal = document.getElementById("birth-time").value;
+    var timeNote = birthTimeVal !== 'unknown' ? " (태어난 시: " + birthTimeVal + ")" : '';
+
+    var coupangLinks = {
         '목': 'https://link.coupang.com/a/g3rA2pUvK0',
         '화': 'https://link.coupang.com/a/g3rGUgf4Ue',
         '토': 'https://link.coupang.com/a/g3rPsoqhqK',
@@ -139,7 +156,7 @@ permalink: /saju-tool/
         '수': 'https://link.coupang.com/a/g3r7BtHQrY'
     };
 
-    const ohaengInfo = {
+    var ohaengInfo = {
         '목': { name: '목(木 - 성장·해독의 기운)', desc: '생각이 많고 추진력이 좋으나, 스트레스로 인해 눈이 쉽게 피로하고 긴장성 피로가 쌓이기 쉬운 체질입니다. 신선한 클렌즈·해독 성분으로 순환을 틔워줘야 합니다.', recName: '🌿 그린 디톡스/클렌즈 주스류', recDesc: '몸속 답답한 열기를 정돈하고 가벼운 활력을 채워줄 초록빛 해독 푸드' },
         '화': { name: '화(火 - 열정·활력의 기운)', desc: '행동력이 빠르고 열정이 넘치나, 에너지 소모가 커서 오후가 되면 체력 방전이 오고 속이 냉해지기 쉬운 체질입니다. 따뜻한 성질로 기력을 보강해야 합니다.', recName: '🔥 온기 충전 홍삼정 / 생강·대추차', recDesc: '떨어진 체온과 에너지를 속 깊이 데워줄 온열 활력 보조 식품' },
         '토': { name: '토(土 - 안정·위장의 기운)', desc: '중심을 잘 잡고 포용력이 있으나, 예민하거나 소화기가 약해지면 더부룩함과 가스가 쉽게 차는 체질입니다. 위장을 편안하게 보호하는 밸런스가 필요합니다.', recName: '🌾 위장 보호 양배추즙 / 유산균', recDesc: '예민해진 위장 장벽을 부드럽게 다스려 줄 베이직 케어 템' },
@@ -147,23 +164,14 @@ permalink: /saju-tool/
         '수': { name: '수(水 - 순환·저력의 기운)', desc: '깊은 통찰력과 지구력이 있으나, 체내 수분 순환이 정체되거나 아침에 잘 붓고 하체가 무거워지기 쉬운 체질입니다. 깊은 혈행 순환이 보약입니다.', recName: '🖤 블랙푸드(서리태) 선식 / 혈행 개선 템', recDesc: '신장·순환 에너지를 묵직하게 채워줄 블랙 에너지 푸드' }
     };
 
-    // 띠 계산 함수 (12지신: 원숭이, 닭, 개, 돼지, 쥐, 소, 호랑이, 토끼, 용, 뱀, 말, 양)
-    // 1984년 = 쥐띠(0) 기준
-    const zodiacNames = ['원숭이띠', '닭띠', '개띠', '돼지띠', '쥐띠', '소띠', '호랑이띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠'];
-    function getZodiac(year) {
-        return zodiacNames[(year - 1960) % 12 >= 0 ? (year - 1960) % 12 : ((year - 1960) % 12) + 12];
-    }
-    // 더 직관적인 연도 모듈러 (1987 % 12 -> 1987년은 묘(토끼) = index 3/7 등 정확 매핑: (year - 4) % 12의 십이지 맵)
-    const exactZodiacMap = ['자(쥐)', '축(소)', '인(호랑이)', '묘(토끼)', '진(용)', '사(뱀)', '오(말)', '미(양)', '신(원숭이)', '유(닭)', '술(개)', '해(돼지)'];
-    function getAccurateZodiac(year) {
-        const idx = ((year - 4) % 12 + 12) % 12;
-        const names = ['쥐띠', '소띠', '호랑이띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠', '원숭이띠', '닭띠', '개띠', '돼지띠'];
+    function getAccurateZodiac(y) {
+        var idx = ((y - 4) % 12 + 12) % 12;
+        var names = ['쥐띠', '소띠', '호랑이띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠', '원숭이띠', '닭띠', '개띠', '돼지띠'];
         return names[idx];
     }
 
-    // 별자리 계산 함수 (월/일 기준)
-    function getConstellation(month, day) {
-        const md = month * 100 + day;
+    function getConstellation(m, d) {
+        var md = m * 100 + d;
         if (md >= 321 && md <= 419) return '양자리';
         if (md >= 420 && md <= 520) return '황소자리';
         if (md >= 521 && md <= 621) return '쌍둥이자리';
@@ -178,76 +186,54 @@ permalink: /saju-tool/
         return '물고기자리';
     }
 
-    const cookieMsgs = [
+    var cookieMsgs = [
         "“작은 시도가 내일의 커다란 기쁨으로 연결되는 하루입니다.”",
         "“뜻밖의 소중한 인연이나 기분 좋은 연락이 스치는 시점입니다.”",
         "“오늘은 무리한 외출보다 나를 위한 따뜻한 차 한 잔이 길한 복을 부릅니다.”",
         "“고민하던 갈림길에서 직관적인 선택이 100점짜리 정답이 됩니다.”"
     ];
 
-    function runAnalysis() {
-        var birthInput = document.getElementById("birth-date");
-        if (!birthInput || !birthInput.value) {
-            alert("생년월일을 선택해 주세요!");
-            return;
-        }
+    var resTitle = document.getElementById("res-title");
+    var resDesc = document.getElementById("res-desc");
+    var coupangContainer = document.getElementById("coupang-container");
+    var resultBox = document.getElementById("result-box");
 
-        var valStr = birthInput.value; // YYYY-MM-DD
-        var parts = valStr.split('-');
-        var year = parseInt(parts[0], 10);
-        var month = parseInt(parts[1], 10);
-        var day = parseInt(parts[2], 10);
+    if (window.currentSajuTab === 'today') {
+        var keys = ['목', '화', '토', '금', '수'];
+        var selectedOhaeng = keys[sum % 5];
+        var info = ohaengInfo[selectedOhaeng];
+        var cLink = coupangLinks[selectedOhaeng];
 
-        var dateNums = valStr.replace(/-/g, '');
-        var sum = 0;
-        for (var i = 0; i < dateNums.length; i++) {
-            sum += parseInt(dateNums[i], 10);
-        }
-
-        var birthTimeVal = document.getElementById("birth-time").value;
-        var timeNote = birthTimeVal !== 'unknown' ? ` (태어난 시: ${birthTimeVal})` : '';
-
-        var resTitle = document.getElementById("res-title");
-        var resDesc = document.getElementById("res-desc");
-        var coupangContainer = document.getElementById("coupang-container");
-        var resultBox = document.getElementById("result-box");
-
-        if (currentTab === 'today') {
-            const keys = ['목', '화', '토', '금', '수'];
-            var selectedOhaeng = keys[sum % 5];
-            var info = ohaengInfo[selectedOhaeng];
-            var cLink = coupangLinks[selectedOhaeng];
-
-            resTitle.innerText = "✨ [오늘운세] 타고난 체질 [" + info.name + "]" + timeNote;
-            resDesc.innerText = info.desc;
-            document.getElementById("rec-item-title").innerText = info.recName;
-            document.getElementById("rec-item-desc").innerText = info.recDesc;
-            document.getElementById("coupang-link").href = cLink;
-            coupangContainer.style.display = "block";
-        } else if (currentTab === 'zodiac') {
-            var myZodiac = getAccurateZodiac(year);
-            resTitle.innerText = "🐾 [띠별운세] " + year + "년생 " + myZodiac + timeNote;
-            resDesc.innerText = "선택하신 생년월일(" + year + "년) 기준 " + myZodiac.replace('띠','') + " 기운 흐름: 주변의 협조가 돋보이며, 오후 시간대 실속 있는 성과가 기대되는 활력형 일일 운세입니다.";
-            coupangContainer.style.display = "none";
-        } else if (currentTab === 'constellation') {
-            var myConstellation = getConstellation(month, day);
-            resTitle.innerText = "⭐ [별자리운세] " + month + "월 " + day + "일생 (" + myConstellation + ")";
-            resDesc.innerText = "오늘의 " + myConstellation + " 에너지: 감성과 직관의 밸런스가 최고조에 달하는 시간입니다. 미뤄둔 일정을 가볍게 정리해 보세요.";
-            coupangContainer.style.display = "none";
-        } else if (currentTab === 'cookie') {
-            var cMsg = cookieMsgs[sum % cookieMsgs.length];
-            resTitle.innerText = "🥠 [포춘쿠키] 오픈 완료!";
-            resDesc.innerHTML = `<div style="text-align:center; padding:15px; font-weight:bold; color:#d63384; font-size:1.1em;">${cMsg}</div>`;
-            coupangContainer.style.display = "none";
-        }
-
-        resultBox.style.display = "block";
-        resultBox.scrollIntoView({ behavior: 'smooth' });
+        resTitle.innerText = "✨ [오늘운세] 타고난 체질 [" + info.name + "]" + timeNote;
+        resDesc.innerText = info.desc;
+        document.getElementById("rec-item-title").innerText = info.recName;
+        document.getElementById("rec-item-desc").innerText = info.recDesc;
+        document.getElementById("coupang-link").href = cLink;
+        coupangContainer.style.display = "block";
+    } else if (window.currentSajuTab === 'zodiac') {
+        var myZodiac = getAccurateZodiac(year);
+        resTitle.innerText = "🐾 [띠별운세] " + year + "년생 " + myZodiac + timeNote;
+        resDesc.innerText = "선택하신 생년월일(" + year + "년) 기준 " + myZodiac.replace('띠','') + " 기운 흐름: 주변의 협조가 돋보이며, 오후 시간대 실속 있는 성과가 기대되는 활력형 일일 운세입니다.";
+        coupangContainer.style.display = "none";
+    } else if (window.currentSajuTab === 'constellation') {
+        var myConstellation = getConstellation(month, day);
+        resTitle.innerText = "⭐ [별자리운세] " + month + "월 " + day + "일생 (" + myConstellation + ")";
+        resDesc.innerText = "오늘의 " + myConstellation + " 에너지: 감성과 직관의 밸런스가 최고조에 달하는 시간입니다. 미뤄둔 일정을 가볍게 정리해 보세요.";
+        coupangContainer.style.display = "none";
+    } else if (window.currentSajuTab === 'cookie') {
+        var cMsg = cookieMsgs[sum % cookieMsgs.length];
+        resTitle.innerText = "🥠 [포춘쿠키] 오픈 완료!";
+        resDesc.innerHTML = '<div style="text-align:center; padding:15px; font-weight:bold; color:#d63384; font-size:1.1em;">' + cMsg + '</div>';
+        coupangContainer.style.display = "none";
     }
 
-    var submitBtn = document.getElementById("saju-submit-btn");
-    if (submitBtn) {
-        submitBtn.addEventListener("click", runAnalysis);
-    }
-})();
+    resultBox.style.display = "block";
+    resultBox.scrollIntoView({ behavior: 'smooth' });
+
+    try {
+        if (window.adsbygoogle) {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+    } catch(e) {}
+};
 </script>
