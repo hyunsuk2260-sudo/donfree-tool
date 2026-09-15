@@ -1,53 +1,183 @@
 ---
-title: 사주 오행 체질 & 맞춤 처방 툴
-icon: fas fa-fire
+title: 종합 운세 & 체질 맞춤 큐레이션
+icon: fas fa-star
 order: 9
 layout: page
 permalink: /saju-tool/
 ---
 
-<div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef;">
-    <h4 style="margin-top: 0; color: #d63384;">🔮 AI 사주 오행 & 체질 맞춤 큐레이션</h4>
-    <p style="margin-bottom: 0;">생년월일을 입력하시면 타고난 오행 기운을 분석하여 부족한 기운을 채워줄 맞춤 솔루션을 제안해 드립니다.</p>
-</div>
+<style>
+.fortune-container {
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+}
+.fortune-header {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.tab-menu {
+    display: flex;
+    border-bottom: 2px solid #e1e4e8;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+.tab-btn {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #666;
+    position: relative;
+}
+.tab-btn.active {
+    color: #03c75a;
+}
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #03c75a;
+}
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.input-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+.date-row {
+    margin-bottom: 20px;
+}
+.date-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #03c75a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.submit-btn:hover {
+    background-color: #02b350;
+}
+.result-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+.fortune-content-box {
+    line-height: 1.8;
+    font-size: 1.05em;
+    color: #2d3748;
+}
+.coupang-box {
+    margin-top: 25px;
+    padding: 22px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1.5px dashed #03c75a;
+    text-align: center;
+}
+.coupang-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background-color: #ff2f6e;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(255,47,110,0.3);
+}
+.ad-box {
+    text-align: center;
+    margin: 40px 0;
+    min-height: 100px;
+}
+</style>
 
-<div style="margin-bottom: 30px; padding: 25px; background-color: #ffffff; border: 2px solid #d63384; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-    <h3 style="margin-top: 0; color: #d63384;">생년월일 및 성별 입력</h3>
+<div class="fortune-container">
+    <div class="fortune-header">운세</div>
     
-    <div style="display: grid; grid-template-columns: 1fr; gap: 15px; margin: 15px 0;">
-        <div>
-            <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:0.9em; color:#495057;">생년월일 (예: 1987-02-02)</label>
-            <input type="date" id="birth-date" value="1987-02-02" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; width: 100%; box-sizing: border-box;">
-        </div>
-        <div>
-            <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:0.9em; color:#495057;">성별</label>
-            <select id="gender" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; width: 100%; box-sizing: border-box;">
-                <option value="F">여성 (Female)</option>
-                <option value="M">남성 (Male)</option>
-            </select>
+    <!-- 탭 메뉴 -->
+    <div class="tab-menu">
+        <button class="tab-btn active" onclick="switchTab('today', this)">오늘운세</button>
+        <button class="tab-btn" onclick="switchTab('zodiac', this)">띠별운세</button>
+        <button class="tab-btn" onclick="switchTab('constellation', this)">별자리운세</button>
+        <button class="tab-btn" onclick="switchTab('fortunecookie', this)">포춘쿠키</button>
+    </div>
+
+    <!-- 입력 폼 영역 -->
+    <div class="input-grid">
+        <select id="gender" class="input-select">
+            <option value="M">성별 (남성)</option>
+            <option value="F" selected>성별 (여성)</option>
+        </select>
+        <select id="calendar-type" class="input-select">
+            <option value="solar" selected>양력</option>
+            <option value="lunar">음력</option>
+        </select>
+        <select id="birth-time" class="input-select">
+            <option value="unknown" selected>태어난시, 모름</option>
+            <option value="morning">오전 (00~11시)</option>
+            <option value="afternoon">오후 (12~23시)</option>
+        </select>
+    </div>
+
+    <div class="date-row">
+        <input type="date" id="birth-date" value="1987-02-02" class="date-input">
+    </div>
+
+    <button type="button" class="submit-btn" id="run-btn">운세 확인하기</button>
+
+    <!-- 결과 출력 영역 -->
+    <div id="result-box" class="result-card" style="display:none;">
+        <h3 id="res-title" style="margin-top:0; color:#03c75a; font-size:1.3em;"></h3>
+        <div id="res-desc" class="fortune-content-box"></div>
+
+        <!-- 오늘운세 전용 체질/쿠팡 추천 영역 -->
+        <div id="coupang-section" class="coupang-box" style="display:none;">
+            <h4 id="rec-item-title" style="margin-top:0; color:#333;">🌿 부족한 기운 채우기 추천템</h4>
+            <p id="rec-item-desc" style="font-size:0.9em; color:#666; margin-bottom:15px;"></p>
+            <a id="coupang-link" href="#" target="_blank" class="coupang-btn">내 체질 맞춤상품 보러가기 ↗</a>
+            <p style="font-size: 0.75em; color: #888; margin-top: 15px; margin-bottom: 0; line-height: 1.4;">
+                이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+            </p>
         </div>
     </div>
-    
-    <button type="button" id="saju-submit-btn" style="padding: 12px 25px; background-color:#d63384; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 100%;">내 체질 및 맞춤 처방 확인하기 ✨</button>
-</div>
 
-<div id="result-box" style="display:none; margin-bottom: 30px; padding: 25px; background-color: #fff8f9; border: 2px solid #ff85a1; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-    <h3 id="res-title" style="margin-top: 0; color: #d63384;">분석 결과</h3>
-    <p id="res-desc" style="color: #495057; line-height: 1.8; font-size: 1em;"></p>
-    
-    <div style="margin-top: 25px; padding: 20px; background-color: #ffffff; border-radius: 8px; border: 1px dashed #d63384; text-align: center;">
-        <h4 id="rec-item-title" style="margin-top: 0; color: #333;">🌿 부족한 기운 채우기 추천템</h4>
-        <p id="rec-item-desc" style="font-size: 0.9em; color: #666; margin-bottom: 15px;"></p>
-        <a id="coupang-link" href="#" target="_blank" style="display:inline-block; padding: 14px 30px; background-color: #ff2f6e; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 8px rgba(255,47,110,0.3);">내 체질 맞춤상품 보러가기 ↗</a>
-        <!-- 공정위 문구 추가 -->
-        <p style="font-size: 0.75em; color: #888; margin-top: 15px; margin-bottom: 0; line-height: 1.4;">
-            이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
-        </p>
+    <!-- 구글 애드센스 광고 영역 -->
+    <div class="ad-box">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
     </div>
-</div>
-
-<div style="text-align: center; margin: 40px 0; min-height: 100px;">
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>
 
 <script>
@@ -57,6 +187,19 @@ permalink: /saju-tool/
             (adsbygoogle = window.adsbygoogle || []).push({});
         }
     } catch(e) {}
+
+    let currentTab = 'today';
+
+    window.switchTab = function(tabName, btnElem) {
+        currentTab = tabName;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btnElem.classList.add('active');
+
+        // 포춘쿠키 탭이면 바로 결과 보여주기 연출
+        if (tabName === 'fortunecookie') {
+            runFortune('fortunecookie');
+        }
+    };
 
     const coupangLinks = {
         '목': 'https://link.coupang.com/a/g3rA2pUvK0',
@@ -74,39 +217,77 @@ permalink: /saju-tool/
         '수': { name: '수(水 - 순환·저력의 기운)', desc: '깊은 통찰력과 지구력이 있으나, 체내 수분 순환이 정체되거나 아침에 잘 붓고 하체가 무거워지기 쉬운 체질입니다. 깊은 혈행 순환이 보약입니다.', recName: '🖤 블랙푸드(서리태) 선식 / 혈행 개선 템', recDesc: '신장·순환 에너지를 묵직하게 채워줄 블랙 에너지 푸드' }
     };
 
-    function runAnalysis() {
-        var birthInput = document.getElementById("birth-date");
-        if (!birthInput || !birthInput.value) {
-            alert("생년월일을 선택해 주세요!");
-            return;
-        }
+    const zodiacList = ['쥐띠', '소띠', '호랑이띠', '토끼띠', '용띠', '뱀띠', '말띠', '양띠', '원숭이띠', '닭띠', '개띠', '돼지띠'];
+    const zodiacVibes = [
+        "오늘은 주변의 협조가 돋보이는 날입니다. 작은 성과에 기뻐하며 내실을 다지세요.",
+        "오후 시간대에 중요한 결정이 있다면 한 번 더 점검해 보세요. 무리한 이동은 삼가기.",
+        "재물운과 인맥운이 가볍게 상승하는 흐름입니다. 가벼운 안부 연락이 길한 복을 부릅니다.",
+        "감정 소모를 줄이고 휴식에 집중하는 것이 유리합니다. 따뜻한 차 한 잔의 여유를 가져보세요."
+    ];
 
-        var dateNums = birthInput.value.replace(/-/g, '');
+    const constellationList = ['양자리', '황소자리', '쌍둥이자리', '게자리', '사자자리', '처녀자리', '천칭자리', '전갈자리', '사수자리', '염소자리', '물병자리', '물고기자리'];
+    const cookieMessages = [
+        "“작은 변화가 내일의 큰 도약이 됩니다. 오늘 가볍게 산책이나 정리를 시작해보세요.”",
+        "“생각치 못한 기분 좋은 소식이 찾아옵니다. 마음의 문을 살짝 열어두세요.”",
+        "“오늘은 지갑보다는 마음의 여유를 채우는 날. 따뜻한 음료가 행운을 부릅니다.”",
+        "“고민하던 일이 직관적인 선택 하나로 가볍게 풀리게 됩니다.”"
+    ];
+
+    function runFortune(modeType) {
+        var mode = modeType || currentTab;
+        var birthInput = document.getElementById("birth-date");
+        var dateVal = birthInput ? birthInput.value : "1987-02-02";
+        var dateNums = dateVal.replace(/-/g, '');
         var sum = 0;
         for (var i = 0; i < dateNums.length; i++) {
             sum += parseInt(dateNums[i], 10);
         }
-        
-        const keys = ['목', '화', '토', '금', '수'];
-        var selectedOhaeng = keys[sum % 5];
-        
-        var info = ohaengInfo[selectedOhaeng];
-        var cLink = coupangLinks[selectedOhaeng];
 
-        document.getElementById("res-title").innerText = "✨ 분석 완료: 당신의 타고난 체질은 [" + info.name + "] 입니다";
-        document.getElementById("res-desc").innerText = info.desc;
-        document.getElementById("rec-item-title").innerText = info.recName;
-        document.getElementById("rec-item-desc").innerText = info.recDesc;
-        document.getElementById("coupang-link").href = cLink;
-
+        var resTitle = document.getElementById("res-title");
+        var resDesc = document.getElementById("res-desc");
+        var coupangSection = document.getElementById("coupang-section");
         var resultBox = document.getElementById("result-box");
+
+        if (mode === 'today') {
+            const keys = ['목', '화', '토', '금', '수'];
+            var selectedOhaeng = keys[sum % 5];
+            var info = ohaengInfo[selectedOhaeng];
+            var cLink = coupangLinks[selectedOhaeng];
+
+            resTitle.innerText = "✨ [오늘운세] 타고난 체질 [" + info.name + "] 맞춤 가이드";
+            resDesc.innerHTML = `<p>${info.desc}</p><p style="margin-top:15px; color:#4a5568; background:#edf2f7; padding:12px; border-radius:8px;">💡 <strong>오늘의 팁:</strong> 오전 시간대에 가벼운 스트레칭과 수분 섭취로 바이오리듬을 깨워보세요.</p>`;
+            
+            document.getElementById("rec-item-title").innerText = info.recName;
+            document.getElementById("rec-item-desc").innerText = info.recDesc;
+            document.getElementById("coupang-link").href = cLink;
+            coupangSection.style.display = "block";
+        } else if (mode === 'zodiac') {
+            var zIdx = sum % zodiacList.length;
+            var zVibe = zodiacVibes[sum % zodiacVibes.length];
+            resTitle.innerText = "🐾 [띠별운세] 오늘의 기운 흐름";
+            resDesc.innerHTML = `<p><strong>선택 생년월일 기준 기운 성향:</strong> 활력 넘치는 하루의 시작점이자 귀인이 스치는 시점입니다.</p><p style="margin-top:10px;">🌟 <strong>오늘의 띠별/종합 총운:</strong> ${zVibe}</p>`;
+            coupangSection.style.display = "none";
+        } else if (mode === 'constellation') {
+            var cIdx = (sum * 3) % constellationList.length;
+            resTitle.innerText = "⭐ [별자리운세] 밸런스 큐레이션";
+            resDesc.innerHTML = `<p><strong>오늘의 별자리 에너지:</strong> 감성과 이중적 직관이 조화롭게 작용하는 시간입니다.</p><p style="margin-top:10px;">✨ <strong>조언:</strong> 오후 2시~4시 사이 미뤄둔 루틴을 처리하면 효율이 2배로 상승합니다.</p>`;
+            coupangSection.style.display = "none";
+        } else if (mode === 'fortunecookie') {
+            var msg = cookieMessages[sum % cookieMessages.length];
+            resTitle.innerText = "🥠 [포춘쿠키] 오늘의 메시지 오픈!";
+            resDesc.innerHTML = `<div style="text-align:center; padding:15px; font-size:1.15em; font-weight:bold; color:#03c75a;">${msg}</div>`;
+            coupangSection.style.display = "none";
+        }
+
         resultBox.style.display = "block";
         resultBox.scrollIntoView({ behavior: 'smooth' });
     }
 
-    var btn = document.getElementById("saju-submit-btn");
+    var btn = document.getElementById("run-btn");
     if (btn) {
-        btn.addEventListener("click", runAnalysis);
+        btn.addEventListener("click", function() {
+            runFortune(currentTab);
+        });
     }
 })();
 </script>
