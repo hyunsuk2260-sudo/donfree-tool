@@ -63,13 +63,113 @@ permalink: /font-tool/
 
     <main class="max-w-3xl mx-auto w-full px-4 flex-1 py-6">
         <div id="fontGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- 폰트 목록 로딩 중 -->
-            <div class="col-span-full text-center py-10 text-gray-400 font-bold">트렌디 폰트를 불러오는 중입니다... ✨</div>
+            
+            <!-- 20개 폰트 박스 하드코딩 (로딩 에러 원천 차단) -->
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">제주돌담체 (감성 릴스 추천)</div><div class="font-jeju text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/1057" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">더잠실체 (모던하고 세련된)</div><div class="font-jamsil text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/1138" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">여기어때 잘난체 (썸네일 어그로 탑)</div><div class="font-jalnan text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/227" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">티몬 몬소리체 (유튜브 자막 1티어)</div><div class="font-tmon text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/208" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">프리텐다드 (가장 완벽한 기본 폰트)</div><div class="font-pretendard text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/835" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">어그로체 (이름값 하는 독특함)</div><div class="font-aggro text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/739" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">카페24 써라운드 (뷰티/브이로그)</div><div class="font-cafe24 text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/703" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">쿠키런체 (동글동글 귀여운)</div><div class="font-cookierun text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/396" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">G마켓 산스 (신뢰감 주는 고딕)</div><div class="font-gmarket text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/463" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">KCC 은영체 (진짜 손글씨 감성)</div><div class="font-eunyoung text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/197" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">창원단감아삭체 (톡톡 튀는 타이틀)</div><div class="font-dangam text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/431" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">조선100년체 (진지한 다큐/명조)</div><div class="font-chosun text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/1000" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">빙그레체 (따뜻하고 포근한)</div><div class="font-binggrae text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://noonnu.cc/font_page/158" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">배달의민족 도현체 (레트로 간판 느낌)</div><div class="font-dohyeon text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Do+Hyeon" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">검은고딕 (굵직하고 강렬한)</div><div class="font-blackhan text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Black+Han+Sans" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">배달의민족 주아체 (붓글씨 귀여움)</div><div class="font-jua text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Jua" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">고운 돋움 (잔잔한 브이로그 자막)</div><div class="font-gowun text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Gowun+Dodum" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">싱글데이체 (다이어리 꾸미기)</div><div class="font-singleday text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Single+Day" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">동글체 (작고 앙증맞은)</div><div class="font-dongle text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Dongle" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">노토 산스 KR (구글 기본 고딕)</div><div class="font-noto text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Noto+Sans+KR" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+            </div>
+
         </div>
     </main>
 </div>
 
-<!-- 광고 영역 (독립 분리) -->
+<!-- 광고 영역 -->
 <div style="text-align: center; margin: 40px 0; min-height: 100px; clear: both;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -77,62 +177,16 @@ permalink: /font-tool/
 </div>
 
 <script>
-    var fontData = [
-        { name: '제주돌담체 (감성 릴스 추천)', css: 'font-jeju', url: 'https://noonnu.cc/font_page/1057' },
-        { name: '더잠실체 (모던하고 세련된)', css: 'font-jamsil', url: 'https://noonnu.cc/font_page/1138' },
-        { name: '여기어때 잘난체 (썸네일 어그로 탑)', css: 'font-jalnan', url: 'https://noonnu.cc/font_page/227' },
-        { name: '티몬 몬소리체 (유튜브 자막 1티어)', css: 'font-tmon', url: 'https://noonnu.cc/font_page/208' },
-        { name: '프리텐다드 (가장 완벽한 기본 폰트)', css: 'font-pretendard', url: 'https://noonnu.cc/font_page/835' },
-        { name: '어그로체 (이름값 하는 독특함)', css: 'font-aggro', url: 'https://noonnu.cc/font_page/739' },
-        { name: '카페24 써라운드 (뷰티/브이로그)', css: 'font-cafe24', url: 'https://noonnu.cc/font_page/703' },
-        { name: '쿠키런체 (동글동글 귀여운)', css: 'font-cookierun', url: 'https://noonnu.cc/font_page/396' },
-        { name: 'G마켓 산스 (신뢰감 주는 고딕)', css: 'font-gmarket', url: 'https://noonnu.cc/font_page/463' },
-        { name: 'KCC 은영체 (진짜 손글씨 감성)', css: 'font-eunyoung', url: 'https://noonnu.cc/font_page/197' },
-        { name: '창원단감아삭체 (톡톡 튀는 타이틀)', css: 'font-dangam', url: 'https://noonnu.cc/font_page/431' },
-        { name: '조선100년체 (진지한 다큐/명조)', css: 'font-chosun', url: 'https://noonnu.cc/font_page/1000' },
-        { name: '빙그레체 (따뜻하고 포근한)', css: 'font-binggrae', url: 'https://noonnu.cc/font_page/158' },
-        { name: '배달의민족 도현체 (레트로 간판 느낌)', css: 'font-dohyeon', url: 'https://fonts.google.com/specimen/Do+Hyeon' },
-        { name: '검은고딕 (굵직하고 강렬한)', css: 'font-blackhan', url: 'https://fonts.google.com/specimen/Black+Han+Sans' },
-        { name: '배달의민족 주아체 (붓글씨 귀여움)', css: 'font-jua', url: 'https://fonts.google.com/specimen/Jua' },
-        { name: '고운 돋움 (잔잔한 브이로그 자막)', css: 'font-gowun', url: 'https://fonts.google.com/specimen/Gowun+Dodum' },
-        { name: '싱글데이체 (다이어리 꾸미기)', css: 'font-singleday', url: 'https://fonts.google.com/specimen/Single+Day' },
-        { name: '동글체 (작고 앙증맞은)', css: 'font-dongle', url: 'https://fonts.google.com/specimen/Dongle' },
-        { name: '노토 산스 KR (구글 기본 고딕)', css: 'font-noto', url: 'https://fonts.google.com/specimen/Noto+Sans+KR' }
-    ];
-
-    function renderFonts() {
-        var previewInput = document.getElementById('previewInput');
-        var grid = document.getElementById('fontGrid');
-        if (!previewInput || !grid) return;
-        
-        var text = previewInput.value || '테스트 문구를 입력하세요';
-        var htmlString = "";
-        
-        for (var i = 0; i < fontData.length; i++) {
-            var font = fontData[i];
-            htmlString += '<div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between hover:border-purple-300 hover:shadow-md transition-all">';
-            htmlString += '  <div>';
-            htmlString += '    <div class="text-xs text-gray-500 mb-4 font-bold flex justify-between items-center">';
-            htmlString += '      <span>' + font.name + '</span>';
-            htmlString += '    </div>';
-            htmlString += '    <div class="' + font.css + ' text-3xl text-gray-900 break-keep mb-6 overflow-hidden leading-snug" style="min-height: 4.5rem; word-break: keep-all;">' + text + '</div>';
-            htmlString += '  </div>';
-            htmlString += '  <a href="' + font.url + '" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors shadow-sm">폰트 다운로드 가기</a>';
-            htmlString += '</div>';
-        }
-        grid.innerHTML = htmlString;
+    // 상단 입력창에 글자를 칠 때 모든 폰트 미리보기 글자가 즉시 바뀌게 하는 안전 연동 스크립트
+    var input = document.getElementById('previewInput');
+    if (input) {
+        input.addEventListener('input', function() {
+            var val = this.value || '테스트 문구를 입력하세요';
+            var targets = document.getElementsByClassName('preview-text');
+            for (var i = 0; i < targets.length; i++) {
+                targets[i].innerText = val;
+            }
+        });
     }
-
-    // 즉시 실행 및 안전 장치
-    window.addEventListener('DOMContentLoaded', function() {
-        var inputEl = document.getElementById('previewInput');
-        if (inputEl) {
-            inputEl.addEventListener('input', renderFonts);
-        }
-        renderFonts();
-    });
-    
-    // 혹시 모를 지연 로딩 대비
-    setTimeout(renderFonts, 200);
 </script>
 {% endraw %}
