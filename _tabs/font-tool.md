@@ -102,13 +102,13 @@ permalink: /font-tool/
 
     function renderFonts() {
         var previewInput = document.getElementById('previewInput');
-        if (!previewInput) return;
+        var grid = document.getElementById('fontGrid');
+        
+        if (!previewInput || !grid) return;
         
         var text = previewInput.value || '테스트 문구를 입력하세요';
-        var grid = document.getElementById('fontGrid');
-        if (!grid) return;
-        
         var htmlString = "";
+        
         for (var i = 0; i < fontData.length; i++) {
             var font = fontData[i];
             htmlString += '<div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between hover:border-purple-300 hover:shadow-md transition-all">';
@@ -124,12 +124,22 @@ permalink: /font-tool/
         grid.innerHTML = htmlString;
     }
 
-    var inputEl = document.getElementById('previewInput');
-    if (inputEl) {
-        inputEl.addEventListener('input', renderFonts);
+    // [핵심 해결책] 0.1초마다 상자가 만들어졌는지 확인하고, 상자가 확인되면 즉시 폰트를 채우는 코드
+    function initFontTool() {
+        var inputEl = document.getElementById('previewInput');
+        var grid = document.getElementById('fontGrid');
+        
+        if (inputEl && grid) {
+            // 상자가 확인됨 -> 기능 시작!
+            inputEl.addEventListener('input', renderFonts);
+            renderFonts();
+        } else {
+            // 상자가 아직 없으면 0.1초 뒤에 다시 확인!
+            setTimeout(initFontTool, 100);
+        }
     }
     
-    // 화면 로딩 시 최초 1회 실행
-    renderFonts();
+    // 감시 시작!
+    initFontTool();
 </script>
 {% endraw %}
