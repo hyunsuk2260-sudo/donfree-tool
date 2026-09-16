@@ -5,8 +5,8 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- 🔥 [컴팩트형] 최상단 쿠팡 배너 (패딩과 여백 축소) -->
-<div class="bg-white py-1 border-b border-gray-100 mb-4 text-center">
+<!-- 🔥 최상단 쿠팡 배너 (슬림형) -->
+<div class="bg-white py-1.5 border-b border-gray-100 mb-5 text-center">
     <div class="max-w-[680px] mx-auto overflow-hidden scale-90 sm:scale-100">
         <script src="https://ads-partners.coupang.com/g.js"></script>
         <script>
@@ -15,11 +15,27 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 [심플 & 후킹형] 사주 로또 한 줄 배너 -->
-<a href="/lotto/" class="block bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white p-4 sm:p-5 rounded-xl text-center mb-6 shadow-md transition-all duration-200 transform hover:-translate-y-0.5 group">
-    <div class="text-sm sm:text-base font-bold tracking-tight drop-shadow-sm flex items-center justify-center gap-2">
-        <span>🔮</span>
-        <span>"올해 내 사주대박 로또번호는?" 3초 만에 3등 번호 확인하러 가기 👉</span>
+<!-- 🔮 [프로급 리디자인] 사주 로또 핵심 후킹 배너 -->
+<a href="/lotto/" class="relative block overflow-hidden bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white p-5 sm:p-6 rounded-2xl mb-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group border border-yellow-300/40">
+    <!-- 배경 은은한 광채 효과 -->
+    <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+    
+    <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+        <div class="flex items-center gap-3">
+            <span class="text-3xl sm:text-4xl animate-bounce">🔮</span>
+            <div>
+                <div class="inline-block bg-black/20 text-yellow-200 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-1 border border-yellow-400/30">
+                    ✨ 2026년 대박 특전
+                </div>
+                <div class="text-base sm:text-lg font-black tracking-tight text-white drop-shadow-md">
+                    "올해 내 사주대박 로또번호는?" 3초 만에 3등 번호 확인하기
+                </div>
+            </div>
+        </div>
+        <div class="bg-white text-amber-900 font-extrabold px-4 py-2 rounded-xl text-xs sm:text-sm shadow-md group-hover:bg-amber-50 transition-colors flex items-center gap-1.5 shrink-0">
+            <span>지금 바로 추출</span>
+            <span class="group-hover:translate-x-1 transition-transform">👉</span>
+        </div>
     </div>
 </a>
 
