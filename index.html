@@ -5,9 +5,9 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- 🔥 홈 화면 최상단 공통 쿠팡 파트너스 캐러셀 배너 -->
-<div class="bg-white py-3 border-b border-gray-200 mb-8 text-center shadow-sm rounded-xl">
-    <div class="max-w-[680px] mx-auto overflow-hidden">
+<!-- 🔥 [컴팩트형] 최상단 쿠팡 배너 (패딩과 여백 축소) -->
+<div class="bg-white py-1 border-b border-gray-100 mb-4 text-center">
+    <div class="max-w-[680px] mx-auto overflow-hidden scale-90 sm:scale-100">
         <script src="https://ads-partners.coupang.com/g.js"></script>
         <script>
             new PartnersCoupang.G({"id":735290,"template":"carousel","trackingCode":"AF6149137","width":"680","height":"140","tsource":""});
@@ -15,74 +15,70 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 홈 화면 전용: 사주 맞춤 로또 대문 배너 -->
-<div class="bg-gradient-to-br from-amber-50 to-amber-100 border-2 border-amber-300 rounded-2xl p-6 sm:p-8 text-center mb-8 shadow-sm">
-    <div class="text-4xl sm:text-5xl mb-3">🔮</div>
-    <h2 class="text-xl sm:text-2xl font-bold text-amber-900 mb-2">내 사주 오행으로 뽑는 이번 주 대박 행운 번호</h2>
-    <p class="text-amber-800 text-sm sm:text-base mb-5">
-        흔한 무작위 자동 번호는 그만! 명리학 사주 기운을 분석하여 부족한 행운을 채워드립니다.
-    </p>
-    <a href="/lotto/" class="inline-block bg-amber-700 hover:bg-amber-800 text-white font-bold py-3 px-6 rounded-xl shadow transition-all duration-200 text-sm sm:text-base">
-        ✨ 사주 맞춤 로또 번호 뽑으러 가기
-    </a>
-</div>
+<!-- 🔮 [심플 & 후킹형] 사주 로또 한 줄 배너 -->
+<a href="/lotto/" class="block bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white p-4 sm:p-5 rounded-xl text-center mb-6 shadow-md transition-all duration-200 transform hover:-translate-y-0.5 group">
+    <div class="text-sm sm:text-base font-bold tracking-tight drop-shadow-sm flex items-center justify-center gap-2">
+        <span>🔮</span>
+        <span>"올해 내 사주대박 로또번호는?" 3초 만에 3등 번호 확인하러 가기 👉</span>
+    </div>
+</a>
 
-<div class="bg-gray-50 p-5 sm:p-8 rounded-2xl shadow-inner mb-8">
-    <div class="mb-8 text-center">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">실생활에 꼭 필요한 무료 웹 툴 모음</h2>
-        <p class="text-gray-500 text-sm sm:text-base">원하시는 기능을 선택해 바로 사용해 보세요. (모든 기능 평생 무료)</p>
+<div class="bg-gray-50 p-4 sm:p-6 rounded-2xl shadow-inner mb-8">
+    <div class="mb-6 text-center">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-1">실생활에 꼭 필요한 무료 웹 툴 모음</h2>
+        <p class="text-gray-500 text-xs sm:text-sm">원하시는 기능을 선택해 바로 사용해 보세요. (평생 무료)</p>
     </div>
 
     <!-- 툴 버튼 그리드 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         
         <!-- 폰트 툴 -->
-        <a href="/font-tool/" class="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 hover:-translate-y-1 transition-all duration-200 group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform origin-left">🔤</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">트렌디 폰트 다운로더</h3>
-            <p class="text-sm text-gray-500">인스타, 유튜브 자막용 상업용 무료 폰트 모음</p>
+        <a href="/font-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔤</div>
+            <h3 class="text-base font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3>
+            <p class="text-xs text-gray-500">인스타, 유튜브 자막용 무료 폰트 모음</p>
         </a>
 
         <!-- 비디오 툴 -->
-        <a href="/video/" class="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 hover:-translate-y-1 transition-all duration-200 group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform origin-left">📥</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">비디오 다운로더</h3>
-            <p class="text-sm text-gray-500">워터마크 없이 깔끔하게 동영상 저장하기</p>
+        <a href="/video/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📥</div>
+            <h3 class="text-base font-bold text-gray-900 mb-0.5">비디오 다운로더</h3>
+            <p class="text-xs text-gray-500">워터마크 없이 깔끔하게 동영상 저장하기</p>
         </a>
 
         <!-- 사주 툴 -->
-        <a href="/saju-tool/" class="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 hover:-translate-y-1 transition-all duration-200 group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform origin-left">🔮</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">사주 오행 체질 & 처방</h3>
-            <p class="text-sm text-gray-500">내 사주팔자 오행 분석과 개운법 무료 확인</p>
+        <a href="/saju-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔮</div>
+            <h3 class="text-base font-bold text-gray-900 mb-0.5">사주 오행 체질 & 처방</h3>
+            <p class="text-xs text-gray-500">내 사주팔자 오행 분석과 개운법 무료 확인</p>
         </a>
 
         <!-- PDF 툴 -->
-        <a href="/pdf-tool/" class="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 hover:-translate-y-1 transition-all duration-200 group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform origin-left">📄</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">PDF 통합 및 변환 툴</h3>
-            <p class="text-sm text-gray-500">이미지 파일을 5초 만에 PDF로 변환 및 다운로드</p>
+        <a href="/pdf-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📄</div>
+            <h3 class="text-base font-bold text-gray-900 mb-0.5">PDF 통합 및 변환 툴</h3>
+            <p class="text-xs text-gray-500">이미지 파일을 5초 만에 PDF로 변환</p>
         </a>
 
         <!-- 이모지 툴 -->
-        <a href="/emoji-tool/" class="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 hover:-translate-y-1 transition-all duration-200 group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform origin-left">✨</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">이지이모지 PRO</h3>
-            <p class="text-sm text-gray-500">상황별 특수문자와 이모지를 클릭 한 번에 복사</p>
+        <a href="/emoji-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">✨</div>
+            <h3 class="text-base font-bold text-gray-900 mb-0.5">이지이모지 PRO</h3>
+            <p class="text-xs text-gray-500">상황별 특수문자와 이모지를 클릭 한 번에 복사</p>
         </a>
 
         <!-- 로또 툴 -->
-        <a href="/lotto/" class="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-amber-500 hover:-translate-y-1 transition-all duration-200 group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform origin-left">🎰</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">사주 명리학 로또 번호 추출기</h3>
-            <p class="text-sm text-gray-500">생년월일 오행 기반 맞춤형 행운 번호 생성</p>
+        <a href="/lotto/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-amber-500 transition-all duration-200 group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🎰</div>
+            <h3 class="text-base font-bold text-gray-900 mb-0.5">사주 명리학 로또 번호 추출기</h3>
+            <p class="text-xs text-gray-500">생년월일 오행 기반 맞춤형 행운 번호 생성</p>
         </a>
     </div>
 </div>
 
 {% raw %}
 <!-- 하단 구글 애드센스 광고 영역 -->
-<div style="text-align: center; margin: 40px 0; min-height: 100px;">
+<div style="text-align: center; margin: 30px 0; min-height: 100px;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
