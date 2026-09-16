@@ -15,34 +15,27 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 [최종 완성본] 직접 만든 고품질 이미지 배경 + 중앙 정렬 + 초대형 텍스트 배너 -->
-<!-- ⚠️ 이 배너를 적용하려면, 제가 생성한 이미지를 다운로드하여 사이트의assets/img/ 폴더에 업로드하시고 코드 내 경로를 수정해 주세요 -->
-<a href="/lotto/" class="block relative w-full overflow-hidden rounded-xl mb-10 shadow-[0_8px_30px_rgb(0,0,0,0.4)] transition-all duration-300 transform hover:-translate-y-1 group border-4 border-amber-900" style="min-height: 250px; background-image: url('/assets/img/saju_banner.png'); background-size: cover; background-position: center; text-decoration: none;">
-    
-    <!-- 배경 은은한 광채 효과 -->
-    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-
-    <!-- 중앙 텍스트 & 버튼 영역 (가운데 정렬, 초대형 폰트) -->
-    <div class="relative z-10 flex flex-col items-center justify-center min-height: 250px text-center px-4">
-        
-        <!-- 네온 컬러 무료 강조 텍스트 -->
-        <div class="inline-block bg-amber-900/50 text-[#00ff22] font-black text-lg sm:text-xl tracking-tight px-4 py-1.5 rounded-full mb-4 border border-green-400/30 drop-shadow-xl">
-            🚀 100% 무료 | 명리학 사주 알고리즘
-        </div>
-        
-        <!-- 메인 텍스트 (초대형 화이트 폰트) -->
-        <h2 class="text-white font-black text-5xl sm:text-7xl tracking-tighter leading-none mb-6" style="text-shadow: 4px 4px 8px rgba(0,0,0,0.8);">
-            내사주 <span class="text-yellow-400">로또번호</span> 추출
-        </div>
-        
-        <!-- 우측 바로가기 버튼 (쨍한 쿠팡 블루) -->
-        <div class="bg-[#2E6FF2] group-hover:bg-[#1a5aef] text-white font-extrabold text-xl px-10 py-4 rounded-xl shadow-xl flex items-center gap-2.5 transition-colors">
-            바로가기 👉
-        </div>
+{% raw %}
+<!-- 🔮 직접 올리신 '명리학 책과 붓' 이미지가 적용된 로켓프레시 오마주 배너 -->
+<a href="/lotto/" style="display: flex; align-items: center; justify-content: space-between; background-color: #2a2a2a; border-radius: 4px; overflow: hidden; text-decoration: none; position: relative; height: 110px; margin-bottom: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); width: 100%; border: 1px solid #444;">
+    <!-- 1. 좌측 실사 이미지 (업로드하신 명리학 책 누끼) -->
+    <div style="position: absolute; left: 5px; bottom: -10px; width: 140px; height: 130px; z-index: 1;">
+        <!-- 이미지 경로를 assets/img/saju_book.png 로 설정했습니다 -->
+        <img src="/assets/img/saju_book.png" alt="명리학 서적" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.6));">
+    </div>
+    <!-- 2. 중앙 초대형 텍스트 영역 (여백 없이 꽉 찬 비율) -->
+    <div style="position: relative; z-index: 2; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 145px;">
+        <div style="color: #00ff22; font-weight: 900; font-size: 15px; letter-spacing: -1px; text-shadow: 1px 1px 2px rgba(0,0,0,1); margin-bottom: 2px;">🚀 100% 무료</div>
+        <div style="color: #ffffff; font-weight: 900; font-size: 34px; letter-spacing: -2px; line-height: 1; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; white-space: nowrap;">내사주 <span style="color: #FFD700;">로또번호</span> 추출</div>
+    </div>
+    <!-- 3. 우측 바로가기 버튼 -->
+    <div style="position: relative; z-index: 2; padding-right: 15px;">
+        <div style="background-color: #3b82f6; color: white; font-weight: 800; font-size: 15px; padding: 10px 16px; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); letter-spacing: -0.5px; white-space: nowrap;">바로가기 &gt;</div>
     </div>
 </a>
+{% endraw %}
 
-<!-- 하단 툴 메뉴 그리드 영역 (기존 코드 유지) -->
+<!-- 하단 툴 메뉴 그리드 영역 -->
 <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl shadow-inner mb-8">
     <div class="mb-6 text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-1">실생활에 꼭 필요한 무료 웹 툴 모음</h2>
