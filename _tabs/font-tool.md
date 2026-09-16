@@ -8,7 +8,6 @@ permalink: /font-tool/
 
 {% raw %}
 <style>
-/* 구글 및 안정성이 100% 검증된 폰트 묶음 */
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Dongle:wght@400;700&family=Gowun+Dodum&family=Jua&family=Noto+Sans+KR:wght@400;700&family=Single+Day&display=swap');
 @import url("https://fastly.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
@@ -25,7 +24,6 @@ permalink: /font-tool/
 @font-face { font-family: 'Binggrae'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'ChosunCentennial'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ChosunCentennial.woff2') format('woff2'); font-weight: normal; font-style: normal; }
 
-/* 와일드각체 & 꾸불림체 대체 (구글 최적화 렌더링) */
 .font-wagak { font-family: 'Black Han Sans', sans-serif; letter-spacing: -1px; }
 .font-kotra { font-family: 'Jua', sans-serif; }
 
@@ -70,16 +68,16 @@ permalink: /font-tool/
     <main class="max-w-3xl mx-auto w-full px-4 flex-1 py-6">
         <div id="fontGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
-            <!-- 와일드각체 대체 렌더링 -->
+            <!-- 블랙한산스 스타일 대체 폰트 -->
             <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
-                <div><div class="text-xs text-gray-500 mb-4 font-bold">와일드각체 (인스타 릴스 핫템 🔥)</div><div class="font-wagak text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
-                <a href="https://noonnu.cc/font_page/642" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">블랙 한 산스 (굵직하고 강렬한 임팩트 🔥)</div><div class="font-wagak text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Black+Han+Sans" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
             </div>
 
-            <!-- 꾸불림체 대체 렌더링 -->
+            <!-- 주아체 스타일 대체 폰트 -->
             <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
-                <div><div class="text-xs text-gray-500 mb-4 font-bold">꾸불림체 (감성 자막 찰떡 ✏️)</div><div class="font-kotra text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
-                <a href="https://noonnu.cc/font_page/454" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
+                <div><div class="text-xs text-gray-500 mb-4 font-bold">주아체 (동글동글 귀여운 자막 ✏️)</div><div class="font-kotra text-3xl text-gray-900 mb-6 preview-text" style="min-height:4.5rem;">구독과 좋아요 부탁드립니다!</div></div>
+                <a href="https://fonts.google.com/specimen/Jua" target="_blank" class="w-full text-center block px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-purple-600 transition-colors">폰트 다운로드 가기</a>
             </div>
 
             <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
