@@ -15,83 +15,42 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-{% raw %}
-<!-- 🔮 [전문업체 퀄리티] 물리적 그라데이션 덮개 방식 (절대 이미지 안 날아감) -->
-<a href="/lotto/" style="display: flex; align-items: center; justify-content: space-between; background-color: #333333; border-radius: 4px; overflow: hidden; text-decoration: none; position: relative; height: 110px; margin-bottom: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); width: 100%; border: 1px solid #444;">
+<!-- 🔮 [오류 원천 차단] 배경 통합형 실사 배너 -->
+<a href="/lotto/" class="flex flex-col sm:flex-row items-center justify-between w-full p-5 sm:p-0 sm:pr-6 mb-10 rounded shadow-md border border-gray-700 transition-transform hover:-translate-y-1" style="min-height: 110px; background: linear-gradient(to right, rgba(51,51,51,0) 0%, rgba(51,51,51,1) 35%), url('https://images.unsplash.com/photo-1584985223068-d069502901c8?auto=format&fit=crop&w=300&q=80') left center / auto 100% no-repeat, #333333; text-decoration: none;">
     
-    <!-- 1. 좌측 실사 이미지 영역 (오류 방지용 직접 태그 삽입) -->
-    <div style="position: absolute; left: 0; top: 0; width: 160px; height: 100%; z-index: 1;">
-        <!-- 붓과 벼루 고화질 실사 -->
-        <img src="https://images.unsplash.com/photo-1584985223068-d069502901c8?auto=format&fit=crop&w=300&q=80" alt="붓과 벼루" style="width: 100%; height: 100%; object-fit: cover; border: none; margin: 0; padding: 0; box-shadow: none;">
-        <!-- 배경색(#333333)과 똑같은 색으로 덮어서 자연스럽게 이어지게 만드는 마법의 덮개 -->
-        <div style="position: absolute; right: -1px; top: 0; height: 100%; width: 80px; background: linear-gradient(to right, rgba(51,51,51,0) 0%, rgba(51,51,51,1) 100%);"></div>
+    <!-- 좌측 투명 영역 (배경 이미지가 돋보이도록 텍스트를 우측으로 밀어냄) -->
+    <div class="hidden sm:block w-[140px]"></div>
+    
+    <!-- 중앙 텍스트 영역 -->
+    <div class="flex flex-col justify-center text-center sm:text-left flex-grow mb-4 sm:mb-0">
+        <div class="text-[#00ff22] font-black text-[15px] tracking-tighter drop-shadow-md mb-1">🚀 100% 무료</div>
+        <div class="text-white font-black text-3xl sm:text-4xl tracking-tighter leading-none drop-shadow-lg" style="font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;">내사주 <span class="text-[#FFD700]">로또번호</span> 추출</div>
     </div>
     
-    <!-- 2. 중앙 초대형 텍스트 영역 -->
-    <div style="position: relative; z-index: 2; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 150px;">
-        <div style="color: #00ff22; font-weight: 900; font-size: 15px; letter-spacing: -1px; text-shadow: 1px 1px 2px rgba(0,0,0,1); margin-bottom: 2px;">🚀 100% 무료</div>
-        <div style="color: #ffffff; font-weight: 900; font-size: 38px; letter-spacing: -2px; line-height: 1; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;">내사주 <span style="color: #FFD700;">로또번호</span> 추출</div>
-    </div>
-    
-    <!-- 3. 우측 바로가기 버튼 (로켓프레시 쨍한 파란색) -->
-    <div style="position: relative; z-index: 2; padding-right: 20px;">
-        <div style="background-color: #3b82f6; color: white; font-weight: 800; font-size: 16px; padding: 12px 20px; border-radius: 2px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); letter-spacing: -0.5px; white-space: nowrap;">바로가기 &gt;</div>
+    <!-- 우측 파란색 버튼 -->
+    <div class="shrink-0">
+        <div class="bg-blue-500 hover:bg-blue-600 text-white font-extrabold text-base px-5 py-2.5 rounded shadow-sm whitespace-nowrap">바로가기 &gt;</div>
     </div>
 </a>
-{% endraw %}
 
-<!-- 하단 툴 메뉴 그리드 영역 -->
+<!-- 하단 툴 메뉴 그리드 영역 (줄바꿈 오류 방지를 위해 텍스트 압축) -->
 <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl shadow-inner mb-8">
     <div class="mb-6 text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-1">실생활에 꼭 필요한 무료 웹 툴 모음</h2>
         <p class="text-gray-500 text-xs sm:text-sm">원하시는 기능을 선택해 바로 사용해 보세요. (평생 무료)</p>
     </div>
-
-    <!-- 툴 버튼 그리드 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-        <a href="/font-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
-            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔤</div>
-            <h3 class="text-base font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3>
-            <p class="text-xs text-gray-500">인스타, 유튜브 자막용 무료 폰트 모음</p>
-        </a>
-
-        <a href="/video/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
-            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📥</div>
-            <h3 class="text-base font-bold text-gray-900 mb-0.5">비디오 다운로더</h3>
-            <p class="text-xs text-gray-500">워터마크 없이 깔끔하게 동영상 저장하기</p>
-        </a>
-
-        <a href="/saju-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
-            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔮</div>
-            <h3 class="text-base font-bold text-gray-900 mb-0.5">사주 오행 체질 & 처방</h3>
-            <p class="text-xs text-gray-500">내 사주팔자 오행 분석과 개운법 무료 확인</p>
-        </a>
-
-        <a href="/pdf-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
-            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📄</div>
-            <h3 class="text-base font-bold text-gray-900 mb-0.5">PDF 통합 및 변환 툴</h3>
-            <p class="text-xs text-gray-500">이미지 파일을 5초 만에 PDF로 변환</p>
-        </a>
-
-        <a href="/emoji-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
-            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">✨</div>
-            <h3 class="text-base font-bold text-gray-900 mb-0.5">이지이모지 PRO</h3>
-            <p class="text-xs text-gray-500">상황별 특수문자와 이모지를 클릭 한 번에 복사</p>
-        </a>
-
-        <a href="/lotto/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-amber-500 transition-all duration-200 group">
-            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🎰</div>
-            <h3 class="text-base font-bold text-gray-900 mb-0.5">사주 명리학 로또 번호 추출기</h3>
-            <p class="text-xs text-gray-500">생년월일 오행 기반 맞춤형 행운 번호 생성</p>
-        </a>
+        <a href="/font-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group"><div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔤</div><h3 class="text-base font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3><p class="text-xs text-gray-500">인스타, 유튜브 자막용 무료 폰트 모음</p></a>
+        <a href="/video/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group"><div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📥</div><h3 class="text-base font-bold text-gray-900 mb-0.5">비디오 다운로더</h3><p class="text-xs text-gray-500">워터마크 없이 깔끔하게 동영상 저장하기</p></a>
+        <a href="/saju-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group"><div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔮</div><h3 class="text-base font-bold text-gray-900 mb-0.5">사주 오행 체질 & 처방</h3><p class="text-xs text-gray-500">내 사주팔자 오행 분석과 개운법 무료 확인</p></a>
+        <a href="/pdf-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group"><div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📄</div><h3 class="text-base font-bold text-gray-900 mb-0.5">PDF 통합 및 변환 툴</h3><p class="text-xs text-gray-500">이미지 파일을 5초 만에 PDF로 변환</p></a>
+        <a href="/emoji-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group"><div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">✨</div><h3 class="text-base font-bold text-gray-900 mb-0.5">이지이모지 PRO</h3><p class="text-xs text-gray-500">상황별 특수문자와 이모지를 클릭 한 번에 복사</p></a>
+        <a href="/lotto/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-amber-500 transition-all duration-200 group"><div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🎰</div><h3 class="text-base font-bold text-gray-900 mb-0.5">사주 명리학 로또 번호 추출기</h3><p class="text-xs text-gray-500">생년월일 오행 기반 맞춤형 행운 번호 생성</p></a>
     </div>
 </div>
 
-{% raw %}
-<!-- 하단 구글 애드센스 광고 영역 -->
 <div style="text-align: center; margin: 30px 0; min-height: 100px;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-{% endraw %}
