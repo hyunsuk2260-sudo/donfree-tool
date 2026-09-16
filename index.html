@@ -16,34 +16,30 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 </div>
 
 {% raw %}
-<!-- 🔮 [원클릭 완성형] 명리학 책 실사 배너 (오류 원천 차단) -->
-<a href="/lotto/" style="display: flex; align-items: center; justify-content: space-between; background-color: #262628; border-radius: 6px; overflow: hidden; text-decoration: none; position: relative; height: 110px; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); width: 100%; border: 1px solid #444;">
-    
-    <!-- 1. 좌측 명리학 책 & 붓 실사 이미지 영역 (직접 렌더링) -->
-    <div style="position: absolute; left: 0; top: 0; height: 100%; width: 150px; z-index: 1; display: flex; align-items: center; justify-content: center; background: #1f1f21;">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" 
-             onload="this.style.backgroundImage='url(https://images.unsplash.com/photo-1544813545-4827b64fcacb?auto=format&fit=crop&w=400&q=80)'; this.style.backgroundSize='cover'; this.style.backgroundPosition='center';"
-             alt="명리학 책" 
-             style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
-        <!-- 배경과 부드럽게 이어지는 그라데이션 오버레이 -->
-        <div style="position: absolute; right: 0; top: 0; height: 100%; width: 50px; background: linear-gradient(to right, rgba(38,38,40,0) 0%, rgba(38,38,40,1) 100%);"></div>
-    </div>
-    
-    <!-- 2. 중앙 초대형 텍스트 영역 (가운데 정렬, 꽉 찬 비율) -->
-    <div style="position: relative; z-index: 2; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 160px; text-align: left;">
-        <div style="color: #00ff22; font-weight: 900; font-size: 14px; letter-spacing: -0.5px; text-shadow: 1px 1px 2px rgba(0,0,0,1); margin-bottom: 2px;">🚀 100% 무료 알고리즘</div>
-        <div style="color: #ffffff; font-weight: 900; font-size: 34px; letter-spacing: -2px; line-height: 1.1; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-family: 'Malgun Gothic', sans-serif; white-space: nowrap;">
-            내사주 <span style="color: #FFD700;">로또번호</span> 추출
-        </div>
-    </div>
-    
-    <!-- 3. 우측 바로가기 버튼 (로켓프레시 쨍한 파란색) -->
-    <div style="position: relative; z-index: 2; padding-right: 20px;">
-        <div style="background-color: #2E6FF2; color: white; font-weight: 800; font-size: 15px; padding: 12px 20px; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); letter-spacing: -0.5px; white-space: nowrap;">
-            바로가기 &gt;
-        </div>
-    </div>
-</a>
+<!-- 🔮 [오류 원천 차단] 순수 HTML 고정형 배너 -->
+<table style="width: 100%; height: 110px; background-color: #262628; border-collapse: collapse; border-radius: 6px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 1px solid #444;">
+    <tr>
+        <!-- 1. 좌측 이미지 영역 -->
+        <td style="width: 140px; height: 110px; padding: 0; position: relative; background: #1f1f21; vertical-align: middle; text-align: center;">
+            <img src="https://images.unsplash.com/photo-1544813545-4827b64fcacb?auto=format&fit=crop&w=400&q=80" alt="명리학 책" style="width: 100%; height: 110px; object-fit: cover; display: block; opacity: 0.85;">
+        </td>
+        
+        <!-- 2. 중앙 텍스트 영역 -->
+        <td style="padding-left: 20px; vertical-align: middle; text-align: left;">
+            <div style="color: #00ff22; font-weight: 900; font-size: 13px; margin-bottom: 3px;">🚀 100% 무료 알고리즘</div>
+            <div style="color: #ffffff; font-weight: 900; font-size: 32px; letter-spacing: -1.5px; line-height: 1.1; margin: 0; font-family: 'Malgun Gothic', sans-serif; white-space: nowrap;">
+                내사주 <span style="color: #FFD700;">로또번호</span> 추출
+            </div>
+        </td>
+        
+        <!-- 3. 우측 바로가기 버튼 영역 -->
+        <td style="width: 130px; padding-right: 20px; vertical-align: middle; text-align: right;">
+            <a href="/lotto/" style="display: inline-block; background-color: #2E6FF2; color: white; font-weight: 800; font-size: 15px; padding: 12px 18px; border-radius: 4px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.3); white-space: nowrap;">
+                바로가기 &gt;
+            </a>
+        </td>
+    </tr>
+</table>
 {% endraw %}
 
 <!-- 하단 툴 메뉴 그리드 영역 -->
