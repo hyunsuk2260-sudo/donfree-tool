@@ -1,15 +1,15 @@
 ---
-title: 무료 로또 번호 생성기
+title: 사주 명리학 맞춤 로또 번호 추출기
 icon: fas fa-ticket-alt
 order: 6
 layout: page
 permalink: /lotto/
 ---
 
-<!-- 상단 안내 영역 -->
+<!-- 상단 안내 영역 (사주 특화 어필) -->
 <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e9ecef;">
-    <h4 style="margin-top: 0; color: #28a745;">🍀 이번 주 대박 기원 로또 번호 추첨기</h4>
-    <p style="margin-bottom: 0;">나의 생년월일을 바탕으로 한 명리학 기운 분석을 통해 나만의 행운 번호를 무료로 추출해 드립니다.</p>
+    <h4 style="margin-top: 0; color: #856404;">🔮 흔한 자동 번호는 그만! 명리학 사주 맞춤 로또</h4>
+    <p style="margin-bottom: 0;">인터넷에 널린 기계적 추첨이 아닙니다. 나의 생년월일 오행과 사주 기운을 분석하여 부족한 행운의 번호를 맞춤형으로 무료 추출해 드립니다.</p>
 </div>
 
 <!-- 역대 TOP 7 & 전회차 당첨 번호 확인 영역 -->
