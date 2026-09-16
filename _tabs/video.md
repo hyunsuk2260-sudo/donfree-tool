@@ -28,7 +28,15 @@ permalink: /video/
     <button id="startBtn" onclick="startDownload()" style="padding: 12px 25px; margin-top: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">다운로드 링크 생성</button>
 </div>
 
-<!-- 구글 애드센스 디스플레이 광고 시작 (명당자리) -->
+<!-- 💡 수정 포인트 1: 타이머와 결과창을 광고 위로 올렸습니다. -->
+<!-- 💡 수정 포인트 2: '광고 시청' 문구를 '영상 추출'로 바꾸고, 색상도 경고(빨간색)가 아닌 진행(파란색)으로 변경했습니다. -->
+<div id="timer-box" style="display: none; text-align: center; color: #007bff; font-weight: bold; margin-bottom: 20px;">
+    고화질 원본 영상을 안전하게 추출하고 있습니다... <span id="timeCount" style="font-size: 1.2em;">5</span>초 후 링크가 생성됩니다.
+</div>
+
+<div id="result-box" style="text-align: center; margin-bottom: 30px;"></div>
+
+<!-- 구글 애드센스 디스플레이 광고 시작 (결과창 아래로 이동됨) -->
 <div style="text-align: center; margin: 20px 0; min-height: 100px;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle"
@@ -42,12 +50,6 @@ permalink: /video/
     </script>
 </div>
 <!-- 구글 애드센스 디스플레이 광고 끝 -->
-
-<div id="timer-box" style="display: none; text-align: center; color: #dc3545; font-weight: bold; margin-bottom: 20px;">
-    광고를 시청하는 중입니다... <span id="timeCount" style="font-size: 1.2em;">5</span>초 후 링크가 생성됩니다.
-</div>
-
-<div id="result-box" style="text-align: center; margin-top: 20px;"></div>
 
 <script>
 function startDownload() {
