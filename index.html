@@ -15,25 +15,34 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 [오류 원천 차단] 배경 통합형 실사 배너 -->
-<a href="/lotto/" class="flex flex-col sm:flex-row items-center justify-between w-full p-5 sm:p-0 sm:pr-6 mb-10 rounded shadow-md border border-gray-700 transition-transform hover:-translate-y-1" style="min-height: 110px; background: linear-gradient(to right, rgba(51,51,51,0) 0%, rgba(51,51,51,1) 35%), url('https://images.unsplash.com/photo-1584985223068-d069502901c8?auto=format&fit=crop&w=300&q=80') left center / auto 100% no-repeat, #333333; text-decoration: none;">
+<!-- 🔮 [최종 완성본] 직접 만든 고품질 이미지 배경 + 중앙 정렬 + 초대형 텍스트 배너 -->
+<!-- ⚠️ 이 배너를 적용하려면, 제가 생성한 이미지를 다운로드하여 사이트의assets/img/ 폴더에 업로드하시고 코드 내 경로를 수정해 주세요 -->
+<a href="/lotto/" class="block relative w-full overflow-hidden rounded-xl mb-10 shadow-[0_8px_30px_rgb(0,0,0,0.4)] transition-all duration-300 transform hover:-translate-y-1 group border-4 border-amber-900" style="min-height: 250px; background-image: url('/assets/img/saju_banner.png'); background-size: cover; background-position: center; text-decoration: none;">
     
-    <!-- 좌측 투명 영역 (배경 이미지가 돋보이도록 텍스트를 우측으로 밀어냄) -->
-    <div class="hidden sm:block w-[140px]"></div>
-    
-    <!-- 중앙 텍스트 영역 -->
-    <div class="flex flex-col justify-center text-center sm:text-left flex-grow mb-4 sm:mb-0">
-        <div class="text-[#00ff22] font-black text-[15px] tracking-tighter drop-shadow-md mb-1">🚀 100% 무료</div>
-        <div class="text-white font-black text-3xl sm:text-4xl tracking-tighter leading-none drop-shadow-lg" style="font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;">내사주 <span class="text-[#FFD700]">로또번호</span> 추출</div>
-    </div>
-    
-    <!-- 우측 파란색 버튼 -->
-    <div class="shrink-0">
-        <div class="bg-blue-500 hover:bg-blue-600 text-white font-extrabold text-base px-5 py-2.5 rounded shadow-sm whitespace-nowrap">바로가기 &gt;</div>
+    <!-- 배경 은은한 광채 효과 -->
+    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+    <!-- 중앙 텍스트 & 버튼 영역 (가운데 정렬, 초대형 폰트) -->
+    <div class="relative z-10 flex flex-col items-center justify-center min-height: 250px text-center px-4">
+        
+        <!-- 네온 컬러 무료 강조 텍스트 -->
+        <div class="inline-block bg-amber-900/50 text-[#00ff22] font-black text-lg sm:text-xl tracking-tight px-4 py-1.5 rounded-full mb-4 border border-green-400/30 drop-shadow-xl">
+            🚀 100% 무료 | 명리학 사주 알고리즘
+        </div>
+        
+        <!-- 메인 텍스트 (초대형 화이트 폰트) -->
+        <h2 class="text-white font-black text-5xl sm:text-7xl tracking-tighter leading-none mb-6" style="text-shadow: 4px 4px 8px rgba(0,0,0,0.8);">
+            내사주 <span class="text-yellow-400">로또번호</span> 추출
+        </div>
+        
+        <!-- 우측 바로가기 버튼 (쨍한 쿠팡 블루) -->
+        <div class="bg-[#2E6FF2] group-hover:bg-[#1a5aef] text-white font-extrabold text-xl px-10 py-4 rounded-xl shadow-xl flex items-center gap-2.5 transition-colors">
+            바로가기 👉
+        </div>
     </div>
 </a>
 
-<!-- 하단 툴 메뉴 그리드 영역 (줄바꿈 오류 방지를 위해 텍스트 압축) -->
+<!-- 하단 툴 메뉴 그리드 영역 (기존 코드 유지) -->
 <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl shadow-inner mb-8">
     <div class="mb-6 text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-1">실생활에 꼭 필요한 무료 웹 툴 모음</h2>
@@ -49,8 +58,10 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
+{% raw %}
 <div style="text-align: center; margin: 30px 0; min-height: 100px;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+{% endraw %}
