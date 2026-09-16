@@ -5,8 +5,8 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- 🔥 최상단 쿠팡 배너 (슬림형) -->
-<div class="bg-white py-1.5 border-b border-gray-100 mb-5 text-center">
+<!-- 🔥 최상단 쿠팡 배너 (슬림형 유지) -->
+<div class="bg-white py-1.5 border-b border-gray-100 mb-6 text-center shadow-sm">
     <div class="max-w-[680px] mx-auto overflow-hidden scale-90 sm:scale-100">
         <script src="https://ads-partners.coupang.com/g.js"></script>
         <script>
@@ -15,30 +15,50 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 [프로급 리디자인] 사주 로또 핵심 후킹 배너 -->
-<a href="/lotto/" class="relative block overflow-hidden bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white p-5 sm:p-6 rounded-2xl mb-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group border border-yellow-300/40">
-    <!-- 배경 은은한 광채 효과 -->
-    <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<!-- 🔮 [전문 업체 퀄리티] 실사형 사주 로또 배너 (로켓프레시 벤치마킹) -->
+<a href="/lotto/" class="block relative w-full overflow-hidden bg-[#262628] rounded-xl mb-10 shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)] transition-all duration-300 border border-gray-700 group">
     
-    <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-        <div class="flex items-center gap-3">
-            <span class="text-3xl sm:text-4xl animate-bounce">🔮</span>
-            <div>
-                <div class="inline-block bg-black/20 text-yellow-200 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-1 border border-yellow-400/30">
-                    ✨ 2026년 대박 특전
-                </div>
-                <div class="text-base sm:text-lg font-black tracking-tight text-white drop-shadow-md">
-                    "올해 내 사주대박 로또번호는?" 3초 만에 3등 번호 확인하기
-                </div>
+    <!-- 1. 좌측 실사 이미지 영역 (오래된 고서적/명리학 책 느낌 연출) -->
+    <div class="absolute left-0 top-0 bottom-0 w-1/3 sm:w-2/5">
+        <img src="https://images.unsplash.com/photo-1544813545-4827b64fcacb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="명리학 고서적" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+        <!-- 배경과 자연스럽게 스며드는 그라데이션 마스크 -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#262628]/80 to-[#262628]"></div>
+    </div>
+
+    <!-- 2. 중앙 텍스트 & 우측 버튼 영역 (Flex로 배치) -->
+    <div class="relative z-10 flex items-center justify-between h-24 sm:h-32 px-4 sm:px-8">
+        
+        <!-- 텍스트 영역 -->
+        <div class="flex flex-col justify-center pl-16 sm:pl-28">
+            <!-- 네온 컬러 무료 강조 텍스트 -->
+            <div class="flex items-center gap-1.5 mb-1 sm:mb-1.5">
+                <span class="text-[#00ff22] font-black text-[11px] sm:text-sm tracking-tight">🚀 100% 무료</span>
+                <span class="text-gray-400 text-[10px] sm:text-xs">| 역학 알고리즘</span>
+            </div>
+            <!-- 메인 텍스트 (초대형 화이트 폰트) -->
+            <h2 class="text-white font-black text-[1.35rem] sm:text-4xl tracking-tighter leading-none" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">
+                내 사주 <span class="text-yellow-400">로또번호</span> 추출
+            </h2>
+        </div>
+
+        <!-- 3. 우측 바로가기 버튼 (쨍한 쿠팡 블루) -->
+        <div class="hidden sm:flex items-center">
+            <div class="bg-[#2E6FF2] group-hover:bg-[#1a5aef] text-white font-extrabold text-base px-6 py-3 rounded flex items-center gap-1 transition-colors">
+                바로가기 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 font-bold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
             </div>
         </div>
-        <div class="bg-white text-amber-900 font-extrabold px-4 py-2 rounded-xl text-xs sm:text-sm shadow-md group-hover:bg-amber-50 transition-colors flex items-center gap-1.5 shrink-0">
-            <span>지금 바로 추출</span>
-            <span class="group-hover:translate-x-1 transition-transform">👉</span>
+        
+        <!-- 모바일용 미니 바로가기 버튼 -->
+        <div class="sm:hidden flex items-center ml-2">
+            <div class="bg-[#2E6FF2] text-white font-bold text-xs px-3 py-1.5 rounded flex items-center">
+                이동 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
+            </div>
         </div>
     </div>
 </a>
 
+<!-- 하단 툴 메뉴 그리드 영역 -->
 <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl shadow-inner mb-8">
     <div class="mb-6 text-center">
         <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-1">실생활에 꼭 필요한 무료 웹 툴 모음</h2>
@@ -47,43 +67,36 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
     <!-- 툴 버튼 그리드 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-        
-        <!-- 폰트 툴 -->
         <a href="/font-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
             <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔤</div>
             <h3 class="text-base font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3>
             <p class="text-xs text-gray-500">인스타, 유튜브 자막용 무료 폰트 모음</p>
         </a>
 
-        <!-- 비디오 툴 -->
         <a href="/video/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
             <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📥</div>
             <h3 class="text-base font-bold text-gray-900 mb-0.5">비디오 다운로더</h3>
             <p class="text-xs text-gray-500">워터마크 없이 깔끔하게 동영상 저장하기</p>
         </a>
 
-        <!-- 사주 툴 -->
         <a href="/saju-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
             <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔮</div>
             <h3 class="text-base font-bold text-gray-900 mb-0.5">사주 오행 체질 & 처방</h3>
             <p class="text-xs text-gray-500">내 사주팔자 오행 분석과 개운법 무료 확인</p>
         </a>
 
-        <!-- PDF 툴 -->
         <a href="/pdf-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
             <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📄</div>
             <h3 class="text-base font-bold text-gray-900 mb-0.5">PDF 통합 및 변환 툴</h3>
             <p class="text-xs text-gray-500">이미지 파일을 5초 만에 PDF로 변환</p>
         </a>
 
-        <!-- 이모지 툴 -->
         <a href="/emoji-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group">
             <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">✨</div>
             <h3 class="text-base font-bold text-gray-900 mb-0.5">이지이모지 PRO</h3>
             <p class="text-xs text-gray-500">상황별 특수문자와 이모지를 클릭 한 번에 복사</p>
         </a>
 
-        <!-- 로또 툴 -->
         <a href="/lotto/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-amber-500 transition-all duration-200 group">
             <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🎰</div>
             <h3 class="text-base font-bold text-gray-900 mb-0.5">사주 명리학 로또 번호 추출기</h3>
