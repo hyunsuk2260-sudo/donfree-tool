@@ -15,8 +15,8 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 깃허브 테마의 강제 확대 팝업을 완벽 회피하는 백그라운드 배너 -->
-<a href="/lotto/" class="block w-full mb-10 rounded-lg hover:opacity-95 transition-opacity" style="background-image: url('/4de21f9a-5bdd-40fe-896e-027818e2c2ac.jfif'); background-size: cover; background-position: center; background-repeat: no-repeat; aspect-ratio: 5 / 1; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;"></a>
+<!-- 🔮 오른쪽 짤림 & 화질 깨짐 완벽 해결 (원본 100% 유지) 배너 -->
+<a href="/lotto/" style="display: block; width: 100%; padding-bottom: 15%; background-image: url('/4de21f9a-5bdd-40fe-896e-027818e2c2ac.jfif'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); margin-bottom: 40px; cursor: pointer;"></a>
 
 <!-- 하단 툴 메뉴 그리드 영역 -->
 <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl shadow-inner mb-8">
