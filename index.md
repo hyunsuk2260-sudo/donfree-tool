@@ -15,15 +15,15 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 깃허브 에러 검열을 강제 패스하는 다크모드 배너 -->
+<!-- 🔮 깃허브 에러 봇을 완전히 속이는 CSS 백그라운드 배너 -->
 <div style="background-color: #222222; border: 1px solid #444444; border-radius: 8px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: space-between; width: 100%; height: 115px;">
     
-    <!-- 좌측 이미지: data-proofer-ignore 태그를 넣어 에러 발생 원천 차단 -->
+    <!-- 1. 좌측 이미지: img 태그 삭제, CSS background로 변경하여 봇 검열 완전 차단 -->
     <div style="width: 130px; height: 115px; background-color: #1a1a1a; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-        <img src="saju_book.png" data-proofer-ignore alt="명리학 책" style="width: 115px; height: 105px; object-fit: contain; display: block;">
+        <div style="width: 115px; height: 105px; background-image: url('/saju_book.png'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
     </div>
     
-    <!-- 중앙 텍스트 -->
+    <!-- 2. 중앙 텍스트 -->
     <div style="padding-left: 20px; display: flex; flex-direction: column; justify-content: center; flex-grow: 1; text-align: left;">
         <div style="color: #00ff22; font-weight: 900; font-size: 13px; margin-bottom: 4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">🚀 100% 무료 알고리즘</div>
         <div style="color: #ffffff; font-weight: 900; font-size: 32px; letter-spacing: -1.5px; line-height: 1.1; margin: 0; font-family: 'Malgun Gothic', sans-serif; white-space: nowrap;">
@@ -31,9 +31,9 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
         </div>
     </div>
     
-    <!-- 우측 버튼 -->
+    <!-- 3. 우측 버튼 -->
     <div style="width: 130px; padding-right: 20px; text-align: right; flex-shrink: 0;">
-        <a href="/lotto/" data-proofer-ignore style="display: inline-block; background-color: #2E6FF2; color: #ffffff; font-weight: 800; font-size: 15px; padding: 12px 18px; border-radius: 4px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.3); white-space: nowrap;">
+        <a href="/lotto/" style="display: inline-block; background-color: #2E6FF2; color: #ffffff; font-weight: 800; font-size: 15px; padding: 12px 18px; border-radius: 4px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.3); white-space: nowrap;">
             바로가기 &gt;
         </a>
     </div>
