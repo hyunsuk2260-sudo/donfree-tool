@@ -15,9 +15,9 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 대표님이 직접 만드신 완벽한 통짜 이미지 배너 (에러 절대 없음) -->
+<!-- 🔮 이미지 확대 방지(pointer-events: none)가 추가된 통짜 링크 배너 -->
 <a href="/lotto/" data-proofer-ignore style="display: block; margin-bottom: 40px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-    <img src="/4de21f9a-5bdd-40fe-896e-027818e2c2ac.jfif" data-proofer-ignore alt="내사주 로또번호 추출 바로가기" style="width: 100%; display: block;">
+    <img src="/4de21f9a-5bdd-40fe-896e-027818e2c2ac.jfif" data-proofer-ignore alt="내사주 로또번호 추출 바로가기" style="width: 100%; display: block; pointer-events: none;">
 </a>
 
 <!-- 하단 툴 메뉴 그리드 영역 -->
