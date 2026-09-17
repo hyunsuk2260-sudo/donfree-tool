@@ -18,9 +18,9 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 <!-- 🔮 깃허브 에러 없는 다크모드 완벽 고정 배너 -->
 <div style="background-color: #222222; border: 1px solid #444444; border-radius: 8px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: space-between; width: 100%; height: 115px;">
     
-    <!-- 좌측 이미지: 대표님의 명리학 책 -->
+    <!-- 좌측 이미지: 경로를 /saju_book.png 로 수정 완료! -->
     <div style="width: 130px; height: 115px; background-color: #1a1a1a; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-        <img src="/assets/img/saju_book.png" alt="명리학 책" style="width: 115px; height: 105px; object-fit: contain; display: block;">
+        <img src="/saju_book.png" alt="명리학 책" style="width: 115px; height: 105px; object-fit: contain; display: block;">
     </div>
     
     <!-- 중앙 텍스트 -->
@@ -46,6 +46,7 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
         <p class="text-gray-500 text-xs sm:text-sm">원하시는 기능을 선택해 바로 사용해 보세요. (평생 무료)</p>
     </div>
 
+    <!-- 툴 버튼 그리드 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <a href="/font-tool/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group"><div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🔤</div><h3 class="text-base font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3><p class="text-xs text-gray-500">인스타, 유튜브 자막용 무료 폰트 모음</p></a>
         <a href="/video/" class="block bg-white p-4 sm:p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-green-500 transition-all duration-200 group"><div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">📥</div><h3 class="text-base font-bold text-gray-900 mb-0.5">비디오 다운로더</h3><p class="text-xs text-gray-500">워터마크 없이 깔끔하게 동영상 저장하기</p></a>
