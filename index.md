@@ -15,10 +15,8 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
-<!-- 🔮 이미지 확대 방지(pointer-events: none)가 추가된 통짜 링크 배너 -->
-<a href="/lotto/" data-proofer-ignore style="display: block; margin-bottom: 40px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-    <img src="/4de21f9a-5bdd-40fe-896e-027818e2c2ac.jfif" data-proofer-ignore alt="내사주 로또번호 추출 바로가기" style="width: 100%; display: block; pointer-events: none;">
-</a>
+<!-- 🔮 깃허브 테마의 강제 확대 팝업을 완벽 회피하는 백그라운드 배너 -->
+<a href="/lotto/" class="block w-full mb-10 rounded-lg hover:opacity-95 transition-opacity" style="background-image: url('/4de21f9a-5bdd-40fe-896e-027818e2c2ac.jfif'); background-size: cover; background-position: center; background-repeat: no-repeat; aspect-ratio: 5 / 1; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;"></a>
 
 <!-- 하단 툴 메뉴 그리드 영역 -->
 <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl shadow-inner mb-8">
