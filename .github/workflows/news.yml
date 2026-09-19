@@ -1,8 +1,8 @@
 name: Fetch Latest News
 on:
   schedule:
-    - cron: '0 * * * *' # 매시간 정각에 자동으로 뉴스를 긁어옵니다.
-  workflow_dispatch: # 대표님이 원할 때 수동으로 버튼을 눌러 긁어올 수도 있습니다.
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -11,8 +11,15 @@ jobs:
   update-news:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: 구글 뉴스 다운로드 및 저장
+      - name: 소스코드 체크아웃 (최신 v4로 변경하여 에러 해결)
+        uses: actions/checkout@v4
+
+      - name: 파이썬 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 구글 뉴스 다운로드 및 json 저장
         run: |
           python -c "
           import urllib.request, xml.etree.ElementTree as ET, json, os
@@ -20,12 +27,13 @@ jobs:
           root = ET.fromstring(urllib.request.urlopen(req).read())
           items = [{'title': i.find('title').text.split(' - ')[0], 'link': i.find('link').text} for i in root.findall('./channel/item')[:7]]
           os.makedirs('assets', exist_ok=True)
-          with open('assets/news.json', 'w', encoding='utf-8') as f: json.dump(items, f, ensure_ascii=False)
+          with open('assets/news.json', 'w', encoding='utf-8') as f:
+              json.dump(items, f, ensure_ascii=False)
           "
-      - name: 깃허브에 내 파일로 업로드 (커밋)
+
+      - name: 깃허브에 파일 업로드 (충돌 방지 코드 추가)
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add assets/news.json
-          git commit -m 'Update news' || echo 'No changes'
-          git push
+          git diff --staged --quiet || (git commit -m 'Update news' && git push)
