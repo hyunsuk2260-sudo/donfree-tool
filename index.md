@@ -5,7 +5,7 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- 💡 PC 우측 빈 공간 날려버리는 Chirpy 테마 전용 저격 코드 -->
+<!-- 💡 PC 우측 빈 공간 날려버리는 코드 -->
 <style>
 #panel-wrapper { display: none !important; }
 #core-wrapper, .col-12, .col-lg-11, .col-xl-9 { 
@@ -76,7 +76,7 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 {% raw %}
 <script>
-// 1. 뉴스를 화면에 뿌려줄 준비(함수)를 가장 먼저 확실하게 세팅합니다.
+// 1. 뉴스를 받아줄 바구니(함수)를 가장 먼저 전역에 선언합니다.
 window.renderGoogleNews = function(data) {
     const list = document.getElementById('auto-news-list');
     if(!list) return;
@@ -84,7 +84,7 @@ window.renderGoogleNews = function(data) {
     if(data && data.status === 'ok' && data.items && data.items.length > 0) {
         list.innerHTML = ''; 
         data.items.slice(0, 7).forEach(item => {
-            let title = item.title.split(' - ')[0]; // 언론사 이름 잘라내기
+            let title = item.title.split(' - ')[0]; 
             list.innerHTML += `
                 <li class="py-2.5 border-b border-gray-100 last:border-0">
                     <a href="${item.link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">
@@ -94,15 +94,15 @@ window.renderGoogleNews = function(data) {
             `;
         });
     } else {
-        list.innerHTML = '<li class="text-xs text-red-500 py-4 text-center">뉴스를 불러오지 못했습니다. 새로고침을 눌러주세요.</li>';
+        list.innerHTML = '<li class="text-xs text-red-500 py-4 text-center">뉴스를 불러오지 못했습니다.</li>';
     }
 };
 
-// 2. 웹페이지가 준비된 직후에만 뉴스를 가져오는 통로를 열어줍니다. (타이밍 꼬임 완벽 방지)
-document.addEventListener("DOMContentLoaded", function() {
+// 2. 바구니가 완벽히 만들어진 것을 보장하기 위해 0.5초(500ms) 뒤에 뉴스를 요청합니다.
+setTimeout(function() {
     const script = document.createElement('script');
     script.src = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Dko%26gl%3DKR%26ceid%3DKR%3Ako&callback=renderGoogleNews";
     document.body.appendChild(script);
-});
+}, 500);
 </script>
 {% endraw %}
