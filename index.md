@@ -5,7 +5,6 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- 💡 PC 우측 빈 공간 날려버리는 코드 -->
 <style>
 #panel-wrapper { display: none !important; }
 #core-wrapper, .col-12, .col-lg-11, .col-xl-9 { 
@@ -41,13 +40,13 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <a href="/font-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔤</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3><p class="text-[11px] text-gray-500 m-0">자막용 무료 폰트 모음</p></a>
-                <a href="/video/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">📥</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">비디오 다운로더</h3><p class="text-[11px] text-gray-500 m-0">워터마크 없이 동영상 저장</p></a>
-                <a href="/saju-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔮</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">사주 오행 체질 & 처방</h3><p class="text-[11px] text-gray-500 m-0">내 오행 분석과 개운법</p></a>
-                <a href="/pdf-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">📄</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">PDF 통합 및 변환</h3><p class="text-[11px] text-gray-500 m-0">이미지를 5초 만에 PDF로</p></a>
-                <a href="/emoji-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">✨</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">이지이모지 PRO</h3><p class="text-[11px] text-gray-500 m-0">특수문자 클릭 복사</p></a>
-                <a href="/lotto/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-amber-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🎰</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">사주 로또 추출기</h3><p class="text-[11px] text-gray-500 m-0">오행 기반 행운 번호</p></a>
-                <a href="/tarot/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-purple-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔮</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">오늘의 타로</h3><p class="text-[11px] text-gray-500 m-0">질문하고 AI 맞춤 해석</p></a>
+                <a href="/font-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔤</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3></a>
+                <a href="/video/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">📥</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">비디오 다운로더</h3></a>
+                <a href="/saju-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔮</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">사주 오행 체질 & 처방</h3></a>
+                <a href="/pdf-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">📄</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">PDF 통합 및 변환</h3></a>
+                <a href="/emoji-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">✨</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">이지이모지 PRO</h3></a>
+                <a href="/lotto/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-amber-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🎰</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">사주 로또 추출기</h3></a>
+                <a href="/tarot/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-purple-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔮</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">오늘의 타로</h3></a>
             </div>
         </div>
     </div>
@@ -76,33 +75,50 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 {% raw %}
 <script>
-// 1. 뉴스를 받아줄 바구니(함수)를 가장 먼저 전역에 선언합니다.
-window.renderGoogleNews = function(data) {
+document.addEventListener("DOMContentLoaded", function() {
     const list = document.getElementById('auto-news-list');
     if(!list) return;
-    
-    if(data && data.status === 'ok' && data.items && data.items.length > 0) {
-        list.innerHTML = ''; 
-        data.items.slice(0, 7).forEach(item => {
-            let title = item.title.split(' - ')[0]; 
-            list.innerHTML += `
-                <li class="py-2.5 border-b border-gray-100 last:border-0">
-                    <a href="${item.link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">
-                        ${title}
-                    </a>
-                </li>
-            `;
-        });
-    } else {
-        list.innerHTML = '<li class="text-xs text-red-500 py-4 text-center">뉴스를 불러오지 못했습니다.</li>';
-    }
-};
 
-// 2. 바구니가 완벽히 만들어진 것을 보장하기 위해 0.5초(500ms) 뒤에 뉴스를 요청합니다.
-setTimeout(function() {
-    const script = document.createElement('script');
-    script.src = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Dko%26gl%3DKR%26ceid%3DKR%3Ako&callback=renderGoogleNews";
-    document.body.appendChild(script);
-}, 500);
+    const targetUrl = encodeURIComponent('https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko');
+    
+    // 플랜 A: 브라우저가 절대 의심하지 않는 순정 프록시(corsproxy)를 씁니다.
+    fetch('https://corsproxy.io/?' + targetUrl)
+        .then(response => {
+            if(!response.ok) throw new Error("A 실패");
+            return response.text();
+        })
+        .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+        .then(data => {
+            const items = Array.from(data.querySelectorAll("item")).slice(0, 7);
+            if(items.length > 0) {
+                list.innerHTML = ''; 
+                items.forEach(item => {
+                    let title = item.querySelector("title").textContent.split(' - ')[0]; 
+                    let link = item.querySelector("link").textContent;
+                    list.innerHTML += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">${title}</a></li>`;
+                });
+            } else {
+                throw new Error("데이터 없음");
+            }
+        })
+        .catch(error => {
+            // 플랜 B: 플랜 A마저 브라우저가 차단하면, 즉시 두 번째 백업 서버(allorigins)로 우회해서 가져옵니다.
+            fetch('https://api.allorigins.win/get?url=' + targetUrl)
+            .then(res => res.json())
+            .then(data => {
+                const xmlDoc = new window.DOMParser().parseFromString(data.contents, "text/xml");
+                const items = Array.from(xmlDoc.querySelectorAll("item")).slice(0, 7);
+                list.innerHTML = '';
+                items.forEach(item => {
+                    let title = item.querySelector("title").textContent.split(' - ')[0]; 
+                    let link = item.querySelector("link").textContent;
+                    list.innerHTML += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">${title}</a></li>`;
+                });
+            })
+            .catch(err => {
+                list.innerHTML = '<li class="text-xs text-red-500 py-4 text-center">브라우저 보안 설정으로 인해<br>뉴스를 차단했습니다.</li>';
+            });
+        });
+});
 </script>
 {% endraw %}
