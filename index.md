@@ -41,13 +41,13 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <a href="/font-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all"><div class="text-2xl mb-1">🔤</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3></a>
-                <a href="/video/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all"><div class="text-2xl mb-1">📥</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">비디오 다운로더</h3></a>
-                <a href="/saju-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all"><div class="text-2xl mb-1">🔮</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">사주 오행 체질 & 처방</h3></a>
-                <a href="/pdf-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all"><div class="text-2xl mb-1">📄</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">PDF 통합 및 변환</h3></a>
-                <a href="/emoji-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all"><div class="text-2xl mb-1">✨</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">이지이모지 PRO</h3></a>
-                <a href="/lotto/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-amber-500 transition-all"><div class="text-2xl mb-1">🎰</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">사주 로또 추출기</h3></a>
-                <a href="/tarot/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-purple-500 transition-all"><div class="text-2xl mb-1">🔮</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">오늘의 타로</h3></a>
+                <a href="/font-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔤</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">트렌디 폰트 다운로더</h3><p class="text-[11px] text-gray-500 m-0">자막용 무료 폰트 모음</p></a>
+                <a href="/video/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">📥</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">비디오 다운로더</h3><p class="text-[11px] text-gray-500 m-0">워터마크 없이 동영상 저장</p></a>
+                <a href="/saju-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔮</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">사주 오행 체질 & 처방</h3><p class="text-[11px] text-gray-500 m-0">내 오행 분석과 개운법</p></a>
+                <a href="/pdf-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">📄</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">PDF 통합 및 변환</h3><p class="text-[11px] text-gray-500 m-0">이미지를 5초 만에 PDF로</p></a>
+                <a href="/emoji-tool/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-green-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">✨</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">이지이모지 PRO</h3><p class="text-[11px] text-gray-500 m-0">특수문자 클릭 복사</p></a>
+                <a href="/lotto/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-amber-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🎰</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">사주 로또 추출기</h3><p class="text-[11px] text-gray-500 m-0">오행 기반 행운 번호</p></a>
+                <a href="/tarot/" class="block bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-purple-500 transition-all group"><div class="text-2xl mb-1 group-hover:scale-110 transition-transform origin-left">🔮</div><h3 class="text-sm font-bold text-gray-900 mb-0.5">오늘의 타로</h3><p class="text-[11px] text-gray-500 m-0">질문하고 AI 맞춤 해석</p></a>
             </div>
         </div>
     </div>
@@ -59,36 +59,67 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
                 <h2 class="text-base font-bold text-gray-800">🔥 실시간 핫이슈</h2>
                 <span class="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-bold animate-pulse">LIVE</span>
             </div>
+            <!-- 뉴스가 들어갈 목록 -->
             <ul id="auto-news-list" class="m-0 p-0 list-none flex-grow">
-                <li class="text-gray-500 text-xs py-4 text-center">뉴스를 불러오는 중입니다...</li>
+                <li class="text-gray-500 text-xs py-8 text-center">뉴스를 불러오는 중입니다... ⏳</li>
             </ul>
         </div>
     </div>
 </div>
 
-<script>
-// 깃허브 테마 환경에서도 100% 뉴스를 가져오도록 아주 튼튼하게 짠 스크립트입니다.
-function fetchNews() {
-    const list = document.getElementById('auto-news-list');
-    if(!list || list.dataset.loaded) return; 
-    list.dataset.loaded = 'true'; // 중복 실행 방지
+<!-- 💰 하단 구글 애드센스 -->
+<div style="text-align: center; margin: 30px 0; min-height: 100px;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
-    // 가장 안정적인 구글 뉴스 RSS 파싱 서버
+{% raw %}
+<script>
+// 스마트 로딩 기능: 브라우저가 뉴스를 차단하거나 3초 이상 걸리면, 깔끔한 '버튼'으로 화면을 자동 전환합니다.
+function fetchNewsWithFallback() {
+    const list = document.getElementById('auto-news-list');
+    if(!list) return;
+
+    // 만약 에러가 나면 띄워줄 플랜B 화면 (예쁜 버튼)
+    const fallbackHTML = `
+        <li class="py-6 text-center">
+            <p class="text-[13px] text-gray-500 mb-4">현재 실시간 주요 뉴스가<br>업데이트 되었습니다.</p>
+            <a href="https://news.google.com/?hl=ko&gl=KR&ceid=KR:ko" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-blue-700 transition shadow-sm">📰 구글 실시간 뉴스 ↗</a>
+        </li>
+    `;
+
+    // 3.5초 타이머: 3.5초 안에 성공 못하면 플랜B 화면으로 교체
+    const timeout = setTimeout(() => {
+        if(list.dataset.success !== "true") {
+            list.innerHTML = fallbackHTML;
+        }
+    }, 3500);
+
+    // 구글 뉴스 불러오기 시도
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Dko%26gl%3DKR%26ceid%3DKR%3Ako')
     .then(res => res.json())
     .then(data => {
-        list.innerHTML = ''; 
-        data.items.slice(0,7).forEach(item => {
-            let title = item.title.split(' - ')[0];
-            list.innerHTML += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${item.link}" target="_blank" class="text-sm text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block">${title}</a></li>`;
-        });
+        list.dataset.success = "true"; // 성공 표시
+        clearTimeout(timeout); // 타이머 취소
+        
+        if(data && data.items && data.items.length > 0) {
+            list.innerHTML = ''; 
+            data.items.slice(0, 7).forEach(item => {
+                let title = item.title.split(' - ')[0];
+                list.innerHTML += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${item.link}" target="_blank" class="text-sm text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block">${title}</a></li>`;
+            });
+        } else {
+            list.innerHTML = fallbackHTML;
+        }
     })
     .catch(err => {
-        list.innerHTML = '<li class="text-xs text-red-500 py-2 text-center">뉴스를 가져오지 못했습니다.</li>';
+        list.dataset.success = "false";
+        list.innerHTML = fallbackHTML;
     });
 }
 
-// 창이 열리자마자 무조건 실행되게 강제 배정
-setTimeout(fetchNews, 300);
-document.addEventListener("DOMContentLoaded", fetchNews);
+// 스크립트 실행
+setTimeout(fetchNewsWithFallback, 100);
 </script>
+{% endraw %}
