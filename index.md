@@ -61,7 +61,7 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
             </div>
             <!-- 뉴스가 들어갈 목록 -->
             <ul id="auto-news-list" class="m-0 p-0 list-none flex-grow">
-                <li class="text-gray-500 text-xs py-8 text-center">뉴스를 불러오는 중입니다... ⏳</li>
+                <li class="text-gray-500 text-xs py-8 text-center">최신 뉴스를 즉시 불러오는 중입니다... ⏳</li>
             </ul>
         </div>
     </div>
@@ -76,50 +76,28 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 {% raw %}
 <script>
-// 스마트 로딩 기능: 브라우저가 뉴스를 차단하거나 3초 이상 걸리면, 깔끔한 '버튼'으로 화면을 자동 전환합니다.
-function fetchNewsWithFallback() {
+// 브라우저의 보안 차단을 뚫기 위해 '스크립트'인 척 속여서 뉴스를 강제로 가져오는 기법(JSONP)
+window.renderGoogleNews = function(data) {
     const list = document.getElementById('auto-news-list');
     if(!list) return;
-
-    // 만약 에러가 나면 띄워줄 플랜B 화면 (예쁜 버튼)
-    const fallbackHTML = `
-        <li class="py-6 text-center">
-            <p class="text-[13px] text-gray-500 mb-4">현재 실시간 주요 뉴스가<br>업데이트 되었습니다.</p>
-            <a href="https://news.google.com/?hl=ko&gl=KR&ceid=KR:ko" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-blue-700 transition shadow-sm">📰 구글 실시간 뉴스 ↗</a>
-        </li>
-    `;
-
-    // 3.5초 타이머: 3.5초 안에 성공 못하면 플랜B 화면으로 교체
-    const timeout = setTimeout(() => {
-        if(list.dataset.success !== "true") {
-            list.innerHTML = fallbackHTML;
-        }
-    }, 3500);
-
-    // 구글 뉴스 불러오기 시도
-    fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Dko%26gl%3DKR%26ceid%3DKR%3Ako')
-    .then(res => res.json())
-    .then(data => {
-        list.dataset.success = "true"; // 성공 표시
-        clearTimeout(timeout); // 타이머 취소
-        
-        if(data && data.items && data.items.length > 0) {
-            list.innerHTML = ''; 
-            data.items.slice(0, 7).forEach(item => {
-                let title = item.title.split(' - ')[0];
-                list.innerHTML += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${item.link}" target="_blank" class="text-sm text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block">${title}</a></li>`;
-            });
-        } else {
-            list.innerHTML = fallbackHTML;
-        }
-    })
-    .catch(err => {
-        list.dataset.success = "false";
-        list.innerHTML = fallbackHTML;
-    });
-}
-
-// 스크립트 실행
-setTimeout(fetchNewsWithFallback, 100);
+    
+    if(data && data.status === 'ok' && data.items && data.items.length > 0) {
+        list.innerHTML = ''; 
+        data.items.slice(0, 7).forEach(item => {
+            let title = item.title.split(' - ')[0]; // 언론사 이름 잘라내기
+            list.innerHTML += `
+                <li class="py-2.5 border-b border-gray-100 last:border-0">
+                    <a href="${item.link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">
+                        ${title}
+                    </a>
+                </li>
+            `;
+        });
+    } else {
+        list.innerHTML = '<li class="text-xs text-red-500 py-4 text-center">뉴스를 불러오지 못했습니다. 새로고침을 눌러주세요.</li>';
+    }
+};
 </script>
+<!-- 브라우저가 막지 못하도록 자바스크립트 파일처럼 위장해서 뉴스 데이터를 호출 -->
+<script src="https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Dko%26gl%3DKR%26ceid%3DKR%3Ako&callback=renderGoogleNews"></script>
 {% endraw %}
