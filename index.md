@@ -61,7 +61,7 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
             </div>
             <!-- 뉴스가 들어갈 목록 -->
             <ul id="auto-news-list" class="m-0 p-0 list-none flex-grow">
-                <li class="text-gray-500 text-xs py-8 text-center">최신 뉴스를 즉시 불러오는 중입니다... ⏳</li>
+                <li class="text-gray-500 text-xs py-8 text-center">최신 뉴스를 가져오는 중입니다... ⏳</li>
             </ul>
         </div>
     </div>
@@ -76,7 +76,7 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 {% raw %}
 <script>
-// 브라우저의 보안 차단을 뚫기 위해 '스크립트'인 척 속여서 뉴스를 강제로 가져오는 기법(JSONP)
+// 1. 뉴스를 화면에 뿌려줄 준비(함수)를 가장 먼저 확실하게 세팅합니다.
 window.renderGoogleNews = function(data) {
     const list = document.getElementById('auto-news-list');
     if(!list) return;
@@ -97,7 +97,12 @@ window.renderGoogleNews = function(data) {
         list.innerHTML = '<li class="text-xs text-red-500 py-4 text-center">뉴스를 불러오지 못했습니다. 새로고침을 눌러주세요.</li>';
     }
 };
+
+// 2. 웹페이지가 준비된 직후에만 뉴스를 가져오는 통로를 열어줍니다. (타이밍 꼬임 완벽 방지)
+document.addEventListener("DOMContentLoaded", function() {
+    const script = document.createElement('script');
+    script.src = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Dko%26gl%3DKR%26ceid%3DKR%3Ako&callback=renderGoogleNews";
+    document.body.appendChild(script);
+});
 </script>
-<!-- 브라우저가 막지 못하도록 자바스크립트 파일처럼 위장해서 뉴스 데이터를 호출 -->
-<script src="https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Dko%26gl%3DKR%26ceid%3DKR%3Ako&callback=renderGoogleNews"></script>
 {% endraw %}
