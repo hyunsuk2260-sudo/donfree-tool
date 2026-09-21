@@ -28,8 +28,8 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 <!-- 🔮 사주 로또 배너 -->
 <a href="/lotto/" style="display: block; width: 100%; aspect-ratio: 5 / 1; min-height: 90px; background-image: url('/4de21f9a-5bdd-40fe-896e-027818e2c2ac.jfif'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); margin-bottom: 30px; cursor: pointer;"></a>
 
-<!-- 🖥️ PC 화면 분할 (좌측 툴 / 우측 뉴스) -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8" markdown="0">
+<!-- 🖥️ PC 화면 분할 -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
     
     <!-- 👈 왼쪽 툴 모음 -->
     <div class="lg:col-span-2">
@@ -74,34 +74,33 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 
 {% raw %}
 <script>
-function renderNewsItems() {
+// 테마가 스크립트를 무시하는 것을 막기 위해 0.5초마다 무한 반복해서 뉴스를 꽂아넣습니다.
+let newsTimer = setInterval(function() {
     const list = document.getElementById('auto-news-list');
-    if (!list) return;
+    if (!list) return; // 화면이 아직 덜 떴으면 대기
 
-    // 툴 돈프리 사이트의 절대 주소로 확실하게 지정
-    const targetUrl = 'https://tool.donfree.co.kr/assets/news.json?v=' + new Date().getTime();
+    // 이미 뉴스가 성공적으로 들어갔다면 반복(타이머)을 즉시 멈춥니다.
+    if (list.innerHTML.includes('href')) {
+        clearInterval(newsTimer);
+        return;
+    }
 
-    fetch(targetUrl)
-        .then(res => {
-            if (!res.ok) throw new Error("파일 접속 실패 (404)");
-            return res.json();
-        })
+    // 툴 돈프리 전용 주소 호출
+    fetch('https://tool.donfree.co.kr/assets/news.json?v=' + new Date().getTime())
+        .then(res => res.json())
         .then(items => {
             if (items && items.length > 0) {
-                list.innerHTML = '';
+                let html = '';
                 items.forEach(item => {
-                    list.innerHTML += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${item.link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">${item.title}</a></li>`;
+                    html += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${item.link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">${item.title}</a></li>`;
                 });
+                list.innerHTML = html;
+                clearInterval(newsTimer); // 꽂아넣기 성공 시 완벽하게 종료
             }
         })
         .catch(err => {
-            // 원인을 바로 알 수 있도록 에러 메시지 출력
-            list.innerHTML = `<li class="text-xs text-red-500 py-8 text-center">에러: ${err.message}</li>`;
+            // 파일을 아직 못 찾았을 때는 에러를 내지 않고 계속 시도합니다.
         });
-}
-
-// 딜레이 없이 스크립트 강제 즉시 실행
-renderNewsItems();
-setTimeout(renderNewsItems, 500);
+}, 500); // 0.5초 간격으로 집요하게 확인
 </script>
 {% endraw %}
