@@ -59,26 +59,11 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
                 <span class="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-bold animate-pulse">LIVE</span>
             </div>
             <ul id="auto-news-list" class="m-0 p-0 list-none flex-grow">
-                <li class="text-gray-500 text-xs py-8 text-center">뉴스를 불러오는 중입니다...</li>
+                <li class="text-gray-500 text-xs py-8 text-center" id="news-loading-text">뉴스를 불러오는 중입니다...</li>
             </ul>
         </div>
     </div>
 </div>
-
-<!-- 🚨 깃허브 검사기를 무사 통과하는 투명 픽셀 트리거 -->
-<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="news-loader" style="display:none;" onload="
-  const list = document.getElementById('auto-news-list');
-  if(list) {
-    fetch(`https://tool.donfree.co.kr/assets/news.json?v=${Date.now()}`)
-    .then(r => r.json())
-    .then(items => {
-      list.innerHTML = items.map(i => `<li class='py-2.5 border-b border-gray-100 last:border-0'><a href='${i.link}' target='_blank' class='text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2'>${i.title}</a></li>`).join('');
-    })
-    .catch(e => {
-      list.innerHTML = `<li class='text-xs text-red-500 py-8 text-center'>출력 에러: ${e.message}</li>`;
-    });
-  }
-">
 
 <!-- 💰 하단 애드센스 -->
 <div style="text-align: center; margin: 30px 0; min-height: 100px;">
@@ -86,3 +71,55 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+
+{% raw %}
+<script>
+(function() {
+    function loadNews() {
+        var list = document.getElementById('auto-news-list');
+        if (!list) return;
+
+        // 툴 돈프리 절대 주소 명시
+        fetch('https://tool.donfree.co.kr/assets/news.json?v=' + new Date().getTime())
+            .then(function(response) { return response.json(); })
+            .then(function(items) {
+                if (items && items.length > 0) {
+                    list.innerHTML = ''; // 로딩 텍스트 삭제
+                    
+                    // 에러 방지를 위해 자바스크립트로 안전하게 HTML 생성
+                    for (var i = 0; i < items.length; i++) {
+                        var item = items[i];
+                        
+                        var li = document.createElement('li');
+                        li.className = 'py-2.5 border-b border-gray-100 last:border-0';
+                        
+                        var a = document.createElement('a');
+                        a.href = item.link;
+                        a.target = '_blank';
+                        a.className = 'text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2';
+                        a.innerText = item.title;
+                        
+                        li.appendChild(a);
+                        list.appendChild(li);
+                    }
+                }
+            })
+            .catch(function(e) {
+                var loading = document.getElementById('news-loading-text');
+                if (loading) loading.innerText = '뉴스를 불러올 수 없습니다.';
+            });
+    }
+
+    // 1. 페이지 켜지자마자 즉시 실행
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadNews);
+    } else {
+        loadNews();
+    }
+
+    // 2. 깃허브 Chirpy 테마 특유의 화면 전환(pjax) 방해 무효화
+    document.addEventListener('turbolinks:load', loadNews);
+    document.addEventListener('pjax:success', loadNews);
+})();
+</script>
+{% endraw %}
