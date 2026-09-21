@@ -28,8 +28,8 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
 <!-- 🔮 사주 로또 배너 -->
 <a href="/lotto/" style="display: block; width: 100%; aspect-ratio: 5 / 1; min-height: 90px; background-image: url('/4de21f9a-5bdd-40fe-896e-027818e2c2ac.jfif'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); margin-bottom: 30px; cursor: pointer;"></a>
 
-<!-- 🖥️ PC 화면 분할 -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<!-- 🖥️ PC 화면 분할 (좌측 툴 / 우측 뉴스) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8" markdown="0">
     
     <!-- 👈 왼쪽 툴 모음 -->
     <div class="lg:col-span-2">
@@ -65,42 +65,24 @@ title: " 돈프리 툴즈에 오신 것을 환영합니다!"
     </div>
 </div>
 
+<!-- 🚨 마법의 강제 실행 트리거 (절대 지우지 마세요) -->
+<img src="x" style="display:none;" onerror="
+  const list = document.getElementById('auto-news-list');
+  if(list) {
+    fetch(`https://tool.donfree.co.kr/assets/news.json?v=${Date.now()}`)
+    .then(r => r.json())
+    .then(items => {
+      list.innerHTML = items.map(i => `<li class='py-2.5 border-b border-gray-100 last:border-0'><a href='${i.link}' target='_blank' class='text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2'>${i.title}</a></li>`).join('');
+    })
+    .catch(e => {
+      list.innerHTML = `<li class='text-xs text-red-500 py-8 text-center'>출력 에러: ${e.message}</li>`;
+    });
+  }
+">
+
 <!-- 💰 하단 애드센스 -->
 <div style="text-align: center; margin: 30px 0; min-height: 100px;">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1922344740086878" crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1922344740086878" data-ad-slot="6535711038" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-
-{% raw %}
-<script>
-// 테마가 스크립트를 무시하는 것을 막기 위해 0.5초마다 무한 반복해서 뉴스를 꽂아넣습니다.
-let newsTimer = setInterval(function() {
-    const list = document.getElementById('auto-news-list');
-    if (!list) return; // 화면이 아직 덜 떴으면 대기
-
-    // 이미 뉴스가 성공적으로 들어갔다면 반복(타이머)을 즉시 멈춥니다.
-    if (list.innerHTML.includes('href')) {
-        clearInterval(newsTimer);
-        return;
-    }
-
-    // 툴 돈프리 전용 주소 호출
-    fetch('https://tool.donfree.co.kr/assets/news.json?v=' + new Date().getTime())
-        .then(res => res.json())
-        .then(items => {
-            if (items && items.length > 0) {
-                let html = '';
-                items.forEach(item => {
-                    html += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${item.link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">${item.title}</a></li>`;
-                });
-                list.innerHTML = html;
-                clearInterval(newsTimer); // 꽂아넣기 성공 시 완벽하게 종료
-            }
-        })
-        .catch(err => {
-            // 파일을 아직 못 찾았을 때는 에러를 내지 않고 계속 시도합니다.
-        });
-}, 500); // 0.5초 간격으로 집요하게 확인
-</script>
-{% endraw %}
