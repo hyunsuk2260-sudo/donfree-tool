@@ -78,30 +78,30 @@ function renderNewsItems() {
     const list = document.getElementById('auto-news-list');
     if (!list) return;
 
-    fetch('/assets/news.json?v=' + Date.now())
-        .then(res => res.json())
+    // 툴 돈프리 사이트의 절대 주소로 확실하게 지정
+    const targetUrl = 'https://tool.donfree.co.kr/assets/news.json?v=' + new Date().getTime();
+
+    fetch(targetUrl)
+        .then(res => {
+            if (!res.ok) throw new Error("파일 접속 실패 (404)");
+            return res.json();
+        })
         .then(items => {
             if (items && items.length > 0) {
-                list.innerHTML = items.map(item => `
-                    <li class="py-2.5 border-b border-gray-100 last:border-0">
-                        <a href="${item.link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">
-                            ${item.title}
-                        </a>
-                    </li>
-                `).join('');
+                list.innerHTML = '';
+                items.forEach(item => {
+                    list.innerHTML += `<li class="py-2.5 border-b border-gray-100 last:border-0"><a href="${item.link}" target="_blank" class="text-[13px] text-gray-800 hover:text-blue-600 font-medium leading-snug no-underline block line-clamp-2">${item.title}</a></li>`;
+                });
             }
         })
         .catch(err => {
-            console.error('뉴스 파싱 에러:', err);
+            // 원인을 바로 알 수 있도록 에러 메시지 출력
+            list.innerHTML = `<li class="text-xs text-red-500 py-8 text-center">에러: ${err.message}</li>`;
         });
 }
 
-// 신호를 기다리지 않고 브라우저가 스크립트를 만나는 즉시 바로 실행
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', renderNewsItems);
-} else {
-    renderNewsItems();
-}
-setTimeout(renderNewsItems, 300);
+// 딜레이 없이 스크립트 강제 즉시 실행
+renderNewsItems();
+setTimeout(renderNewsItems, 500);
 </script>
 {% endraw %}
