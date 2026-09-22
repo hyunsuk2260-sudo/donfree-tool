@@ -1,60 +1,427 @@
 name: Fetch Latest News
+
 on:
   schedule:
-    - cron: '0 * * * *'
+    # 5분마다 실행
+    - cron: '*/5 * * * *'
+
+  # GitHub에서 직접 실행할 수 있도록 유지
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
+
   update-news:
+
     runs-on: ubuntu-latest
+
     steps:
+
+      # 1. 저장소 가져오기
       - name: 소스코드 체크아웃
         uses: actions/checkout@v4
 
+      # 2. Python 설정
       - name: 파이썬 설정
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
-      - name: 우회 API를 통해 뉴스 다운로드 및 저장
+      # 3. 최신 뉴스 수집
+      - name: 최신 뉴스 수집
         run: |
-          python -c "
-          import urllib.request, json, os
-          
-          # 구글 직접 접속을 피하고, rss2json 우회 통로를 이용합니다.
-          url = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%3Fhl%3Dko%26gl%3DKR%26ceid%3DKR%3Ako'
-          req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-          
-          try:
-              res = urllib.request.urlopen(req).read()
-              data = json.loads(res)
-              
-              if 'items' in data:
-                  # 뉴스 7개 추출
-                  items = [{'title': i['title'].split(' - ')[0], 'link': i['link']} for i in data['items'][:7]]
-                  os.makedirs('assets', exist_ok=True)
-                  with open('assets/news.json', 'w', encoding='utf-8') as f:
-                      json.dump(items, f, ensure_ascii=False)
-                  print('뉴스 7개 저장 성공!')
-              else:
-                  print('뉴스를 찾지 못했습니다.')
-          except Exception as e:
-              print('수집 중 에러 발생:', e)
-          "
 
-      - name: 깃허브에 파일 업로드 (에러 방지 튼튼한 로직)
+          python <<'PY'
+
+          import urllib.request
+          import urllib.parse
+          import xml.etree.ElementTree as ET
+          import json
+          import os
+          import re
+          from datetime import datetime, timezone, timedelta
+          from email.utils import parsedate_to_datetime
+
+
+          # --------------------------------------------------
+          # Google News RSS 주소
+          # --------------------------------------------------
+
+          BASE = "https://news.google.com/rss"
+
+          feeds = [
+
+              # 종합 뉴스
+              {
+                  "name": "종합",
+                  "url": BASE + "?hl=ko&gl=KR&ceid=KR:ko"
+              },
+
+              # 경제
+              {
+                  "name": "경제",
+                  "url": BASE + "/search?q=" +
+                         urllib.parse.quote("경제") +
+                         "&hl=ko&gl=KR&ceid=KR:ko"
+              },
+
+              # 사회
+              {
+                  "name": "사회",
+                  "url": BASE + "/search?q=" +
+                         urllib.parse.quote("사회") +
+                         "&hl=ko&gl=KR&ceid=KR:ko"
+              },
+
+              # 생활
+              {
+                  "name": "생활",
+                  "url": BASE + "/search?q=" +
+                         urllib.parse.quote("생활") +
+                         "&hl=ko&gl=KR&ceid=KR:ko"
+              },
+
+              # IT
+              {
+                  "name": "IT",
+                  "url": BASE + "/search?q=" +
+                         urllib.parse.quote("IT") +
+                         "&hl=ko&gl=KR&ceid=KR:ko"
+              }
+
+          ]
+
+
+          # --------------------------------------------------
+          # RSS 가져오기
+          # --------------------------------------------------
+
+          def fetch_feed(feed):
+
+              try:
+
+                  request = urllib.request.Request(
+                      feed["url"],
+                      headers={
+                          "User-Agent":
+                          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+                      }
+                  )
+
+                  response = urllib.request.urlopen(
+                      request,
+                      timeout=20
+                  ).read()
+
+                  root = ET.fromstring(response)
+
+                  return root.findall(".//item")
+
+              except Exception as error:
+
+                  print(
+                      f"[{feed['name']}] 수집 실패:",
+                      error
+                  )
+
+                  return []
+
+
+          # --------------------------------------------------
+          # 제목 정리
+          # --------------------------------------------------
+
+          def clean_title(title):
+
+              if not title:
+                  return ""
+
+              title = title.strip()
+
+              # Google News 제목 뒤의 언론사명 제거
+              if " - " in title:
+
+                  title = title.rsplit(
+                      " - ",
+                      1
+                  )[0]
+
+              return title.strip()
+
+
+          # --------------------------------------------------
+          # 날짜 변환
+          # --------------------------------------------------
+
+          def parse_date(date_text):
+
+              if not date_text:
+
+                  return datetime.now(
+                      timezone.utc
+                  )
+
+              try:
+
+                  return parsedate_to_datetime(
+                      date_text
+                  ).astimezone(
+                      timezone.utc
+                  )
+
+              except Exception:
+
+                  return datetime.now(
+                      timezone.utc
+                  )
+
+
+          # --------------------------------------------------
+          # 뉴스 수집
+          # --------------------------------------------------
+
+          all_news = []
+
+          for feed in feeds:
+
+              items = fetch_feed(feed)
+
+              print(
+                  feed["name"],
+                  "뉴스",
+                  len(items),
+                  "개 수집"
+              )
+
+
+              for item in items:
+
+                  title_node = item.find("title")
+                  link_node = item.find("link")
+                  date_node = item.find("pubDate")
+
+
+                  if (
+                      title_node is None or
+                      link_node is None
+                  ):
+                      continue
+
+
+                  title = clean_title(
+                      title_node.text or ""
+                  )
+
+                  link = (
+                      link_node.text or ""
+                  ).strip()
+
+
+                  if not title or not link:
+                      continue
+
+
+                  published = parse_date(
+                      date_node.text
+                      if date_node is not None
+                      else None
+                  )
+
+
+                  all_news.append({
+
+                      "title": title,
+
+                      "link": link,
+
+                      "published": published.isoformat(),
+
+                      "timestamp":
+                          published.timestamp()
+
+                  })
+
+
+          # --------------------------------------------------
+          # 중복 제거
+          # --------------------------------------------------
+
+          unique_news = {}
+
+          for item in all_news:
+
+              # 제목 기준으로 중복 제거
+              key = re.sub(
+                  r"\s+",
+                  "",
+                  item["title"]
+              ).lower()
+
+
+              if key not in unique_news:
+
+                  unique_news[key] = item
+
+
+          news = list(
+              unique_news.values()
+          )
+
+
+          # --------------------------------------------------
+          # 최신순 정렬
+          # --------------------------------------------------
+
+          news.sort(
+              key=lambda x:
+                  x["timestamp"],
+              reverse=True
+          )
+
+
+          # --------------------------------------------------
+          # 너무 오래된 뉴스 제외
+          # 최근 48시간 기준
+          # --------------------------------------------------
+
+          cutoff = (
+              datetime.now(timezone.utc)
+              - timedelta(hours=48)
+          )
+
+
+          recent_news = [
+
+              item
+
+              for item in news
+
+              if datetime.fromisoformat(
+                  item["published"]
+              ) >= cutoff
+
+          ]
+
+
+          # 최근 뉴스가 부족하면 전체 뉴스 사용
+          if len(recent_news) >= 7:
+
+              news = recent_news
+
+          else:
+
+              news = news
+
+
+          # --------------------------------------------------
+          # 홈페이지에 보여줄 뉴스 7개
+          # --------------------------------------------------
+
+          final_news = []
+
+          for item in news[:7]:
+
+              final_news.append({
+
+                  "title": item["title"],
+
+                  "link": item["link"],
+
+                  "published": item["published"]
+
+              })
+
+
+          # --------------------------------------------------
+          # 뉴스가 없으면 기존 파일 유지
+          # --------------------------------------------------
+
+          if not final_news:
+
+              print(
+                  "새로운 뉴스를 찾지 못했습니다."
+              )
+
+              raise SystemExit(0)
+
+
+          # --------------------------------------------------
+          # news.json 저장
+          # --------------------------------------------------
+
+          os.makedirs(
+              "assets",
+              exist_ok=True
+          )
+
+
+          with open(
+              "assets/news.json",
+              "w",
+              encoding="utf-8"
+          ) as file:
+
+              json.dump(
+                  final_news,
+                  file,
+                  ensure_ascii=False,
+                  indent=2
+              )
+
+
+          print(
+              "--------------------------------"
+          )
+
+          print(
+              "최신 뉴스",
+              len(final_news),
+              "개 저장 완료"
+          )
+
+          print(
+              "--------------------------------"
+          )
+
+
+          for index, item in enumerate(
+              final_news,
+              start=1
+          ):
+
+              print(
+                  index,
+                  item["title"]
+              )
+
+          PY
+
+
+      # 4. 변경된 news.json GitHub에 반영
+      - name: 뉴스 파일 업데이트
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          git config --global user.name \
+            'github-actions[bot]'
+
+          git config --global user.email \
+            'github-actions[bot]@users.noreply.github.com'
+
           git add assets/news.json
-          
-          # 변경사항이 있는지 확인하고, 있을 때만 안전하게 푸시합니다.
+
+
+          # 실제 뉴스가 변경된 경우에만 커밋
           if git diff --staged --quiet; then
-            echo "새로 업데이트할 뉴스가 없습니다."
+
+            echo "새로운 뉴스가 없습니다."
+
           else
-            git commit -m 'Update news successfully'
+
+            git commit \
+              -m "Update latest news"
+
             git push
+
           fi
