@@ -1,6 +1,9 @@
 ---
 layout: page
-title: "점심 메뉴 복불복 뽑기"
+title: "🎁 도착한 점심 초대장"
+description: "친구가 당신을 위해 점심 메뉴를 뽑았습니다! 상자를 터치해서 결과를 확인하세요 😋"
+image: 
+  path: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=1200&auto=format&fit=crop"
 permalink: /lunch/
 ---
 
@@ -40,10 +43,16 @@ permalink: /lunch/
         </button>
 
         <div id="share-box" style="display: none;" class="mt-6 p-5 bg-green-50 rounded-xl border border-green-200">
-            <p class="text-sm text-green-700 font-bold mb-3">✅ 메뉴가 결정되었습니다! 결과를 친구에게 보내세요.</p>
-            <button id="copy-btn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg shadow transition-all flex items-center justify-center gap-2">
-                <span>🔗 카톡/문자로 링크 복사해서 보내기</span>
-            </button>
+            <p class="text-sm text-green-700 font-bold mb-4">✅ 메뉴가 결정되었습니다! 결과를 친구에게 보내세요.</p>
+            <div class="flex gap-2">
+                <button id="copy-btn" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg shadow transition-all flex items-center justify-center gap-2">
+                    <span>🔗 카톡으로 공유</span>
+                </button>
+                <!-- 마음에 안 들 때 즉시 다시 뽑을 수 있는 리셋 버튼 추가 -->
+                <button id="retry-btn" class="px-5 bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 rounded-lg shadow transition-all">
+                    🔄 다시
+                </button>
+            </div>
         </div>
     </div>
 
@@ -79,78 +88,128 @@ permalink: /lunch/
 
     let generatedUrl = '';
 
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('#pick-btn')) {
-            const btn = document.getElementById('pick-btn');
-            if (btn.disabled) return;
-            btn.innerText = '메뉴 고르는 중... ⏳';
-            btn.disabled = true;
-
-            let count = 0;
-            const interval = setInterval(() => {
-                const randomItem = menus[Math.floor(Math.random() * menus.length)];
-                document.getElementById('roulette-box').innerText = randomItem.img;
-                document.getElementById('roulette-text').innerText = randomItem.name;
-                count++;
-
-                if (count >= 15) {
-                    clearInterval(interval);
-                    const finalItem = menus[Math.floor(Math.random() * menus.length)];
-                    document.getElementById('roulette-box').innerText = '🤫';
-                    document.getElementById('roulette-text').innerText = '결과가 상자에 담겼습니다!';
-                    
-                    generatedUrl = window.location.origin + window.location.pathname + '?m=' + finalItem.id;
-                    document.getElementById('share-box').style.display = 'block';
-                    btn.style.display = 'none';
-                }
-            }, 100);
-        }
-
-        if (e.target.closest('#copy-btn')) {
-            navigator.clipboard.writeText(generatedUrl).then(() => {
-                alert('링크가 복사되었습니다! 카톡이나 문자로 친구에게 붙여넣기(공유) 해주세요.');
-            }).catch(() => {
-                alert('복사 실패! 아래 주소를 직접 복사해주세요.\n' + generatedUrl);
-            });
-        }
-
-        if (e.target.closest('#gift-box')) {
-            const urlParams = new URLSearchParams(window.location.search);
-            const menuId = parseInt(urlParams.get('m'));
-            const finalMenu = menus.find(m => m.id === menuId) || menus[0];
-
-            document.getElementById('gift-box').style.display = 'none';
-            const resultBox = document.getElementById('result-box');
-            resultBox.style.display = 'block';
-            
-            document.getElementById('result-image').innerText = finalMenu.img;
-            document.getElementById('result-name').innerText = finalMenu.name;
-            
-            setTimeout(() => {
-                resultBox.classList.remove('scale-90', 'opacity-0');
-                resultBox.classList.add('scale-100', 'opacity-100');
-            }, 50);
-        }
-
-        if (e.target.closest('#restart-btn')) {
-            location.href = '/lunch/';
-        }
-    });
-
-    setInterval(() => {
+    // 화면의 모든 상태를 초기(새것) 상태로 강제 복원하는 청소부 함수
+    function initApp() {
         const urlParams = new URLSearchParams(window.location.search);
         const menuId = urlParams.get('m');
+        
         const senderView = document.getElementById('sender-view');
         const receiverView = document.getElementById('receiver-view');
-        
-        if (senderView && receiverView) {
-            if (menuId) {
-                senderView.style.display = 'none';
-                receiverView.style.display = 'block';
-            } else {
-                senderView.style.display = 'block';
-                receiverView.style.display = 'none';
-            }
+        if (!senderView || !receiverView) return;
+
+        // 발송자 UI 강제 초기화
+        const pickBtn = document.getElementById('pick-btn');
+        if (pickBtn) {
+            pickBtn.style.display = 'block';
+            pickBtn.disabled = false;
+            pickBtn.innerText = '랜덤 메뉴 뽑기 🎯';
         }
-    }, 100);
+        const shareBox = document.getElementById('share-box');
+        if (shareBox) shareBox.style.display = 'none';
+
+        const rouletteBox = document.getElementById('roulette-box');
+        if (rouletteBox) rouletteBox.innerText = '❓';
+        const rouletteText = document.getElementById('roulette-text');
+        if (rouletteText) rouletteText.innerText = '어떤 메뉴가 나올까요?';
+
+        // 수신자 UI 강제 초기화
+        const giftBox = document.getElementById('gift-box');
+        if (giftBox) giftBox.style.display = 'block';
+
+        const resultBox = document.getElementById('result-box');
+        if (resultBox) {
+            resultBox.style.display = 'none';
+            resultBox.classList.remove('scale-100', 'opacity-100');
+            resultBox.classList.add('scale-90', 'opacity-0');
+        }
+
+        // 주소에 따라 화면 배치 재정렬
+        if (menuId) {
+            senderView.style.display = 'none';
+            receiverView.style.display = 'block';
+        } else {
+            senderView.style.display = 'block';
+            receiverView.style.display = 'none';
+        }
+    }
+
+    // 중복 실행 방지
+    if (!window.lunchEventsAttached) {
+        window.lunchEventsAttached = true;
+
+        document.addEventListener('click', function(e) {
+            // 1. 뽑기 시작
+            if (e.target.closest('#pick-btn')) {
+                const btn = document.getElementById('pick-btn');
+                if (btn.disabled) return;
+                btn.innerText = '메뉴 고르는 중... ⏳';
+                btn.disabled = true;
+
+                let count = 0;
+                const interval = setInterval(() => {
+                    const randomItem = menus[Math.floor(Math.random() * menus.length)];
+                    document.getElementById('roulette-box').innerText = randomItem.img;
+                    document.getElementById('roulette-text').innerText = randomItem.name;
+                    count++;
+
+                    if (count >= 15) {
+                        clearInterval(interval);
+                        const finalItem = menus[Math.floor(Math.random() * menus.length)];
+                        document.getElementById('roulette-box').innerText = '🤫';
+                        document.getElementById('roulette-text').innerText = '결과가 상자에 담겼습니다!';
+                        
+                        generatedUrl = window.location.origin + window.location.pathname + '?m=' + finalItem.id;
+                        document.getElementById('share-box').style.display = 'block';
+                        btn.style.display = 'none';
+                    }
+                }, 100);
+            }
+
+            // 2. 링크 복사
+            if (e.target.closest('#copy-btn')) {
+                navigator.clipboard.writeText(generatedUrl).then(() => {
+                    alert('링크가 복사되었습니다! 카톡이나 문자로 친구에게 공유해주세요.');
+                }).catch(() => {
+                    alert('복사 실패! 아래 주소를 직접 복사해주세요.\n' + generatedUrl);
+                });
+            }
+
+            // 3. 발송자가 맘에 안 들어서 '다시 뽑기' 누를 때 즉각 청소
+            if (e.target.closest('#retry-btn')) {
+                initApp();
+            }
+
+            // 4. 수신자가 선물 상자 오픈
+            if (e.target.closest('#gift-box')) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const menuId = parseInt(urlParams.get('m'));
+                const finalMenu = menus.find(m => m.id === menuId) || menus[0];
+
+                document.getElementById('gift-box').style.display = 'none';
+                const resultBox = document.getElementById('result-box');
+                resultBox.style.display = 'block';
+                
+                document.getElementById('result-image').innerText = finalMenu.img;
+                document.getElementById('result-name').innerText = finalMenu.name;
+                
+                setTimeout(() => {
+                    resultBox.classList.remove('scale-90', 'opacity-0');
+                    resultBox.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            }
+
+            // 5. 수신자가 '나도 뽑기' 누를 때 새로고침 없이 즉각 발송자 화면으로 둔갑
+            if (e.target.closest('#restart-btn')) {
+                history.pushState(null, '', '/lunch/');
+                initApp();
+            }
+        });
+
+        // 스마트폰 뒤로가기를 누르거나 탭을 다시 켰을 때도 강제로 청소
+        window.addEventListener('popstate', initApp);
+        window.addEventListener('pageshow', initApp);
+    }
+
+    // 접속하자마자 최초 청소 1회 실행
+    initApp();
 </script>
