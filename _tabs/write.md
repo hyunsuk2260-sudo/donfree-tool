@@ -8,788 +8,856 @@ permalink: /write/
 
 <style>
 .donfree-editor {
-    max-width: 1000px;
-    margin: 0 auto;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.donfree-editor h1 {
-    margin-bottom: 8px;
+.donfree-editor h2 {
+  margin-top: 10px;
+  margin-bottom: 8px;
 }
 
-.editor-description {
-    color: #777;
-    margin-bottom: 25px;
+.editor-desc {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 25px;
 }
 
-.editor-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 15px;
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
-.editor-box {
-    margin-bottom: 18px;
+.editor-field {
+  margin-bottom: 18px;
 }
 
-.editor-box label {
-    display: block;
-    font-weight: 700;
-    margin-bottom: 7px;
+.editor-field.full {
+  grid-column: 1 / -1;
 }
 
-.editor-input,
-.editor-textarea,
-.editor-select {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 11px 13px;
-    background: #fff;
-    font-size: 15px;
+.editor-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 7px;
 }
 
-.editor-textarea {
-    min-height: 450px;
-    resize: vertical;
-    line-height: 1.7;
-    font-family: inherit;
+.editor-field input,
+.editor-field select,
+.editor-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 11px 12px;
+  font-size: 14px;
+  background: #fff;
 }
 
-.editor-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 20px 0;
+.editor-field input:focus,
+.editor-field select:focus,
+.editor-field textarea:focus {
+  outline: none;
+  border-color: #333;
 }
 
-.editor-btn {
-    border: 0;
-    border-radius: 8px;
-    padding: 11px 18px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 14px;
+#post-body {
+  min-height: 500px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.editor-help {
+  font-size: 12px;
+  color: #888;
+  margin-top: 6px;
+}
+
+.image-box {
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  padding: 18px;
+  background: #fafafa;
+}
+
+.image-box input {
+  border: 0;
+  padding: 0;
+}
+
+.image-preview {
+  margin-top: 15px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.image-name {
+  font-size: 12px;
+  color: #777;
+}
+
+.editor-buttons {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.editor-buttons button {
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 .btn-preview {
-    background: #111827;
-    color: white;
+  background: #111827;
+  color: white;
 }
 
 .btn-save {
-    background: #2563eb;
-    color: white;
+  background: #2563eb;
+  color: white;
 }
 
-.btn-download {
-    background: #16a34a;
-    color: white;
+.btn-file {
+  background: #16a34a;
+  color: white;
 }
 
 .btn-clear {
-    background: #e5e7eb;
-    color: #333;
+  background: #e5e7eb;
+  color: #333;
 }
 
 .preview-box {
-    display: none;
-    margin-top: 30px;
-    padding: 25px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background: white;
+  display: none;
+  margin-top: 30px;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
 }
 
-.preview-box.active {
-    display: block;
-}
-
-.preview-title {
-    font-size: 30px;
-    font-weight: 800;
-    margin-bottom: 20px;
+.preview-box h3 {
+  margin-top: 0;
 }
 
 .preview-content {
-    line-height: 1.8;
+  line-height: 1.8;
 }
 
-.editor-status {
-    font-size: 13px;
-    color: #777;
-    margin-top: 5px;
+.preview-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.status-message {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #777;
 }
 
 @media (max-width: 700px) {
-    .editor-row {
-        grid-template-columns: 1fr;
-    }
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .editor-textarea {
-        min-height: 350px;
-    }
+  .editor-field.full {
+    grid-column: auto;
+  }
 
-    .preview-title {
-        font-size: 24px;
-    }
+  #post-body {
+    min-height: 400px;
+  }
 }
 </style>
 
-
 <div class="donfree-editor">
 
-    <h1>✍️ 돈프리 글쓰기</h1>
+<h2>✍️ 돈프리 글쓰기</h2>
 
-    <p class="editor-description">
-        검색 유입용 콘텐츠를 작성하고 미리보기할 수 있습니다.
-    </p>
+<p class="editor-desc">
+검색 유입용 콘텐츠를 작성하고 미리보기할 수 있습니다.
+</p>
 
+<div class="editor-grid">
 
-    <!-- 제목 / URL -->
-    <div class="editor-row">
+  <div class="editor-field">
+    <label>글 제목</label>
+    <input
+      type="text"
+      id="post-title"
+      placeholder="예: 인스타 릴스 다운로드 방법, 앱 없이 저장하는 법"
+    >
+  </div>
 
-        <div class="editor-box">
-            <label for="post-title">글 제목</label>
+  <div class="editor-field">
+    <label>URL 슬러그</label>
+    <input
+      type="text"
+      id="post-slug"
+      placeholder="instagram-reels-download"
+    >
+  </div>
 
-            <input
-                id="post-title"
-                class="editor-input"
-                type="text"
-                placeholder="예: 인스타 릴스 다운로드 방법, 앱 없이 저장하는 법"
-            >
-        </div>
+  <div class="editor-field">
+    <label>카테고리</label>
+    <select id="post-category">
+      <option value="생활정보">생활정보</option>
+      <option value="SNS">SNS</option>
+      <option value="돈버는정보">돈버는정보</option>
+      <option value="IT">IT</option>
+      <option value="육아">육아</option>
+      <option value="여행">여행</option>
+      <option value="리빙">리빙</option>
+    </select>
+  </div>
 
+  <div class="editor-field">
+    <label>태그</label>
+    <input
+      type="text"
+      id="post-tags"
+      placeholder="인스타, 릴스, 다운로드"
+    >
+  </div>
 
-        <div class="editor-box">
-            <label for="post-slug">URL 슬러그</label>
+  <div class="editor-field">
+    <label>SEO 제목</label>
+    <input
+      type="text"
+      id="seo-title"
+      placeholder="검색 결과에 표시될 제목"
+    >
+  </div>
 
-            <input
-                id="post-slug"
-                class="editor-input"
-                type="text"
-                placeholder="instagram-reels-download"
-            >
-        </div>
+  <div class="editor-field">
+    <label>SEO 설명</label>
+    <input
+      type="text"
+      id="seo-description"
+      placeholder="검색 결과에 표시될 설명"
+    >
+  </div>
 
-    </div>
+  <div class="editor-field full">
 
+    <label>대표 이미지</label>
 
-    <!-- 카테고리 / 태그 -->
-    <div class="editor-row">
+    <div class="image-box">
 
-        <div class="editor-box">
+      <input
+        type="file"
+        id="featured-image"
+        accept="image/*"
+      >
 
-            <label for="post-category">
-                카테고리
-            </label>
+      <div class="editor-help">
+        JPG, PNG, WEBP 이미지를 선택하세요.
+      </div>
 
-            <select
-                id="post-category"
-                class="editor-select">
-
-                <option value="생활정보">
-                    생활정보
-                </option>
-
-                <option value="영상">
-                    영상
-                </option>
-
-                <option value="폰트">
-                    폰트
-                </option>
-
-                <option value="PDF">
-                    PDF
-                </option>
-
-                <option value="특수문자">
-                    특수문자
-                </option>
-
-                <option value="사주">
-                    사주
-                </option>
-
-                <option value="기타">
-                    기타
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="editor-box">
-
-            <label for="post-tags">
-                태그
-            </label>
-
-            <input
-                id="post-tags"
-                class="editor-input"
-                type="text"
-                placeholder="인스타, 릴스, 다운로드"
-            >
-
-        </div>
+      <div
+        id="image-preview"
+        class="image-preview"
+      ></div>
 
     </div>
 
+  </div>
 
-    <!-- SEO -->
-    <div class="editor-row">
+  <div class="editor-field full">
 
-        <div class="editor-box">
+    <label>본문</label>
 
-            <label for="seo-title">
-                SEO 제목
-            </label>
+    <textarea
+      id="post-body"
+      placeholder="여기에 글을 작성하세요.
 
-            <input
-                id="seo-title"
-                class="editor-input"
-                type="text"
-                placeholder="검색 결과에 표시될 제목"
-            >
+예:
+인스타 릴스를 보다 보면 나중에 다시 보고 싶은 영상이 하나씩 생깁니다.
 
-        </div>
+오늘은 앱을 설치하지 않고 릴스를 저장하는 방법을 정리해볼게요."
+    ></textarea>
 
-
-        <div class="editor-box">
-
-            <label for="seo-description">
-                SEO 설명
-            </label>
-
-            <input
-                id="seo-description"
-                class="editor-input"
-                type="text"
-                placeholder="검색 결과에 표시될 설명"
-            >
-
-        </div>
-
+    <div class="editor-help">
+      이미지가 들어갈 위치에 [대표이미지]라고 입력하면 미리보기에서 이미지가 표시됩니다.
     </div>
 
-
-    <!-- 본문 -->
-    <div class="editor-box">
-
-        <label for="post-content">
-            본문
-        </label>
-
-        <textarea
-            id="post-content"
-            class="editor-textarea"
-            placeholder="여기에 글을 작성하세요.
-
-예시:
-
-인스타 릴스를 저장하고 싶은데
-앱을 설치해야 할까요?
-
-사실 간단한 방법이 있습니다.
-
-...
-
-### 인스타 릴스 다운로드 방법
-
-1. 저장하고 싶은 릴스의 링크를 복사합니다.
-2. 돈프리 비디오 다운로더를 엽니다.
-3. 링크를 입력합니다.
-4. 다운로드 버튼을 누릅니다.
-
-[돈프리 비디오 다운로더 바로가기](/video/)
-"></textarea>
-
-        <div class="editor-status">
-            작성한 내용은 현재 브라우저에 임시 저장할 수 있습니다.
-        </div>
-
-    </div>
-
-
-    <!-- 버튼 -->
-    <div class="editor-actions">
-
-        <button
-            type="button"
-            class="editor-btn btn-preview"
-            onclick="donfreePreview()">
-            👁 미리보기
-        </button>
-
-
-        <button
-            type="button"
-            class="editor-btn btn-save"
-            onclick="donfreeSave()">
-            💾 임시저장
-        </button>
-
-
-        <button
-            type="button"
-            class="editor-btn btn-download"
-            onclick="donfreeDownload()">
-            📥 글 파일 만들기
-        </button>
-
-
-        <button
-            type="button"
-            class="editor-btn btn-clear"
-            onclick="donfreeClear()">
-            🗑 초기화
-        </button>
-
-    </div>
-
-
-    <!-- 미리보기 -->
-    <div
-        id="donfree-preview"
-        class="preview-box">
-
-        <div
-            id="preview-title"
-            class="preview-title">
-        </div>
-
-        <div
-            id="preview-content"
-            class="preview-content">
-        </div>
-
-    </div>
+  </div>
 
 </div>
 
+<div class="editor-buttons">
+
+  <button
+    type="button"
+    class="btn-preview"
+    onclick="showPreview()"
+  >
+    👁️ 미리보기
+  </button>
+
+  <button
+    type="button"
+    class="btn-save"
+    onclick="saveDraft()"
+  >
+    💾 임시저장
+  </button>
+
+  <button
+    type="button"
+    class="btn-file"
+    onclick="downloadPost()"
+  >
+    📄 글 파일 만들기
+  </button>
+
+  <button
+    type="button"
+    class="btn-clear"
+    onclick="clearPost()"
+  >
+    🗑 초기화
+  </button>
+
+</div>
+
+<div
+  id="status-message"
+  class="status-message"
+></div>
+
+<div
+  id="preview-box"
+  class="preview-box"
+>
+
+  <h3 id="preview-title"></h3>
+
+  <div
+    id="preview-content"
+    class="preview-content"
+  ></div>
+
+</div>
+
+</div>
 
 <script>
 
-(function () {
-
-    const titleInput =
-        document.getElementById('post-title');
-
-    const slugInput =
-        document.getElementById('post-slug');
-
-    const categoryInput =
-        document.getElementById('post-category');
-
-    const tagsInput =
-        document.getElementById('post-tags');
-
-    const seoTitleInput =
-        document.getElementById('seo-title');
-
-    const seoDescriptionInput =
-        document.getElementById('seo-description');
-
-    const contentInput =
-        document.getElementById('post-content');
+let selectedImageData = "";
+let selectedImageName = "";
 
 
-    /*
-     * 제목을 입력하면 URL 슬러그 자동 생성
-     */
-    titleInput.addEventListener('input', function () {
+/* --------------------------------
+   이미지 선택
+-------------------------------- */
 
-        if (slugInput.value.trim() !== '') {
-            return;
-        }
+document
+  .getElementById("featured-image")
+  .addEventListener("change", function(event) {
 
-        let slug = this.value
-            .toLowerCase()
-            .trim()
-            .replace(/[^\w가-힣\s-]/g, '')
-            .replace(/\s+/g, '-');
+    const file = event.target.files[0];
 
-        slugInput.value = slug;
+    if (!file) return;
 
+    selectedImageName = file.name;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      selectedImageData = e.target.result;
+
+      document.getElementById("image-preview").innerHTML = `
+        <img src="${selectedImageData}" alt="대표 이미지">
+        <div class="image-name">
+          ${escapeHtml(file.name)}
+        </div>
+      `;
+
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+
+/* --------------------------------
+   HTML 이스케이프
+-------------------------------- */
+
+function escapeHtml(text) {
+
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* --------------------------------
+   간단한 마크다운 변환
+-------------------------------- */
+
+function markdownToHtml(text) {
+
+  let html = escapeHtml(text);
+
+  html = html.replace(
+    /\[대표이미지\]/g,
+    selectedImageData
+      ? `<img src="${selectedImageData}" alt="${escapeHtml(selectedImageName)}">`
+      : ""
+  );
+
+  html = html.replace(
+    /^### (.*)$/gm,
+    "<h4>$1</h4>"
+  );
+
+  html = html.replace(
+    /^## (.*)$/gm,
+    "<h3>$1</h3>"
+  );
+
+  html = html.replace(
+    /^# (.*)$/gm,
+    "<h2>$1</h2>"
+  );
+
+  html = html.replace(
+    /\*\*(.*?)\*\*/g,
+    "<strong>$1</strong>"
+  );
+
+  html = html.replace(
+    /\n\n/g,
+    "</p><p>"
+  );
+
+  html = "<p>" + html + "</p>";
+
+  html = html.replace(
+    /\n/g,
+    "<br>"
+  );
+
+  return html;
+
+}
+
+
+/* --------------------------------
+   미리보기
+-------------------------------- */
+
+function showPreview() {
+
+  const title =
+    document.getElementById("post-title").value.trim();
+
+  const body =
+    document.getElementById("post-body").value;
+
+  if (!title) {
+
+    alert("글 제목을 입력해주세요.");
+
+    return;
+
+  }
+
+  document.getElementById("preview-title").textContent =
+    title;
+
+  document.getElementById("preview-content").innerHTML =
+    markdownToHtml(body);
+
+  document.getElementById("preview-box").style.display =
+    "block";
+
+  document
+    .getElementById("preview-box")
+    .scrollIntoView({
+      behavior: "smooth"
     });
 
-
-    /*
-     * 임시저장
-     */
-    window.donfreeSave = function () {
-
-        const data = {
-
-            title: titleInput.value,
-
-            slug: slugInput.value,
-
-            category: categoryInput.value,
-
-            tags: tagsInput.value,
-
-            seoTitle: seoTitleInput.value,
-
-            seoDescription: seoDescriptionInput.value,
-
-            content: contentInput.value
-
-        };
+}
 
 
-        localStorage.setItem(
-            'donfree-writing-draft',
-            JSON.stringify(data)
-        );
+/* --------------------------------
+   임시저장
+-------------------------------- */
+
+function saveDraft() {
+
+  const data = {
+
+    title:
+      document.getElementById("post-title").value,
+
+    slug:
+      document.getElementById("post-slug").value,
+
+    category:
+      document.getElementById("post-category").value,
+
+    tags:
+      document.getElementById("post-tags").value,
+
+    seoTitle:
+      document.getElementById("seo-title").value,
+
+    seoDescription:
+      document.getElementById("seo-description").value,
+
+    body:
+      document.getElementById("post-body").value,
+
+    imageData:
+      selectedImageData,
+
+    imageName:
+      selectedImageName
+
+  };
+
+  localStorage.setItem(
+    "donfree-post-draft",
+    JSON.stringify(data)
+  );
+
+  document.getElementById("status-message").textContent =
+    "✓ 임시저장되었습니다.";
+
+}
 
 
-        alert('임시저장했습니다.');
+/* --------------------------------
+   임시저장 불러오기
+-------------------------------- */
 
-    };
+function loadDraft() {
 
+  const saved =
+    localStorage.getItem("donfree-post-draft");
 
-    /*
-     * 저장된 글 불러오기
-     */
-    const saved =
-        localStorage.getItem(
-            'donfree-writing-draft'
-        );
+  if (!saved) return;
 
+  try {
 
-    if (saved) {
+    const data = JSON.parse(saved);
 
-        try {
+    document.getElementById("post-title").value =
+      data.title || "";
 
-            const data =
-                JSON.parse(saved);
+    document.getElementById("post-slug").value =
+      data.slug || "";
 
-            titleInput.value =
-                data.title || '';
+    document.getElementById("post-category").value =
+      data.category || "생활정보";
 
-            slugInput.value =
-                data.slug || '';
+    document.getElementById("post-tags").value =
+      data.tags || "";
 
-            categoryInput.value =
-                data.category || '생활정보';
+    document.getElementById("seo-title").value =
+      data.seoTitle || "";
 
-            tagsInput.value =
-                data.tags || '';
+    document.getElementById("seo-description").value =
+      data.seoDescription || "";
 
-            seoTitleInput.value =
-                data.seoTitle || '';
+    document.getElementById("post-body").value =
+      data.body || "";
 
-            seoDescriptionInput.value =
-                data.seoDescription || '';
+    selectedImageData =
+      data.imageData || "";
 
-            contentInput.value =
-                data.content || '';
+    selectedImageName =
+      data.imageName || "";
 
-        } catch (e) {
+    if (selectedImageData) {
 
-            console.error(e);
-
-        }
-
-    }
-
-
-    /*
-     * 간단한 Markdown → HTML 변환
-     */
-    function markdownToHtml(text) {
-
-        let html =
-            text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
-
-
-        html = html.replace(
-            /^### (.*)$/gm,
-            '<h3>$1</h3>'
-        );
-
-        html = html.replace(
-            /^## (.*)$/gm,
-            '<h2>$1</h2>'
-        );
-
-        html = html.replace(
-            /^# (.*)$/gm,
-            '<h1>$1</h1>'
-        );
-
-        html = html.replace(
-            /\*\*(.*?)\*\*/g,
-            '<strong>$1</strong>'
-        );
-
-        html = html.replace(
-            /\[(.*?)\]\((.*?)\)/g,
-            '<a href="$2">$1</a>'
-        );
-
-        html = html.replace(
-            /\n/g,
-            '<br>'
-        );
-
-        return html;
+      document.getElementById("image-preview").innerHTML = `
+        <img src="${selectedImageData}" alt="대표 이미지">
+        <div class="image-name">
+          ${escapeHtml(selectedImageName)}
+        </div>
+      `;
 
     }
 
+  } catch (error) {
 
-    /*
-     * 미리보기
-     */
-    window.donfreePreview = function () {
+    console.log(error);
 
-        const preview =
-            document.getElementById(
-                'donfree-preview'
-            );
+  }
 
-        document.getElementById(
-            'preview-title'
-        ).textContent =
-            titleInput.value ||
-            '제목을 입력해주세요.';
+}
 
 
-        document.getElementById(
-            'preview-content'
-        ).innerHTML =
-            markdownToHtml(
-                contentInput.value
-            );
+/* --------------------------------
+   날짜
+-------------------------------- */
+
+function getToday() {
+
+  const now = new Date();
+
+  const year =
+    now.getFullYear();
+
+  const month =
+    String(now.getMonth() + 1)
+      .padStart(2, "0");
+
+  const day =
+    String(now.getDate())
+      .padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+
+}
 
 
-        preview.classList.add('active');
+/* --------------------------------
+   YAML 안전 처리
+-------------------------------- */
 
-        preview.scrollIntoView({
-            behavior: 'smooth'
-        });
+function yamlText(text) {
 
-    };
+  return String(text || "")
+    .replace(/"/g, '\\"');
 
-
-    /*
-     * Markdown 파일 생성
-     */
-    window.donfreeDownload = function () {
-
-        const title =
-            titleInput.value.trim();
-
-        const slug =
-            slugInput.value.trim();
-
-        const category =
-            categoryInput.value;
-
-        const tags =
-            tagsInput.value
-                .split(',')
-                .map(function (tag) {
-                    return tag.trim();
-                })
-                .filter(Boolean);
+}
 
 
-        const seoTitle =
-            seoTitleInput.value.trim();
+/* --------------------------------
+   태그 만들기
+-------------------------------- */
 
-        const seoDescription =
-            seoDescriptionInput.value.trim();
+function makeTags(tags) {
 
-        const content =
-            contentInput.value;
+  if (!tags.trim()) return "[]";
 
+  return "[" +
+    tags
+      .split(",")
+      .map(tag => `"${yamlText(tag.trim())}"`)
+      .filter(Boolean)
+      .join(", ") +
+    "]";
 
-        if (!title) {
-
-            alert(
-                '글 제목을 입력해주세요.'
-            );
-
-            titleInput.focus();
-
-            return;
-
-        }
+}
 
 
-        if (!content.trim()) {
+/* --------------------------------
+   글 파일 만들기
+-------------------------------- */
 
-            alert(
-                '본문을 입력해주세요.'
-            );
+function downloadPost() {
 
-            contentInput.focus();
+  const title =
+    document.getElementById("post-title").value.trim();
 
-            return;
+  const slug =
+    document.getElementById("post-slug").value.trim();
 
-        }
+  const category =
+    document.getElementById("post-category").value;
 
+  const tags =
+    document.getElementById("post-tags").value;
 
-        const now =
-            new Date();
+  const seoTitle =
+    document.getElementById("seo-title").value.trim();
 
+  const seoDescription =
+    document
+      .getElementById("seo-description")
+      .value
+      .trim();
 
-        const yyyy =
-            now.getFullYear();
+  const body =
+    document.getElementById("post-body").value;
 
-        const mm =
-            String(
-                now.getMonth() + 1
-            ).padStart(2, '0');
+  if (!title) {
 
-        const dd =
-            String(
-                now.getDate()
-            ).padStart(2, '0');
+    alert("글 제목을 입력해주세요.");
 
+    return;
 
-        const date =
-            yyyy +
-            '-' +
-            mm +
-            '-' +
-            dd;
+  }
 
+  if (!slug) {
 
-        const safeSlug =
-            slug ||
-            'donfree-post';
+    alert("URL 슬러그를 입력해주세요.");
 
+    return;
 
-        let frontMatter =
-`---
-layout: post
-title: "${title.replace(/"/g, '\\"')}"
-date: ${date} 12:00:00 +0900
-categories: [${category}]
-tags: [${tags.join(', ')}]
-description: "${seoDescription.replace(/"/g, '\\"')}"
-`;
+  }
 
+  if (!body.trim()) {
 
-        if (seoTitle) {
+    alert("본문을 입력해주세요.");
 
-            frontMatter +=
-`seo_title: "${seoTitle.replace(/"/g, '\\"')}"
-`;
+    return;
 
-        }
+  }
 
 
-        frontMatter +=
-`permalink: /posts/${safeSlug}/
+  let finalBody = body;
+
+
+  /*
+    대표 이미지가 있다면
+    본문에서 [대표이미지] 위치에
+    HTML 이미지 태그를 넣습니다.
+  */
+
+  if (selectedImageData) {
+
+    const imageHtml =
+      `<img src="${selectedImageData}" alt="${escapeHtml(selectedImageName)}">`;
+
+    finalBody =
+      finalBody.replace(
+        /\[대표이미지\]/g,
+        imageHtml
+      );
+
+  }
+
+
+  const date =
+    getToday();
+
+
+  const frontMatter = `---
+title: "${yamlText(title)}"
+date: ${date}
+categories: ["${yamlText(category)}"]
+tags: ${makeTags(tags)}
+description: "${yamlText(seoDescription)}"
+seo_title: "${yamlText(seoTitle)}"
+permalink: /posts/${slug}/
 ---
 
-${content}
 `;
 
 
-        const fileName =
-            date +
-            '-' +
-            safeSlug +
-            '.md';
+  const content =
+    frontMatter + finalBody;
 
 
-        const blob =
-            new Blob(
-                [frontMatter],
-                {
-                    type:
-                        'text/markdown;charset=utf-8'
-                }
-            );
+  const blob =
+    new Blob(
+      [content],
+      {
+        type: "text/markdown;charset=utf-8"
+      }
+    );
 
 
-        const url =
-            URL.createObjectURL(blob);
+  const url =
+    URL.createObjectURL(blob);
 
 
-        const link =
-            document.createElement('a');
+  const link =
+    document.createElement("a");
 
-        link.href = url;
+  link.href = url;
 
-        link.download =
-            fileName;
+  link.download =
+    `${date}-${slug}.md`;
 
-        document.body.appendChild(link);
+  document.body.appendChild(link);
 
-        link.click();
+  link.click();
 
-        link.remove();
+  document.body.removeChild(link);
 
-        URL.revokeObjectURL(url);
-
-
-        alert(
-            '글 파일을 만들었습니다.\\n\\n' +
-            fileName +
-            '\\n\\n' +
-            '이 파일을 GitHub의 _posts 폴더에 올리면 게시됩니다.'
-        );
-
-    };
+  URL.revokeObjectURL(url);
 
 
-    /*
-     * 초기화
-     */
-    window.donfreeClear = function () {
+  document.getElementById("status-message").textContent =
+    "✓ 글 파일이 만들어졌습니다. _posts 폴더에 넣으면 됩니다.";
 
-        if (
-            !confirm(
-                '작성 중인 내용을 모두 삭제할까요?'
-            )
-        ) {
-            return;
-        }
+}
 
 
-        titleInput.value = '';
+/* --------------------------------
+   초기화
+-------------------------------- */
 
-        slugInput.value = '';
+function clearPost() {
 
-        categoryInput.value =
-            '생활정보';
+  if (
+    !confirm(
+      "작성 중인 내용을 모두 삭제할까요?"
+    )
+  ) {
 
-        tagsInput.value = '';
+    return;
 
-        seoTitleInput.value = '';
+  }
 
-        seoDescriptionInput.value = '';
+  document.getElementById("post-title").value = "";
 
-        contentInput.value = '';
+  document.getElementById("post-slug").value = "";
+
+  document.getElementById("post-category").value =
+    "생활정보";
+
+  document.getElementById("post-tags").value = "";
+
+  document.getElementById("seo-title").value = "";
+
+  document.getElementById("seo-description").value = "";
+
+  document.getElementById("post-body").value = "";
+
+  document.getElementById("featured-image").value = "";
+
+  document.getElementById("image-preview").innerHTML = "";
+
+  document.getElementById("preview-box").style.display =
+    "none";
+
+  selectedImageData = "";
+
+  selectedImageName = "";
+
+  localStorage.removeItem(
+    "donfree-post-draft"
+  );
+
+  document.getElementById("status-message").textContent =
+    "";
+
+}
 
 
-        localStorage.removeItem(
-            'donfree-writing-draft'
-        );
+/* --------------------------------
+   페이지 열 때 임시저장 불러오기
+-------------------------------- */
 
-
-        document
-            .getElementById(
-                'donfree-preview'
-            )
-            .classList.remove('active');
-
-    };
-
-
-})();
+loadDraft();
 
 </script>
