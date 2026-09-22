@@ -12,8 +12,9 @@ permalink: /write/
 
 .write-wrap label {
   display: block;
+  margin-top: 20px;
+  margin-bottom: 7px;
   font-weight: 700;
-  margin: 18px 0 7px;
 }
 
 .write-wrap input,
@@ -21,9 +22,9 @@ permalink: /write/
 .write-wrap textarea {
   width: 100%;
   box-sizing: border-box;
+  padding: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 11px 13px;
   font-size: 15px;
   background: #fff;
 }
@@ -34,50 +35,50 @@ permalink: /write/
   line-height: 1.8;
 }
 
-.write-toolbar {
+.help {
+  margin-top: 8px;
+  padding: 12px 14px;
+  background: #f6f6f6;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
   margin: 10px 0;
 }
 
-.write-toolbar button,
-.write-actions button {
+.toolbar button,
+.actions button {
   border: 0;
   border-radius: 7px;
   padding: 9px 14px;
   cursor: pointer;
   font-weight: 700;
-  background: #f1f3f5;
 }
 
-.write-toolbar button:hover,
-.write-actions button:hover {
-  opacity: .85;
+.toolbar button {
+  background: #f1f1f1;
 }
 
-.write-actions {
+.actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 15px;
 }
 
-.btn-primary {
-  background: #111 !important;
-  color: #fff;
+.actions button {
+  background: #111;
+  color: white;
 }
 
-.btn-danger {
-  background: #ffe8e8 !important;
-  color: #c00;
-}
-
-.image-box {
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 10px;
+.actions .danger {
+  background: #eee;
+  color: #333;
 }
 
 .image-list {
@@ -88,7 +89,7 @@ permalink: /write/
 }
 
 .image-item {
-  width: 150px;
+  width: 160px;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -96,311 +97,472 @@ permalink: /write/
 }
 
 .image-item img {
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
   display: block;
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
 }
 
-.image-item .image-info {
+.image-info {
   padding: 8px;
 }
 
-.image-item input {
-  font-size: 12px;
+.image-info input {
+  width: 100%;
+  box-sizing: border-box;
   padding: 6px;
-  margin-bottom: 5px;
+  font-size: 12px;
+  margin-bottom: 6px;
 }
 
-.image-item button {
+.image-info button {
   width: 100%;
   border: 0;
-  padding: 6px;
+  padding: 7px;
+  margin-top: 4px;
+  border-radius: 5px;
   cursor: pointer;
   background: #f1f1f1;
 }
 
-.preview-box {
-  margin-top: 30px;
-  border-top: 1px solid #ddd;
-  padding-top: 25px;
+.image-info .insert-btn {
+  background: #111;
+  color: white;
 }
 
-.preview-content {
+.preview-wrap {
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid #ddd;
+}
+
+.preview {
+  padding: 25px;
   border: 1px solid #eee;
   border-radius: 10px;
-  padding: 25px;
   line-height: 1.8;
+  overflow-wrap: break-word;
 }
 
-.preview-content img {
+.preview img {
+  display: block;
   max-width: 100%;
   height: auto;
-  display: block;
   margin: 20px auto;
   border-radius: 8px;
 }
 
-.preview-content a {
-  color: #0066cc;
+.preview h2 {
+  margin-top: 30px;
+}
+
+.preview a {
+  color: #06c;
   text-decoration: underline;
 }
 
 .status {
   margin-top: 10px;
-  color: #666;
   font-size: 13px;
-}
-
-.help-box {
-  background: #f7f7f7;
-  border-radius: 8px;
-  padding: 12px 15px;
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.6;
+  color: #666;
 }
 </style>
 
+
 <div class="write-wrap">
 
-  <h1>글쓰기</h1>
+<h1>글쓰기</h1>
 
-  <div class="help-box">
-    본문에서 링크를 넣고 싶은 글자를 드래그한 뒤
-    <strong>🔗 링크</strong> 버튼을 눌러주세요.
-  </div>
+<div class="help">
+본문을 작성한 뒤 원하는 위치에 커서를 놓고 이미지를 선택하면
+해당 위치에 이미지가 바로 들어갑니다.<br>
+링크는 링크로 만들 문장을 드래그한 뒤 <strong>🔗 링크</strong> 버튼을 누르면 됩니다.
+</div>
 
-  <label for="postTitle">제목</label>
-  <input
-    type="text"
-    id="postTitle"
-    placeholder="글 제목을 입력하세요"
-  >
 
-  <label for="postSlug">URL 슬러그</label>
-  <input
-    type="text"
-    id="postSlug"
-    placeholder="예: instagram-reels-download"
-  >
+<!-- 제목 -->
 
-  <label for="postCategory">카테고리</label>
-  <input
-    type="text"
-    id="postCategory"
-    placeholder="예: 생활정보"
-  >
+<label>제목</label>
 
-  <label for="postTags">태그</label>
-  <input
-    type="text"
-    id="postTags"
-    placeholder="예: 인스타, 릴스, 다운로드"
-  >
+<input
+  type="text"
+  id="postTitle"
+  placeholder="글 제목을 입력하세요"
+>
 
-  <label for="seoTitle">SEO 제목</label>
-  <input
-    type="text"
-    id="seoTitle"
-    placeholder="검색 결과에 표시될 제목"
-  >
 
-  <label for="seoDescription">SEO 설명</label>
-  <input
-    type="text"
-    id="seoDescription"
-    placeholder="검색 결과에 표시될 설명"
-  >
+<!-- URL -->
 
-  <label>이미지</label>
+<label>URL 슬러그</label>
 
-  <div class="image-box">
+<input
+  type="text"
+  id="postSlug"
+  placeholder="예: instagram-reels-download"
+>
 
-    <input
-      type="file"
-      id="imageInput"
-      accept="image/*"
-      multiple
-    >
 
-    <div class="help-box">
-      여러 장의 이미지를 한 번에 선택할 수 있습니다.
-      원하는 위치에 커서를 놓고 이미지의
-      <strong>본문에 넣기</strong> 버튼을 누르세요.
-    </div>
+<!-- 카테고리 -->
 
-    <div id="imageList" class="image-list"></div>
+<label>카테고리</label>
 
-  </div>
+<input
+  type="text"
+  id="postCategory"
+  placeholder="예: 생활정보"
+>
 
-  <label for="postBody">본문</label>
 
-  <div class="write-toolbar">
+<!-- 태그 -->
 
-    <button type="button" onclick="insertBold()">
-      굵게
-    </button>
+<label>태그</label>
 
-    <button type="button" onclick="insertH2()">
-      H2
-    </button>
+<input
+  type="text"
+  id="postTags"
+  placeholder="예: 인스타, 릴스, 다운로드"
+>
 
-    <button type="button" onclick="insertLink()">
-      🔗 링크
-    </button>
 
-    <button type="button" onclick="insertLine()">
-      구분선
-    </button>
+<!-- SEO 제목 -->
 
-  </div>
+<label>SEO 제목</label>
 
-  <textarea
-    id="postBody"
-    placeholder="본문을 작성하세요."
-  ></textarea>
+<input
+  type="text"
+  id="seoTitle"
+  placeholder="검색 결과에 표시될 제목"
+>
 
-  <div class="write-actions">
 
-    <button
-      type="button"
-      class="btn-primary"
-      onclick="previewPost()"
-    >
-      👀 미리보기
-    </button>
+<!-- SEO 설명 -->
 
-    <button
-      type="button"
-      onclick="saveDraft()"
-    >
-      💾 임시저장
-    </button>
+<label>SEO 설명</label>
 
-    <button
-      type="button"
-      onclick="loadDraft()"
-    >
-      📂 불러오기
-    </button>
+<input
+  type="text"
+  id="seoDescription"
+  placeholder="검색 결과에 표시될 설명"
+>
 
-    <button
-      type="button"
-      class="btn-danger"
-      onclick="clearAll()"
-    >
-      🗑️ 초기화
-    </button>
 
-    <button
-      type="button"
-      class="btn-primary"
-      onclick="downloadPost()"
-    >
-      📄 글 파일 만들기
-    </button>
+<!-- 이미지 -->
 
-  </div>
+<label>이미지 첨부</label>
 
-  <div id="status" class="status"></div>
+<input
+  type="file"
+  id="imageInput"
+  accept="image/*"
+  multiple
+>
 
-  <div class="preview-box">
+<div class="help">
+여러 장을 한 번에 선택할 수 있습니다.
+선택한 이미지는 현재 본문 커서 위치에 자동으로 삽입됩니다.
+</div>
 
-    <h2>미리보기</h2>
+<div
+  id="imageList"
+  class="image-list"
+></div>
 
-    <div
-      id="previewContent"
-      class="preview-content"
-    >
-      작성한 글이 여기에 표시됩니다.
-    </div>
 
-  </div>
+<!-- 본문 -->
+
+<label>본문</label>
+
+<div class="toolbar">
+
+<button
+  type="button"
+  onclick="makeBold()"
+>
+굵게
+</button>
+
+<button
+  type="button"
+  onclick="makeH2()"
+>
+H2
+</button>
+
+<button
+  type="button"
+  onclick="makeLink()"
+>
+🔗 링크
+</button>
+
+<button
+  type="button"
+  onclick="makeDivider()"
+>
+구분선
+</button>
+
+</div>
+
+
+<textarea
+  id="postBody"
+  placeholder="본문을 작성하세요."
+></textarea>
+
+
+<!-- 버튼 -->
+
+<div class="actions">
+
+<button
+  type="button"
+  onclick="showPreview()"
+>
+👀 미리보기
+</button>
+
+<button
+  type="button"
+  onclick="saveDraft()"
+>
+💾 임시저장
+</button>
+
+<button
+  type="button"
+  onclick="loadDraft()"
+>
+📂 불러오기
+</button>
+
+<button
+  type="button"
+  onclick="downloadMarkdown()"
+>
+📄 글 파일 만들기
+</button>
+
+<button
+  type="button"
+  class="danger"
+  onclick="clearEditor()"
+>
+🗑️ 초기화
+</button>
+
+</div>
+
+
+<div
+  id="status"
+  class="status"
+></div>
+
+
+<!-- 미리보기 -->
+
+<div class="preview-wrap">
+
+<h2>미리보기</h2>
+
+<div
+  id="preview"
+  class="preview"
+>
+작성한 글이 여기에 표시됩니다.
+</div>
+
+</div>
 
 </div>
 
 
 <script>
 
-let images = [];
+let uploadedImages = [];
+
+let imageCounter = 0;
 
 
-/* =========================
+/* =========================================
+   본문 커서 위치 기억
+========================================= */
+
+const textarea =
+  document.getElementById("postBody");
+
+
+let savedCursorStart = 0;
+let savedCursorEnd = 0;
+
+
+textarea.addEventListener("blur", function() {
+
+  savedCursorStart =
+    textarea.selectionStart;
+
+  savedCursorEnd =
+    textarea.selectionEnd;
+
+});
+
+
+textarea.addEventListener("click", function() {
+
+  savedCursorStart =
+    textarea.selectionStart;
+
+  savedCursorEnd =
+    textarea.selectionEnd;
+
+});
+
+
+textarea.addEventListener("keyup", function() {
+
+  savedCursorStart =
+    textarea.selectionStart;
+
+  savedCursorEnd =
+    textarea.selectionEnd;
+
+});
+
+
+/* =========================================
    이미지 선택
-========================= */
+========================================= */
 
 document
   .getElementById("imageInput")
-  .addEventListener("change", function(e) {
+  .addEventListener("change", function(event) {
 
-    const files = Array.from(e.target.files);
+    const files =
+      Array.from(event.target.files);
 
-    files.forEach(file => {
+    if (!files.length) return;
 
-      const reader = new FileReader();
 
-      reader.onload = function(event) {
+    /*
+      이미지들을 순서대로 처리
+    */
 
-        images.push({
-          id: Date.now() + Math.random(),
-          name: file.name,
-          src: event.target.result,
-          alt: file.name.replace(/\.[^/.]+$/, "")
-        });
+    files.forEach(function(file) {
 
-        renderImages();
+      if (!file.type.startsWith("image/")) {
+        return;
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload = function(e) {
+
+        imageCounter++;
+
+        const image = {
+
+          id:
+            "image-" +
+            Date.now() +
+            "-" +
+            imageCounter,
+
+          name:
+            file.name,
+
+          alt:
+            file.name
+              .replace(/\.[^/.]+$/, ""),
+
+          src:
+            e.target.result
+
+        };
+
+
+        uploadedImages.push(image);
+
+
+        renderImageList();
+
+
+        /*
+          이미지 선택 즉시
+          현재 커서 위치에 삽입
+        */
+
+        insertImageAtCursor(image);
 
       };
+
 
       reader.readAsDataURL(file);
 
     });
 
-    e.target.value = "";
+
+    /*
+      같은 파일을 다시 선택할 수 있도록 초기화
+    */
+
+    event.target.value = "";
 
 });
 
 
-/* =========================
-   이미지 목록 표시
-========================= */
+/* =========================================
+   이미지 목록
+========================================= */
 
-function renderImages() {
+function renderImageList() {
 
-  const list = document.getElementById("imageList");
+  const container =
+    document.getElementById("imageList");
 
-  list.innerHTML = "";
 
-  images.forEach(image => {
+  container.innerHTML = "";
 
-    const item = document.createElement("div");
 
-    item.className = "image-item";
+  uploadedImages.forEach(function(image) {
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "image-item";
+
 
     item.innerHTML = `
 
-      <img src="${image.src}" alt="">
+      <img
+        src="${image.src}"
+        alt=""
+      >
 
       <div class="image-info">
 
         <input
           type="text"
-          value="${escapeHtml(image.alt)}"
+          value="${escapeAttribute(image.alt)}"
           placeholder="이미지 설명"
-          onchange="updateAlt('${image.id}', this.value)"
+          data-image-id="${image.id}"
         >
 
         <button
           type="button"
-          onclick="insertImage('${image.id}')"
+          class="insert-btn"
+          data-insert-id="${image.id}"
         >
           본문에 넣기
         </button>
 
         <button
           type="button"
-          onclick="removeImage('${image.id}')"
+          data-delete-id="${image.id}"
         >
           삭제
         </button>
@@ -409,341 +571,499 @@ function renderImages() {
 
     `;
 
-    list.appendChild(item);
+
+    container.appendChild(item);
+
+
+    /*
+      이미지 설명 변경
+    */
+
+    const altInput =
+      item.querySelector(
+        `[data-image-id="${image.id}"]`
+      );
+
+
+    altInput.addEventListener(
+      "input",
+      function() {
+
+        image.alt =
+          altInput.value;
+
+      }
+    );
+
+
+    /*
+      본문에 다시 넣기
+    */
+
+    const insertButton =
+      item.querySelector(
+        `[data-insert-id="${image.id}"]`
+      );
+
+
+    insertButton.addEventListener(
+      "click",
+      function() {
+
+        insertImageAtCursor(image);
+
+      }
+    );
+
+
+    /*
+      삭제
+    */
+
+    const deleteButton =
+      item.querySelector(
+        `[data-delete-id="${image.id}"]`
+      );
+
+
+    deleteButton.addEventListener(
+      "click",
+      function() {
+
+        uploadedImages =
+          uploadedImages.filter(
+            function(item) {
+
+              return item.id !== image.id;
+
+            }
+          );
+
+
+        renderImageList();
+
+      }
+    );
 
   });
 
 }
 
 
-/* =========================
-   이미지 설명 수정
-========================= */
-
-function updateAlt(id, value) {
-
-  const image = images.find(
-    item => String(item.id) === String(id)
-  );
-
-  if (image) {
-    image.alt = value;
-  }
-
-}
-
-
-/* =========================
+/* =========================================
    이미지 본문 삽입
-========================= */
+========================================= */
 
-function insertImage(id) {
-
-  const image = images.find(
-    item => String(item.id) === String(id)
-  );
-
-  if (!image) return;
+function insertImageAtCursor(image) {
 
   const marker =
     `[[IMAGE:${image.id}]]`;
 
-  insertAtCursor(marker);
-
-}
-
-
-/* =========================
-   이미지 삭제
-========================= */
-
-function removeImage(id) {
-
-  images = images.filter(
-    item => String(item.id) !== String(id)
-  );
-
-  renderImages();
-
-}
-
-
-/* =========================
-   커서 위치에 텍스트 삽입
-========================= */
-
-function insertAtCursor(text) {
-
-  const textarea =
-    document.getElementById("postBody");
 
   const start =
-    textarea.selectionStart;
+    savedCursorStart;
+
 
   const end =
-    textarea.selectionEnd;
+    savedCursorEnd;
+
 
   const current =
     textarea.value;
 
+
   textarea.value =
     current.substring(0, start)
-    + text
+    + marker
     + current.substring(end);
 
-  textarea.focus();
+
+  /*
+    삽입된 이미지 뒤로 커서 이동
+  */
 
   const newPosition =
-    start + text.length;
+    start + marker.length;
+
+
+  textarea.focus();
+
 
   textarea.selectionStart =
     newPosition;
 
-  textarea.selectionEnd =
-    newPosition;
-
-}
-
-
-/* =========================
-   굵게
-========================= */
-
-function insertBold() {
-
-  const textarea =
-    document.getElementById("postBody");
-
-  const start =
-    textarea.selectionStart;
-
-  const end =
-    textarea.selectionEnd;
-
-  const selected =
-    textarea.value.substring(start, end);
-
-  if (!selected) {
-
-    alert(
-      "굵게 표시할 글자를 먼저 드래그해주세요."
-    );
-
-    return;
-
-  }
-
-  const replacement =
-    `**${selected}**`;
-
-  textarea.value =
-    textarea.value.substring(0, start)
-    + replacement
-    + textarea.value.substring(end);
-
-  textarea.focus();
-
-}
-
-
-/* =========================
-   H2
-========================= */
-
-function insertH2() {
-
-  const textarea =
-    document.getElementById("postBody");
-
-  const start =
-    textarea.selectionStart;
-
-  const end =
-    textarea.selectionEnd;
-
-  const selected =
-    textarea.value.substring(start, end);
-
-  if (!selected) {
-
-    alert(
-      "제목으로 만들 글자를 먼저 드래그해주세요."
-    );
-
-    return;
-
-  }
-
-  const replacement =
-    `## ${selected}`;
-
-  textarea.value =
-    textarea.value.substring(0, start)
-    + replacement
-    + textarea.value.substring(end);
-
-  textarea.focus();
-
-}
-
-
-/* =========================
-   🔗 링크 삽입
-========================= */
-
-function insertLink() {
-
-  const textarea =
-    document.getElementById("postBody");
-
-  const start =
-    textarea.selectionStart;
-
-  const end =
-    textarea.selectionEnd;
-
-  const selected =
-    textarea.value.substring(start, end);
-
-  if (!selected) {
-
-    alert(
-      "먼저 링크로 만들 글자를 드래그해주세요."
-    );
-
-    return;
-
-  }
-
-  const url =
-    prompt(
-      "연결할 URL을 입력하세요.\n\n예:\nhttps://tool.donfree.co.kr/video/"
-    );
-
-  if (!url) return;
-
-  const markdown =
-    `[${selected}](${url})`;
-
-  textarea.value =
-    textarea.value.substring(0, start)
-    + markdown
-    + textarea.value.substring(end);
-
-  textarea.focus();
-
-  const newPosition =
-    start + markdown.length;
-
-  textarea.selectionStart =
-    newPosition;
 
   textarea.selectionEnd =
     newPosition;
 
-}
+
+  savedCursorStart =
+    newPosition;
 
 
-/* =========================
-   구분선
-========================= */
+  savedCursorEnd =
+    newPosition;
 
-function insertLine() {
 
-  insertAtCursor(
-    "\n\n---\n\n"
+  showStatus(
+    "이미지가 본문에 삽입되었습니다."
   );
 
 }
 
 
-/* =========================
-   미리보기
-========================= */
+/* =========================================
+   굵게
+========================================= */
 
-function previewPost() {
+function makeBold() {
+
+  const start =
+    textarea.selectionStart;
+
+  const end =
+    textarea.selectionEnd;
+
+
+  const selected =
+    textarea.value.substring(
+      start,
+      end
+    );
+
+
+  if (!selected) {
+
+    alert(
+      "굵게 만들 글자를 먼저 드래그해주세요."
+    );
+
+    return;
+
+  }
+
+
+  const result =
+    `**${selected}**`;
+
+
+  textarea.setRangeText(
+    result,
+    start,
+    end,
+    "end"
+  );
+
+
+  textarea.focus();
+
+}
+
+
+/* =========================================
+   H2
+========================================= */
+
+function makeH2() {
+
+  const start =
+    textarea.selectionStart;
+
+  const end =
+    textarea.selectionEnd;
+
+
+  const selected =
+    textarea.value.substring(
+      start,
+      end
+    );
+
+
+  if (!selected) {
+
+    alert(
+      "H2로 만들 글자를 먼저 드래그해주세요."
+    );
+
+    return;
+
+  }
+
+
+  const result =
+    `## ${selected}`;
+
+
+  textarea.setRangeText(
+    result,
+    start,
+    end,
+    "end"
+  );
+
+
+  textarea.focus();
+
+}
+
+
+/* =========================================
+   링크
+========================================= */
+
+function makeLink() {
+
+  const start =
+    textarea.selectionStart;
+
+  const end =
+    textarea.selectionEnd;
+
+
+  const selected =
+    textarea.value.substring(
+      start,
+      end
+    );
+
+
+  if (!selected) {
+
+    alert(
+      "링크로 만들 글자를 먼저 드래그해주세요."
+    );
+
+    return;
+
+  }
+
+
+  const url =
+    prompt(
+      "연결할 주소(URL)를 입력하세요.\n\n예:\nhttps://tool.donfree.co.kr/video/"
+    );
+
+
+  if (!url) return;
+
+
+  const result =
+    `[${selected}](${url})`;
+
+
+  textarea.setRangeText(
+    result,
+    start,
+    end,
+    "end"
+  );
+
+
+  textarea.focus();
+
+
+  showStatus(
+    "링크가 삽입되었습니다."
+  );
+
+}
+
+
+/* =========================================
+   구분선
+========================================= */
+
+function makeDivider() {
+
+  const start =
+    textarea.selectionStart;
+
+
+  const result =
+    "\n\n---\n\n";
+
+
+  textarea.setRangeText(
+    result,
+    start,
+    textarea.selectionEnd,
+    "end"
+  );
+
+
+  textarea.focus();
+
+}
+
+
+/* =========================================
+   미리보기
+========================================= */
+
+function showPreview() {
 
   let body =
-    document.getElementById("postBody").value;
-
-  /* 이미지 처리 */
-
-  images.forEach(image => {
-
-    const marker =
-      `[[IMAGE:${image.id}]]`;
-
-    const imageHtml =
-      `<img src="${image.src}" alt="${escapeHtml(image.alt)}">`;
-
-    body =
-      body.split(marker)
-           .join(imageHtml);
-
-  });
+    textarea.value;
 
 
-  /* HTML escape */
+  /*
+    이미지 마커를 이미지 HTML로 변경
+  */
 
-  body =
-    escapeHtml(body);
+  uploadedImages.forEach(
+    function(image) {
 
-
-  /* 이미지 태그는 다시 살림 */
-
-  images.forEach(image => {
-
-    const marker =
-      `[[IMAGE:${image.id}]]`;
-
-    const imageHtml =
-      `<img src="${image.src}" alt="${escapeHtml(image.alt)}">`;
-
-    body =
-      body.split(
-        escapeHtml(imageHtml)
-      ).join(imageHtml);
-
-  });
+      const marker =
+        `[[IMAGE:${image.id}]]`;
 
 
-  /* Markdown 기본 변환 */
+      const imageHTML =
+        `<img src="${image.src}" alt="${escapeAttribute(image.alt)}">`;
+
+
+      body =
+        body.split(marker)
+             .join(imageHTML);
+
+    }
+  );
+
+
+  /*
+    먼저 HTML 특수문자를 처리하되
+    이미지 태그는 건드리지 않기 위해
+    간단한 Markdown 변환 방식 사용
+  */
 
   body =
-    body.replace(
-      /^## (.*)$/gm,
+    convertMarkdown(body);
+
+
+  document
+    .getElementById("preview")
+    .innerHTML =
+      body;
+
+}
+
+
+/* =========================================
+   Markdown → 미리보기 HTML
+========================================= */
+
+function convertMarkdown(text) {
+
+  /*
+    이미지 태그를 임시 보관
+  */
+
+  const imageTags = [];
+
+  text =
+    text.replace(
+      /<img\b[^>]*>/gi,
+      function(match) {
+
+        const key =
+          `___DONFREE_IMAGE_${imageTags.length}___`;
+
+        imageTags.push(match);
+
+        return key;
+
+      }
+    );
+
+
+  /*
+    HTML escape
+  */
+
+  text =
+    escapeHTML(text);
+
+
+  /*
+    H2
+  */
+
+  text =
+    text.replace(
+      /^## (.+)$/gm,
       "<h2>$1</h2>"
     );
 
-  body =
-    body.replace(
+
+  /*
+    굵게
+  */
+
+  text =
+    text.replace(
       /\*\*(.*?)\*\*/g,
       "<strong>$1</strong>"
     );
 
-  body =
-    body.replace(
-      /\[(.*?)\]\((https?:\/\/[^\s)]+)\)/g,
+
+  /*
+    링크
+  */
+
+  text =
+    text.replace(
+      /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
       '<a href="$2" target="_blank" rel="noopener">$1</a>'
     );
 
-  body =
-    body.replace(
+
+  /*
+    구분선
+  */
+
+  text =
+    text.replace(
+      /^---$/gm,
+      "<hr>"
+    );
+
+
+  /*
+    줄바꿈
+  */
+
+  text =
+    text.replace(
       /\n/g,
       "<br>"
     );
 
 
-  document
-    .getElementById("previewContent")
-    .innerHTML = body;
+  /*
+    이미지 복원
+  */
+
+  imageTags.forEach(
+    function(tag, index) {
+
+      text =
+        text.replace(
+          `___DONFREE_IMAGE_${index}___`,
+          tag
+        );
+
+    }
+  );
+
+
+  return text;
 
 }
 
 
-/* =========================
+/* =========================================
    임시저장
-========================= */
+========================================= */
 
 function saveDraft() {
 
@@ -768,9 +1088,10 @@ function saveDraft() {
       document.getElementById("seoDescription").value,
 
     body:
-      document.getElementById("postBody").value,
+      textarea.value,
 
-    images: images
+    images:
+      uploadedImages
 
   };
 
@@ -778,18 +1099,19 @@ function saveDraft() {
   try {
 
     localStorage.setItem(
-      "donfreePostDraft",
+      "donfree-write-draft",
       JSON.stringify(data)
     );
+
 
     showStatus(
       "임시저장했습니다."
     );
 
-  } catch (error) {
+  } catch(error) {
 
-    showStatus(
-      "이미지가 너무 많거나 커서 저장하지 못했습니다."
+    alert(
+      "이미지가 너무 커서 임시저장하지 못했습니다."
     );
 
   }
@@ -797,16 +1119,17 @@ function saveDraft() {
 }
 
 
-/* =========================
+/* =========================================
    임시저장 불러오기
-========================= */
+========================================= */
 
 function loadDraft() {
 
   const saved =
     localStorage.getItem(
-      "donfreePostDraft"
+      "donfree-write-draft"
     );
+
 
   if (!saved) {
 
@@ -818,47 +1141,60 @@ function loadDraft() {
 
   }
 
+
   try {
 
     const data =
       JSON.parse(saved);
 
+
     document.getElementById("postTitle").value =
       data.title || "";
+
 
     document.getElementById("postSlug").value =
       data.slug || "";
 
+
     document.getElementById("postCategory").value =
       data.category || "";
+
 
     document.getElementById("postTags").value =
       data.tags || "";
 
+
     document.getElementById("seoTitle").value =
       data.seoTitle || "";
+
 
     document.getElementById("seoDescription").value =
       data.seoDescription || "";
 
-    document.getElementById("postBody").value =
+
+    textarea.value =
       data.body || "";
 
-    images =
+
+    uploadedImages =
       data.images || [];
 
-    renderImages();
 
-    previewPost();
+    renderImageList();
+
+
+    showPreview();
+
 
     showStatus(
       "임시저장한 글을 불러왔습니다."
     );
 
-  } catch (error) {
+
+  } catch(error) {
 
     alert(
-      "저장된 글을 불러오지 못했습니다."
+      "임시저장한 글을 불러오지 못했습니다."
     );
 
   }
@@ -866,37 +1202,40 @@ function loadDraft() {
 }
 
 
-/* =========================
-   Markdown 파일 생성
-========================= */
+/* =========================================
+   Markdown 파일 만들기
+========================================= */
 
-function downloadPost() {
+function downloadMarkdown() {
 
   const title =
     document.getElementById("postTitle").value.trim();
 
+
   const slug =
     document.getElementById("postSlug").value.trim();
+
 
   const category =
     document.getElementById("postCategory").value.trim();
 
+
   const tags =
     document.getElementById("postTags").value.trim();
 
-  const seoTitle =
-    document.getElementById("seoTitle").value.trim();
 
   const seoDescription =
-    document.getElementById("seoDescription").value.trim();
-
-  let body =
-    document.getElementById("postBody").value;
+    document
+      .getElementById("seoDescription")
+      .value
+      .trim();
 
 
   if (!title) {
 
-    alert("제목을 입력해주세요.");
+    alert(
+      "제목을 입력해주세요."
+    );
 
     return;
 
@@ -905,73 +1244,94 @@ function downloadPost() {
 
   if (!slug) {
 
-    alert("URL 슬러그를 입력해주세요.");
+    alert(
+      "URL 슬러그를 입력해주세요."
+    );
 
     return;
 
   }
 
 
-  /* 이미지 마커를 실제 이미지 HTML로 변경 */
+  let body =
+    textarea.value;
 
-  images.forEach(image => {
 
-    const marker =
-      `[[IMAGE:${image.id}]]`;
+  /*
+    이미지 마커를 실제 HTML 이미지로 변경
+  */
 
-    const imageHtml =
-      `<img src="${image.src}" alt="${image.alt}">`;
+  uploadedImages.forEach(
+    function(image) {
 
-    body =
-      body.split(marker)
-           .join(imageHtml);
+      const marker =
+        `[[IMAGE:${image.id}]]`;
 
-  });
+
+      const imageHTML =
+        `<img src="${image.src}" alt="${image.alt}">`;
+
+
+      body =
+        body.split(marker)
+             .join(imageHTML);
+
+    }
+  );
 
 
   const today =
     new Date()
       .toISOString()
-      .slice(0, 10);
+      .substring(0, 10);
 
 
-  const tagArray =
+  const tagList =
     tags
       .split(",")
-      .map(tag => tag.trim())
+      .map(
+        function(tag) {
+
+          return tag.trim();
+
+        }
+      )
       .filter(Boolean);
 
 
   const tagText =
-    tagArray.length
-      ? "[" +
-        tagArray
-          .map(tag => `"${tag}"`)
-          .join(", ") +
-        "]"
-      : "[]";
+    "[" +
+    tagList
+      .map(
+        function(tag) {
+
+          return `"${escapeYAML(tag)}"`;
+
+        }
+      )
+      .join(", ") +
+    "]";
 
 
-  const frontMatter = `---
-title: "${escapeYaml(title)}"
+  const markdown =
+`---
+title: "${escapeYAML(title)}"
 date: ${today}
-categories: ["${escapeYaml(category || "생활정보")}"]
+categories: ["${escapeYAML(category || "생활정보")}"]
 tags: ${tagText}
-description: "${escapeYaml(seoDescription)}"
+description: "${escapeYAML(seoDescription)}"
 ---
 
+${body}
 `;
-
-
-  const finalText =
-    frontMatter + body;
 
 
   const blob =
     new Blob(
-      [finalText],
+      [markdown],
       {
-        type: "text/markdown;charset=utf-8"
+        type:
+          "text/markdown;charset=utf-8"
       }
     );
 
@@ -980,19 +1340,26 @@ description: "${escapeYaml(seoDescription)}"
     URL.createObjectURL(blob);
 
 
-  const a =
+  const link =
     document.createElement("a");
 
-  a.href = url;
 
-  a.download =
+  link.href =
+    url;
+
+
+  link.download =
     `${today}-${slug}.md`;
 
-  document.body.appendChild(a);
 
-  a.click();
+  document.body.appendChild(link);
 
-  a.remove();
+
+  link.click();
+
+
+  link.remove();
+
 
   URL.revokeObjectURL(url);
 
@@ -1004,19 +1371,19 @@ description: "${escapeYaml(seoDescription)}"
 }
 
 
-/* =========================
+/* =========================================
    초기화
-========================= */
+========================================= */
 
-function clearAll() {
+function clearEditor() {
 
-  if (
-    !confirm(
+  const confirmed =
+    confirm(
       "작성 중인 내용을 모두 삭제할까요?"
-    )
-  ) {
-    return;
-  }
+    );
+
+
+  if (!confirmed) return;
 
 
   document.getElementById("postTitle").value = "";
@@ -1031,23 +1398,27 @@ function clearAll() {
 
   document.getElementById("seoDescription").value = "";
 
-  document.getElementById("postBody").value = "";
+  textarea.value = "";
 
-  images = [];
 
-  renderImages();
+  uploadedImages = [];
 
-  document.getElementById("previewContent").innerHTML =
+
+  renderImageList();
+
+
+  document.getElementById("preview").innerHTML =
     "작성한 글이 여기에 표시됩니다.";
+
 
   showStatus("");
 
 }
 
 
-/* =========================
+/* =========================================
    상태 메시지
-========================= */
+========================================= */
 
 function showStatus(message) {
 
@@ -1057,11 +1428,11 @@ function showStatus(message) {
 }
 
 
-/* =========================
+/* =========================================
    HTML escape
-========================= */
+========================================= */
 
-function escapeHtml(value) {
+function escapeHTML(value) {
 
   return String(value)
     .replace(/&/g, "&amp;")
@@ -1073,16 +1444,31 @@ function escapeHtml(value) {
 }
 
 
-/* =========================
-   YAML escape
-========================= */
+/* =========================================
+   Attribute escape
+========================================= */
 
-function escapeYaml(value) {
+function escapeAttribute(value) {
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+}
+
+
+/* =========================================
+   YAML escape
+========================================= */
+
+function escapeYAML(value) {
 
   return String(value)
     .replace(/\\/g, "\\\\")
     .replace(/"/g, '\\"')
-    .replace(/\n/g, " ");
+    .replace(/\r?\n/g, " ");
 
 }
 
