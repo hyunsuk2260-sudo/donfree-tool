@@ -1,194 +1,135 @@
 ---
-title: 글쓰기
-icon: fas fa-pen
-order: 99
 layout: page
+title: 글쓰기
 permalink: /write/
 ---
 
 <style>
-.donfree-editor {
-  max-width: 1000px;
+.write-wrap {
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.donfree-editor h2 {
-  margin-bottom: 8px;
-}
-
-.editor-desc {
-  color: #777;
-  font-size: 14px;
-  margin-bottom: 25px;
-}
-
-.editor-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-
-.editor-field {
-  margin-bottom: 18px;
-}
-
-.editor-field.full {
-  grid-column: 1 / -1;
-}
-
-.editor-field label {
+.write-wrap label {
   display: block;
-  font-size: 13px;
   font-weight: 700;
-  margin-bottom: 7px;
+  margin: 18px 0 7px;
 }
 
-.editor-field input,
-.editor-field select,
-.editor-field textarea {
+.write-wrap input,
+.write-wrap select,
+.write-wrap textarea {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #ddd;
-  border-radius: 7px;
-  padding: 11px 12px;
-  font-size: 14px;
+  border-radius: 8px;
+  padding: 11px 13px;
+  font-size: 15px;
   background: #fff;
 }
 
-.editor-field input:focus,
-.editor-field select:focus,
-.editor-field textarea:focus {
-  outline: none;
-  border-color: #333;
-}
-
-#post-body {
+.write-wrap textarea {
   min-height: 500px;
   resize: vertical;
-  line-height: 1.7;
-  font-family: inherit;
+  line-height: 1.8;
 }
 
-/* 이미지 업로드 영역 */
-
-.image-upload-box {
-  border: 1px dashed #bbb;
-  border-radius: 8px;
-  padding: 18px;
-  background: #fafafa;
+.write-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 10px 0;
 }
 
-.image-upload-box input[type="file"] {
+.write-toolbar button,
+.write-actions button {
   border: 0;
-  padding: 0;
-  background: transparent;
+  border-radius: 7px;
+  padding: 9px 14px;
+  cursor: pointer;
+  font-weight: 700;
+  background: #f1f3f5;
 }
 
-/* 이미지 목록 */
+.write-toolbar button:hover,
+.write-actions button:hover {
+  opacity: .85;
+}
+
+.write-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.btn-primary {
+  background: #111 !important;
+  color: #fff;
+}
+
+.btn-danger {
+  background: #ffe8e8 !important;
+  color: #c00;
+}
+
+.image-box {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 10px;
+}
 
 .image-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .image-item {
+  width: 150px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 10px;
-  background: white;
+  overflow: hidden;
+  background: #fff;
 }
 
 .image-item img {
   width: 100%;
-  height: 140px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 6px;
   display: block;
-  margin-bottom: 8px;
 }
 
-.image-item-name {
-  font-size: 11px;
-  color: #777;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 8px;
+.image-item .image-info {
+  padding: 8px;
+}
+
+.image-item input {
+  font-size: 12px;
+  padding: 6px;
+  margin-bottom: 5px;
 }
 
 .image-item button {
   width: 100%;
   border: 0;
-  border-radius: 5px;
-  padding: 7px;
+  padding: 6px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: 700;
-  background: #111827;
-  color: white;
+  background: #f1f1f1;
 }
-
-.image-item button.remove-image {
-  margin-top: 5px;
-  background: #eee;
-  color: #333;
-}
-
-/* 버튼 */
-
-.editor-buttons {
-  display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
-  margin-top: 15px;
-}
-
-.editor-buttons button {
-  border: 0;
-  border-radius: 6px;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.btn-preview {
-  background: #111827;
-  color: white;
-}
-
-.btn-save {
-  background: #2563eb;
-  color: white;
-}
-
-.btn-file {
-  background: #16a34a;
-  color: white;
-}
-
-.btn-clear {
-  background: #e5e7eb;
-  color: #333;
-}
-
-/* 미리보기 */
 
 .preview-box {
-  display: none;
   margin-top: 30px;
-  padding: 25px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: white;
-}
-
-.preview-box h3 {
-  margin-top: 0;
+  border-top: 1px solid #ddd;
+  padding-top: 25px;
 }
 
 .preview-content {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 25px;
   line-height: 1.8;
 }
 
@@ -196,414 +137,345 @@ permalink: /write/
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 20px 0;
+  margin: 20px auto;
   border-radius: 8px;
 }
 
-.status-message {
+.preview-content a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.status {
   margin-top: 10px;
+  color: #666;
   font-size: 13px;
-  color: #777;
 }
 
-.editor-help {
-  font-size: 12px;
-  color: #888;
-  margin-top: 7px;
-}
-
-@media (max-width: 700px) {
-
-  .editor-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .editor-field.full {
-    grid-column: auto;
-  }
-
-  .image-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  #post-body {
-    min-height: 400px;
-  }
+.help-box {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 </style>
 
+<div class="write-wrap">
 
-<div class="donfree-editor">
+  <h1>글쓰기</h1>
 
-<h2>✍️ 돈프리 글쓰기</h2>
+  <div class="help-box">
+    본문에서 링크를 넣고 싶은 글자를 드래그한 뒤
+    <strong>🔗 링크</strong> 버튼을 눌러주세요.
+  </div>
 
-<p class="editor-desc">
-검색 유입용 콘텐츠를 작성하고 이미지를 넣어 미리볼 수 있습니다.
-</p>
+  <label for="postTitle">제목</label>
+  <input
+    type="text"
+    id="postTitle"
+    placeholder="글 제목을 입력하세요"
+  >
 
+  <label for="postSlug">URL 슬러그</label>
+  <input
+    type="text"
+    id="postSlug"
+    placeholder="예: instagram-reels-download"
+  >
 
-<div class="editor-grid">
+  <label for="postCategory">카테고리</label>
+  <input
+    type="text"
+    id="postCategory"
+    placeholder="예: 생활정보"
+  >
 
-  <!-- 제목 -->
+  <label for="postTags">태그</label>
+  <input
+    type="text"
+    id="postTags"
+    placeholder="예: 인스타, 릴스, 다운로드"
+  >
 
-  <div class="editor-field">
+  <label for="seoTitle">SEO 제목</label>
+  <input
+    type="text"
+    id="seoTitle"
+    placeholder="검색 결과에 표시될 제목"
+  >
 
-    <label>글 제목</label>
+  <label for="seoDescription">SEO 설명</label>
+  <input
+    type="text"
+    id="seoDescription"
+    placeholder="검색 결과에 표시될 설명"
+  >
+
+  <label>이미지</label>
+
+  <div class="image-box">
 
     <input
-      type="text"
-      id="post-title"
-      placeholder="예: 인스타 릴스 다운로드 방법, 앱 없이 저장하는 법"
+      type="file"
+      id="imageInput"
+      accept="image/*"
+      multiple
     >
 
+    <div class="help-box">
+      여러 장의 이미지를 한 번에 선택할 수 있습니다.
+      원하는 위치에 커서를 놓고 이미지의
+      <strong>본문에 넣기</strong> 버튼을 누르세요.
+    </div>
+
+    <div id="imageList" class="image-list"></div>
+
   </div>
 
+  <label for="postBody">본문</label>
 
-  <!-- URL -->
+  <div class="write-toolbar">
 
-  <div class="editor-field">
+    <button type="button" onclick="insertBold()">
+      굵게
+    </button>
 
-    <label>URL 슬러그</label>
+    <button type="button" onclick="insertH2()">
+      H2
+    </button>
 
-    <input
-      type="text"
-      id="post-slug"
-      placeholder="instagram-reels-download"
+    <button type="button" onclick="insertLink()">
+      🔗 링크
+    </button>
+
+    <button type="button" onclick="insertLine()">
+      구분선
+    </button>
+
+  </div>
+
+  <textarea
+    id="postBody"
+    placeholder="본문을 작성하세요."
+  ></textarea>
+
+  <div class="write-actions">
+
+    <button
+      type="button"
+      class="btn-primary"
+      onclick="previewPost()"
     >
+      👀 미리보기
+    </button>
 
-  </div>
-
-
-  <!-- 카테고리 -->
-
-  <div class="editor-field">
-
-    <label>카테고리</label>
-
-    <select id="post-category">
-
-      <option value="생활정보">생활정보</option>
-      <option value="SNS">SNS</option>
-      <option value="돈버는정보">돈버는정보</option>
-      <option value="IT">IT</option>
-      <option value="육아">육아</option>
-      <option value="여행">여행</option>
-      <option value="리빙">리빙</option>
-
-    </select>
-
-  </div>
-
-
-  <!-- 태그 -->
-
-  <div class="editor-field">
-
-    <label>태그</label>
-
-    <input
-      type="text"
-      id="post-tags"
-      placeholder="인스타, 릴스, 다운로드"
+    <button
+      type="button"
+      onclick="saveDraft()"
     >
+      💾 임시저장
+    </button>
 
-  </div>
-
-
-  <!-- SEO -->
-
-  <div class="editor-field">
-
-    <label>SEO 제목</label>
-
-    <input
-      type="text"
-      id="seo-title"
-      placeholder="검색 결과에 표시될 제목"
+    <button
+      type="button"
+      onclick="loadDraft()"
     >
+      📂 불러오기
+    </button>
 
-  </div>
-
-
-  <div class="editor-field">
-
-    <label>SEO 설명</label>
-
-    <input
-      type="text"
-      id="seo-description"
-      placeholder="검색 결과에 표시될 설명"
+    <button
+      type="button"
+      class="btn-danger"
+      onclick="clearAll()"
     >
+      🗑️ 초기화
+    </button>
+
+    <button
+      type="button"
+      class="btn-primary"
+      onclick="downloadPost()"
+    >
+      📄 글 파일 만들기
+    </button>
 
   </div>
 
+  <div id="status" class="status"></div>
 
-  <!-- 이미지 -->
+  <div class="preview-box">
 
-  <div class="editor-field full">
+    <h2>미리보기</h2>
 
-    <label>본문 이미지</label>
-
-    <div class="image-upload-box">
-
-      <input
-        type="file"
-        id="post-images"
-        accept="image/*"
-        multiple
-      >
-
-      <div class="editor-help">
-        여러 장을 한꺼번에 선택할 수 있습니다.
-      </div>
-
-      <div
-        id="image-list"
-        class="image-list"
-      ></div>
-
+    <div
+      id="previewContent"
+      class="preview-content"
+    >
+      작성한 글이 여기에 표시됩니다.
     </div>
 
   </div>
-
-
-  <!-- 본문 -->
-
-  <div class="editor-field full">
-
-    <label>본문</label>
-
-    <textarea
-      id="post-body"
-      placeholder="여기에 글을 작성하세요."
-    ></textarea>
-
-    <div class="editor-help">
-      이미지를 넣고 싶은 위치에 커서를 놓은 뒤,
-      위 이미지의 「본문에 넣기」를 누르세요.
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- 버튼 -->
-
-<div class="editor-buttons">
-
-  <button
-    type="button"
-    class="btn-preview"
-    onclick="showPreview()"
-  >
-    👁️ 미리보기
-  </button>
-
-  <button
-    type="button"
-    class="btn-save"
-    onclick="saveDraft()"
-  >
-    💾 임시저장
-  </button>
-
-  <button
-    type="button"
-    class="btn-file"
-    onclick="downloadPost()"
-  >
-    📄 글 파일 만들기
-  </button>
-
-  <button
-    type="button"
-    class="btn-clear"
-    onclick="clearPost()"
-  >
-    🗑 초기화
-  </button>
-
-</div>
-
-
-<div
-  id="status-message"
-  class="status-message"
-></div>
-
-
-<!-- 미리보기 -->
-
-<div
-  id="preview-box"
-  class="preview-box"
->
-
-  <h3 id="preview-title"></h3>
-
-  <div
-    id="preview-content"
-    class="preview-content"
-  ></div>
-
-</div>
 
 </div>
 
 
 <script>
 
-/* ==========================================
-   이미지 저장 배열
-========================================== */
-
-let uploadedImages = [];
+let images = [];
 
 
-/* ==========================================
+/* =========================
    이미지 선택
-========================================== */
+========================= */
 
 document
-  .getElementById("post-images")
-  .addEventListener("change", function(event) {
+  .getElementById("imageInput")
+  .addEventListener("change", function(e) {
 
-    const files = Array.from(event.target.files);
+    const files = Array.from(e.target.files);
 
-    if (!files.length) return;
-
-
-    files.forEach(function(file) {
-
-      if (!file.type.startsWith("image/")) {
-        return;
-      }
-
+    files.forEach(file => {
 
       const reader = new FileReader();
 
+      reader.onload = function(event) {
 
-      reader.onload = function(e) {
-
-        const image = {
-
-          id:
-            Date.now() +
-            Math.random(),
-
-          name:
-            file.name,
-
-          data:
-            e.target.result
-
-        };
-
-
-        uploadedImages.push(image);
+        images.push({
+          id: Date.now() + Math.random(),
+          name: file.name,
+          src: event.target.result,
+          alt: file.name.replace(/\.[^/.]+$/, "")
+        });
 
         renderImages();
 
       };
 
-
       reader.readAsDataURL(file);
 
     });
 
+    e.target.value = "";
 
-    /*
-      같은 파일을 다시 선택할 수 있도록
-      input 값을 초기화
-    */
-
-    event.target.value = "";
-
-  });
+});
 
 
-/* ==========================================
-   이미지 목록 출력
-========================================== */
+/* =========================
+   이미지 목록 표시
+========================= */
 
 function renderImages() {
 
-  const container =
-    document.getElementById("image-list");
+  const list = document.getElementById("imageList");
 
+  list.innerHTML = "";
 
-  container.innerHTML = "";
+  images.forEach(image => {
 
+    const item = document.createElement("div");
 
-  uploadedImages.forEach(function(image, index) {
-
-    const item =
-      document.createElement("div");
-
-    item.className =
-      "image-item";
-
+    item.className = "image-item";
 
     item.innerHTML = `
 
-      <img
-        src="${image.data}"
-        alt="${escapeHtml(image.name)}"
-      >
+      <img src="${image.src}" alt="">
 
-      <div class="image-item-name">
-        ${escapeHtml(image.name)}
+      <div class="image-info">
+
+        <input
+          type="text"
+          value="${escapeHtml(image.alt)}"
+          placeholder="이미지 설명"
+          onchange="updateAlt('${image.id}', this.value)"
+        >
+
+        <button
+          type="button"
+          onclick="insertImage('${image.id}')"
+        >
+          본문에 넣기
+        </button>
+
+        <button
+          type="button"
+          onclick="removeImage('${image.id}')"
+        >
+          삭제
+        </button>
+
       </div>
-
-      <button
-        type="button"
-        onclick="insertImage(${index})"
-      >
-        본문에 넣기
-      </button>
-
-      <button
-        type="button"
-        class="remove-image"
-        onclick="removeImage(${index})"
-      >
-        삭제
-      </button>
 
     `;
 
-
-    container.appendChild(item);
+    list.appendChild(item);
 
   });
 
 }
 
 
-/* ==========================================
+/* =========================
+   이미지 설명 수정
+========================= */
+
+function updateAlt(id, value) {
+
+  const image = images.find(
+    item => String(item.id) === String(id)
+  );
+
+  if (image) {
+    image.alt = value;
+  }
+
+}
+
+
+/* =========================
    이미지 본문 삽입
-========================================== */
+========================= */
 
-function insertImage(index) {
+function insertImage(id) {
 
-  const textarea =
-    document.getElementById("post-body");
-
-  const image =
-    uploadedImages[index];
-
+  const image = images.find(
+    item => String(item.id) === String(id)
+  );
 
   if (!image) return;
-
-
-  /*
-    이미지 ID를 본문에 삽입
-  */
 
   const marker =
     `[[IMAGE:${image.id}]]`;
 
+  insertAtCursor(marker);
+
+}
+
+
+/* =========================
+   이미지 삭제
+========================= */
+
+function removeImage(id) {
+
+  images = images.filter(
+    item => String(item.id) !== String(id)
+  );
+
+  renderImages();
+
+}
+
+
+/* =========================
+   커서 위치에 텍스트 삽입
+========================= */
+
+function insertAtCursor(text) {
+
+  const textarea =
+    document.getElementById("postBody");
 
   const start =
     textarea.selectionStart;
@@ -611,572 +483,420 @@ function insertImage(index) {
   const end =
     textarea.selectionEnd;
 
-
-  const before =
-    textarea.value.substring(0, start);
-
-  const after =
-    textarea.value.substring(end);
-
+  const current =
+    textarea.value;
 
   textarea.value =
-    before +
-    "\n\n" +
-    marker +
-    "\n\n" +
-    after;
-
-
-  /*
-    커서를 이미지 뒤로 이동
-  */
-
-  const newPosition =
-    start +
-    marker.length +
-    4;
-
+    current.substring(0, start)
+    + text
+    + current.substring(end);
 
   textarea.focus();
 
-  textarea.setSelectionRange(
-    newPosition,
-    newPosition
-  );
+  const newPosition =
+    start + text.length;
+
+  textarea.selectionStart =
+    newPosition;
+
+  textarea.selectionEnd =
+    newPosition;
 
 }
 
 
-/* ==========================================
-   이미지 삭제
-========================================== */
+/* =========================
+   굵게
+========================= */
 
-function removeImage(index) {
-
-  if (
-    !confirm("이 이미지를 삭제할까요?")
-  ) {
-    return;
-  }
-
-
-  const image =
-    uploadedImages[index];
-
-
-  /*
-    본문에 들어간 이미지 표시도 제거
-  */
+function insertBold() {
 
   const textarea =
-    document.getElementById("post-body");
+    document.getElementById("postBody");
 
+  const start =
+    textarea.selectionStart;
+
+  const end =
+    textarea.selectionEnd;
+
+  const selected =
+    textarea.value.substring(start, end);
+
+  if (!selected) {
+
+    alert(
+      "굵게 표시할 글자를 먼저 드래그해주세요."
+    );
+
+    return;
+
+  }
+
+  const replacement =
+    `**${selected}**`;
 
   textarea.value =
-    textarea.value.replace(
-      new RegExp(
-        "\\[\\[IMAGE:" +
-        escapeRegExp(String(image.id)) +
-        "\\]\\]",
-        "g"
-      ),
-      ""
+    textarea.value.substring(0, start)
+    + replacement
+    + textarea.value.substring(end);
+
+  textarea.focus();
+
+}
+
+
+/* =========================
+   H2
+========================= */
+
+function insertH2() {
+
+  const textarea =
+    document.getElementById("postBody");
+
+  const start =
+    textarea.selectionStart;
+
+  const end =
+    textarea.selectionEnd;
+
+  const selected =
+    textarea.value.substring(start, end);
+
+  if (!selected) {
+
+    alert(
+      "제목으로 만들 글자를 먼저 드래그해주세요."
     );
 
+    return;
 
-  uploadedImages.splice(
-    index,
-    1
-  );
+  }
 
+  const replacement =
+    `## ${selected}`;
 
-  renderImages();
+  textarea.value =
+    textarea.value.substring(0, start)
+    + replacement
+    + textarea.value.substring(end);
 
-}
-
-
-/* ==========================================
-   정규식 특수문자 처리
-========================================== */
-
-function escapeRegExp(text) {
-
-  return text.replace(
-    /[.*+?^${}()|[\]\\]/g,
-    "\\$&"
-  );
+  textarea.focus();
 
 }
 
 
-/* ==========================================
-   HTML 이스케이프
-========================================== */
+/* =========================
+   🔗 링크 삽입
+========================= */
 
-function escapeHtml(text) {
+function insertLink() {
 
-  return String(text)
+  const textarea =
+    document.getElementById("postBody");
 
-    .replace(
-      /&/g,
-      "&amp;"
-    )
+  const start =
+    textarea.selectionStart;
 
-    .replace(
-      /</g,
-      "&lt;"
-    )
+  const end =
+    textarea.selectionEnd;
 
-    .replace(
-      />/g,
-      "&gt;"
-    )
+  const selected =
+    textarea.value.substring(start, end);
 
-    .replace(
-      /"/g,
-      "&quot;"
-    )
+  if (!selected) {
 
-    .replace(
-      /'/g,
-      "&#039;"
+    alert(
+      "먼저 링크로 만들 글자를 드래그해주세요."
     );
 
+    return;
+
+  }
+
+  const url =
+    prompt(
+      "연결할 URL을 입력하세요.\n\n예:\nhttps://tool.donfree.co.kr/video/"
+    );
+
+  if (!url) return;
+
+  const markdown =
+    `[${selected}](${url})`;
+
+  textarea.value =
+    textarea.value.substring(0, start)
+    + markdown
+    + textarea.value.substring(end);
+
+  textarea.focus();
+
+  const newPosition =
+    start + markdown.length;
+
+  textarea.selectionStart =
+    newPosition;
+
+  textarea.selectionEnd =
+    newPosition;
+
 }
 
 
-/* ==========================================
-   본문 → HTML
-========================================== */
+/* =========================
+   구분선
+========================= */
 
-function markdownToHtml(text) {
+function insertLine() {
 
-  let html =
-    escapeHtml(text);
+  insertAtCursor(
+    "\n\n---\n\n"
+  );
+
+}
 
 
-  /*
-    이미지 표시
-  */
+/* =========================
+   미리보기
+========================= */
 
-  uploadedImages.forEach(function(image) {
+function previewPost() {
+
+  let body =
+    document.getElementById("postBody").value;
+
+  /* 이미지 처리 */
+
+  images.forEach(image => {
 
     const marker =
-      escapeRegExp(
-        `[[IMAGE:${image.id}]]`
-      );
+      `[[IMAGE:${image.id}]]`;
 
+    const imageHtml =
+      `<img src="${image.src}" alt="${escapeHtml(image.alt)}">`;
 
-    const imageHtml = `
-      <img
-        src="${image.data}"
-        alt="${escapeHtml(image.name)}"
-      >
-    `;
-
-
-    html =
-      html.replace(
-        new RegExp(marker, "g"),
-        imageHtml
-      );
+    body =
+      body.split(marker)
+           .join(imageHtml);
 
   });
 
 
-  /*
-    제목
-  */
+  /* HTML escape */
 
-  html =
-    html.replace(
-      /^### (.*)$/gm,
-      "<h4>$1</h4>"
-    );
+  body =
+    escapeHtml(body);
 
 
-  html =
-    html.replace(
+  /* 이미지 태그는 다시 살림 */
+
+  images.forEach(image => {
+
+    const marker =
+      `[[IMAGE:${image.id}]]`;
+
+    const imageHtml =
+      `<img src="${image.src}" alt="${escapeHtml(image.alt)}">`;
+
+    body =
+      body.split(
+        escapeHtml(imageHtml)
+      ).join(imageHtml);
+
+  });
+
+
+  /* Markdown 기본 변환 */
+
+  body =
+    body.replace(
       /^## (.*)$/gm,
-      "<h3>$1</h3>"
-    );
-
-
-  html =
-    html.replace(
-      /^# (.*)$/gm,
       "<h2>$1</h2>"
     );
 
-
-  /*
-    굵게
-  */
-
-  html =
-    html.replace(
+  body =
+    body.replace(
       /\*\*(.*?)\*\*/g,
       "<strong>$1</strong>"
     );
 
-
-  /*
-    줄바꿈
-  */
-
-  html =
-    html.replace(
-      /\n\n/g,
-      "</p><p>"
+  body =
+    body.replace(
+      /\[(.*?)\]\((https?:\/\/[^\s)]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener">$1</a>'
     );
 
-
-  html =
-    "<p>" +
-    html +
-    "</p>";
-
-
-  html =
-    html.replace(
+  body =
+    body.replace(
       /\n/g,
       "<br>"
     );
 
 
-  return html;
+  document
+    .getElementById("previewContent")
+    .innerHTML = body;
 
 }
 
 
-/* ==========================================
-   미리보기
-========================================== */
-
-function showPreview() {
-
-  const title =
-    document
-      .getElementById("post-title")
-      .value
-      .trim();
-
-
-  const body =
-    document
-      .getElementById("post-body")
-      .value;
-
-
-  if (!title) {
-
-    alert(
-      "글 제목을 입력해주세요."
-    );
-
-    return;
-
-  }
-
-
-  document
-    .getElementById("preview-title")
-    .textContent =
-    title;
-
-
-  document
-    .getElementById("preview-content")
-    .innerHTML =
-    markdownToHtml(body);
-
-
-  document
-    .getElementById("preview-box")
-    .style.display =
-    "block";
-
-
-  document
-    .getElementById("preview-box")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
-}
-
-
-/* ==========================================
+/* =========================
    임시저장
-========================================== */
+========================= */
 
 function saveDraft() {
 
   const data = {
 
     title:
-      document.getElementById("post-title").value,
+      document.getElementById("postTitle").value,
 
     slug:
-      document.getElementById("post-slug").value,
+      document.getElementById("postSlug").value,
 
     category:
-      document.getElementById("post-category").value,
+      document.getElementById("postCategory").value,
 
     tags:
-      document.getElementById("post-tags").value,
+      document.getElementById("postTags").value,
 
     seoTitle:
-      document.getElementById("seo-title").value,
+      document.getElementById("seoTitle").value,
 
     seoDescription:
-      document
-        .getElementById("seo-description")
-        .value,
+      document.getElementById("seoDescription").value,
 
     body:
-      document.getElementById("post-body").value,
+      document.getElementById("postBody").value,
 
-    images:
-      uploadedImages
+    images: images
 
   };
 
 
-  localStorage.setItem(
-    "donfree-post-draft",
-    JSON.stringify(data)
-  );
+  try {
 
+    localStorage.setItem(
+      "donfreePostDraft",
+      JSON.stringify(data)
+    );
 
-  document
-    .getElementById("status-message")
-    .textContent =
-    "✓ 임시저장되었습니다.";
+    showStatus(
+      "임시저장했습니다."
+    );
+
+  } catch (error) {
+
+    showStatus(
+      "이미지가 너무 많거나 커서 저장하지 못했습니다."
+    );
+
+  }
 
 }
 
 
-/* ==========================================
+/* =========================
    임시저장 불러오기
-========================================== */
+========================= */
 
 function loadDraft() {
 
   const saved =
     localStorage.getItem(
-      "donfree-post-draft"
+      "donfreePostDraft"
     );
 
+  if (!saved) {
 
-  if (!saved) return;
+    alert(
+      "저장된 글이 없습니다."
+    );
 
+    return;
+
+  }
 
   try {
 
     const data =
       JSON.parse(saved);
 
-
-    document
-      .getElementById("post-title")
-      .value =
+    document.getElementById("postTitle").value =
       data.title || "";
 
-
-    document
-      .getElementById("post-slug")
-      .value =
+    document.getElementById("postSlug").value =
       data.slug || "";
 
+    document.getElementById("postCategory").value =
+      data.category || "";
 
-    document
-      .getElementById("post-category")
-      .value =
-      data.category || "생활정보";
-
-
-    document
-      .getElementById("post-tags")
-      .value =
+    document.getElementById("postTags").value =
       data.tags || "";
 
-
-    document
-      .getElementById("seo-title")
-      .value =
+    document.getElementById("seoTitle").value =
       data.seoTitle || "";
 
-
-    document
-      .getElementById("seo-description")
-      .value =
+    document.getElementById("seoDescription").value =
       data.seoDescription || "";
 
-
-    document
-      .getElementById("post-body")
-      .value =
+    document.getElementById("postBody").value =
       data.body || "";
 
-
-    uploadedImages =
-      Array.isArray(data.images)
-        ? data.images
-        : [];
-
+    images =
+      data.images || [];
 
     renderImages();
 
+    previewPost();
 
-  } catch(error) {
+    showStatus(
+      "임시저장한 글을 불러왔습니다."
+    );
 
-    console.log(error);
+  } catch (error) {
+
+    alert(
+      "저장된 글을 불러오지 못했습니다."
+    );
 
   }
 
 }
 
 
-/* ==========================================
-   날짜
-========================================== */
-
-function getToday() {
-
-  const now =
-    new Date();
-
-
-  const year =
-    now.getFullYear();
-
-
-  const month =
-    String(
-      now.getMonth() + 1
-    ).padStart(
-      2,
-      "0"
-    );
-
-
-  const day =
-    String(
-      now.getDate()
-    ).padStart(
-      2,
-      "0"
-    );
-
-
-  return `${year}-${month}-${day}`;
-
-}
-
-
-/* ==========================================
-   YAML 문자열
-========================================== */
-
-function yamlText(text) {
-
-  return String(text || "")
-    .replace(
-      /"/g,
-      '\\"'
-    );
-
-}
-
-
-/* ==========================================
-   태그
-========================================== */
-
-function makeTags(tags) {
-
-  if (!tags.trim()) {
-    return "[]";
-  }
-
-
-  return "[" +
-
-    tags
-      .split(",")
-      .map(function(tag) {
-
-        return `"${yamlText(
-          tag.trim()
-        )}"`;
-
-      })
-      .filter(Boolean)
-      .join(", ")
-
-    + "]";
-
-}
-
-
-/* ==========================================
-   글 파일 만들기
-========================================== */
+/* =========================
+   Markdown 파일 생성
+========================= */
 
 function downloadPost() {
 
   const title =
-    document
-      .getElementById("post-title")
-      .value
-      .trim();
-
+    document.getElementById("postTitle").value.trim();
 
   const slug =
-    document
-      .getElementById("post-slug")
-      .value
-      .trim();
-
+    document.getElementById("postSlug").value.trim();
 
   const category =
-    document
-      .getElementById("post-category")
-      .value;
-
+    document.getElementById("postCategory").value.trim();
 
   const tags =
-    document
-      .getElementById("post-tags")
-      .value;
-
+    document.getElementById("postTags").value.trim();
 
   const seoTitle =
-    document
-      .getElementById("seo-title")
-      .value
-      .trim();
-
+    document.getElementById("seoTitle").value.trim();
 
   const seoDescription =
-    document
-      .getElementById("seo-description")
-      .value
-      .trim();
-
+    document.getElementById("seoDescription").value.trim();
 
   let body =
-    document
-      .getElementById("post-body")
-      .value;
+    document.getElementById("postBody").value;
 
 
   if (!title) {
 
-    alert(
-      "글 제목을 입력해주세요."
-    );
+    alert("제목을 입력해주세요.");
 
     return;
 
@@ -1185,80 +905,73 @@ function downloadPost() {
 
   if (!slug) {
 
-    alert(
-      "URL 슬러그를 입력해주세요."
-    );
+    alert("URL 슬러그를 입력해주세요.");
 
     return;
 
   }
 
 
-  if (!body.trim()) {
+  /* 이미지 마커를 실제 이미지 HTML로 변경 */
 
-    alert(
-      "본문을 입력해주세요."
-    );
-
-    return;
-
-  }
-
-
-  /*
-    본문의 이미지 표시를
-    실제 HTML 이미지로 변환
-  */
-
-  uploadedImages.forEach(function(image) {
+  images.forEach(image => {
 
     const marker =
       `[[IMAGE:${image.id}]]`;
 
-
-    const imageHtml = `
-<img
-src="${image.data}"
-alt="${escapeHtml(image.name)}"
->
-`;
-
+    const imageHtml =
+      `<img src="${image.src}" alt="${image.alt}">`;
 
     body =
       body.split(marker)
-        .join(imageHtml);
+           .join(imageHtml);
 
   });
 
 
-  const date =
-    getToday();
+  const today =
+    new Date()
+      .toISOString()
+      .slice(0, 10);
+
+
+  const tagArray =
+    tags
+      .split(",")
+      .map(tag => tag.trim())
+      .filter(Boolean);
+
+
+  const tagText =
+    tagArray.length
+      ? "[" +
+        tagArray
+          .map(tag => `"${tag}"`)
+          .join(", ") +
+        "]"
+      : "[]";
 
 
   const frontMatter = `---
-title: "${yamlText(title)}"
-date: ${date}
-categories: ["${yamlText(category)}"]
-tags: ${makeTags(tags)}
-description: "${yamlText(seoDescription)}"
-seo_title: "${yamlText(seoTitle)}"
-permalink: /posts/${slug}/
+title: "${escapeYaml(title)}"
+date: ${today}
+categories: ["${escapeYaml(category || "생활정보")}"]
+tags: ${tagText}
+description: "${escapeYaml(seoDescription)}"
 ---
 
 `;
 
 
-  const content =
-    frontMatter +
-    body;
+  const finalText =
+    frontMatter + body;
 
 
   const blob =
     new Blob(
-      [content],
+      [finalText],
       {
-        type:
-          "text/markdown;charset=utf-8"
+        type: "text/markdown;charset=utf-8"
       }
     );
 
@@ -1267,130 +980,110 @@ permalink: /posts/${slug}/
     URL.createObjectURL(blob);
 
 
-  const link =
+  const a =
     document.createElement("a");
 
+  a.href = url;
 
-  link.href =
-    url;
+  a.download =
+    `${today}-${slug}.md`;
 
+  document.body.appendChild(a);
 
-  link.download =
-    `${date}-${slug}.md`;
+  a.click();
 
-
-  document
-    .body
-    .appendChild(link);
-
-
-  link.click();
-
-
-  document
-    .body
-    .removeChild(link);
-
+  a.remove();
 
   URL.revokeObjectURL(url);
 
 
-  document
-    .getElementById("status-message")
-    .textContent =
-    "✓ 글 파일이 만들어졌습니다.";
+  showStatus(
+    "Markdown 파일을 만들었습니다."
+  );
 
 }
 
 
-/* ==========================================
+/* =========================
    초기화
-========================================== */
+========================= */
 
-function clearPost() {
+function clearAll() {
 
   if (
     !confirm(
       "작성 중인 내용을 모두 삭제할까요?"
     )
   ) {
-
     return;
-
   }
 
 
-  document
-    .getElementById("post-title")
-    .value = "";
+  document.getElementById("postTitle").value = "";
 
+  document.getElementById("postSlug").value = "";
 
-  document
-    .getElementById("post-slug")
-    .value = "";
+  document.getElementById("postCategory").value = "";
 
+  document.getElementById("postTags").value = "";
 
-  document
-    .getElementById("post-category")
-    .value =
-    "생활정보";
+  document.getElementById("seoTitle").value = "";
 
+  document.getElementById("seoDescription").value = "";
 
-  document
-    .getElementById("post-tags")
-    .value = "";
+  document.getElementById("postBody").value = "";
 
+  images = [];
 
-  document
-    .getElementById("seo-title")
-    .value = "";
+  renderImages();
 
+  document.getElementById("previewContent").innerHTML =
+    "작성한 글이 여기에 표시됩니다.";
 
-  document
-    .getElementById("seo-description")
-    .value = "";
-
-
-  document
-    .getElementById("post-body")
-    .value = "";
-
-
-  document
-    .getElementById("post-images")
-    .value = "";
-
-
-  document
-    .getElementById("image-list")
-    .innerHTML = "";
-
-
-  document
-    .getElementById("preview-box")
-    .style.display =
-    "none";
-
-
-  uploadedImages = [];
-
-
-  localStorage.removeItem(
-    "donfree-post-draft"
-  );
-
-
-  document
-    .getElementById("status-message")
-    .textContent = "";
+  showStatus("");
 
 }
 
 
-/* ==========================================
-   시작
-========================================== */
+/* =========================
+   상태 메시지
+========================= */
 
-loadDraft();
+function showStatus(message) {
+
+  document.getElementById("status").textContent =
+    message;
+
+}
+
+
+/* =========================
+   HTML escape
+========================= */
+
+function escapeHtml(value) {
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================
+   YAML escape
+========================= */
+
+function escapeYaml(value) {
+
+  return String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, " ");
+
+}
 
 </script>
