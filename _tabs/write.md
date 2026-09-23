@@ -1,1515 +1,809 @@
 ---
 layout: page
 title: 글쓰기
-permalink: /write/
+icon: fas fa-pen
+order: 1
 ---
 
 <style>
 .write-wrap {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-.write-box {
-  margin-bottom: 22px;
-}
-
-.write-label {
+.write-wrap label {
   display: block;
   font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 15px;
+  margin: 18px 0 7px;
 }
 
-.write-input,
-.write-select,
-.write-textarea {
+.write-wrap input,
+.write-wrap select,
+.write-wrap textarea {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-size: 15px;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  padding: 11px;
+  font-size: 14px;
   background: #fff;
 }
 
-.write-input:focus,
-.write-select:focus,
-.write-textarea:focus {
-  outline: none;
-  border-color: #777;
+.write-wrap textarea {
+  min-height: 420px;
+  resize: vertical;
+  line-height: 1.8;
 }
 
-.editor-toolbar {
+.write-help {
+  margin-top: 6px;
+  color: #777;
+  font-size: 12px;
+}
+
+.write-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.write-buttons button,
+.image-actions button {
+  border: 0;
+  border-radius: 7px;
+  padding: 9px 13px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  background: #333;
+  color: #fff;
+}
+
+.write-buttons button:hover,
+.image-actions button:hover {
+  opacity: .8;
+}
+
+button.primary {
+  background: #1677ff;
+}
+
+button.danger {
+  background: #d9363e;
+}
+
+.editor-box {
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.editor-box h3 {
+  margin-top: 0;
+  font-size: 17px;
+}
+
+.image-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+  margin-top: 15px;
+}
+
+.image-item {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.image-item img {
+  display: block;
+  width: 100%;
+  height: 135px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #f3f3f3;
   margin-bottom: 10px;
 }
 
-.editor-toolbar button,
-.action-btn {
+.image-name {
+  font-size: 12px;
+  color: #555;
+  word-break: break-all;
+  margin-bottom: 8px;
+}
+
+.image-number {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.image-size-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.image-size-row label {
+  margin: 0;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.image-size-row select {
+  padding: 7px;
+}
+
+.image-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.image-actions button {
+  padding: 7px 9px;
+  font-size: 12px;
+}
+
+.preview-box {
+  margin-top: 25px;
+  padding: 22px;
   border: 1px solid #ddd;
+  border-radius: 10px;
   background: #fff;
-  border-radius: 8px;
-  padding: 9px 13px;
-  cursor: pointer;
-  font-size: 14px;
 }
 
-.editor-toolbar button:hover,
-.action-btn:hover {
-  background: #f5f5f5;
+.preview-box h2 {
+  margin-top: 0;
 }
 
-.editor-toolbar button.primary {
-  background: #222;
-  color: #fff;
-  border-color: #222;
-}
-
-.editor-area {
-  min-height: 550px;
-  max-height: 700px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 20px;
-  background: #fff;
+#previewContent {
   line-height: 1.8;
-  font-size: 16px;
-  box-sizing: border-box;
+  word-break: break-word;
 }
 
-.editor-area:focus {
-  outline: none;
-  border-color: #777;
-}
-
-.editor-area:empty:before {
-  content: "여기에 글을 작성하세요.";
-  color: #aaa;
-}
-
-.editor-area img {
+#previewContent img {
   display: block;
   max-width: 100%;
   height: auto;
   margin: 18px auto;
-  border-radius: 8px;
 }
 
-.editor-area a {
+#previewContent a {
   color: #1677ff;
   text-decoration: underline;
 }
 
-.preview-box {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 24px;
-  background: #fff;
-  margin-top: 20px;
+#previewContent h1,
+#previewContent h2,
+#previewContent h3 {
+  margin-top: 25px;
 }
 
-.preview-title {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 25px;
-}
-
-.preview-content {
-  line-height: 1.8;
-  font-size: 16px;
-}
-
-.preview-content img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 20px auto;
-  border-radius: 8px;
-}
-
-.preview-content a {
-  color: #1677ff;
-  text-decoration: underline;
-}
-
-.bottom-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.bottom-buttons button {
-  border: 0;
-  border-radius: 10px;
-  padding: 13px 18px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.btn-preview {
-  background: #eee;
-  color: #222;
-}
-
-.btn-save {
-  background: #222;
-  color: #fff;
-}
-
-.btn-download {
-  background: #1677ff;
-  color: #fff;
-}
-
-.btn-clear {
-  background: #f3f3f3;
-  color: #555;
-}
-
-.write-help {
-  font-size: 13px;
+.empty-image {
   color: #888;
-  margin-top: 7px;
-  line-height: 1.5;
-}
-
-.image-input {
-  display: none;
-}
-
-.status-message {
-  margin-top: 12px;
-  font-size: 14px;
-  color: #555;
-}
-
-@media (max-width: 768px) {
-  .editor-area {
-    min-height: 450px;
-    padding: 15px;
-  }
-
-  .preview-box {
-    padding: 18px;
-  }
-
-  .preview-title {
-    font-size: 24px;
-  }
+  font-size: 13px;
 }
 </style>
 
 <div class="write-wrap">
 
-  <div class="write-box">
-    <label class="write-label">제목</label>
-    <input
-      type="text"
-      id="postTitle"
-      class="write-input"
-      placeholder="글 제목을 입력하세요"
-    >
+  <label for="postTitle">글 제목</label>
+  <input id="postTitle" type="text" placeholder="글 제목을 입력하세요">
+
+  <label for="postSlug">주소용 슬러그</label>
+  <input id="postSlug" type="text" placeholder="예: instagram-reels-download">
+
+  <div class="write-help">
+    영문과 숫자, 하이픈을 사용하는 것이 좋습니다.
   </div>
 
-  <div class="write-box">
-    <label class="write-label">URL 슬러그</label>
-    <input
-      type="text"
-      id="postSlug"
-      class="write-input"
-      placeholder="예: instagram-reels-download"
-    >
-    <div class="write-help">
-      영문과 숫자, 하이픈(-)을 사용하는 것을 권장합니다.
-    </div>
+  <label for="postCategory">카테고리</label>
+  <input id="postCategory" type="text" placeholder="예: 생활정보">
+
+  <label for="postTags">태그</label>
+  <input id="postTags" type="text" placeholder="예: 인스타, 릴스, 다운로드">
+
+  <label for="seoTitle">SEO 제목</label>
+  <input id="seoTitle" type="text" placeholder="검색 결과에 표시할 제목">
+
+  <label for="seoDescription">SEO 설명</label>
+  <input id="seoDescription" type="text" placeholder="검색 결과에 표시할 설명">
+
+  <label for="postBody">본문</label>
+  <textarea id="postBody" placeholder="본문을 작성하세요.
+
+사진을 넣고 싶은 위치에 커서를 놓은 다음
+아래의 사진 추가 버튼을 눌러주세요."></textarea>
+
+  <div class="write-help">
+    사진은 본문에 큰 이미지로 표시되지 않고,
+    🖼 이미지 1, 🖼 이미지 2 형태로 표시됩니다.
+    미리보기에서는 설정한 크기로 나타납니다.
   </div>
 
-  <div class="write-box">
-    <label class="write-label">카테고리</label>
-    <input
-      type="text"
-      id="postCategory"
-      class="write-input"
-      placeholder="예: 생활정보"
-    >
-  </div>
+  <div class="write-buttons">
+    <button type="button" id="addImageButton" class="primary">
+      여러 사진 추가
+    </button>
 
-  <div class="write-box">
-    <label class="write-label">태그</label>
-    <input
-      type="text"
-      id="postTags"
-      class="write-input"
-      placeholder="예: 인스타, 릴스, 다운로드"
-    >
-  </div>
+    <button type="button" id="boldButton">
+      굵게
+    </button>
 
-  <div class="write-box">
-    <label class="write-label">SEO 제목</label>
-    <input
-      type="text"
-      id="seoTitle"
-      class="write-input"
-      placeholder="검색 결과에 표시할 제목"
-    >
-  </div>
+    <button type="button" id="headingButton">
+      소제목
+    </button>
 
-  <div class="write-box">
-    <label class="write-label">SEO 설명</label>
-    <input
-      type="text"
-      id="seoDescription"
-      class="write-input"
-      placeholder="검색 결과에 표시할 설명"
-    >
-  </div>
+    <button type="button" id="linkButton">
+      링크 삽입
+    </button>
 
-  <div class="write-box">
-
-    <label class="write-label">본문</label>
-
-    <div class="editor-toolbar">
-
-      <button type="button" onclick="formatBold()">
-        굵게
-      </button>
-
-      <button type="button" onclick="formatHeading()">
-        소제목
-      </button>
-
-      <button type="button" onclick="insertLink()">
-        🔗 링크
-      </button>
-
-      <button
-        type="button"
-        class="primary"
-        onclick="openImagePicker()"
-      >
-        🖼 사진 넣기
-      </button>
-
-    </div>
-
-    <input
-      type="file"
-      id="imageInput"
-      class="image-input"
-      accept="image/*"
-      multiple
-    >
-
-    <div
-      id="editor"
-      class="editor-area"
-      contenteditable="true"
-      spellcheck="false"
-    ></div>
-
-    <div class="write-help">
-      사진은 원하는 위치에 커서를 놓고 「사진 넣기」를 누르면 본문에 바로 들어갑니다.
-    </div>
-
-  </div>
-
-  <div class="bottom-buttons">
-
-    <button
-      type="button"
-      class="btn-preview"
-      onclick="showPreview()"
-    >
+    <button type="button" id="previewButton">
       미리보기
     </button>
 
-    <button
-      type="button"
-      class="btn-save"
-      onclick="saveDraft()"
-    >
+    <button type="button" id="saveButton">
       임시저장
     </button>
 
-    <button
-      type="button"
-      class="btn-download"
-      onclick="downloadPost()"
-    >
+    <button type="button" id="loadButton">
+      임시저장 불러오기
+    </button>
+
+    <button type="button" id="downloadButton" class="primary">
       글 파일 만들기
     </button>
 
-    <button
-      type="button"
-      class="btn-clear"
-      onclick="clearEditor()"
-    >
-      전체 지우기
+    <button type="button" id="clearButton" class="danger">
+      전체 초기화
     </button>
-
   </div>
 
-  <div id="statusMessage" class="status-message"></div>
-
-  <div
-    id="previewArea"
-    class="preview-box"
-    style="display:none;"
+  <input
+    type="file"
+    id="imageInput"
+    accept="image/*"
+    multiple
+    hidden
   >
 
-    <div
-      id="previewTitle"
-      class="preview-title"
-    ></div>
+  <div class="editor-box">
+    <h3>첨부한 사진</h3>
 
-    <div
-      id="previewContent"
-      class="preview-content"
-    ></div>
+    <div class="write-help">
+      사진을 여러 장 선택할 수 있습니다.
+      각 사진의 크기를 개별적으로 설정할 수 있습니다.
+    </div>
 
+    <div id="imageList" class="image-list">
+      <div class="empty-image">
+        아직 첨부한 사진이 없습니다.
+      </div>
+    </div>
+  </div>
+
+  <div id="previewBox" class="preview-box" hidden>
+    <h2 id="previewTitle"></h2>
+    <div id="previewContent"></div>
   </div>
 
 </div>
 
 <script>
+(function () {
+  const titleInput = document.getElementById("postTitle");
+  const slugInput = document.getElementById("postSlug");
+  const categoryInput = document.getElementById("postCategory");
+  const tagsInput = document.getElementById("postTags");
+  const seoTitleInput = document.getElementById("seoTitle");
+  const seoDescriptionInput = document.getElementById("seoDescription");
+  const bodyInput = document.getElementById("postBody");
 
-(function() {
-
-  const editor = document.getElementById("editor");
   const imageInput = document.getElementById("imageInput");
-  const previewArea = document.getElementById("previewArea");
+  const imageList = document.getElementById("imageList");
 
-  let savedRange = null;
+  const previewBox = document.getElementById("previewBox");
+  const previewTitle = document.getElementById("previewTitle");
+  const previewContent = document.getElementById("previewContent");
 
-  let savedWindowScroll = 0;
+  let images = [];
+  let nextImageNumber = 1;
 
-  let savedEditorScroll = 0;
+  let savedCursorStart = 0;
+  let savedCursorEnd = 0;
+  let savedScrollTop = 0;
 
-
-  /*
-   * 현재 커서 위치 저장
-   */
-
-  function saveSelection() {
-
-    const selection = window.getSelection();
-
-    if (!selection || selection.rangeCount === 0) {
-      return;
-    }
-
-    const range = selection.getRangeAt(0);
-
-    if (!editor.contains(range.commonAncestorContainer)) {
-      return;
-    }
-
-    savedRange = range.cloneRange();
-
+  function saveCursorPosition() {
+    savedCursorStart = bodyInput.selectionStart;
+    savedCursorEnd = bodyInput.selectionEnd;
+    savedScrollTop = window.scrollY;
   }
 
-
-  /*
-   * 현재 화면 위치 저장
-   */
-
-  function saveViewPosition() {
-
-    savedWindowScroll = window.scrollY;
-
-    savedEditorScroll = editor.scrollTop;
-
-    saveSelection();
-
+  function restoreCursorPosition(position) {
+    bodyInput.focus();
+    bodyInput.setSelectionRange(position, position);
+    window.scrollTo(0, savedScrollTop);
   }
 
-
-  /*
-   * 화면 위치 복원
-   */
-
-  function restoreViewPosition() {
-
-    requestAnimationFrame(function() {
-
-      window.scrollTo({
-        top: savedWindowScroll,
-        behavior: "instant"
-      });
-
-      editor.scrollTop = savedEditorScroll;
-
-      requestAnimationFrame(function() {
-
-        window.scrollTo({
-          top: savedWindowScroll,
-          behavior: "instant"
-        });
-
-        editor.scrollTop = savedEditorScroll;
-
-      });
-
-    });
-
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
 
+  function getMarker(number) {
+    return `【🖼 이미지 ${number}】`;
+  }
 
-  /*
-   * 에디터 선택 영역 감시
-   */
+  function insertTextAtCursor(text) {
+    const start = bodyInput.selectionStart;
+    const end = bodyInput.selectionEnd;
 
-  document.addEventListener("selectionchange", function() {
+    const before = bodyInput.value.substring(0, start);
+    const after = bodyInput.value.substring(end);
 
-    const selection = window.getSelection();
+    bodyInput.value = before + text + after;
 
-    if (!selection || selection.rangeCount === 0) {
-      return;
-    }
+    const newPosition = start + text.length;
+    restoreCursorPosition(newPosition);
+  }
 
-    const range = selection.getRangeAt(0);
-
-    if (editor.contains(range.commonAncestorContainer)) {
-
-      savedRange = range.cloneRange();
-
-    }
-
-  });
-
-
-  editor.addEventListener("keyup", saveSelection);
-
-  editor.addEventListener("mouseup", saveSelection);
-
-  editor.addEventListener("input", saveSelection);
-
-
-  /*
-   * 이미지 선택창 열기
-   */
-
-  window.openImagePicker = function() {
-
-    saveViewPosition();
-
+  function openImagePicker() {
+    saveCursorPosition();
     imageInput.click();
+  }
 
-  };
+  document
+    .getElementById("addImageButton")
+    .addEventListener("click", openImagePicker);
 
+  imageInput.addEventListener("change", function (event) {
+    const selectedFiles = Array.from(event.target.files || []);
 
-  /*
-   * 이미지 파일 읽기
-   */
+    if (selectedFiles.length === 0) {
+      return;
+    }
 
-  function readImage(file) {
+    let insertPosition = savedCursorStart;
+    let addedText = "";
 
-    return new Promise(function(resolve, reject) {
+    selectedFiles.forEach(function (file) {
+      if (!file.type.startsWith("image/")) {
+        return;
+      }
 
       const reader = new FileReader();
 
-      reader.onload = function(event) {
+      reader.onload = function (loadEvent) {
+        const imageNumber = nextImageNumber++;
 
-        resolve({
-          src: event.target.result,
-          alt: file.name.replace(/\.[^/.]+$/, "")
+        images.push({
+          number: imageNumber,
+          name: file.name,
+          src: loadEvent.target.result,
+          size: "60"
         });
 
+        renderImageList();
+
+        const marker = getMarker(imageNumber);
+
+        const currentStart = bodyInput.selectionStart;
+        const currentEnd = bodyInput.selectionEnd;
+
+        const before = bodyInput.value.substring(0, currentStart);
+        const after = bodyInput.value.substring(currentEnd);
+
+        const insertValue = "\n\n" + marker + "\n\n";
+
+        bodyInput.value = before + insertValue + after;
+
+        const newPosition = currentStart + insertValue.length;
+
+        bodyInput.focus();
+        bodyInput.setSelectionRange(newPosition, newPosition);
+        window.scrollTo(0, savedScrollTop);
+
+        saveDraftSilently();
       };
 
-      reader.onerror = reject;
-
       reader.readAsDataURL(file);
-
     });
-
-  }
-
-
-  /*
-   * 이미지 삽입
-   */
-
-  imageInput.addEventListener("change", async function(event) {
-
-    const files = Array.from(event.target.files);
-
-    if (!files.length) {
-      return;
-    }
-
-    const restoreY = savedWindowScroll;
-
-    const restoreEditorY = savedEditorScroll;
-
-    try {
-
-      const images = await Promise.all(
-        files.map(readImage)
-      );
-
-
-      editor.focus({
-        preventScroll: true
-      });
-
-
-      /*
-       * 저장된 커서 위치가 있으면 복원
-       */
-
-      if (savedRange) {
-
-        const selection = window.getSelection();
-
-        selection.removeAllRanges();
-
-        selection.addRange(savedRange);
-
-      }
-
-
-      /*
-       * 여러 장을 순서대로 삽입
-       */
-
-      for (const imageData of images) {
-
-        const img = document.createElement("img");
-
-        img.src = imageData.src;
-
-        img.alt = imageData.alt;
-
-        img.className = "editor-image";
-
-        img.setAttribute("data-donfree-image", "true");
-
-
-        const selection = window.getSelection();
-
-        let range;
-
-
-        if (
-          selection &&
-          selection.rangeCount > 0 &&
-          editor.contains(selection.getRangeAt(0).commonAncestorContainer)
-        ) {
-
-          range = selection.getRangeAt(0);
-
-        } else {
-
-          range = document.createRange();
-
-          range.selectNodeContents(editor);
-
-          range.collapse(false);
-
-        }
-
-
-        range.deleteContents();
-
-        range.insertNode(img);
-
-
-        /*
-         * 이미지 뒤에서 계속 입력할 수 있도록
-         */
-
-        const br = document.createElement("br");
-
-        img.parentNode.insertBefore(
-          br,
-          img.nextSibling
-        );
-
-
-        const newRange = document.createRange();
-
-        newRange.setStartAfter(br);
-
-        newRange.collapse(true);
-
-
-        selection.removeAllRanges();
-
-        selection.addRange(newRange);
-
-
-        savedRange = newRange.cloneRange();
-
-
-        /*
-         * 이미지 로딩 후에도 화면 위치 복원
-         */
-
-        img.addEventListener(
-          "load",
-          restoreViewPosition,
-          { once: true }
-        );
-
-      }
-
-
-      /*
-       * 최종 화면 복원
-       */
-
-      savedWindowScroll = restoreY;
-
-      savedEditorScroll = restoreEditorY;
-
-      restoreViewPosition();
-
-
-      showStatus(
-        images.length + "장의 사진이 본문에 삽입되었습니다."
-      );
-
-    } catch (error) {
-
-      console.error(error);
-
-      showStatus(
-        "사진을 불러오는 중 문제가 발생했습니다."
-      );
-
-    }
-
-
-    /*
-     * 같은 파일을 다시 선택할 수 있도록 초기화
-     */
 
     imageInput.value = "";
-
   });
 
+  function renderImageList() {
+    imageList.innerHTML = "";
 
-  /*
-   * 굵게
-   */
-
-  window.formatBold = function() {
-
-    saveSelection();
-
-    editor.focus({
-      preventScroll: true
-    });
-
-    document.execCommand(
-      "bold",
-      false,
-      null
-    );
-
-    saveSelection();
-
-  };
-
-
-  /*
-   * 소제목
-   */
-
-  window.formatHeading = function() {
-
-    saveSelection();
-
-    editor.focus({
-      preventScroll: true
-    });
-
-    document.execCommand(
-      "formatBlock",
-      false,
-      "h2"
-    );
-
-    saveSelection();
-
-  };
-
-
-  /*
-   * 링크 삽입
-   */
-
-  window.insertLink = function() {
-
-    saveSelection();
-
-    if (!savedRange || savedRange.collapsed) {
-
-      alert(
-        "먼저 링크로 만들 글자를 마우스로 선택해주세요."
-      );
-
+    if (images.length === 0) {
+      imageList.innerHTML =
+        '<div class="empty-image">아직 첨부한 사진이 없습니다.</div>';
       return;
-
     }
 
+    images.forEach(function (image) {
+      const item = document.createElement("div");
+      item.className = "image-item";
 
-    const url = prompt(
-      "연결할 주소를 입력하세요.",
-      "https://"
-    );
+      item.innerHTML = `
+        <div class="image-number">이미지 ${image.number}</div>
+        <img src="${image.src}" alt="${escapeHtml(image.name)}">
 
+        <div class="image-name">
+          ${escapeHtml(image.name)}
+        </div>
+
+        <div class="image-size-row">
+          <label>사진 크기</label>
+          <select class="image-size-select">
+            <option value="40" ${image.size === "40" ? "selected" : ""}>
+              작게 40%
+            </option>
+            <option value="60" ${image.size === "60" ? "selected" : ""}>
+              보통 60%
+            </option>
+            <option value="80" ${image.size === "80" ? "selected" : ""}>
+              크게 80%
+            </option>
+            <option value="100" ${image.size === "100" ? "selected" : ""}>
+              원본 100%
+            </option>
+          </select>
+        </div>
+
+        <div class="image-actions">
+          <button type="button" class="insert-image">
+            본문에 넣기
+          </button>
+
+          <button type="button" class="remove-image danger">
+            삭제
+          </button>
+        </div>
+      `;
+
+      const sizeSelect = item.querySelector(".image-size-select");
+
+      sizeSelect.addEventListener("change", function () {
+        image.size = sizeSelect.value;
+        saveDraftSilently();
+      });
+
+      item
+        .querySelector(".insert-image")
+        .addEventListener("click", function () {
+          saveCursorPosition();
+
+          const marker = getMarker(image.number);
+          const start = bodyInput.selectionStart;
+          const end = bodyInput.selectionEnd;
+
+          const before = bodyInput.value.substring(0, start);
+          const after = bodyInput.value.substring(end);
+
+          const insertValue = "\n\n" + marker + "\n\n";
+
+          bodyInput.value = before + insertValue + after;
+
+          restoreCursorPosition(start + insertValue.length);
+          saveDraftSilently();
+        });
+
+      item
+        .querySelector(".remove-image")
+        .addEventListener("click", function () {
+          const marker = getMarker(image.number);
+
+          bodyInput.value = bodyInput.value
+            .split(marker)
+            .join("");
+
+          images = images.filter(function (item) {
+            return item.number !== image.number;
+          });
+
+          renderImageList();
+          saveDraftSilently();
+        });
+
+      imageList.appendChild(item);
+    });
+  }
+
+  function makeBold() {
+    const start = bodyInput.selectionStart;
+    const end = bodyInput.selectionEnd;
+
+    if (start === end) {
+      insertTextAtCursor("**굵게 입력할 문장**");
+      return;
+    }
+
+    const selected = bodyInput.value.substring(start, end);
+
+    bodyInput.value =
+      bodyInput.value.substring(0, start) +
+      "**" + selected + "**" +
+      bodyInput.value.substring(end);
+
+    restoreCursorPosition(end + 4);
+  }
+
+  function makeHeading() {
+    const start = bodyInput.selectionStart;
+    const end = bodyInput.selectionEnd;
+
+    if (start === end) {
+      insertTextAtCursor("\n\n## 소제목\n\n");
+      return;
+    }
+
+    const selected = bodyInput.value.substring(start, end);
+
+    bodyInput.value =
+      bodyInput.value.substring(0, start) +
+      "## " + selected +
+      bodyInput.value.substring(end);
+
+    restoreCursorPosition(end + 3);
+  }
+
+  function insertLink() {
+    const url = prompt("링크 주소를 입력하세요.");
 
     if (!url) {
       return;
     }
 
+    const text = prompt("링크에 표시할 문구를 입력하세요.", "자세히 보기");
 
-    if (
-      !/^https?:\/\//i.test(url)
-    ) {
-
-      alert(
-        "http:// 또는 https://로 시작하는 주소를 입력해주세요."
-      );
-
+    if (!text) {
       return;
-
     }
 
-
-    editor.focus({
-      preventScroll: true
-    });
-
-
-    const selection = window.getSelection();
-
-    selection.removeAllRanges();
-
-    selection.addRange(savedRange);
-
-
-    document.execCommand(
-      "createLink",
-      false,
-      url
-    );
-
-
-    /*
-     * 생성된 링크에 보안 속성 추가
-     */
-
-    const links = editor.querySelectorAll("a");
-
-    links.forEach(function(link) {
-
-      if (
-        link.href === url ||
-        link.getAttribute("href") === url
-      ) {
-
-        link.target = "_blank";
-
-        link.rel = "noopener noreferrer";
-
-      }
-
-    });
-
-
-    saveSelection();
-
-  };
-
-
-  /*
-   * 위험한 HTML 제거
-   */
-
-  function cleanHTML(html) {
-
-    const parser = new DOMParser();
-
-    const doc = parser.parseFromString(
-      html,
-      "text/html"
-    );
-
-
-    const forbidden = doc.querySelectorAll(
-      "script, iframe, object, embed, form, input, button, textarea, style"
-    );
-
-
-    forbidden.forEach(function(element) {
-
-      element.remove();
-
-    });
-
-
-    const links = doc.querySelectorAll("a");
-
-    links.forEach(function(link) {
-
-      const href = link.getAttribute("href") || "";
-
-      if (!/^https?:\/\//i.test(href)) {
-
-        link.removeAttribute("href");
-
-      }
-
-      link.target = "_blank";
-
-      link.rel = "noopener noreferrer";
-
-    });
-
-
-    return doc.body.innerHTML;
-
+    insertTextAtCursor(`[${text}](${url})`);
   }
 
+  document
+    .getElementById("boldButton")
+    .addEventListener("click", makeBold);
 
-  /*
-   * 미리보기
-   */
+  document
+    .getElementById("headingButton")
+    .addEventListener("click", makeHeading);
 
-  window.showPreview = function() {
+  document
+    .getElementById("linkButton")
+    .addEventListener("click", insertLink);
 
-    const title =
-      document.getElementById("postTitle").value.trim();
+  function replaceImageMarkers(text, forMarkdown) {
+    images.forEach(function (image) {
+      const marker = getMarker(image.number);
+      const width = image.size || "60";
 
-    const html = cleanHTML(
-      editor.innerHTML
+      const imageHtml = forMarkdown
+        ? `<img src="${image.src}" alt="${escapeHtml(image.name)}" style="width:${width}%;max-width:100%;height:auto;">`
+        : `<img src="${image.src}" alt="${escapeHtml(image.name)}" style="width:${width}%;max-width:100%;height:auto;">`;
+
+      text = text.split(marker).join(imageHtml);
+    });
+
+    return text;
+  }
+
+  function markdownToHtml(markdown) {
+    let html = escapeHtml(markdown);
+
+    images.forEach(function (image) {
+      const marker = getMarker(image.number);
+      const escapedMarker = escapeHtml(marker);
+      const width = image.size || "60";
+
+      const imageHtml =
+        `<img src="${image.src}" alt="${escapeHtml(image.name)}" ` +
+        `style="width:${width}%;max-width:100%;height:auto;">`;
+
+      html = html.split(escapedMarker).join(imageHtml);
+    });
+
+    html = html.replace(
+      /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener">$1</a>'
     );
 
+    html = html.replace(/^### (.*)$/gm, "<h3>$1</h3>");
+    html = html.replace(/^## (.*)$/gm, "<h2>$1</h2>");
+    html = html.replace(/^# (.*)$/gm, "<h1>$1</h1>");
 
-    document.getElementById(
-      "previewTitle"
-    ).textContent = title || "제목 없음";
+    html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 
+    html = html.replace(/\n/g, "<br>");
 
-    document.getElementById(
-      "previewContent"
-    ).innerHTML = html;
+    return html;
+  }
 
+  function showPreview() {
+    previewTitle.textContent = titleInput.value || "제목 없음";
+    previewContent.innerHTML = markdownToHtml(bodyInput.value);
+    previewBox.hidden = false;
 
-    previewArea.style.display = "block";
+    previewBox.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
 
+  document
+    .getElementById("previewButton")
+    .addEventListener("click", showPreview);
 
-    setTimeout(function() {
-
-      previewArea.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    }, 50);
-
-  };
-
-
-  /*
-   * 임시저장
-   */
-
-  window.saveDraft = function() {
-
-    const data = {
-
-      title:
-        document.getElementById("postTitle").value,
-
-      slug:
-        document.getElementById("postSlug").value,
-
-      category:
-        document.getElementById("postCategory").value,
-
-      tags:
-        document.getElementById("postTags").value,
-
-      seoTitle:
-        document.getElementById("seoTitle").value,
-
-      seoDescription:
-        document.getElementById("seoDescription").value,
-
-      body:
-        editor.innerHTML
-
+  function getDraftData() {
+    return {
+      title: titleInput.value,
+      slug: slugInput.value,
+      category: categoryInput.value,
+      tags: tagsInput.value,
+      seoTitle: seoTitleInput.value,
+      seoDescription: seoDescriptionInput.value,
+      body: bodyInput.value,
+      images: images,
+      nextImageNumber: nextImageNumber
     };
+  }
 
-
+  function saveDraftSilently() {
     try {
-
       localStorage.setItem(
-        "donfree-writing-draft",
-        JSON.stringify(data)
+        "donfree-write-draft",
+        JSON.stringify(getDraftData())
       );
-
-
-      showStatus(
-        "임시저장되었습니다."
-      );
-
     } catch (error) {
-
-      showStatus(
-        "임시저장에 실패했습니다. 사진이 너무 많거나 용량이 큰 경우 발생할 수 있습니다."
-      );
-
+      console.warn("임시저장 실패:", error);
     }
-
-  };
-
-
-  /*
-   * 임시저장 불러오기
-   */
-
-  function loadDraft() {
-
-    const saved =
-      localStorage.getItem(
-        "donfree-writing-draft"
-      );
-
-
-    if (!saved) {
-      return;
-    }
-
-
-    try {
-
-      const data =
-        JSON.parse(saved);
-
-
-      document.getElementById(
-        "postTitle"
-      ).value =
-        data.title || "";
-
-
-      document.getElementById(
-        "postSlug"
-      ).value =
-        data.slug || "";
-
-
-      document.getElementById(
-        "postCategory"
-      ).value =
-        data.category || "";
-
-
-      document.getElementById(
-        "postTags"
-      ).value =
-        data.tags || "";
-
-
-      document.getElementById(
-        "seoTitle"
-      ).value =
-        data.seoTitle || "";
-
-
-      document.getElementById(
-        "seoDescription"
-      ).value =
-        data.seoDescription || "";
-
-
-      editor.innerHTML =
-        cleanHTML(data.body || "");
-
-    } catch (error) {
-
-      console.error(error);
-
-    }
-
   }
 
+  document
+    .getElementById("saveButton")
+    .addEventListener("click", function () {
+      saveDraftSilently();
+      alert("임시저장되었습니다.");
+    });
 
-  /*
-   * 날짜
-   */
+  document
+    .getElementById("loadButton")
+    .addEventListener("click", function () {
+      const saved = localStorage.getItem("donfree-write-draft");
 
-  function getLocalDate() {
-
-    const now = new Date();
-
-    const year =
-      now.getFullYear();
-
-    const month =
-      String(
-        now.getMonth() + 1
-      ).padStart(2, "0");
-
-    const day =
-      String(
-        now.getDate()
-      ).padStart(2, "0");
-
-    return (
-      year +
-      "-" +
-      month +
-      "-" +
-      day
-    );
-
-  }
-
-
-  /*
-   * YAML 문자열 처리
-   */
-
-  function yamlString(value) {
-
-    return String(value || "")
-      .replace(/\\/g, "\\\\")
-      .replace(/"/g, '\\"')
-      .replace(/\n/g, " ");
-
-  }
-
-
-  /*
-   * HTML → Markdown
-   */
-
-  function htmlToMarkdown(html) {
-
-    const parser =
-      new DOMParser();
-
-    const doc =
-      parser.parseFromString(
-        html,
-        "text/html"
-      );
-
-
-    function convert(node) {
-
-      if (node.nodeType === Node.TEXT_NODE) {
-
-        return node.nodeValue
-          .replace(/\u00a0/g, " ");
-
+      if (!saved) {
+        alert("저장된 글이 없습니다.");
+        return;
       }
 
+      try {
+        const data = JSON.parse(saved);
 
-      if (node.nodeType !== Node.ELEMENT_NODE) {
+        titleInput.value = data.title || "";
+        slugInput.value = data.slug || "";
+        categoryInput.value = data.category || "";
+        tagsInput.value = data.tags || "";
+        seoTitleInput.value = data.seoTitle || "";
+        seoDescriptionInput.value = data.seoDescription || "";
+        bodyInput.value = data.body || "";
 
-        return "";
+        images = Array.isArray(data.images) ? data.images : [];
 
+        images.forEach(function (image, index) {
+          if (!image.number) {
+            image.number = index + 1;
+          }
+
+          if (!image.size) {
+            image.size = "60";
+          }
+        });
+
+        nextImageNumber =
+          data.nextImageNumber ||
+          Math.max(0, ...images.map(function (image) {
+            return image.number;
+          })) + 1;
+
+        renderImageList();
+
+        alert("임시저장한 글을 불러왔습니다.");
+      } catch (error) {
+        alert("임시저장 데이터를 불러오지 못했습니다.");
       }
+    });
 
-
-      const tag =
-        node.tagName.toLowerCase();
-
-
-      let content = "";
-
-      node.childNodes.forEach(function(child) {
-
-        content += convert(child);
-
-      });
-
-
-      if (tag === "br") {
-
-        return "\n";
-
-      }
-
-
-      if (
-        tag === "strong" ||
-        tag === "b"
-      ) {
-
-        return "**" +
-          content +
-          "**";
-
-      }
-
-
-      if (tag === "em" || tag === "i") {
-
-        return "*" +
-          content +
-          "*";
-
-      }
-
-
-      if (tag === "h2") {
-
-        return "\n\n## " +
-          content.trim() +
-          "\n\n";
-
-      }
-
-
-      if (tag === "h3") {
-
-        return "\n\n### " +
-          content.trim() +
-          "\n\n";
-
-      }
-
-
-      if (tag === "a") {
-
-        const href =
-          node.getAttribute("href") || "";
-
-        if (
-          !/^https?:\/\//i.test(href)
-        ) {
-
-          return content;
-
-        }
-
-        return "[" +
-          content +
-          "](" +
-          href +
-          ")";
-
-      }
-
-
-      if (tag === "img") {
-
-        const src =
-          node.getAttribute("src") || "";
-
-        const alt =
-          node.getAttribute("alt") || "이미지";
-
-        return (
-          '\n\n<img src="' +
-          src +
-          '" alt="' +
-          alt.replace(/"/g, "&quot;") +
-          '">\n\n'
-        );
-
-      }
-
-
-      if (tag === "li") {
-
-        return (
-          "- " +
-          content.trim() +
-          "\n"
-        );
-
-      }
-
-
-      if (
-        tag === "p" ||
-        tag === "div"
-      ) {
-
-        return (
-          content.trimEnd() +
-          "\n\n"
-        );
-
-      }
-
-
-      if (
-        tag === "ul" ||
-        tag === "ol"
-      ) {
-
-        return (
-          content +
-          "\n"
-        );
-
-      }
-
-
-      return content;
-
-    }
-
-
-    return convert(doc.body)
-      .replace(/\n{3,}/g, "\n\n")
-      .trim();
-
-  }
-
-
-  /*
-   * 글 파일 만들기
-   */
-
-  window.downloadPost = function() {
-
-    const title =
-      document.getElementById(
-        "postTitle"
-      ).value.trim();
-
-
-    const slug =
-      document.getElementById(
-        "postSlug"
-      ).value.trim();
-
-
-    if (!title) {
-
-      alert(
-        "제목을 입력해주세요."
-      );
-
-      return;
-
-    }
-
-
-    if (!slug) {
-
-      alert(
-        "URL 슬러그를 입력해주세요."
-      );
-
-      return;
-
-    }
-
-
-    const category =
-      document.getElementById(
-        "postCategory"
-      ).value.trim();
-
-
-    const tags =
-      document.getElementById(
-        "postTags"
-      ).value
-        .split(",")
-        .map(function(tag) {
-          return tag.trim();
-        })
-        .filter(Boolean);
-
-
-    const seoTitle =
-      document.getElementById(
-        "seoTitle"
-      ).value.trim();
-
-
-    const seoDescription =
-      document.getElementById(
-        "seoDescription"
-      ).value.trim();
-
-
-    const markdown =
-      htmlToMarkdown(
-        cleanHTML(
-          editor.innerHTML
-        )
-      );
-
+  function createMarkdownFile() {
+    const title = titleInput.value.trim() || "donfree-post";
 
     const frontMatter =
 `---
-title: "${yamlString(title)}"
-date: ${getLocalDate()} 00:00:00 +0900
-categories:
-  - "${yamlString(category)}"
-tags:
-${tags.map(function(tag) {
-  return '  - "' + yamlString(tag) + '"';
-}).join("\n")}
-description: "${yamlString(seoDescription)}"
-seo_title: "${yamlString(seoTitle)}"
-permalink: /posts/${slug}/
+layout: post
+title: "${title.replace(/"/g, '\\"')}"
+date: ${new Date().toISOString()}
+categories: [${categoryInput.value || "생활정보"}]
+tags: [${tagsInput.value
+  .split(",")
+  .map(function (tag) {
+    return tag.trim();
+  })
+  .filter(Boolean)
+  .join(", ")}]
+description: "${seoDescriptionInput.value.replace(/"/g, '\\"')}"
 ---
 
-${markdown}
 `;
 
+    const content = replaceImageMarkers(bodyInput.value, true);
 
-    const blob =
-      new Blob(
-        [frontMatter],
-        {
-          type: "text/markdown;charset=utf-8"
-        }
-      );
+    const markdown = frontMatter + content;
 
+    const blob = new Blob([markdown], {
+      type: "text/markdown;charset=utf-8"
+    });
 
-    const url =
-      URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
 
+    link.href = url;
+    link.download = (slugInput.value.trim() || "donfree-post") + ".md";
 
-    const a =
-      document.createElement("a");
-
-
-    a.href = url;
-
-
-    a.download =
-      getLocalDate() +
-      "-" +
-      slug +
-      ".md";
-
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
-
-
-    showStatus(
-      "글 파일이 만들어졌습니다."
-    );
-
-  };
-
-
-  /*
-   * 전체 지우기
-   */
-
-  window.clearEditor = function() {
-
-    if (
-      !confirm(
-        "작성한 내용을 모두 삭제할까요?"
-      )
-    ) {
-
-      return;
-
-    }
-
-
-    document.getElementById(
-      "postTitle"
-    ).value = "";
-
-
-    document.getElementById(
-      "postSlug"
-    ).value = "";
-
-
-    document.getElementById(
-      "postCategory"
-    ).value = "";
-
-
-    document.getElementById(
-      "postTags"
-    ).value = "";
-
-
-    document.getElementById(
-      "seoTitle"
-    ).value = "";
-
-
-    document.getElementById(
-      "seoDescription"
-    ).value = "";
-
-
-    editor.innerHTML = "";
-
-
-    previewArea.style.display =
-      "none";
-
-
-    localStorage.removeItem(
-      "donfree-writing-draft"
-    );
-
-
-    showStatus(
-      "작성 내용이 삭제되었습니다."
-    );
-
-  };
-
-
-  /*
-   * 상태 메시지
-   */
-
-  function showStatus(message) {
-
-    const status =
-      document.getElementById(
-        "statusMessage"
-      );
-
-
-    status.textContent =
-      message;
-
-
-    setTimeout(function() {
-
-      status.textContent = "";
-
-    }, 3000);
-
   }
 
+  document
+    .getElementById("downloadButton")
+    .addEventListener("click", createMarkdownFile);
 
-  /*
-   * 페이지 처음 열 때 임시저장 불러오기
-   */
+  document
+    .getElementById("clearButton")
+    .addEventListener("click", function () {
+      const confirmed = confirm(
+        "작성한 내용과 첨부 사진을 모두 삭제할까요?"
+      );
 
-  loadDraft();
+      if (!confirmed) {
+        return;
+      }
 
+      titleInput.value = "";
+      slugInput.value = "";
+      categoryInput.value = "";
+      tagsInput.value = "";
+      seoTitleInput.value = "";
+      seoDescriptionInput.value = "";
+      bodyInput.value = "";
+
+      images = [];
+      nextImageNumber = 1;
+
+      localStorage.removeItem("donfree-write-draft");
+
+      renderImageList();
+      previewBox.hidden = true;
+    });
+
+  bodyInput.addEventListener("input", function () {
+    saveDraftSilently();
+  });
+
+  renderImageList();
 })();
-
 </script>
