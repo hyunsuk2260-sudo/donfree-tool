@@ -113,21 +113,27 @@ permalink: /lunch/
 }
 
 @keyframes giftShake {
+
   0%,100% {
     transform: rotate(0);
   }
+
   20% {
     transform: rotate(-8deg) scale(1.05);
   }
+
   40% {
     transform: rotate(8deg) scale(1.05);
   }
+
   60% {
     transform: rotate(-6deg) scale(1.05);
   }
+
   80% {
     transform: rotate(6deg) scale(1.05);
   }
+
 }
 
 .result-box {
@@ -140,6 +146,7 @@ permalink: /lunch/
 }
 
 @keyframes resultShow {
+
   from {
     opacity: 0;
     transform: translateY(15px);
@@ -149,6 +156,7 @@ permalink: /lunch/
     opacity: 1;
     transform: translateY(0);
   }
+
 }
 
 .result-title {
@@ -218,6 +226,7 @@ permalink: /lunch/
 
 </style>
 
+
 <div class="lunch-page">
 
   <div class="lunch-title">
@@ -230,10 +239,10 @@ permalink: /lunch/
 
 
   <!-- 보내는 사람 화면 -->
+
   <div id="sender-view" class="lunch-card">
 
-    <div id="sender-photo" class="menu-photo">
-    </div>
+    <div id="sender-photo" class="menu-photo"></div>
 
     <div id="sender-menu-name" class="menu-name">
       오늘의 점심은?
@@ -277,6 +286,7 @@ permalink: /lunch/
 
 
   <!-- 받는 사람 화면 -->
+
   <div id="receiver-view" class="lunch-card hidden">
 
     <div id="gift-box" class="gift-box">
@@ -295,11 +305,9 @@ permalink: /lunch/
         오늘 친구가 골라준 메뉴는
       </div>
 
-      <div id="result-photo" class="menu-photo">
-      </div>
+      <div id="result-photo" class="menu-photo"></div>
 
-      <div id="result-menu-name" class="menu-name">
-      </div>
+      <div id="result-menu-name" class="menu-name"></div>
 
       <button
         id="new-lunch-button"
@@ -323,95 +331,111 @@ permalink: /lunch/
    * ==========================================
    * 점심 메뉴
    * ==========================================
-   *
-   * img:
-   * /assets/img/lunch/01.jpg
-   * /assets/img/lunch/02.jpg
-   * ...
-   *
    */
 
   const menus = [
 
-    { id: 1,  name: "김치찌개",     img: "/assets/img/lunch/01.jpg", emoji: "🍲" },
-    { id: 2,  name: "된장찌개",     img: "/assets/img/lunch/02.jpg", emoji: "🍲" },
-    { id: 3,  name: "부대찌개",     img: "/assets/img/lunch/03.jpg", emoji: "🍲" },
-    { id: 4,  name: "순두부찌개",   img: "/assets/img/lunch/04.jpg", emoji: "🍲" },
-    { id: 5,  name: "동태찌개",     img: "/assets/img/lunch/05.jpg", emoji: "🍲" },
-    { id: 6,  name: "청국장",       img: "/assets/img/lunch/06.jpg", emoji: "🍲" },
-    { id: 7,  name: "뼈해장국",     img: "/assets/img/lunch/07.jpg", emoji: "🍲" },
-    { id: 8,  name: "순대국",       img: "/assets/img/lunch/08.jpg", emoji: "🍲" },
-    { id: 9,  name: "꼬리곰탕",     img: "/assets/img/lunch/09.jpg", emoji: "🍲" },
-    { id: 10, name: "뼈리곰탕",     img: "/assets/img/lunch/10.jpg", emoji: "🍲" },
+    { id: 1,  name: "김치찌개",     emoji: "🍲" },
+    { id: 2,  name: "된장찌개",     emoji: "🍲" },
+    { id: 3,  name: "부대찌개",     emoji: "🍲" },
+    { id: 4,  name: "순두부찌개",   emoji: "🍲" },
+    { id: 5,  name: "동태찌개",     emoji: "🍲" },
+    { id: 6,  name: "청국장",       emoji: "🍲" },
+    { id: 7,  name: "뼈해장국",     emoji: "🍲" },
+    { id: 8,  name: "순대국",       emoji: "🍲" },
+    { id: 9,  name: "꼬리곰탕",     emoji: "🍲" },
+    { id: 10, name: "뼈리곰탕",     emoji: "🍲" },
 
-    { id: 11, name: "설렁탕",       img: "/assets/img/lunch/11.jpg", emoji: "🍲" },
-    { id: 12, name: "곰탕",         img: "/assets/img/lunch/12.jpg", emoji: "🍲" },
-    { id: 13, name: "갈비탕",       img: "/assets/img/lunch/13.jpg", emoji: "🍲" },
-    { id: 14, name: "삼계탕",       img: "/assets/img/lunch/14.jpg", emoji: "🍗" },
-    { id: 15, name: "닭볶음탕",     img: "/assets/img/lunch/15.jpg", emoji: "🍗" },
-    { id: 16, name: "제육볶음",     img: "/assets/img/lunch/16.jpg", emoji: "🥘" },
-    { id: 17, name: "오징어볶음",   img: "/assets/img/lunch/17.jpg", emoji: "🦑" },
-    { id: 18, name: "뚝배기불고기", img: "/assets/img/lunch/18.jpg", emoji: "🥘" },
-    { id: 19, name: "불고기",       img: "/assets/img/lunch/19.jpg", emoji: "🥩" },
-    { id: 20, name: "비빔밥",       img: "/assets/img/lunch/20.jpg", emoji: "🍚" },
+    { id: 11, name: "설렁탕",       emoji: "🍲" },
+    { id: 12, name: "곰탕",         emoji: "🍲" },
+    { id: 13, name: "갈비탕",       emoji: "🍲" },
+    { id: 14, name: "삼계탕",       emoji: "🍗" },
+    { id: 15, name: "닭볶음탕",     emoji: "🍗" },
+    { id: 16, name: "제육볶음",     emoji: "🥘" },
+    { id: 17, name: "오징어볶음",   emoji: "🦑" },
+    { id: 18, name: "뚝배기불고기", emoji: "🥘" },
+    { id: 19, name: "불고기",       emoji: "🥩" },
+    { id: 20, name: "비빔밥",       emoji: "🍚" },
 
-    { id: 21, name: "돌솥비빔밥",   img: "/assets/img/lunch/21.jpg", emoji: "🍚" },
-    { id: 22, name: "볶음밥",       img: "/assets/img/lunch/22.jpg", emoji: "🍚" },
-    { id: 23, name: "오므라이스",   img: "/assets/img/lunch/23.jpg", emoji: "🍳" },
-    { id: 24, name: "김치볶음밥",   img: "/assets/img/lunch/24.jpg", emoji: "🍚" },
-    { id: 25, name: "육회비빔밥",   img: "/assets/img/lunch/25.jpg", emoji: "🥩" },
-    { id: 26, name: "보쌈정식",     img: "/assets/img/lunch/26.jpg", emoji: "🥩" },
-    { id: 27, name: "생선구이",     img: "/assets/img/lunch/27.jpg", emoji: "🐟" },
-    { id: 28, name: "게장백반",     img: "/assets/img/lunch/28.jpg", emoji: "🦀" },
-    { id: 29, name: "제육정식",     img: "/assets/img/lunch/29.jpg", emoji: "🥘" },
-    { id: 30, name: "수제비",       img: "/assets/img/lunch/30.jpg", emoji: "🍲" },
+    { id: 21, name: "돌솥비빔밥",   emoji: "🍚" },
+    { id: 22, name: "볶음밥",       emoji: "🍚" },
+    { id: 23, name: "오므라이스",   emoji: "🍳" },
+    { id: 24, name: "김치볶음밥",   emoji: "🍚" },
+    { id: 25, name: "육회비빔밥",   emoji: "🥩" },
+    { id: 26, name: "보쌈정식",     emoji: "🥩" },
+    { id: 27, name: "생선구이",     emoji: "🐟" },
+    { id: 28, name: "게장백반",     emoji: "🦀" },
+    { id: 29, name: "제육정식",     emoji: "🥘" },
+    { id: 30, name: "수제비",       emoji: "🍲" },
 
-    { id: 31, name: "잔치국수",     img: "/assets/img/lunch/31.jpg", emoji: "🍜" },
-    { id: 32, name: "비빔국수",     img: "/assets/img/lunch/32.jpg", emoji: "🍜" },
-    { id: 33, name: "콩국수",       img: "/assets/img/lunch/33.jpg", emoji: "🍜" },
-    { id: 34, name: "냉면",         img: "/assets/img/lunch/34.jpg", emoji: "🍜" },
-    { id: 35, name: "쫄면",         img: "/assets/img/lunch/35.jpg", emoji: "🍜" },
-    { id: 36, name: "짜장면",       img: "/assets/img/lunch/36.jpg", emoji: "🍜" },
-    { id: 37, name: "짬뽕",         img: "/assets/img/lunch/37.jpg", emoji: "🍜" },
-    { id: 38, name: "중국식 볶음밥", img: "/assets/img/lunch/38.jpg", emoji: "🍚" },
-    { id: 39, name: "탕수육",       img: "/assets/img/lunch/39.jpg", emoji: "🥩" },
-    { id: 40, name: "마파두부밥",   img: "/assets/img/lunch/40.jpg", emoji: "🍚" },
+    { id: 31, name: "잔치국수",     emoji: "🍜" },
+    { id: 32, name: "비빔국수",     emoji: "🍜" },
+    { id: 33, name: "콩국수",       emoji: "🍜" },
+    { id: 34, name: "냉면",         emoji: "🍜" },
+    { id: 35, name: "쫄면",         emoji: "🍜" },
+    { id: 36, name: "짜장면",       emoji: "🍜" },
+    { id: 37, name: "짬뽕",         emoji: "🍜" },
+    { id: 38, name: "중국식 볶음밥", emoji: "🍚" },
+    { id: 39, name: "탕수육",       emoji: "🥩" },
+    { id: 40, name: "마파두부밥",   emoji: "🍚" },
 
-    { id: 41, name: "잡채밥",       img: "/assets/img/lunch/41.jpg", emoji: "🍚" },
-    { id: 42, name: "유산슬밥",     img: "/assets/img/lunch/42.jpg", emoji: "🍚" },
-    { id: 43, name: "마라탕",       img: "/assets/img/lunch/43.jpg", emoji: "🍲" },
-    { id: 44, name: "마라샹궈",     img: "/assets/img/lunch/44.jpg", emoji: "🥘" },
-    { id: 45, name: "꿔바로우",     img: "/assets/img/lunch/45.jpg", emoji: "🥩" },
-    { id: 46, name: "돈까스",       img: "/assets/img/lunch/46.jpg", emoji: "🍱" },
-    { id: 47, name: "치즈돈까스",   img: "/assets/img/lunch/47.jpg", emoji: "🧀" },
-    { id: 48, name: "생선까스",     img: "/assets/img/lunch/48.jpg", emoji: "🐟" },
-    { id: 49, name: "치킨까스",     img: "/assets/img/lunch/49.jpg", emoji: "🍗" },
-    { id: 50, name: "냉모밀",       img: "/assets/img/lunch/50.jpg", emoji: "🍜" },
+    { id: 41, name: "잡채밥",       emoji: "🍚" },
+    { id: 42, name: "유산슬밥",     emoji: "🍚" },
+    { id: 43, name: "마라탕",       emoji: "🍲" },
+    { id: 44, name: "마라샹궈",     emoji: "🥘" },
+    { id: 45, name: "꿔바로우",     emoji: "🥩" },
+    { id: 46, name: "돈까스",       emoji: "🍱" },
+    { id: 47, name: "치즈돈까스",   emoji: "🧀" },
+    { id: 48, name: "생선까스",     emoji: "🐟" },
+    { id: 49, name: "치킨까스",     emoji: "🍗" },
+    { id: 50, name: "냉모밀",       emoji: "🍜" },
 
-    { id: 51, name: "초밥",         img: "/assets/img/lunch/51.jpg", emoji: "🍣" },
-    { id: 52, name: "회덮밥",       img: "/assets/img/lunch/52.jpg", emoji: "🍚" },
-    { id: 53, name: "가츠동",       img: "/assets/img/lunch/53.jpg", emoji: "🍚" },
-    { id: 54, name: "사케동",       img: "/assets/img/lunch/54.jpg", emoji: "🍣" },
-    { id: 55, name: "카레라이스",   img: "/assets/img/lunch/55.jpg", emoji: "🍛" },
-    { id: 56, name: "라멘",         img: "/assets/img/lunch/56.jpg", emoji: "🍜" },
-    { id: 57, name: "토마토파스타", img: "/assets/img/lunch/57.jpg", emoji: "🍝" },
-    { id: 58, name: "크림파스타",   img: "/assets/img/lunch/58.jpg", emoji: "🍝" },
-    { id: 59, name: "알리오올리오", img: "/assets/img/lunch/59.jpg", emoji: "🍝" },
-    { id: 60, name: "봉골레파스타", img: "/assets/img/lunch/60.jpg", emoji: "🍝" },
+    { id: 51, name: "초밥",         emoji: "🍣" },
+    { id: 52, name: "회덮밥",       emoji: "🍚" },
+    { id: 53, name: "가츠동",       emoji: "🍚" },
+    { id: 54, name: "사케동",       emoji: "🍣" },
+    { id: 55, name: "카레라이스",   emoji: "🍛" },
+    { id: 56, name: "라멘",         emoji: "🍜" },
+    { id: 57, name: "토마토파스타", emoji: "🍝" },
+    { id: 58, name: "크림파스타",   emoji: "🍝" },
+    { id: 59, name: "알리오올리오", emoji: "🍝" },
+    { id: 60, name: "봉골레파스타", emoji: "🍝" },
 
-    { id: 61, name: "피자",         img: "/assets/img/lunch/61.jpg", emoji: "🍕" },
-    { id: 62, name: "수제버거",     img: "/assets/img/lunch/62.jpg", emoji: "🍔" },
-    { id: 63, name: "샌드위치",     img: "/assets/img/lunch/63.jpg", emoji: "🥪" },
-    { id: 64, name: "샐러드",       img: "/assets/img/lunch/64.jpg", emoji: "🥗" },
-    { id: 65, name: "스테이크",     img: "/assets/img/lunch/65.jpg", emoji: "🥩" },
-    { id: 66, name: "떡볶이",       img: "/assets/img/lunch/66.jpg", emoji: "🌶️" },
-    { id: 67, name: "라면",         img: "/assets/img/lunch/67.jpg", emoji: "🍜" },
-    { id: 68, name: "김밥",         img: "/assets/img/lunch/68.jpg", emoji: "🍙" },
-    { id: 69, name: "모듬튀김",     img: "/assets/img/lunch/69.jpg", emoji: "🍤" },
-    { id: 70, name: "순대",         img: "/assets/img/lunch/70.jpg", emoji: "🥢" },
-    { id: 71, name: "핫도그",       img: "/assets/img/lunch/71.jpg", emoji: "🌭" }
+    { id: 61, name: "피자",         emoji: "🍕" },
+    { id: 62, name: "수제버거",     emoji: "🍔" },
+    { id: 63, name: "샌드위치",     emoji: "🥪" },
+    { id: 64, name: "샐러드",       emoji: "🥗" },
+    { id: 65, name: "스테이크",     emoji: "🥩" },
+    { id: 66, name: "떡볶이",       emoji: "🌶️" },
+    { id: 67, name: "라면",         emoji: "🍜" },
+    { id: 68, name: "김밥",         emoji: "🍙" },
+    { id: 69, name: "모듬튀김",     emoji: "🍤" },
+    { id: 70, name: "순대",         emoji: "🥢" },
+    { id: 71, name: "핫도그",       emoji: "🌭" }
 
   ];
+
+
+  /*
+   * ==========================================
+   * 이미지 자동 연결
+   * ==========================================
+   *
+   * 1번 → 01.jpg
+   * 2번 → 02.jpg
+   * ...
+   * 71번 → 71.jpg
+   *
+   */
+
+  menus.forEach(function (menu) {
+
+    menu.img =
+      "/assets/img/lunch/" +
+      String(menu.id).padStart(2, "0") +
+      ".jpg";
+
+  });
 
 
   /*
@@ -420,32 +444,55 @@ permalink: /lunch/
    * ==========================================
    */
 
-  const senderView = document.getElementById("sender-view");
-  const receiverView = document.getElementById("receiver-view");
+  const senderView =
+    document.getElementById("sender-view");
 
-  const senderPhoto = document.getElementById("sender-photo");
-  const senderMenuName = document.getElementById("sender-menu-name");
+  const receiverView =
+    document.getElementById("receiver-view");
 
-  const resultPhoto = document.getElementById("result-photo");
-  const resultMenuName = document.getElementById("result-menu-name");
+  const senderPhoto =
+    document.getElementById("sender-photo");
 
-  const pickButton = document.getElementById("pick-button");
-  const shareBox = document.getElementById("share-box");
-  const shareUrl = document.getElementById("share-url");
-  const copyButton = document.getElementById("copy-button");
-  const resetButton = document.getElementById("reset-button");
+  const senderMenuName =
+    document.getElementById("sender-menu-name");
 
-  const giftBox = document.getElementById("gift-box");
-  const giftGuide = document.getElementById("gift-guide");
-  const resultBox = document.getElementById("result-box");
-  const newLunchButton = document.getElementById("new-lunch-button");
+  const resultPhoto =
+    document.getElementById("result-photo");
 
-  const loadingText = document.getElementById("loading-text");
+  const resultMenuName =
+    document.getElementById("result-menu-name");
+
+  const pickButton =
+    document.getElementById("pick-button");
+
+  const shareBox =
+    document.getElementById("share-box");
+
+  const shareUrl =
+    document.getElementById("share-url");
+
+  const copyButton =
+    document.getElementById("copy-button");
+
+  const resetButton =
+    document.getElementById("reset-button");
+
+  const giftBox =
+    document.getElementById("gift-box");
+
+  const giftGuide =
+    document.getElementById("gift-guide");
+
+  const resultBox =
+    document.getElementById("result-box");
+
+  const newLunchButton =
+    document.getElementById("new-lunch-button");
 
 
   /*
    * ==========================================
-   * 사진 표시
+   * 음식 사진 표시
    * ==========================================
    */
 
@@ -453,20 +500,25 @@ permalink: /lunch/
 
     container.innerHTML = "";
 
-    const img = document.createElement("img");
+    const img =
+      document.createElement("img");
 
     img.src = menu.img;
     img.alt = menu.name;
-    img.loading = "lazy";
+    img.loading = "eager";
 
     img.onerror = function () {
 
       container.innerHTML = "";
 
-      const fallback = document.createElement("div");
+      const fallback =
+        document.createElement("div");
 
-      fallback.className = "menu-photo-fallback";
-      fallback.textContent = menu.emoji || "🍽️";
+      fallback.className =
+        "menu-photo-fallback";
+
+      fallback.textContent =
+        menu.emoji || "🍽️";
 
       container.appendChild(fallback);
 
@@ -483,105 +535,135 @@ permalink: /lunch/
    * ==========================================
    */
 
-  const params = new URLSearchParams(window.location.search);
-  const menuId = params.get("m");
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const menuId =
+    params.get("m");
 
 
   /*
    * ==========================================
-   * 받는 사람
+   * 받는 사람 화면
    * ==========================================
    */
 
   function openReceiver(menu) {
 
     senderView.classList.add("hidden");
+
     receiverView.classList.remove("hidden");
 
-    giftBox.addEventListener("click", function () {
+    giftBox.addEventListener(
+      "click",
+      function () {
 
-      giftBox.classList.add("opening");
+        giftBox.classList.add("opening");
 
-      setTimeout(function () {
+        setTimeout(function () {
 
-        giftBox.classList.add("hidden");
-        giftGuide.classList.add("hidden");
+          giftBox.classList.add("hidden");
 
-        showMenuPhoto(resultPhoto, menu);
+          giftGuide.classList.add("hidden");
 
-        resultMenuName.textContent = menu.name;
+          showMenuPhoto(
+            resultPhoto,
+            menu
+          );
 
-        resultBox.classList.add("show");
+          resultMenuName.textContent =
+            menu.name;
 
-      }, 650);
+          resultBox.classList.add("show");
 
-    });
+        }, 650);
+
+      }
+    );
 
   }
 
 
   /*
    * ==========================================
-   * 메뉴 뽑기
+   * 점심 메뉴 뽑기
    * ==========================================
    */
 
   function pickMenu() {
 
     pickButton.disabled = true;
+
     shareBox.classList.remove("show");
 
     let count = 0;
 
-    const animation = setInterval(function () {
+    const animation =
+      setInterval(function () {
 
-      const randomIndex =
-        Math.floor(Math.random() * menus.length);
+        const randomIndex =
+          Math.floor(
+            Math.random() * menus.length
+          );
 
-      const randomMenu = menus[randomIndex];
+        const randomMenu =
+          menus[randomIndex];
 
-      showMenuPhoto(senderPhoto, randomMenu);
+        showMenuPhoto(
+          senderPhoto,
+          randomMenu
+        );
 
-      senderMenuName.textContent = randomMenu.name;
+        senderMenuName.textContent =
+          randomMenu.name;
 
-      count++;
+        count++;
 
-      if (count >= 12) {
+        if (count >= 12) {
 
-        clearInterval(animation);
+          clearInterval(animation);
 
-        setTimeout(function () {
+          setTimeout(function () {
 
-          const finalIndex =
-            Math.floor(Math.random() * menus.length);
+            const finalIndex =
+              Math.floor(
+                Math.random() * menus.length
+              );
 
-          const finalMenu = menus[finalIndex];
+            const finalMenu =
+              menus[finalIndex];
 
-          showMenuPhoto(senderPhoto, finalMenu);
+            showMenuPhoto(
+              senderPhoto,
+              finalMenu
+            );
 
-          senderMenuName.textContent =
-            finalMenu.name;
+            senderMenuName.textContent =
+              finalMenu.name;
 
-          const generatedUrl =
-            window.location.origin +
-            window.location.pathname +
-            "?m=" +
-            finalMenu.id;
+            const generatedUrl =
+              window.location.origin +
+              window.location.pathname +
+              "?m=" +
+              finalMenu.id;
 
-          shareUrl.textContent = generatedUrl;
+            shareUrl.textContent =
+              generatedUrl;
 
-          shareBox.classList.add("show");
+            shareBox.classList.add("show");
 
-          window.lunchGeneratedUrl =
-            generatedUrl;
+            window.lunchGeneratedUrl =
+              generatedUrl;
 
-          pickButton.disabled = false;
+            pickButton.disabled = false;
 
-        }, 300);
+          }, 300);
 
-      }
+        }
 
-    }, 100);
+      }, 100);
 
   }
 
@@ -594,7 +676,8 @@ permalink: /lunch/
 
   function copyLink() {
 
-    const url = window.lunchGeneratedUrl;
+    const url =
+      window.lunchGeneratedUrl;
 
     if (!url) return;
 
@@ -603,7 +686,8 @@ permalink: /lunch/
       navigator.clipboard.writeText
     ) {
 
-      navigator.clipboard.writeText(url)
+      navigator.clipboard
+        .writeText(url)
         .then(function () {
 
           copyButton.textContent =
@@ -632,6 +716,12 @@ permalink: /lunch/
   }
 
 
+  /*
+   * ==========================================
+   * 복사 기능 보조
+   * ==========================================
+   */
+
   function fallbackCopy(text) {
 
     const textarea =
@@ -639,10 +729,15 @@ permalink: /lunch/
 
     textarea.value = text;
 
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
+    textarea.style.position =
+      "fixed";
 
-    document.body.appendChild(textarea);
+    textarea.style.opacity =
+      "0";
+
+    document.body.appendChild(
+      textarea
+    );
 
     textarea.select();
 
@@ -660,7 +755,9 @@ permalink: /lunch/
 
     }
 
-    document.body.removeChild(textarea);
+    document.body.removeChild(
+      textarea
+    );
 
   }
 
@@ -695,7 +792,7 @@ permalink: /lunch/
 
   /*
    * ==========================================
-   * 이벤트
+   * 버튼 이벤트
    * ==========================================
    */
 
@@ -722,7 +819,7 @@ permalink: /lunch/
 
   /*
    * ==========================================
-   * 처음 실행
+   * 첫 화면
    * ==========================================
    */
 
@@ -731,7 +828,8 @@ permalink: /lunch/
     const selectedMenu =
       menus.find(function (menu) {
 
-        return String(menu.id) === String(menuId);
+        return String(menu.id) ===
+          String(menuId);
 
       });
 
@@ -741,21 +839,29 @@ permalink: /lunch/
 
     } else {
 
-      senderView.classList.remove("hidden");
-      receiverView.classList.add("hidden");
+      senderView.classList.remove(
+        "hidden"
+      );
+
+      receiverView.classList.add(
+        "hidden"
+      );
 
     }
 
   } else {
 
-    senderView.classList.remove("hidden");
-    receiverView.classList.add("hidden");
+    senderView.classList.remove(
+      "hidden"
+    );
 
-    const firstMenu = menus[0];
+    receiverView.classList.add(
+      "hidden"
+    );
 
     showMenuPhoto(
       senderPhoto,
-      firstMenu
+      menus[0]
     );
 
   }
