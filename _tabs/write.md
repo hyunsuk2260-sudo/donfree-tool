@@ -11,34 +11,28 @@ order: 10
   margin: 0 auto;
 }
 
-.write-section {
-  margin-bottom: 24px;
+.write-box {
+  margin-bottom: 25px;
 }
 
 .write-label {
   display: block;
   font-weight: 700;
-  font-size: 15px;
   margin-bottom: 8px;
 }
 
-.write-input,
-.write-select,
-.write-textarea {
+.write-input {
   width: 100%;
   box-sizing: border-box;
+  padding: 13px;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
-  padding: 12px 14px;
   font-size: 15px;
-  background: #fff;
-  color: #222;
+  background: white;
 }
 
 .write-input:focus,
-.write-select:focus,
-.write-textarea:focus,
-.editor:focus {
+.write-body:focus {
   outline: none;
   border-color: #777;
 }
@@ -46,192 +40,83 @@ order: 10
 .write-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 15px;
 }
 
-.editor {
-  min-height: 600px;
+.write-body {
   width: 100%;
+  min-height: 550px;
   box-sizing: border-box;
+  padding: 18px;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
-  padding: 18px;
-  background: #fff;
-  color: #222;
   font-size: 16px;
   line-height: 1.8;
-  overflow-wrap: break-word;
+  resize: vertical;
+  font-family: inherit;
+  background: white;
 }
 
-.editor:empty:before {
-  content: attr(data-placeholder);
-  color: #aaa;
-  pointer-events: none;
-}
-
-.editor p {
-  margin: 0 0 12px;
-}
-
-.editor h2 {
-  font-size: 25px;
-  margin: 25px 0 12px;
-}
-
-.editor h3 {
-  font-size: 21px;
-  margin: 22px 0 10px;
-}
-
-.editor a {
-  text-decoration: underline;
-}
-
-.editor-image-wrap {
-  position: relative;
-  display: block;
-  width: 70%;
-  margin: 20px auto;
-  line-height: 0;
-}
-
-.editor-image-wrap.selected {
-  outline: 2px solid #555;
-}
-
-.editor-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.image-resizer {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  right: -6px;
-  bottom: -6px;
-  background: #333;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  cursor: nwse-resize;
-  display: none;
-}
-
-.editor-image-wrap.selected .image-resizer {
-  display: block;
-}
-
-.editor-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 8px;
-}
-
-.editor-toolbar button,
-.action-button,
-.image-button {
-  border: 1px solid #d5d5d5;
-  background: #fff;
-  color: #222;
-  border-radius: 7px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.editor-toolbar button:hover,
-.action-button:hover,
-.image-button:hover {
-  background: #f4f4f4;
-}
-
-.primary-button {
-  background: #222 !important;
-  color: #fff !important;
-  border-color: #222 !important;
-}
-
-.danger-button {
-  color: #c62828 !important;
-}
-
-.image-upload-box {
+.image-upload {
+  padding: 18px;
   border: 1px dashed #bbb;
   border-radius: 8px;
-  padding: 18px;
   background: #fafafa;
 }
 
 .image-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 14px;
-  margin-top: 16px;
+  gap: 15px;
+  margin-top: 18px;
 }
 
-.image-item {
+.image-card {
+  background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 8px;
-  background: #fff;
 }
 
-.image-item-thumb {
+.image-card img {
   width: 100%;
-  height: 130px;
+  height: 140px;
   object-fit: cover;
-  display: block;
   border-radius: 5px;
-  background: #f2f2f2;
+  display: block;
 }
 
-.image-item-name {
+.image-name {
   font-size: 12px;
-  color: #555;
   margin: 8px 2px;
-  overflow: hidden;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.image-item-buttons {
+.image-buttons {
   display: flex;
-  flex-wrap: wrap;
   gap: 5px;
 }
 
-.image-item-buttons button {
+.image-buttons button {
   flex: 1;
-  min-width: 70px;
-  padding: 7px 5px;
+  padding: 7px 4px;
   border: 1px solid #ddd;
-  background: #fff;
-  border-radius: 6px;
+  background: white;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
 }
 
-.image-item-buttons button:hover {
-  background: #f5f5f5;
+.image-buttons button:hover {
+  background: #f3f3f3;
 }
 
-.featured-badge {
-  display: inline-block;
-  margin-top: 5px;
+.featured {
   font-size: 11px;
-  font-weight: 700;
-}
-
-.featured-box {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  background: #fafafa;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
 .featured-preview {
@@ -239,57 +124,92 @@ order: 10
 }
 
 .featured-preview img {
-  display: block;
-  max-width: 260px;
-  max-height: 180px;
+  width: 220px;
+  max-height: 160px;
   object-fit: cover;
   border-radius: 6px;
 }
 
+.toolbar {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.toolbar button,
+.action-button {
+  padding: 9px 13px;
+  border: 1px solid #d5d5d5;
+  background: white;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.toolbar button:hover,
+.action-button:hover {
+  background: #f3f3f3;
+}
+
+.primary {
+  background: #222 !important;
+  color: white !important;
+  border-color: #222 !important;
+}
+
 .button-row {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
+  flex-wrap: wrap;
   margin-top: 20px;
 }
 
-.preview-box {
+.preview {
+  display: none;
+  margin-top: 30px;
+  padding: 25px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 24px;
-  margin-top: 20px;
-  background: #fff;
-}
-
-.preview-box img {
-  max-width: 100%;
-  height: auto;
+  background: white;
 }
 
 .preview-title {
   font-size: 30px;
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
-.small-help {
+.preview-content {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.preview-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+.help {
   font-size: 12px;
   color: #777;
   margin-top: 6px;
 }
 
-.status-message {
+.status {
   margin-top: 10px;
   font-size: 13px;
   color: #555;
 }
 
 @media (max-width: 700px) {
+
   .write-grid {
     grid-template-columns: 1fr;
   }
 
-  .editor {
+  .write-body {
     min-height: 450px;
   }
 
@@ -297,95 +217,112 @@ order: 10
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .editor-image-wrap {
-    width: 100%;
-  }
 }
 </style>
+
 
 <div class="write-wrap">
 
   <!-- 제목 -->
-  <div class="write-section">
+  <div class="write-box">
+
     <label class="write-label">제목</label>
+
     <input
-      id="postTitle"
+      id="title"
       class="write-input"
       type="text"
       placeholder="글 제목을 입력하세요"
     >
+
   </div>
 
-  <!-- URL / 카테고리 -->
-  <div class="write-section write-grid">
+
+  <!-- 기본 정보 -->
+  <div class="write-box write-grid">
 
     <div>
+
       <label class="write-label">URL</label>
+
       <input
-        id="postSlug"
+        id="slug"
         class="write-input"
         type="text"
         placeholder="예: instagram-reels-download"
       >
-      <div class="small-help">
-        비워두면 제목을 기준으로 자동 생성합니다.
-      </div>
+
     </div>
 
     <div>
+
       <label class="write-label">카테고리</label>
+
       <input
-        id="postCategory"
+        id="category"
         class="write-input"
         type="text"
         placeholder="예: 생활정보"
       >
+
     </div>
 
   </div>
 
+
   <!-- 태그 -->
-  <div class="write-section">
+  <div class="write-box">
+
     <label class="write-label">태그</label>
+
     <input
-      id="postTags"
+      id="tags"
       class="write-input"
       type="text"
       placeholder="예: 인스타, 릴스, 다운로드"
     >
+
   </div>
 
+
   <!-- SEO -->
-  <div class="write-section write-grid">
+  <div class="write-box write-grid">
 
     <div>
+
       <label class="write-label">SEO 제목</label>
+
       <input
         id="seoTitle"
         class="write-input"
         type="text"
         placeholder="검색 결과에 표시될 제목"
       >
+
     </div>
 
     <div>
+
       <label class="write-label">SEO 설명</label>
+
       <input
         id="seoDescription"
         class="write-input"
         type="text"
         placeholder="검색 결과에 표시될 설명"
       >
+
     </div>
 
   </div>
 
+
   <!-- 대표 이미지 -->
-  <div class="write-section">
+  <div class="write-box">
 
     <label class="write-label">대표 이미지</label>
 
-    <div class="featured-box">
+    <div class="image-upload">
 
       <input
         id="featuredInput"
@@ -393,79 +330,89 @@ order: 10
         accept="image/*"
       >
 
-      <div class="small-help">
-        글 대표 이미지로 사용할 사진을 선택하세요.
+      <div class="help">
+        아래 본문 이미지 중 하나를 대표 이미지로 지정할 수도 있습니다.
       </div>
 
-      <div id="featuredPreview" class="featured-preview"></div>
+      <div
+        id="featuredPreview"
+        class="featured-preview"
+      ></div>
 
     </div>
 
   </div>
 
+
   <!-- 본문 -->
-  <div class="write-section">
+  <div class="write-box">
 
     <label class="write-label">본문</label>
 
-    <div class="editor-toolbar">
+    <div class="toolbar">
 
-      <button type="button" data-command="bold">
+      <button type="button" id="boldButton">
         굵게
       </button>
 
-      <button type="button" data-command="formatBlock" data-value="h2">
+      <button type="button" id="headingButton">
         소제목
-      </button>
-
-      <button type="button" data-command="formatBlock" data-value="h3">
-        작은 소제목
       </button>
 
       <button type="button" id="linkButton">
         링크
       </button>
 
-      <button type="button" id="removeFormatButton">
-        서식 제거
-      </button>
-
     </div>
 
-    <!-- ★ 실제 글쓰기 공간 -->
-    <div
-      id="editor"
-      class="editor"
-      contenteditable="true"
-      data-placeholder="여기에 글을 작성하세요."
-    ></div>
+
+    <!-- ★ 실제 글을 쓰는 공간 -->
+    <textarea
+      id="body"
+      class="write-body"
+      placeholder="여기에 글을 작성하세요.
+
+예:
+인스타 릴스를 저장하고 싶은데
+앱을 설치해야 하는 경우가 많죠.
+
+오늘은 별도 앱 없이
+간단하게 저장하는 방법을 정리해볼게요."
+    ></textarea>
 
   </div>
 
+
   <!-- 본문 이미지 -->
-  <div class="write-section">
+  <div class="write-box">
 
-    <label class="write-label">본문 이미지</label>
+    <label class="write-label">
+      본문 이미지
+    </label>
 
-    <div class="image-upload-box">
+    <div class="image-upload">
 
       <input
-        id="bodyImageInput"
+        id="imageInput"
         type="file"
         accept="image/*"
         multiple
       >
 
-      <div class="small-help">
-        사진을 여러 장 선택할 수 있습니다.
-        첨부 후 원하는 사진만 「본문에 넣기」를 누르세요.
+      <div class="help">
+        사진을 여러 장 선택하면 아래에 사진이 바로 표시됩니다.
+        원하는 사진의 「본문에 넣기」를 눌러주세요.
       </div>
 
-      <div id="imageList" class="image-list"></div>
+      <div
+        id="imageList"
+        class="image-list"
+      ></div>
 
     </div>
 
   </div>
+
 
   <!-- 버튼 -->
   <div class="button-row">
@@ -488,7 +435,7 @@ order: 10
 
     <button
       id="downloadButton"
-      class="action-button primary-button"
+      class="action-button primary"
       type="button"
     >
       Markdown 다운로드
@@ -496,7 +443,7 @@ order: 10
 
     <button
       id="clearButton"
-      class="action-button danger-button"
+      class="action-button"
       type="button"
     >
       전체 삭제
@@ -504,983 +451,1071 @@ order: 10
 
   </div>
 
-  <div id="statusMessage" class="status-message"></div>
 
-  <!-- 미리보기 -->
-  <div id="previewBox" class="preview-box" style="display:none;"></div>
+  <div
+    id="status"
+    class="status"
+  ></div>
+
+
+  <!-- ★ 미리보기 -->
+  <div
+    id="preview"
+    class="preview"
+  >
+
+    <div
+      id="previewTitle"
+      class="preview-title"
+    ></div>
+
+    <div
+      id="previewContent"
+      class="preview-content"
+    ></div>
+
+  </div>
 
 </div>
+
 
 <script>
 (function () {
 
-  const editor = document.getElementById("editor");
-  const postTitle = document.getElementById("postTitle");
-  const postSlug = document.getElementById("postSlug");
-  const postCategory = document.getElementById("postCategory");
-  const postTags = document.getElementById("postTags");
-  const seoTitle = document.getElementById("seoTitle");
-  const seoDescription = document.getElementById("seoDescription");
+  var STORAGE_KEY = "donfree_write_simple_v1";
 
-  const featuredInput = document.getElementById("featuredInput");
-  const featuredPreview = document.getElementById("featuredPreview");
+  var title = document.getElementById("title");
+  var slug = document.getElementById("slug");
+  var category = document.getElementById("category");
+  var tags = document.getElementById("tags");
 
-  const bodyImageInput = document.getElementById("bodyImageInput");
-  const imageList = document.getElementById("imageList");
+  var seoTitle = document.getElementById("seoTitle");
+  var seoDescription = document.getElementById("seoDescription");
 
-  const previewButton = document.getElementById("previewButton");
-  const saveButton = document.getElementById("saveButton");
-  const downloadButton = document.getElementById("downloadButton");
-  const clearButton = document.getElementById("clearButton");
+  var body = document.getElementById("body");
 
-  const previewBox = document.getElementById("previewBox");
-  const statusMessage = document.getElementById("statusMessage");
+  var imageInput = document.getElementById("imageInput");
+  var imageList = document.getElementById("imageList");
 
-  const STORAGE_KEY = "donfree_write_draft_v3";
+  var featuredInput = document.getElementById("featuredInput");
+  var featuredPreview = document.getElementById("featuredPreview");
 
-  let attachedImages = [];
-  let featuredImage = null;
-  let savedRange = null;
+  var preview = document.getElementById("preview");
+  var previewTitle = document.getElementById("previewTitle");
+  var previewContent = document.getElementById("previewContent");
 
-  /*
-   * -------------------------
-   * 기본 유틸
-   * -------------------------
-   */
+  var status = document.getElementById("status");
 
-  function setStatus(message) {
-    statusMessage.textContent = message;
+  var images = [];
+  var featured = null;
+
+
+  /* =========================
+     상태 메시지
+  ========================= */
+
+  function showStatus(message) {
+
+    status.textContent = message;
 
     setTimeout(function () {
-      if (statusMessage.textContent === message) {
-        statusMessage.textContent = "";
+
+      if (status.textContent === message) {
+        status.textContent = "";
       }
+
     }, 2500);
+
   }
 
-  function escapeHtml(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
 
-  function slugify(text) {
-    return String(text || "")
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w가-힣-]/g, "")
-      .replace(/-+/g, "-");
-  }
+  /* =========================
+     ID
+  ========================= */
 
   function makeId() {
-    return "img_" + Date.now() + "_" + Math.random().toString(36).slice(2, 9);
+
+    return "image_" +
+      Date.now() +
+      "_" +
+      Math.random()
+        .toString(36)
+        .substring(2, 8);
+
   }
 
-  /*
-   * -------------------------
-   * 커서 저장
-   * -------------------------
-   */
 
-  function saveEditorSelection() {
+  /* =========================
+     대표 이미지
+  ========================= */
 
-    const selection = window.getSelection();
-
-    if (!selection || selection.rangeCount === 0) {
-      return;
-    }
-
-    const range = selection.getRangeAt(0);
-
-    if (!editor.contains(range.commonAncestorContainer)) {
-      return;
-    }
-
-    savedRange = range.cloneRange();
-  }
-
-  function restoreEditorSelection() {
-
-    editor.focus();
-
-    if (savedRange) {
-
-      const selection = window.getSelection();
-
-      selection.removeAllRanges();
-      selection.addRange(savedRange);
-
-      return;
-    }
-
-    const range = document.createRange();
-
-    range.selectNodeContents(editor);
-    range.collapse(false);
-
-    const selection = window.getSelection();
-
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-
-  editor.addEventListener("keyup", saveEditorSelection);
-  editor.addEventListener("mouseup", saveEditorSelection);
-  editor.addEventListener("input", saveEditorSelection);
-
-  /*
-   * -------------------------
-   * 대표 이미지
-   * -------------------------
-   */
-
-  function renderFeaturedImage() {
+  function renderFeatured() {
 
     featuredPreview.innerHTML = "";
 
-    if (!featuredImage) {
+    if (!featured) {
       return;
     }
 
-    const image = document.createElement("img");
+    var img = document.createElement("img");
 
-    image.src = featuredImage.src;
-    image.alt = featuredImage.name || "대표 이미지";
+    img.src = featured.src;
+    img.alt = featured.name;
 
-    featuredPreview.appendChild(image);
+    featuredPreview.appendChild(img);
+
   }
 
-  function setFeaturedImage(image) {
 
-    featuredImage = {
-      id: image.id || makeId(),
-      name: image.name,
-      src: image.src
-    };
+  featuredInput.addEventListener(
+    "change",
+    function () {
 
-    renderFeaturedImage();
-    saveDraft();
+      var file = this.files[0];
 
-    setStatus("대표 이미지로 지정했습니다.");
-  }
+      if (!file) {
+        return;
+      }
 
-  featuredInput.addEventListener("change", function () {
-
-    const file = this.files && this.files[0];
-
-    if (!file) {
-      return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function (event) {
-
-      featuredImage = {
-        id: makeId(),
-        name: file.name,
-        src: event.target.result
-      };
-
-      renderFeaturedImage();
-      saveDraft();
-
-      setStatus("대표 이미지가 등록되었습니다.");
-    };
-
-    reader.readAsDataURL(file);
-  });
-
-  /*
-   * -------------------------
-   * 본문 이미지 첨부
-   * -------------------------
-   */
-
-  bodyImageInput.addEventListener("change", function () {
-
-    const files = Array.from(this.files || []);
-
-    if (!files.length) {
-      return;
-    }
-
-    let completed = 0;
-
-    files.forEach(function (file) {
-
-      const reader = new FileReader();
+      var reader = new FileReader();
 
       reader.onload = function (event) {
 
-        attachedImages.push({
+        featured = {
           id: makeId(),
           name: file.name,
           src: event.target.result
-        });
+        };
 
-        completed++;
+        renderFeatured();
+        save();
 
-        renderImageList();
+        showStatus("대표 이미지가 등록됐습니다.");
 
-        if (completed === files.length) {
-
-          saveDraft();
-
-          setStatus(files.length + "장의 사진을 첨부했습니다.");
-
-          bodyImageInput.value = "";
-        }
       };
 
       reader.readAsDataURL(file);
-    });
 
-  });
+    }
+  );
 
-  /*
-   * -------------------------
-   * 첨부 이미지 목록
-   * -------------------------
-   */
 
-  function renderImageList() {
+  /* =========================
+     이미지 첨부
+  ========================= */
+
+  imageInput.addEventListener(
+    "change",
+    function () {
+
+      var files = Array.from(this.files);
+
+      if (!files.length) {
+        return;
+      }
+
+      var count = 0;
+
+      files.forEach(function (file) {
+
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+
+          images.push({
+            id: makeId(),
+            name: file.name,
+            src: event.target.result
+          });
+
+          count++;
+
+          renderImages();
+
+          if (count === files.length) {
+
+            save();
+
+            showStatus(
+              files.length + "장의 사진이 첨부됐습니다."
+            );
+
+            imageInput.value = "";
+
+          }
+
+        };
+
+        reader.readAsDataURL(file);
+
+      });
+
+    }
+  );
+
+
+  /* =========================
+     이미지 목록
+  ========================= */
+
+  function renderImages() {
 
     imageList.innerHTML = "";
 
-    attachedImages.forEach(function (item) {
+    images.forEach(function (item) {
 
-      const box = document.createElement("div");
+      var card = document.createElement("div");
 
-      box.className = "image-item";
+      card.className = "image-card";
 
-      const thumb = document.createElement("img");
 
-      thumb.className = "image-item-thumb";
-      thumb.src = item.src;
-      thumb.alt = item.name || "첨부 이미지";
+      var img = document.createElement("img");
 
-      const name = document.createElement("div");
+      img.src = item.src;
+      img.alt = item.name;
 
-      name.className = "image-item-name";
-      name.textContent = item.name || "이미지";
 
-      const buttons = document.createElement("div");
+      var name = document.createElement("div");
 
-      buttons.className = "image-item-buttons";
+      name.className = "image-name";
+      name.textContent = item.name;
 
-      const insertButton = document.createElement("button");
+
+      var buttons = document.createElement("div");
+
+      buttons.className = "image-buttons";
+
+
+      /* 본문에 넣기 */
+
+      var insertButton = document.createElement("button");
 
       insertButton.type = "button";
       insertButton.textContent = "본문에 넣기";
 
-      insertButton.addEventListener("click", function () {
-        insertImage(item);
-      });
+      insertButton.addEventListener(
+        "click",
+        function () {
 
-      const featureButton = document.createElement("button");
+          insertImage(item);
+
+        }
+      );
+
+
+      /* 대표 이미지 */
+
+      var featureButton = document.createElement("button");
 
       featureButton.type = "button";
       featureButton.textContent = "대표 이미지";
 
-      featureButton.addEventListener("click", function () {
-        setFeaturedImage(item);
-      });
+      featureButton.addEventListener(
+        "click",
+        function () {
 
-      const deleteButton = document.createElement("button");
+          featured = {
+            id: item.id,
+            name: item.name,
+            src: item.src
+          };
+
+          renderFeatured();
+          renderImages();
+          save();
+
+          showStatus(
+            "대표 이미지로 지정했습니다."
+          );
+
+        }
+      );
+
+
+      /* 삭제 */
+
+      var deleteButton = document.createElement("button");
 
       deleteButton.type = "button";
       deleteButton.textContent = "삭제";
 
-      deleteButton.addEventListener("click", function () {
+      deleteButton.addEventListener(
+        "click",
+        function () {
 
-        attachedImages = attachedImages.filter(function (image) {
-          return image.id !== item.id;
-        });
+          images = images.filter(
+            function (image) {
+              return image.id !== item.id;
+            }
+          );
 
-        if (featuredImage && featuredImage.id === item.id) {
-          featuredImage = null;
-          renderFeaturedImage();
+          if (
+            featured &&
+            featured.id === item.id
+          ) {
+
+            featured = null;
+            renderFeatured();
+
+          }
+
+          renderImages();
+          save();
+
+          showStatus("사진을 삭제했습니다.");
+
         }
+      );
 
-        renderImageList();
-        saveDraft();
-
-        setStatus("사진을 삭제했습니다.");
-      });
 
       buttons.appendChild(insertButton);
       buttons.appendChild(featureButton);
       buttons.appendChild(deleteButton);
 
-      box.appendChild(thumb);
-      box.appendChild(name);
 
-      if (featuredImage && featuredImage.id === item.id) {
+      card.appendChild(img);
+      card.appendChild(name);
 
-        const badge = document.createElement("div");
 
-        badge.className = "featured-badge";
+      if (
+        featured &&
+        featured.id === item.id
+      ) {
+
+        var badge = document.createElement("div");
+
+        badge.className = "featured";
         badge.textContent = "★ 대표 이미지";
 
-        box.appendChild(badge);
+        card.appendChild(badge);
+
       }
 
-      box.appendChild(buttons);
 
-      imageList.appendChild(box);
+      card.appendChild(buttons);
+
+      imageList.appendChild(card);
+
     });
+
   }
 
-  /*
-   * -------------------------
-   * 본문 이미지 삽입
-   * -------------------------
-   */
+
+  /* =========================
+     본문에 이미지 넣기
+  ========================= */
 
   function insertImage(item) {
 
-    restoreEditorSelection();
+    /*
+     * textarea에는 실제 사진 대신
+     * Markdown 이미지 문법을 넣습니다.
+     *
+     * 미리보기에서는 이 값을 실제 이미지로 보여줍니다.
+     */
 
-    const wrapper = document.createElement("div");
+    var imageCode =
+      "\n\n!["
+      + item.name
+      + "]("
+      + item.src
+      + ")\n\n";
 
-    wrapper.className = "editor-image-wrap";
 
-    const image = document.createElement("img");
+    var start = body.selectionStart;
+    var end = body.selectionEnd;
 
-    image.className = "editor-image";
-    image.src = item.src;
-    image.alt = item.name || "이미지";
+    var before = body.value.substring(0, start);
+    var after = body.value.substring(end);
 
-    const resizer = document.createElement("span");
+    body.value =
+      before +
+      imageCode +
+      after;
 
-    resizer.className = "image-resizer";
 
-    wrapper.appendChild(image);
-    wrapper.appendChild(resizer);
+    var newPosition =
+      start + imageCode.length;
 
-    const range = window.getSelection().getRangeAt(0);
+    body.focus();
 
-    range.deleteContents();
-    range.insertNode(wrapper);
+    body.setSelectionRange(
+      newPosition,
+      newPosition
+    );
 
-    const after = document.createElement("p");
+    save();
 
-    after.innerHTML = "<br>";
+    showStatus(
+      "본문에 사진을 넣었습니다."
+    );
 
-    wrapper.parentNode.insertBefore(after, wrapper.nextSibling);
-
-    const newRange = document.createRange();
-
-    newRange.setStart(after, 0);
-    newRange.collapse(true);
-
-    const selection = window.getSelection();
-
-    selection.removeAllRanges();
-    selection.addRange(newRange);
-
-    savedRange = newRange.cloneRange();
-
-    attachImageEvents(wrapper);
-
-    saveDraft();
-
-    setStatus("본문에 사진을 넣었습니다.");
   }
 
-  /*
-   * -------------------------
-   * 본문 이미지 선택 / 크기 조절
-   * -------------------------
-   */
 
-  function attachImageEvents(wrapper) {
+  /* =========================
+     굵게
+  ========================= */
 
-    const image = wrapper.querySelector(".editor-image");
-    const resizer = wrapper.querySelector(".image-resizer");
+  document.getElementById("boldButton")
+    .addEventListener(
+      "click",
+      function () {
 
-    if (!image || !resizer) {
-      return;
-    }
+        insertAroundSelection(
+          "**",
+          "**"
+        );
 
-    image.addEventListener("click", function (event) {
+      }
+    );
 
-      event.stopPropagation();
 
-      document.querySelectorAll(".editor-image-wrap.selected")
-        .forEach(function (item) {
-          item.classList.remove("selected");
+  /* =========================
+     소제목
+  ========================= */
+
+  document.getElementById("headingButton")
+    .addEventListener(
+      "click",
+      function () {
+
+        var start = body.selectionStart;
+        var end = body.selectionEnd;
+
+        var selected =
+          body.value.substring(start, end);
+
+        if (!selected) {
+          selected = "소제목";
+        }
+
+        var replacement =
+          "## " + selected;
+
+        body.setRangeText(
+          replacement,
+          start,
+          end,
+          "end"
+        );
+
+        save();
+
+      }
+    );
+
+
+  /* =========================
+     링크
+  ========================= */
+
+  document.getElementById("linkButton")
+    .addEventListener(
+      "click",
+      function () {
+
+        var url = prompt(
+          "링크 주소를 입력하세요."
+        );
+
+        if (!url) {
+          return;
+        }
+
+        var start = body.selectionStart;
+        var end = body.selectionEnd;
+
+        var selected =
+          body.value.substring(start, end);
+
+        if (!selected) {
+          selected = url;
+        }
+
+        var replacement =
+          "[" +
+          selected +
+          "](" +
+          url +
+          ")";
+
+        body.setRangeText(
+          replacement,
+          start,
+          end,
+          "end"
+        );
+
+        save();
+
+      }
+    );
+
+
+  function insertAroundSelection(
+    beforeText,
+    afterText
+  ) {
+
+    var start = body.selectionStart;
+    var end = body.selectionEnd;
+
+    var selected =
+      body.value.substring(start, end);
+
+    var replacement =
+      beforeText +
+      selected +
+      afterText;
+
+    body.setRangeText(
+      replacement,
+      start,
+      end,
+      "end"
+    );
+
+    save();
+
+  }
+
+
+  /* =========================
+     미리보기
+  ========================= */
+
+  document.getElementById("previewButton")
+    .addEventListener(
+      "click",
+      function () {
+
+        previewTitle.textContent =
+          title.value || "제목 없음";
+
+
+        var html =
+          markdownToHtml(
+            body.value
+          );
+
+
+        previewContent.innerHTML =
+          html;
+
+
+        preview.style.display =
+          "block";
+
+
+        preview.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
         });
 
-      wrapper.classList.add("selected");
-
-      saveEditorSelection();
-    });
-
-    resizer.addEventListener("mousedown", function (event) {
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      const startX = event.clientX;
-      const startWidth = wrapper.getBoundingClientRect().width;
-      const editorWidth = editor.getBoundingClientRect().width;
-
-      function resize(moveEvent) {
-
-        const difference = moveEvent.clientX - startX;
-
-        let newWidth = startWidth + difference;
-
-        const minWidth = 100;
-        const maxWidth = editorWidth;
-
-        if (newWidth < minWidth) {
-          newWidth = minWidth;
-        }
-
-        if (newWidth > maxWidth) {
-          newWidth = maxWidth;
-        }
-
-        const percentage = (newWidth / editorWidth) * 100;
-
-        wrapper.style.width = percentage + "%";
       }
+    );
 
-      function stopResize() {
 
-        document.removeEventListener("mousemove", resize);
-        document.removeEventListener("mouseup", stopResize);
+  /* =========================
+     Markdown → 미리보기 HTML
+  ========================= */
 
-        saveDraft();
+  function markdownToHtml(text) {
+
+    var html =
+      escapeHtml(text);
+
+
+    /*
+     * 이미지
+     */
+
+    html = html.replace(
+      /!\[([^\]]*)\]\((data:image\/[^)]+)\)/g,
+      function (
+        match,
+        alt,
+        src
+      ) {
+
+        return (
+          '<img src="' +
+          src +
+          '" alt="' +
+          alt +
+          '">'
+        );
+
       }
+    );
 
-      document.addEventListener("mousemove", resize);
-      document.addEventListener("mouseup", stopResize);
 
-    });
+    /*
+     * 링크
+     */
+
+    html = html.replace(
+      /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
+      function (
+        match,
+        text,
+        url
+      ) {
+
+        return (
+          '<a href="' +
+          url +
+          '" target="_blank">' +
+          text +
+          '</a>'
+        );
+
+      }
+    );
+
+
+    /*
+     * 제목
+     */
+
+    html = html.replace(
+      /^### (.+)$/gm,
+      "<h3>$1</h3>"
+    );
+
+    html = html.replace(
+      /^## (.+)$/gm,
+      "<h2>$1</h2>"
+    );
+
+
+    /*
+     * 굵게
+     */
+
+    html = html.replace(
+      /\*\*(.*?)\*\*/g,
+      "<strong>$1</strong>"
+    );
+
+
+    /*
+     * 줄바꿈
+     */
+
+    html = html.replace(
+      /\n/g,
+      "<br>"
+    );
+
+
+    return html;
+
   }
 
-  function attachAllImageEvents() {
 
-    editor.querySelectorAll(".editor-image-wrap")
-      .forEach(function (wrapper) {
-        attachImageEvents(wrapper);
-      });
+  function escapeHtml(text) {
+
+    var div =
+      document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
 
   }
 
-  editor.addEventListener("click", function (event) {
 
-    if (!event.target.classList.contains("editor-image")) {
-      return;
-    }
+  /* =========================
+     저장
+  ========================= */
 
-    saveEditorSelection();
-  });
-
-  /*
-   * -------------------------
-   * 툴바
-   * -------------------------
-   */
-
-  document.querySelectorAll(".editor-toolbar button[data-command]")
-    .forEach(function (button) {
-
-      button.addEventListener("mousedown", function (event) {
-        event.preventDefault();
-      });
-
-      button.addEventListener("click", function () {
-
-        restoreEditorSelection();
-
-        const command = button.dataset.command;
-        const value = button.dataset.value || null;
-
-        document.execCommand(command, false, value);
-
-        saveEditorSelection();
-        saveDraft();
-      });
-
-    });
-
-  document.getElementById("linkButton")
-    .addEventListener("mousedown", function (event) {
-      event.preventDefault();
-    });
-
-  document.getElementById("linkButton")
-    .addEventListener("click", function () {
-
-      restoreEditorSelection();
-
-      const url = prompt("링크 주소를 입력하세요.");
-
-      if (!url) {
-        return;
-      }
-
-      document.execCommand("createLink", false, url);
-
-      saveEditorSelection();
-      saveDraft();
-    });
-
-  document.getElementById("removeFormatButton")
-    .addEventListener("click", function () {
-
-      restoreEditorSelection();
-
-      document.execCommand("removeFormat", false, null);
-
-      saveEditorSelection();
-      saveDraft();
-    });
-
-  /*
-   * -------------------------
-   * 데이터 수집
-   * -------------------------
-   */
-
-  function collectData() {
-
-    let slug = postSlug.value.trim();
-
-    if (!slug) {
-      slug = slugify(postTitle.value);
-    }
+  function getData() {
 
     return {
-      title: postTitle.value.trim(),
-      slug: slug,
-      category: postCategory.value.trim(),
-      tags: postTags.value.trim(),
-      seoTitle: seoTitle.value.trim(),
-      seoDescription: seoDescription.value.trim(),
-      featuredImage: featuredImage,
-      attachedImages: attachedImages,
-      content: editor.innerHTML
+
+      title: title.value,
+      slug: slug.value,
+      category: category.value,
+      tags: tags.value,
+
+      seoTitle:
+        seoTitle.value,
+
+      seoDescription:
+        seoDescription.value,
+
+      body:
+        body.value,
+
+      images:
+        images,
+
+      featured:
+        featured
+
     };
+
   }
 
-  /*
-   * -------------------------
-   * 자동 저장
-   * -------------------------
-   */
 
-  function saveDraft() {
+  function save() {
 
     try {
 
-      const data = collectData();
-
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify(data)
+        JSON.stringify(
+          getData()
+        )
       );
 
     } catch (error) {
 
-      console.warn("임시저장 실패:", error);
+      console.warn(
+        "자동 저장에 실패했습니다.",
+        error
+      );
 
     }
-  }
-
-  let saveTimer = null;
-
-  function scheduleSave() {
-
-    clearTimeout(saveTimer);
-
-    saveTimer = setTimeout(function () {
-      saveDraft();
-    }, 500);
 
   }
+
 
   [
-    postTitle,
-    postSlug,
-    postCategory,
-    postTags,
+    title,
+    slug,
+    category,
+    tags,
     seoTitle,
-    seoDescription
-  ].forEach(function (element) {
+    seoDescription,
+    body
 
-    element.addEventListener("input", scheduleSave);
+  ].forEach(
+    function (element) {
 
-  });
+      element.addEventListener(
+        "input",
+        save
+      );
 
-  editor.addEventListener("input", scheduleSave);
+    }
+  );
 
-  /*
-   * -------------------------
-   * 초안 불러오기
-   * -------------------------
-   */
 
-  function loadDraft() {
+  document.getElementById("saveButton")
+    .addEventListener(
+      "click",
+      function () {
+
+        save();
+
+        showStatus(
+          "임시저장했습니다."
+        );
+
+      }
+    );
+
+
+  /* =========================
+     기존 글 불러오기
+  ========================= */
+
+  function load() {
 
     try {
 
-      const saved = localStorage.getItem(STORAGE_KEY);
+      var saved =
+        localStorage.getItem(
+          STORAGE_KEY
+        );
 
       if (!saved) {
         return;
       }
 
-      const data = JSON.parse(saved);
+      var data =
+        JSON.parse(saved);
 
-      postTitle.value = data.title || "";
-      postSlug.value = data.slug || "";
-      postCategory.value = data.category || "";
-      postTags.value = data.tags || "";
-      seoTitle.value = data.seoTitle || "";
-      seoDescription.value = data.seoDescription || "";
 
-      editor.innerHTML = data.content || "";
+      title.value =
+        data.title || "";
 
-      featuredImage = data.featuredImage || null;
-      attachedImages = Array.isArray(data.attachedImages)
-        ? data.attachedImages
-        : [];
+      slug.value =
+        data.slug || "";
 
-      renderFeaturedImage();
-      renderImageList();
-      attachAllImageEvents();
+      category.value =
+        data.category || "";
+
+      tags.value =
+        data.tags || "";
+
+      seoTitle.value =
+        data.seoTitle || "";
+
+      seoDescription.value =
+        data.seoDescription || "";
+
+      body.value =
+        data.body || "";
+
+      images =
+        Array.isArray(data.images)
+          ? data.images
+          : [];
+
+      featured =
+        data.featured || null;
+
+
+      renderImages();
+      renderFeatured();
 
     } catch (error) {
 
-      console.warn("초안 불러오기 실패:", error);
+      console.warn(
+        "저장된 글을 불러오지 못했습니다.",
+        error
+      );
 
     }
 
   }
 
-  /*
-   * -------------------------
-   * 미리보기
-   * -------------------------
-   */
 
-  previewButton.addEventListener("click", function () {
+  /* =========================
+     Markdown 다운로드
+  ========================= */
 
-    const data = collectData();
+  document.getElementById("downloadButton")
+    .addEventListener(
+      "click",
+      function () {
 
-    previewBox.style.display = "block";
+        if (!title.value.trim()) {
 
-    previewBox.innerHTML = "";
+          alert(
+            "제목을 먼저 입력해주세요."
+          );
 
-    const title = document.createElement("div");
+          title.focus();
 
-    title.className = "preview-title";
-    title.textContent = data.title || "제목 없음";
+          return;
 
-    const content = document.createElement("div");
+        }
 
-    content.innerHTML = data.content || "<p>본문이 없습니다.</p>";
 
-    previewBox.appendChild(title);
-    previewBox.appendChild(content);
+        var today =
+          new Date();
 
-    previewBox.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+        var date =
+          today.getFullYear() +
+          "-" +
+          String(
+            today.getMonth() + 1
+          ).padStart(2, "0") +
+          "-" +
+          String(
+            today.getDate()
+          ).padStart(2, "0");
 
-  });
 
-  /*
-   * -------------------------
-   * 임시저장
-   * -------------------------
-   */
+        var postSlug =
+          slug.value.trim();
 
-  saveButton.addEventListener("click", function () {
 
-    saveDraft();
+        if (!postSlug) {
 
-    setStatus("현재 글을 임시저장했습니다.");
+          postSlug =
+            title.value
+              .trim()
+              .replace(/\s+/g, "-");
 
-  });
+        }
 
-  /*
-   * -------------------------
-   * Markdown 변환
-   * -------------------------
-   */
 
-  function htmlToMarkdown(html) {
+        var tagArray =
+          tags.value
+            .split(",")
+            .map(
+              function (item) {
+                return item.trim();
+              }
+            )
+            .filter(Boolean);
 
-    const temp = document.createElement("div");
 
-    temp.innerHTML = html;
+        var markdown =
+          "---\n";
 
-    function convert(node) {
+        markdown +=
+          'title: "' +
+          title.value.replace(
+            /"/g,
+            '\\"'
+          ) +
+          '"\n';
 
-      if (node.nodeType === Node.TEXT_NODE) {
-        return node.textContent;
-      }
+        markdown +=
+          "date: " +
+          date +
+          "\n";
 
-      if (node.nodeType !== Node.ELEMENT_NODE) {
-        return "";
-      }
+        if (category.value.trim()) {
 
-      const tag = node.tagName.toLowerCase();
+          markdown +=
+            "categories: [" +
+            category.value.trim() +
+            "]\n";
 
-      let inner = "";
+        }
 
-      node.childNodes.forEach(function (child) {
-        inner += convert(child);
-      });
+        if (tagArray.length) {
 
-      if (tag === "br") {
-        return "\n";
-      }
+          markdown +=
+            "tags: [" +
+            tagArray.join(", ") +
+            "]\n";
 
-      if (tag === "strong" || tag === "b") {
-        return "**" + inner + "**";
-      }
+        }
 
-      if (tag === "h2") {
-        return "\n\n## " + inner.trim() + "\n\n";
-      }
+        if (
+          seoDescription.value.trim()
+        ) {
 
-      if (tag === "h3") {
-        return "\n\n### " + inner.trim() + "\n\n";
-      }
+          markdown +=
+            'description: "' +
+            seoDescription.value
+              .replace(
+                /"/g,
+                '\\"'
+              ) +
+            '"\n';
 
-      if (tag === "a") {
+        }
 
-        const href = node.getAttribute("href") || "";
 
-        return "[" + inner.trim() + "](" + href + ")";
+        markdown +=
+          "---\n\n";
 
-      }
 
-      if (tag === "img") {
+        markdown +=
+          body.value;
 
-        const src = node.getAttribute("src") || "";
 
-        return "\n\n<img src=\"" +
-          src +
-          "\" style=\"max-width:100%;height:auto;\">\n\n";
-      }
+        var blob =
+          new Blob(
+            [markdown],
+            {
+              type:
+                "text/markdown;charset=utf-8"
+            }
+          );
 
-      if (tag === "div" || tag === "p") {
-        return inner + "\n\n";
-      }
 
-      return inner;
+        var url =
+          URL.createObjectURL(
+            blob
+          );
 
-    }
 
-    return convert(temp)
-      .replace(/\n{3,}/g, "\n\n")
-      .trim();
+        var link =
+          document.createElement("a");
 
-  }
+        link.href = url;
 
-  /*
-   * -------------------------
-   * Markdown 다운로드
-   * -------------------------
-   */
+        link.download =
+          date +
+          "-" +
+          postSlug +
+          ".md";
 
-  downloadButton.addEventListener("click", function () {
 
-    const data = collectData();
+        document.body.appendChild(
+          link
+        );
 
-    if (!data.title) {
+        link.click();
 
-      alert("제목을 먼저 입력하세요.");
-      postTitle.focus();
+        link.remove();
 
-      return;
-    }
+        URL.revokeObjectURL(
+          url
+        );
 
-    const date = new Date();
 
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, "0");
-    const dd = String(date.getDate()).padStart(2, "0");
+        showStatus(
+          "Markdown 파일을 만들었습니다."
+        );
 
-    const dateString = yyyy + "-" + mm + "-" + dd;
-
-    const category = data.category || "생활정보";
-
-    const tags = data.tags
-      ? data.tags
-          .split(",")
-          .map(function (tag) {
-            return tag.trim();
-          })
-          .filter(Boolean)
-      : [];
-
-    let markdown = "";
-
-    markdown += "---\n";
-
-    markdown += "title: \"" +
-      data.title.replace(/"/g, '\\"') +
-      "\"\n";
-
-    markdown += "date: " +
-      dateString +
-      "\n";
-
-    markdown += "categories: [" +
-      category +
-      "]\n";
-
-    if (tags.length) {
-
-      markdown += "tags: [" +
-        tags.join(", ") +
-        "]\n";
-
-    }
-
-    if (data.seoTitle) {
-
-      markdown += "description: \"" +
-        data.seoDescription.replace(/"/g, '\\"') +
-        "\"\n";
-
-    }
-
-    if (data.featuredImage) {
-
-      /*
-       * 대표 이미지는 현재 작성 도구에서 확인할 수 있도록
-       * 이미지 데이터를 포함합니다.
-       */
-      markdown += "image:\n";
-      markdown += "  path: \"" +
-        data.featuredImage.src +
-        "\"\n";
-
-    }
-
-    markdown += "---\n\n";
-
-    markdown += htmlToMarkdown(data.content);
-
-    const blob = new Blob(
-      [markdown],
-      {
-        type: "text/markdown;charset=utf-8"
       }
     );
 
-    const url = URL.createObjectURL(blob);
 
-    const link = document.createElement("a");
+  /* =========================
+     전체 삭제
+  ========================= */
 
-    link.href = url;
+  document.getElementById("clearButton")
+    .addEventListener(
+      "click",
+      function () {
 
-    link.download =
-      dateString +
-      "-" +
-      (data.slug || slugify(data.title)) +
-      ".md";
+        if (
+          !confirm(
+            "작성 중인 글을 모두 삭제할까요?"
+          )
+        ) {
 
-    document.body.appendChild(link);
+          return;
 
-    link.click();
+        }
 
-    link.remove();
 
-    URL.revokeObjectURL(url);
+        title.value = "";
+        slug.value = "";
+        category.value = "";
+        tags.value = "";
 
-    setStatus("Markdown 파일을 만들었습니다.");
+        seoTitle.value = "";
+        seoDescription.value = "";
 
-  });
+        body.value = "";
 
-  /*
-   * -------------------------
-   * 전체 삭제
-   * -------------------------
-   */
+        images = [];
+        featured = null;
 
-  clearButton.addEventListener("click", function () {
+        imageInput.value = "";
+        featuredInput.value = "";
 
-    const confirmed = confirm(
-      "작성 중인 글과 첨부 사진을 모두 삭제할까요?"
+        imageList.innerHTML = "";
+        featuredPreview.innerHTML = "";
+
+        preview.style.display =
+          "none";
+
+        previewContent.innerHTML =
+          "";
+
+        localStorage.removeItem(
+          STORAGE_KEY
+        );
+
+        showStatus(
+          "작성 내용을 삭제했습니다."
+        );
+
+      }
     );
 
-    if (!confirmed) {
-      return;
-    }
-
-    postTitle.value = "";
-    postSlug.value = "";
-    postCategory.value = "";
-    postTags.value = "";
-    seoTitle.value = "";
-    seoDescription.value = "";
-
-    editor.innerHTML = "";
-
-    featuredImage = null;
-    attachedImages = [];
-
-    featuredInput.value = "";
-    bodyImageInput.value = "";
-
-    renderFeaturedImage();
-    renderImageList();
-
-    previewBox.style.display = "none";
-    previewBox.innerHTML = "";
-
-    localStorage.removeItem(STORAGE_KEY);
-
-    setStatus("작성 내용을 모두 삭제했습니다.");
-
-  });
 
   /*
-   * -------------------------
-   * 이미지 선택 해제
-   * -------------------------
-   */
-
-  editor.addEventListener("click", function (event) {
-
-    if (
-      !event.target.closest(".editor-image-wrap") &&
-      event.target !== editor
-    ) {
-
-      document.querySelectorAll(".editor-image-wrap.selected")
-        .forEach(function (item) {
-          item.classList.remove("selected");
-        });
-
-    }
-
-  });
-
-  /*
-   * -------------------------
    * 시작
-   * -------------------------
    */
 
-  loadDraft();
+  load();
 
 })();
 </script>
