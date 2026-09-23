@@ -98,6 +98,11 @@ order: 1
   background: #c0392b;
 }
 
+.write-button.small {
+  padding: 7px 10px;
+  font-size: 12px;
+}
+
 /* 에디터 */
 
 .editor-toolbar {
@@ -161,13 +166,13 @@ order: 1
   height: auto;
   margin: 18px auto;
   border-radius: 6px;
-  cursor: default;
+  cursor: pointer;
   user-select: none;
 }
 
 .editor-image.selected {
   outline: 2px solid #1769aa;
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 /* 크기 조절 핸들 */
@@ -205,6 +210,82 @@ order: 1
 
 .image-file-input {
   display: none;
+}
+
+/* 첨부 이미지 목록 */
+
+.image-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.image-item {
+  border: 1px solid #d9dee4;
+  border-radius: 9px;
+  padding: 9px;
+  background: #fff;
+}
+
+.image-item-thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+  background: #f5f6f7;
+}
+
+.image-item-name {
+  font-size: 12px;
+  color: #555;
+  margin-top: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.image-item-buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.image-item-buttons button {
+  border: 1px solid #d5d9de;
+  background: #fff;
+  border-radius: 5px;
+  padding: 5px 7px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.image-item-buttons button:hover {
+  background: #f1f3f5;
+}
+
+.image-item-buttons .image-delete {
+  color: #c0392b;
+}
+
+/* 대표 이미지 표시 */
+
+.image-item.featured-selected {
+  border: 2px solid #1769aa;
+}
+
+.featured-badge {
+  display: none;
+  font-size: 11px;
+  color: #1769aa;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.image-item.featured-selected .featured-badge {
+  display: block;
 }
 
 /* 액션 */
@@ -264,17 +345,22 @@ order: 1
     padding: 6px 8px;
     font-size: 12px;
   }
+
+  .image-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .image-item-thumb {
+    height: 100px;
+  }
 }
 </style>
 
 
 <div class="write-page">
 
-  <!-- 제목 -->
-
   <div class="write-field">
     <label for="postTitle">글 제목</label>
-
     <input
       id="postTitle"
       type="text"
@@ -282,11 +368,8 @@ order: 1
   </div>
 
 
-  <!-- 주소 -->
-
   <div class="write-field">
     <label for="postSlug">주소용 영문 이름</label>
-
     <input
       id="postSlug"
       type="text"
@@ -294,11 +377,8 @@ order: 1
   </div>
 
 
-  <!-- 카테고리 -->
-
   <div class="write-field">
     <label for="postCategory">카테고리</label>
-
     <input
       id="postCategory"
       type="text"
@@ -306,11 +386,8 @@ order: 1
   </div>
 
 
-  <!-- 태그 -->
-
   <div class="write-field">
     <label for="postTags">태그</label>
-
     <input
       id="postTags"
       type="text"
@@ -318,11 +395,8 @@ order: 1
   </div>
 
 
-  <!-- SEO -->
-
   <div class="write-field">
     <label for="seoTitle">SEO 제목</label>
-
     <input
       id="seoTitle"
       type="text"
@@ -332,7 +406,6 @@ order: 1
 
   <div class="write-field">
     <label for="seoDescription">SEO 설명</label>
-
     <input
       id="seoDescription"
       type="text"
@@ -347,7 +420,7 @@ order: 1
     <strong>대표 이미지</strong>
 
     <div class="featured-help">
-      블로그 글의 대표 이미지로 사용할 사진을 한 장 선택하세요.
+      아래 첨부 사진 중 하나를 대표 이미지로 지정할 수 있습니다.
     </div>
 
     <div class="featured-buttons">
@@ -355,7 +428,7 @@ order: 1
       <label
         for="featuredImageInput"
         class="write-button primary">
-        대표 이미지 선택
+        대표 이미지 직접 선택
       </label>
 
       <input
@@ -430,7 +503,7 @@ order: 1
         contenteditable="true"
         data-placeholder="여기에 글을 작성하세요.
 
-사진을 넣으려면 아래의 '사진 여러 장 추가'를 이용하세요.">
+사진을 넣으려면 아래 첨부 사진에서 '본문에 넣기'를 누르세요.">
       </div>
 
       <div
@@ -442,14 +515,13 @@ order: 1
 
 
     <div class="editor-help">
-      사진을 클릭하면 선택됩니다.
-      오른쪽 아래 파란 점을 드래그하면 사진 크기를 바로 조절할 수 있습니다.
+      본문 사진을 클릭한 뒤 오른쪽 아래 파란 점을 드래그하면 크기를 조절할 수 있습니다.
     </div>
 
   </div>
 
 
-  <!-- 여러 장 이미지 -->
+  <!-- 사진 추가 -->
 
   <div class="image-add-area">
 
@@ -467,7 +539,12 @@ order: 1
       multiple>
 
     <div class="editor-help">
-      여러 장의 사진을 한꺼번에 선택할 수 있습니다.
+      여러 장을 한꺼번에 선택할 수 있습니다.
+    </div>
+
+    <div
+      id="imageList"
+      class="image-list">
     </div>
 
   </div>
@@ -521,8 +598,6 @@ order: 1
   </div>
 
 
-  <!-- 미리보기 -->
-
   <div
     id="previewBox"
     class="preview-box">
@@ -535,7 +610,6 @@ order: 1
 (function () {
 
   "use strict";
-
 
   const editor =
     document.getElementById("postEditor");
@@ -551,6 +625,9 @@ order: 1
 
   const previewBox =
     document.getElementById("previewBox");
+
+  const imageList =
+    document.getElementById("imageList");
 
 
   const titleInput =
@@ -586,6 +663,8 @@ order: 1
     document.getElementById("bodyImageInput");
 
 
+  let attachedImages = [];
+
   let featuredImage = null;
 
   let selectedImage = null;
@@ -597,12 +676,6 @@ order: 1
   let resizeStartWidth = 0;
 
 
-  /*
-  ----------------------------------------
-  상태 메시지
-  ----------------------------------------
-  */
-
   function showStatus(message) {
 
     statusMessage.textContent = message;
@@ -611,10 +684,251 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  대표 이미지
-  ----------------------------------------
+  ========================================
+  이미지 첨부 목록
+  ========================================
   */
+
+  function renderImageList() {
+
+    imageList.innerHTML = "";
+
+
+    attachedImages.forEach(
+      function (imageData, index) {
+
+        const item =
+          document.createElement("div");
+
+        item.className =
+          "image-item";
+
+
+        if (
+          featuredImage &&
+          featuredImage.id === imageData.id
+        ) {
+
+          item.classList.add(
+            "featured-selected"
+          );
+
+        }
+
+
+        const thumbnail =
+          document.createElement("img");
+
+        thumbnail.className =
+          "image-item-thumb";
+
+        thumbnail.src =
+          imageData.src;
+
+        thumbnail.alt =
+          imageData.name;
+
+
+        const name =
+          document.createElement("div");
+
+        name.className =
+          "image-item-name";
+
+        name.textContent =
+          imageData.name;
+
+
+        const badge =
+          document.createElement("div");
+
+        badge.className =
+          "featured-badge";
+
+        badge.textContent =
+          "★ 대표 이미지";
+
+
+        const buttons =
+          document.createElement("div");
+
+        buttons.className =
+          "image-item-buttons";
+
+
+        const insertButton =
+          document.createElement("button");
+
+        insertButton.type =
+          "button";
+
+        insertButton.textContent =
+          "본문에 넣기";
+
+
+        insertButton.addEventListener(
+          "click",
+          function () {
+
+            insertImage(
+              imageData.src,
+              imageData.name
+            );
+
+          }
+        );
+
+
+        const featuredButton =
+          document.createElement("button");
+
+        featuredButton.type =
+          "button";
+
+        featuredButton.textContent =
+          "대표 이미지";
+
+
+        featuredButton.addEventListener(
+          "click",
+          function () {
+
+            setFeaturedImage(
+              imageData
+            );
+
+          }
+        );
+
+
+        const deleteButton =
+          document.createElement("button");
+
+        deleteButton.type =
+          "button";
+
+        deleteButton.className =
+          "image-delete";
+
+        deleteButton.textContent =
+          "삭제";
+
+
+        deleteButton.addEventListener(
+          "click",
+          function () {
+
+            if (
+              featuredImage &&
+              featuredImage.id === imageData.id
+            ) {
+
+              featuredImage = null;
+
+              featuredPreview.style.display =
+                "none";
+
+              featuredPreviewImage.removeAttribute(
+                "src"
+              );
+
+            }
+
+
+            attachedImages.splice(
+              index,
+              1
+            );
+
+
+            renderImageList();
+
+            saveDraft();
+
+            showStatus(
+              "사진을 삭제했습니다."
+            );
+
+          }
+        );
+
+
+        buttons.appendChild(
+          insertButton
+        );
+
+        buttons.appendChild(
+          featuredButton
+        );
+
+        buttons.appendChild(
+          deleteButton
+        );
+
+
+        item.appendChild(
+          thumbnail
+        );
+
+        item.appendChild(
+          name
+        );
+
+        item.appendChild(
+          badge
+        );
+
+        item.appendChild(
+          buttons
+        );
+
+
+        imageList.appendChild(
+          item
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+  ========================================
+  대표 이미지
+  ========================================
+  */
+
+  function setFeaturedImage(
+    imageData
+  ) {
+
+    featuredImage = {
+      id: imageData.id,
+      name: imageData.name,
+      src: imageData.src
+    };
+
+
+    featuredPreviewImage.src =
+      imageData.src;
+
+
+    featuredPreview.style.display =
+      "block";
+
+
+    renderImageList();
+
+    saveDraft();
+
+
+    showStatus(
+      "대표 이미지를 지정했습니다."
+    );
+
+  }
+
 
   featuredInput.addEventListener(
     "change",
@@ -624,8 +938,23 @@ order: 1
         featuredInput.files &&
         featuredInput.files[0];
 
+
       if (!file) {
         return;
+      }
+
+
+      if (
+        !file.type ||
+        !file.type.startsWith("image/")
+      ) {
+
+        showStatus(
+          "이미지 파일만 선택할 수 있습니다."
+        );
+
+        return;
+
       }
 
 
@@ -636,14 +965,27 @@ order: 1
       reader.onload =
         function (event) {
 
-          featuredImage = {
-            name: file.name,
-            src: event.target.result
+          const imageData = {
+
+            id:
+              "featured-" +
+              Date.now(),
+
+            name:
+              file.name,
+
+            src:
+              event.target.result
+
           };
 
 
+          featuredImage =
+            imageData;
+
+
           featuredPreviewImage.src =
-            featuredImage.src;
+            imageData.src;
 
 
           featuredPreview.style.display =
@@ -655,6 +997,16 @@ order: 1
 
           showStatus(
             "대표 이미지를 지정했습니다."
+          );
+
+        };
+
+
+      reader.onerror =
+        function () {
+
+          showStatus(
+            "대표 이미지를 읽지 못했습니다."
           );
 
         };
@@ -683,7 +1035,11 @@ order: 1
         featuredPreview.style.display =
           "none";
 
+
+        renderImageList();
+
         saveDraft();
+
 
         showStatus(
           "대표 이미지를 삭제했습니다."
@@ -694,9 +1050,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  본문 이미지 여러 장 추가
-  ----------------------------------------
+  ========================================
+  본문 이미지 파일 선택
+  ========================================
   */
 
   bodyImageInput.addEventListener(
@@ -714,6 +1070,9 @@ order: 1
       }
 
 
+      let completed = 0;
+
+
       files.forEach(
         function (file) {
 
@@ -721,7 +1080,11 @@ order: 1
             !file.type ||
             !file.type.startsWith("image/")
           ) {
+
+            completed++;
+
             return;
+
           }
 
 
@@ -732,10 +1095,66 @@ order: 1
           reader.onload =
             function (event) {
 
-              insertImage(
-                event.target.result,
-                file.name
-              );
+              attachedImages.push({
+
+                id:
+                  "image-" +
+                  Date.now() +
+                  "-" +
+                  Math.random()
+                    .toString(36)
+                    .slice(2),
+
+                name:
+                  file.name,
+
+                src:
+                  event.target.result
+
+              });
+
+
+              completed++;
+
+
+              renderImageList();
+
+
+              if (
+                completed === files.length
+              ) {
+
+                saveDraft();
+
+                showStatus(
+                  files.length +
+                  "장의 사진을 첨부했습니다."
+                );
+
+              }
+
+            };
+
+
+          reader.onerror =
+            function () {
+
+              completed++;
+
+
+              if (
+                completed === files.length
+              ) {
+
+                renderImageList();
+
+                saveDraft();
+
+                showStatus(
+                  "일부 사진을 읽지 못했습니다."
+                );
+
+              }
 
             };
 
@@ -753,9 +1172,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  현재 커서 위치
-  ----------------------------------------
+  ========================================
+  에디터 커서
+  ========================================
   */
 
   function getEditorRange() {
@@ -795,9 +1214,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  이미지 삽입
-  ----------------------------------------
+  ========================================
+  본문 이미지 삽입
+  ========================================
   */
 
   function insertImage(
@@ -826,6 +1245,9 @@ order: 1
     }
 
 
+    range.deleteContents();
+
+
     const image =
       document.createElement("img");
 
@@ -833,37 +1255,33 @@ order: 1
     image.className =
       "editor-image";
 
-
     image.src =
       src;
-
 
     image.alt =
       filename || "이미지";
 
-
     image.style.width =
       "70%";
-
 
     image.style.height =
       "auto";
 
 
-    /*
-    이미지 앞에 줄
-    */
-
-    const before =
+    const wrapper =
       document.createElement("div");
 
-    before.innerHTML =
-      "<br>";
+    wrapper.style.textAlign =
+      "center";
+
+    wrapper.style.margin =
+      "18px 0";
 
 
-    /*
-    이미지 뒤에 줄
-    */
+    wrapper.appendChild(
+      image
+    );
+
 
     const after =
       document.createElement("div");
@@ -872,18 +1290,16 @@ order: 1
       "<br>";
 
 
-    range.deleteContents();
-
-    range.insertNode(after);
-
-    range.insertNode(image);
-
-    range.insertNode(before);
+    range.insertNode(
+      wrapper
+    );
 
 
-    /*
-    이미지 뒤에 커서
-    */
+    wrapper.parentNode.insertBefore(
+      after,
+      wrapper.nextSibling
+    );
+
 
     const newRange =
       document.createRange();
@@ -908,26 +1324,30 @@ order: 1
     );
 
 
-    selectImage(image);
+    selectImage(
+      image
+    );
 
 
     saveDraft();
 
 
     showStatus(
-      "이미지를 본문에 추가했습니다."
+      "이미지를 본문에 넣었습니다."
     );
 
   }
 
 
   /*
-  ----------------------------------------
+  ========================================
   이미지 선택
-  ----------------------------------------
+  ========================================
   */
 
-  function selectImage(image) {
+  function selectImage(
+    image
+  ) {
 
     if (selectedImage) {
 
@@ -952,12 +1372,6 @@ order: 1
   }
 
 
-  /*
-  ----------------------------------------
-  이미지 선택 해제
-  ----------------------------------------
-  */
-
   function deselectImage() {
 
     if (selectedImage) {
@@ -977,12 +1391,6 @@ order: 1
 
   }
 
-
-  /*
-  ----------------------------------------
-  이미지 클릭
-  ----------------------------------------
-  */
 
   editor.addEventListener(
     "click",
@@ -1006,9 +1414,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  크기 조절점 위치
-  ----------------------------------------
+  ========================================
+  크기 조절 핸들
+  ========================================
   */
 
   function positionHandle() {
@@ -1060,9 +1468,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  드래그 시작
-  ----------------------------------------
+  ========================================
+  이미지 크기 드래그
+  ========================================
   */
 
   resizeHandle.addEventListener(
@@ -1097,12 +1505,6 @@ order: 1
   );
 
 
-  /*
-  ----------------------------------------
-  드래그 중
-  ----------------------------------------
-  */
-
   document.addEventListener(
     "mousemove",
     function (event) {
@@ -1111,7 +1513,9 @@ order: 1
         !resizing ||
         !selectedImage
       ) {
+
         return;
+
       }
 
 
@@ -1153,12 +1557,6 @@ order: 1
   );
 
 
-  /*
-  ----------------------------------------
-  드래그 종료
-  ----------------------------------------
-  */
-
   document.addEventListener(
     "mouseup",
     function () {
@@ -1187,9 +1585,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  Delete 키로 이미지 삭제
-  ----------------------------------------
+  ========================================
+  Delete 이미지
+  ========================================
   */
 
   document.addEventListener(
@@ -1240,9 +1638,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  굵게
-  ----------------------------------------
+  ========================================
+  서식
+  ========================================
   */
 
   document
@@ -1265,12 +1663,6 @@ order: 1
     );
 
 
-  /*
-  ----------------------------------------
-  소제목
-  ----------------------------------------
-  */
-
   document
     .getElementById("headingButton")
     .addEventListener(
@@ -1290,12 +1682,6 @@ order: 1
       }
     );
 
-
-  /*
-  ----------------------------------------
-  링크
-  ----------------------------------------
-  */
 
   document
     .getElementById("linkButton")
@@ -1330,12 +1716,6 @@ order: 1
     );
 
 
-  /*
-  ----------------------------------------
-  서식 제거
-  ----------------------------------------
-  */
-
   document
     .getElementById(
       "removeFormatButton"
@@ -1361,9 +1741,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  HTML 요소 → 글 파일용 HTML
-  ----------------------------------------
+  ========================================
+  HTML → Markdown
+  ========================================
   */
 
   function nodeToOutput(node) {
@@ -1391,16 +1771,6 @@ order: 1
     const tag =
       node.tagName.toLowerCase();
 
-
-    /*
-    이미지 태그는 문자열을
-    조합해서 생성한다.
-
-    GitHub HTML-Proofer가
-    JavaScript 안의 <img src=...
-    를 실제 HTML로 오인하지 않도록
-    처리한다.
-    */
 
     if (tag === "img") {
 
@@ -1551,12 +1921,6 @@ order: 1
   }
 
 
-  /*
-  ----------------------------------------
-  본문 가져오기
-  ----------------------------------------
-  */
-
   function getPostBody() {
 
     let result = "";
@@ -1585,9 +1949,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
+  ========================================
   미리보기
-  ----------------------------------------
+  ========================================
   */
 
   document
@@ -1614,9 +1978,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  저장 데이터
-  ----------------------------------------
+  ========================================
+  데이터
+  ========================================
   */
 
   function collectData() {
@@ -1644,6 +2008,9 @@ order: 1
       body:
         editor.innerHTML,
 
+      attachedImages:
+        attachedImages,
+
       featuredImage:
         featuredImage
 
@@ -1653,9 +2020,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
+  ========================================
   임시저장
-  ----------------------------------------
+  ========================================
   */
 
   function saveDraft() {
@@ -1699,9 +2066,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
+  ========================================
   임시저장 불러오기
-  ----------------------------------------
+  ========================================
   */
 
   document
@@ -1736,22 +2103,17 @@ order: 1
           titleInput.value =
             data.title || "";
 
-
           slugInput.value =
             data.slug || "";
-
 
           categoryInput.value =
             data.category || "";
 
-
           tagsInput.value =
             data.tags || "";
 
-
           seoTitleInput.value =
             data.seoTitle || "";
-
 
           seoDescriptionInput.value =
             data.seoDescription || "";
@@ -1759,6 +2121,14 @@ order: 1
 
           editor.innerHTML =
             data.body || "";
+
+
+          attachedImages =
+            Array.isArray(
+              data.attachedImages
+            )
+              ? data.attachedImages
+              : [];
 
 
           featuredImage =
@@ -1769,7 +2139,6 @@ order: 1
 
             featuredPreviewImage.src =
               featuredImage.src;
-
 
             featuredPreview.style.display =
               "block";
@@ -1782,6 +2151,9 @@ order: 1
           }
 
 
+          renderImageList();
+
+
           deselectImage();
 
 
@@ -1790,6 +2162,11 @@ order: 1
           );
 
         } catch (error) {
+
+          console.error(
+            error
+          );
+
 
           showStatus(
             "저장된 글을 불러오는 중 오류가 발생했습니다."
@@ -1802,9 +2179,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
+  ========================================
   글 파일 만들기
-  ----------------------------------------
+  ========================================
   */
 
   document
@@ -1870,12 +2247,6 @@ order: 1
         const body =
           getPostBody();
 
-
-        /*
-        대표 이미지는
-        현재 선택한 이미지를
-        front matter에 기록한다.
-        */
 
         let imageFrontMatter = "";
 
@@ -2013,9 +2384,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
+  ========================================
   전체 초기화
-  ----------------------------------------
+  ========================================
   */
 
   document
@@ -2051,10 +2422,14 @@ order: 1
         editor.innerHTML = "";
 
 
+        attachedImages = [];
+
         featuredImage = null;
 
 
         featuredInput.value = "";
+
+        bodyImageInput.value = "";
 
 
         featuredPreviewImage.removeAttribute(
@@ -2066,7 +2441,7 @@ order: 1
           "none";
 
 
-        bodyImageInput.value = "";
+        imageList.innerHTML = "";
 
 
         deselectImage();
@@ -2092,9 +2467,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  자동 임시저장
-  ----------------------------------------
+  ========================================
+  자동 저장
+  ========================================
   */
 
   editor.addEventListener(
@@ -2132,9 +2507,9 @@ order: 1
 
 
   /*
-  ----------------------------------------
-  바깥 클릭 시 선택 해제
-  ----------------------------------------
+  ========================================
+  바깥 클릭
+  ========================================
   */
 
   document.addEventListener(
