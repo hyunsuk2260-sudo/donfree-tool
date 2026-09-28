@@ -6,6 +6,7 @@ order: 10
 ---
 
 <style>
+
 .write-wrap {
   max-width: 1000px;
   margin: 0 auto;
@@ -128,6 +129,13 @@ order: 10
   text-overflow: ellipsis;
 }
 
+.image-number {
+  margin: 5px 2px;
+  font-size: 11px;
+  color: #777;
+  font-weight: 700;
+}
+
 .image-buttons {
   display: flex;
   gap: 5px;
@@ -204,6 +212,7 @@ order: 10
   max-width: 100%;
   height: auto;
   margin: 20px auto;
+  border-radius: 8px;
 }
 
 .preview-content h2 {
@@ -214,7 +223,18 @@ order: 10
   text-decoration: underline;
 }
 
+.image-marker {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 5px 0;
+  border-radius: 6px;
+  background: #f3f3f3;
+  color: #777;
+  font-size: 12px;
+}
+
 @media (max-width: 700px) {
+
   .write-grid {
     grid-template-columns: 1fr;
   }
@@ -226,16 +246,21 @@ order: 10
   .image-list {
     grid-template-columns: repeat(2, 1fr);
   }
+
 }
+
 </style>
 
 
 <div class="write-wrap">
 
   <!-- 제목 -->
+
   <div class="write-box">
 
-    <label class="write-label">제목</label>
+    <label class="write-label">
+      글 제목
+    </label>
 
     <input
       id="title"
@@ -248,11 +273,14 @@ order: 10
 
 
   <!-- URL / 카테고리 -->
+
   <div class="write-box write-grid">
 
     <div>
 
-      <label class="write-label">URL</label>
+      <label class="write-label">
+        영문 URL
+      </label>
 
       <input
         id="slug"
@@ -263,9 +291,12 @@ order: 10
 
     </div>
 
+
     <div>
 
-      <label class="write-label">카테고리</label>
+      <label class="write-label">
+        카테고리
+      </label>
 
       <input
         id="category"
@@ -280,9 +311,12 @@ order: 10
 
 
   <!-- 태그 -->
+
   <div class="write-box">
 
-    <label class="write-label">태그</label>
+    <label class="write-label">
+      태그
+    </label>
 
     <input
       id="tags"
@@ -295,11 +329,14 @@ order: 10
 
 
   <!-- SEO -->
+
   <div class="write-box write-grid">
 
     <div>
 
-      <label class="write-label">SEO 제목</label>
+      <label class="write-label">
+        SEO 제목
+      </label>
 
       <input
         id="seoTitle"
@@ -310,9 +347,12 @@ order: 10
 
     </div>
 
+
     <div>
 
-      <label class="write-label">SEO 설명</label>
+      <label class="write-label">
+        SEO 설명
+      </label>
 
       <input
         id="seoDescription"
@@ -327,9 +367,12 @@ order: 10
 
 
   <!-- 대표 이미지 -->
+
   <div class="write-box">
 
-    <label class="write-label">대표 이미지</label>
+    <label class="write-label">
+      대표 이미지
+    </label>
 
     <div class="image-upload">
 
@@ -354,9 +397,13 @@ order: 10
 
 
   <!-- 본문 -->
+
   <div class="write-box">
 
-    <label class="write-label">본문</label>
+    <label class="write-label">
+      본문
+    </label>
+
 
     <div class="toolbar">
 
@@ -367,12 +414,14 @@ order: 10
         굵게
       </button>
 
+
       <button
         type="button"
         id="headingButton"
       >
         소제목
       </button>
+
 
       <button
         type="button"
@@ -384,7 +433,6 @@ order: 10
     </div>
 
 
-    <!-- ★ 실제 글쓰기 공간 -->
     <textarea
       id="body"
       class="write-body"
@@ -395,11 +443,13 @@ order: 10
 
 
   <!-- 본문 이미지 -->
+
   <div class="write-box">
 
     <label class="write-label">
       본문 이미지
     </label>
+
 
     <div class="image-upload">
 
@@ -410,10 +460,12 @@ order: 10
         multiple
       >
 
+
       <div class="help">
-        사진을 여러 장 선택할 수 있습니다.
-        선택한 사진은 아래에 바로 표시됩니다.
+        여러 장의 사진을 한꺼번에 선택할 수 있습니다.
+        사진은 아래에서 관리할 수 있습니다.
       </div>
+
 
       <div
         id="imageList"
@@ -426,6 +478,7 @@ order: 10
 
 
   <!-- 버튼 -->
+
   <div class="button-row">
 
     <button
@@ -436,6 +489,7 @@ order: 10
       미리보기
     </button>
 
+
     <button
       id="saveButton"
       class="action-button"
@@ -444,13 +498,15 @@ order: 10
       임시저장
     </button>
 
+
     <button
       id="downloadButton"
       class="action-button primary-button"
       type="button"
     >
-      Markdown 다운로드
+      글 파일 만들기
     </button>
+
 
     <button
       id="clearButton"
@@ -470,6 +526,7 @@ order: 10
 
 
   <!-- 미리보기 -->
+
   <div
     id="preview"
     class="preview"
@@ -479,6 +536,7 @@ order: 10
       id="previewTitle"
       class="preview-title"
     ></div>
+
 
     <div
       id="previewContent"
@@ -490,20 +548,15 @@ order: 10
 </div>
 
 
-<!--
-  중요:
-  HTML-Proofer가 이 JavaScript 내부의
-  동적 URL을 HTML 링크로 오인하지 않도록
-  전체 script를 검사 대상에서 제외합니다.
--->
 <script data-proofer-ignore>
+
 (function () {
 
   "use strict";
 
 
   var STORAGE_KEY =
-    "donfree_write_final_v1";
+    "donfree_write_image_marker_v2";
 
 
   var title =
@@ -554,23 +607,27 @@ order: 10
 
   var images = [];
 
-  var featured = null;
+  var featuredId = null;
 
 
   /*
-   * --------------------------------
    * 상태 메시지
-   * --------------------------------
    */
 
   function showStatus(message) {
 
-    status.textContent = message;
+    status.textContent =
+      message;
 
     setTimeout(function () {
 
-      if (status.textContent === message) {
+      if (
+        status.textContent ===
+        message
+      ) {
+
         status.textContent = "";
+
       }
 
     }, 2500);
@@ -579,51 +636,85 @@ order: 10
 
 
   /*
-   * --------------------------------
-   * ID
-   * --------------------------------
+   * 이미지 ID
    */
 
   function makeId() {
 
-    return (
-      "img_" +
-      Date.now() +
-      "_" +
-      Math.random()
-        .toString(36)
-        .substring(2, 8)
+    return String(
+      images.length + 1
     );
 
   }
 
 
   /*
-   * --------------------------------
-   * 대표 이미지
-   * --------------------------------
+   * HTML 특수문자 처리
+   */
+
+  function escapeHtml(value) {
+
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  /*
+   * 대표 이미지 표시
    */
 
   function renderFeatured() {
 
     featuredPreview.innerHTML = "";
 
-    if (!featured) {
+    if (!featuredId) {
+
       return;
+
     }
+
+
+    var item =
+      images.find(function (image) {
+
+        return image.id ===
+          featuredId;
+
+      });
+
+
+    if (!item) {
+
+      return;
+
+    }
+
 
     var image =
       document.createElement("img");
 
-    image.src = featured.src;
+    image.src =
+      item.src;
 
     image.alt =
-      featured.name || "대표 이미지";
+      item.name;
 
-    featuredPreview.appendChild(image);
+
+    featuredPreview.appendChild(
+      image
+    );
 
   }
 
+
+  /*
+   * 대표 이미지 파일 선택
+   */
 
   featuredInput.addEventListener(
     "change",
@@ -633,46 +724,94 @@ order: 10
         this.files &&
         this.files[0];
 
+
       if (!file) {
+
         return;
+
       }
 
-      var reader =
-        new FileReader();
 
-      reader.onload =
-        function (event) {
+      readImageFile(
+        file,
+        function (src) {
 
-          featured = {
+          var newItem = {
 
-            id: makeId(),
+            id:
+              "featured_" +
+              Date.now(),
 
-            name: file.name,
+            name:
+              file.name,
 
-            src: event.target.result
+            src:
+              src
 
           };
+
+
+          images.push(
+            newItem
+          );
+
+
+          featuredId =
+            newItem.id;
+
+
+          renderImages();
 
           renderFeatured();
 
           saveDraft();
 
+
           showStatus(
             "대표 이미지가 등록됐습니다."
           );
 
-        };
 
-      reader.readAsDataURL(file);
+          featuredInput.value =
+            "";
+
+        }
+      );
 
     }
   );
 
 
   /*
-   * --------------------------------
+   * 이미지 파일 읽기
+   */
+
+  function readImageFile(
+    file,
+    callback
+  ) {
+
+    var reader =
+      new FileReader();
+
+
+    reader.onload =
+      function (event) {
+
+        callback(
+          event.target.result
+        );
+
+      };
+
+
+    reader.readAsDataURL(file);
+
+  }
+
+
+  /*
    * 본문 이미지 첨부
-   * --------------------------------
    */
 
   imageInput.addEventListener(
@@ -684,9 +823,13 @@ order: 10
           this.files || []
         );
 
+
       if (!files.length) {
+
         return;
+
       }
+
 
       var completed = 0;
 
@@ -694,25 +837,31 @@ order: 10
       files.forEach(
         function (file) {
 
-          var reader =
-            new FileReader();
+          readImageFile(
+            file,
+            function (src) {
+
+              var item = {
+
+                id:
+                  makeId(),
+
+                name:
+                  file.name,
+
+                src:
+                  src
+
+              };
 
 
-          reader.onload =
-            function (event) {
-
-              images.push({
-
-                id: makeId(),
-
-                name: file.name,
-
-                src: event.target.result
-
-              });
+              images.push(
+                item
+              );
 
 
               completed++;
+
 
               renderImages();
 
@@ -724,20 +873,20 @@ order: 10
 
                 saveDraft();
 
+
                 showStatus(
                   files.length +
                   "장의 사진이 첨부됐습니다."
                 );
+
 
                 imageInput.value =
                   "";
 
               }
 
-            };
-
-
-          reader.readAsDataURL(file);
+            }
+          );
 
         }
       );
@@ -747,9 +896,7 @@ order: 10
 
 
   /*
-   * --------------------------------
-   * 첨부 이미지 목록
-   * --------------------------------
+   * 이미지 목록 표시
    */
 
   function renderImages() {
@@ -758,7 +905,7 @@ order: 10
 
 
     images.forEach(
-      function (item) {
+      function (item, index) {
 
         var card =
           document.createElement("div");
@@ -774,7 +921,18 @@ order: 10
           item.src;
 
         image.alt =
-          item.name || "첨부 이미지";
+          item.name;
+
+
+        var number =
+          document.createElement("div");
+
+        number.className =
+          "image-number";
+
+        number.textContent =
+          "이미지 " +
+          item.id;
 
 
         var name =
@@ -812,7 +970,9 @@ order: 10
           "click",
           function () {
 
-            insertImage(item);
+            insertImageMarker(
+              item
+            );
 
           }
         );
@@ -836,20 +996,12 @@ order: 10
           "click",
           function () {
 
-            featured = {
-
-              id: item.id,
-
-              name: item.name,
-
-              src: item.src
-
-            };
-
-
-            renderFeatured();
+            featuredId =
+              item.id;
 
             renderImages();
+
+            renderFeatured();
 
             saveDraft();
 
@@ -880,32 +1032,52 @@ order: 10
           "click",
           function () {
 
+            var deletedId =
+              item.id;
+
+
             images =
               images.filter(
                 function (image) {
 
-                  return (
-                    image.id !==
-                    item.id
-                  );
+                  return image.id !==
+                    deletedId;
 
                 }
               );
 
 
             if (
-              featured &&
-              featured.id === item.id
+              featuredId ===
+              deletedId
             ) {
 
-              featured = null;
-
-              renderFeatured();
+              featuredId =
+                null;
 
             }
 
 
+            /*
+             * 삭제한 사진의
+             * 본문 마커도 제거
+             */
+
+            var marker =
+              "[[IMAGE:" +
+              deletedId +
+              "]]";
+
+
+            body.value =
+              body.value
+                .split(marker)
+                .join("");
+
+
             renderImages();
+
+            renderFeatured();
 
             saveDraft();
 
@@ -936,13 +1108,17 @@ order: 10
         );
 
         card.appendChild(
+          number
+        );
+
+        card.appendChild(
           name
         );
 
 
         if (
-          featured &&
-          featured.id === item.id
+          featuredId ===
+          item.id
         ) {
 
           var badge =
@@ -953,6 +1129,7 @@ order: 10
 
           badge.textContent =
             "★ 대표 이미지";
+
 
           card.appendChild(
             badge
@@ -965,6 +1142,7 @@ order: 10
           buttons
         );
 
+
         imageList.appendChild(
           card
         );
@@ -976,27 +1154,29 @@ order: 10
 
 
   /*
-   * --------------------------------
    * 본문에 이미지 삽입
-   * --------------------------------
+   *
+   * ★ 핵심
+   * Base64를 textarea에 넣지 않는다.
+   *
+   * textarea에는
+   *
+   * [[IMAGE:1]]
+   *
+   * 같은 짧은 표시만 들어간다.
    */
 
-  function insertImage(item) {
+  function insertImageMarker(item) {
 
-    /*
-     * textarea에는 Markdown 형식으로 넣습니다.
-     */
-
-    var imageCode =
-      "\n\n!["
-      + item.name
-      + "]("
-      + item.src
-      + ")\n\n";
+    var marker =
+      "\n\n[[IMAGE:" +
+      item.id +
+      "]]\n\n";
 
 
     var start =
       body.selectionStart;
+
 
     var end =
       body.selectionEnd;
@@ -1017,16 +1197,17 @@ order: 10
 
     body.value =
       before +
-      imageCode +
+      marker +
       after;
 
 
     var position =
       start +
-      imageCode.length;
+      marker.length;
 
 
     body.focus();
+
 
     body.setSelectionRange(
       position,
@@ -1045,13 +1226,13 @@ order: 10
 
 
   /*
-   * --------------------------------
    * 굵게
-   * --------------------------------
    */
 
   document
-    .getElementById("boldButton")
+    .getElementById(
+      "boldButton"
+    )
     .addEventListener(
       "click",
       function () {
@@ -1104,13 +1285,13 @@ order: 10
 
 
   /*
-   * --------------------------------
    * 소제목
-   * --------------------------------
    */
 
   document
-    .getElementById("headingButton")
+    .getElementById(
+      "headingButton"
+    )
     .addEventListener(
       "click",
       function () {
@@ -1157,13 +1338,13 @@ order: 10
 
 
   /*
-   * --------------------------------
    * 링크
-   * --------------------------------
    */
 
   document
-    .getElementById("linkButton")
+    .getElementById(
+      "linkButton"
+    )
     .addEventListener(
       "click",
       function () {
@@ -1175,7 +1356,9 @@ order: 10
 
 
         if (!url) {
+
           return;
+
         }
 
 
@@ -1194,7 +1377,10 @@ order: 10
 
 
         if (!selected) {
-          selected = url;
+
+          selected =
+            "링크";
+
         }
 
 
@@ -1221,32 +1407,136 @@ order: 10
 
 
   /*
-   * --------------------------------
-   * HTML escape
-   * --------------------------------
+   * 본문 → HTML 미리보기
    */
 
-  function escapeHtml(text) {
+  function markdownToHtml(
+    markdown
+  ) {
 
-    var div =
-      document.createElement("div");
+    var text =
+      escapeHtml(
+        markdown
+      );
 
-    div.textContent =
-      text;
 
-    return div.innerHTML;
+    /*
+     * 이미지 마커
+     */
+
+    text =
+      text.replace(
+        /\[\[IMAGE:([^\]]+)\]\]/g,
+        function (
+          full,
+          id
+        ) {
+
+          var item =
+            images.find(
+              function (image) {
+
+                return image.id ===
+                  id;
+
+              }
+            );
+
+
+          if (!item) {
+
+            return "";
+
+          }
+
+
+          /*
+           * <img 문자열을
+           * JavaScript 소스에 직접 쓰지 않는다.
+           * HTML-Proofer 충돌 방지.
+           */
+
+          var openTag =
+            String.fromCharCode(
+              60
+            ) +
+            "img src=\"";
+
+
+          return (
+            openTag +
+            item.src +
+            "\" alt=\"" +
+            escapeHtml(
+              item.name
+            ) +
+            "\" style=\"max-width:100%;height:auto;display:block;margin:20px auto;border-radius:8px;\" " +
+            String.fromCharCode(
+              62
+            )
+          );
+
+        }
+      );
+
+
+    /*
+     * 소제목
+     */
+
+    text =
+      text.replace(
+        /^## (.+)$/gm,
+        "<h2>$1</h2>"
+      );
+
+
+    /*
+     * 굵게
+     */
+
+    text =
+      text.replace(
+        /\*\*(.+?)\*\*/g,
+        "<strong>$1</strong>"
+      );
+
+
+    /*
+     * 링크
+     */
+
+    text =
+      text.replace(
+        /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener">$1</a>'
+      );
+
+
+    /*
+     * 줄바꿈
+     */
+
+    text =
+      text.replace(
+        /\n/g,
+        "<br>"
+      );
+
+
+    return text;
 
   }
 
 
   /*
-   * --------------------------------
    * 미리보기
-   * --------------------------------
    */
 
   document
-    .getElementById("previewButton")
+    .getElementById(
+      "previewButton"
+    )
     .addEventListener(
       "click",
       function () {
@@ -1271,155 +1561,12 @@ order: 10
           block: "start"
         });
 
-
-        showStatus(
-          "미리보기를 표시했습니다."
-        );
-
       }
     );
 
 
   /*
-   * --------------------------------
-   * Markdown → HTML
-   * --------------------------------
-   */
-
-  function markdownToHtml(text) {
-
-    var html =
-      escapeHtml(text);
-
-
-    /*
-     * 이미지
-     *
-     * '<img' 문자열을 코드에 직접
-     * 작성하지 않습니다.
-     */
-
-    var imageTagStart =
-      String.fromCharCode(60) +
-      "img";
-
-
-    var imageTagEnd =
-      String.fromCharCode(62);
-
-
-    html =
-      html.replace(
-        /!\[([^\]]*)\]\((data:image\/[^)]+)\)/g,
-        function (
-          match,
-          alt,
-          src
-        ) {
-
-          return (
-            imageTagStart +
-            ' src="' +
-            src +
-            '" alt="' +
-            alt +
-            '"' +
-            imageTagEnd
-          );
-
-        }
-      );
-
-
-    /*
-     * 링크
-     */
-
-    html =
-      html.replace(
-        /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
-        function (
-          match,
-          text,
-          url
-        ) {
-
-          var linkStart =
-            String.fromCharCode(60) +
-            "a";
-
-          var linkEnd =
-            String.fromCharCode(62);
-
-          var closeLink =
-            String.fromCharCode(60) +
-            "/a" +
-            String.fromCharCode(62);
-
-
-          return (
-            linkStart +
-            ' href="' +
-            url +
-            '" target="_blank"' +
-            linkEnd +
-            text +
-            closeLink
-          );
-
-        }
-      );
-
-
-    /*
-     * 소제목
-     */
-
-    html =
-      html.replace(
-        /^### (.+)$/gm,
-        "<h3>$1</h3>"
-      );
-
-
-    html =
-      html.replace(
-        /^## (.+)$/gm,
-        "<h2>$1</h2>"
-      );
-
-
-    /*
-     * 굵게
-     */
-
-    html =
-      html.replace(
-        /\*\*(.*?)\*\*/g,
-        "<strong>$1</strong>"
-      );
-
-
-    /*
-     * 줄바꿈
-     */
-
-    html =
-      html.replace(
-        /\n/g,
-        "<br>"
-      );
-
-
-    return html;
-
-  }
-
-
-  /*
-   * --------------------------------
-   * 데이터
-   * --------------------------------
+   * 현재 글 데이터
    */
 
   function getData() {
@@ -1450,8 +1597,8 @@ order: 10
       images:
         images,
 
-      featured:
-        featured
+      featuredId:
+        featuredId
 
     };
 
@@ -1459,9 +1606,7 @@ order: 10
 
 
   /*
-   * --------------------------------
    * 임시저장
-   * --------------------------------
    */
 
   function saveDraft() {
@@ -1477,9 +1622,8 @@ order: 10
 
     } catch (error) {
 
-      console.warn(
-        "임시저장 실패:",
-        error
+      showStatus(
+        "임시저장 공간이 부족합니다."
       );
 
     }
@@ -1487,34 +1631,20 @@ order: 10
   }
 
 
-  [
-    title,
-    slug,
-    category,
-    tags,
-    seoTitle,
-    seoDescription,
-    body
-
-  ].forEach(
-    function (element) {
-
-      element.addEventListener(
-        "input",
-        saveDraft
-      );
-
-    }
-  );
-
+  /*
+   * 임시저장 버튼
+   */
 
   document
-    .getElementById("saveButton")
+    .getElementById(
+      "saveButton"
+    )
     .addEventListener(
       "click",
       function () {
 
         saveDraft();
+
 
         showStatus(
           "임시저장했습니다."
@@ -1525,47 +1655,55 @@ order: 10
 
 
   /*
-   * --------------------------------
-   * 저장된 글 불러오기
-   * --------------------------------
+   * 임시저장 불러오기
    */
 
   function loadDraft() {
 
+    var saved =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+
+    if (!saved) {
+
+      return;
+
+    }
+
+
     try {
 
-      var saved =
-        localStorage.getItem(
-          STORAGE_KEY
-        );
-
-
-      if (!saved) {
-        return;
-      }
-
-
       var data =
-        JSON.parse(saved);
+        JSON.parse(
+          saved
+        );
 
 
       title.value =
         data.title || "";
 
+
       slug.value =
         data.slug || "";
+
 
       category.value =
         data.category || "";
 
+
       tags.value =
         data.tags || "";
+
 
       seoTitle.value =
         data.seoTitle || "";
 
+
       seoDescription.value =
         data.seoDescription || "";
+
 
       body.value =
         data.body || "";
@@ -1579,19 +1717,20 @@ order: 10
           : [];
 
 
-      featured =
-        data.featured || null;
+      featuredId =
+        data.featuredId ||
+        null;
 
 
       renderImages();
 
       renderFeatured();
 
+
     } catch (error) {
 
-      console.warn(
-        "초안 불러오기 실패:",
-        error
+      localStorage.removeItem(
+        STORAGE_KEY
       );
 
     }
@@ -1600,23 +1739,192 @@ order: 10
 
 
   /*
-   * --------------------------------
-   * Markdown 다운로드
-   * --------------------------------
+   * 입력할 때 자동 저장
+   */
+
+  [
+    title,
+    slug,
+    category,
+    tags,
+    seoTitle,
+    seoDescription,
+    body
+  ].forEach(
+    function (element) {
+
+      element.addEventListener(
+        "input",
+        function () {
+
+          saveDraft();
+
+        }
+      );
+
+    }
+  );
+
+
+  /*
+   * Markdown 파일 생성
+   *
+   * 본문에는 IMAGE 마커가 남아 있지만
+   * 파일을 만들 때는 실제 이미지 데이터로 변환한다.
+   */
+
+  function createMarkdown() {
+
+    var content =
+      body.value;
+
+
+    /*
+     * 이미지 마커를
+     * 실제 이미지 Markdown으로 변환
+     */
+
+    content =
+      content.replace(
+        /\[\[IMAGE:([^\]]+)\]\]/g,
+        function (
+          full,
+          id
+        ) {
+
+          var item =
+            images.find(
+              function (image) {
+
+                return image.id ===
+                  id;
+
+              }
+            );
+
+
+          if (!item) {
+
+            return "";
+
+          }
+
+
+          return (
+            "![" +
+            item.name +
+            "](" +
+            item.src +
+            ")"
+          );
+
+        }
+      );
+
+
+    /*
+     * 태그 처리
+     */
+
+    var tagArray =
+      tags.value
+        .split(",")
+        .map(
+          function (tag) {
+
+            return tag.trim();
+
+          }
+        )
+        .filter(
+          function (tag) {
+
+            return tag;
+
+          }
+        );
+
+
+    var tagText =
+      tagArray.join(", ");
+
+
+    /*
+     * 대표 이미지
+     */
+
+    var featuredItem =
+      images.find(
+        function (image) {
+
+          return image.id ===
+            featuredId;
+
+        }
+      );
+
+
+    var frontMatter =
+      "---\n" +
+
+      "title: \"" +
+      title.value
+        .replace(/"/g, '\\"') +
+      "\"\n" +
+
+      "description: \"" +
+      seoDescription.value
+        .replace(/"/g, '\\"') +
+      "\"\n" +
+
+      "categories: [" +
+      category.value +
+      "]\n" +
+
+      "tags: [" +
+      tagText +
+      "]\n";
+
+
+    if (featuredItem) {
+
+      frontMatter +=
+        "image:\n" +
+        "  path: \"" +
+        featuredItem.src +
+        "\"\n";
+
+    }
+
+
+    frontMatter +=
+      "---\n\n";
+
+
+    return (
+      frontMatter +
+      content
+    );
+
+  }
+
+
+  /*
+   * 다운로드
    */
 
   document
-    .getElementById("downloadButton")
+    .getElementById(
+      "downloadButton"
+    )
     .addEventListener(
       "click",
       function () {
 
-        if (
-          !title.value.trim()
-        ) {
+        if (!title.value.trim()) {
 
           alert(
-            "제목을 먼저 입력해주세요."
+            "글 제목을 먼저 입력해주세요."
           );
 
           title.focus();
@@ -1626,138 +1934,8 @@ order: 10
         }
 
 
-        var now =
-          new Date();
-
-
-        var year =
-          now.getFullYear();
-
-
-        var month =
-          String(
-            now.getMonth() + 1
-          ).padStart(
-            2,
-            "0"
-          );
-
-
-        var day =
-          String(
-            now.getDate()
-          ).padStart(
-            2,
-            "0"
-          );
-
-
-        var date =
-          year +
-          "-" +
-          month +
-          "-" +
-          day;
-
-
-        var postSlug =
-          slug.value.trim();
-
-
-        if (!postSlug) {
-
-          postSlug =
-            title.value
-              .trim()
-              .toLowerCase()
-              .replace(
-                /\s+/g,
-                "-"
-              )
-              .replace(
-                /[^\w가-힣-]/g,
-                ""
-              );
-
-        }
-
-
-        var tagArray =
-          tags.value
-            .split(",")
-            .map(
-              function (tag) {
-                return tag.trim();
-              }
-            )
-            .filter(Boolean);
-
-
         var markdown =
-          "---\n";
-
-
-        markdown +=
-          'title: "' +
-          title.value.replace(
-            /"/g,
-            '\\"'
-          ) +
-          '"\n';
-
-
-        markdown +=
-          "date: " +
-          date +
-          "\n";
-
-
-        if (
-          category.value.trim()
-        ) {
-
-          markdown +=
-            "categories: [" +
-            category.value.trim() +
-            "]\n";
-
-        }
-
-
-        if (
-          tagArray.length
-        ) {
-
-          markdown +=
-            "tags: [" +
-            tagArray.join(", ") +
-            "]\n";
-
-        }
-
-
-        if (
-          seoDescription.value.trim()
-        ) {
-
-          markdown +=
-            'description: "' +
-            seoDescription.value
-              .replace(
-                /"/g,
-                '\\"'
-              ) +
-            '"\n';
-
-        }
-
-
-        markdown +=
-          "---\n\n";
-
-
-        markdown +=
-          body.value;
+          createMarkdown();
 
 
         var blob =
@@ -1777,7 +1955,9 @@ order: 10
 
 
         var link =
-          document.createElement("a");
+          document.createElement(
+            "a"
+          );
 
 
         link.href =
@@ -1785,9 +1965,10 @@ order: 10
 
 
         link.download =
-          date +
-          "-" +
-          postSlug +
+          (
+            slug.value.trim() ||
+            "donfree-post"
+          ) +
           ".md";
 
 
@@ -1799,7 +1980,9 @@ order: 10
         link.click();
 
 
-        link.remove();
+        document.body.removeChild(
+          link
+        );
 
 
         URL.revokeObjectURL(
@@ -1816,20 +1999,20 @@ order: 10
 
 
   /*
-   * --------------------------------
    * 전체 삭제
-   * --------------------------------
    */
 
   document
-    .getElementById("clearButton")
+    .getElementById(
+      "clearButton"
+    )
     .addEventListener(
       "click",
       function () {
 
         if (
           !confirm(
-            "작성 중인 글을 모두 삭제할까요?"
+            "작성한 내용을 모두 삭제할까요?"
           )
         ) {
 
@@ -1838,42 +2021,48 @@ order: 10
         }
 
 
-        title.value = "";
+        title.value =
+          "";
 
-        slug.value = "";
+        slug.value =
+          "";
 
-        category.value = "";
+        category.value =
+          "";
 
-        tags.value = "";
+        tags.value =
+          "";
 
-        seoTitle.value = "";
+        seoTitle.value =
+          "";
 
-        seoDescription.value = "";
+        seoDescription.value =
+          "";
 
-        body.value = "";
+        body.value =
+          "";
 
 
         images = [];
 
-        featured = null;
+        featuredId =
+          null;
 
 
-        imageInput.value = "";
+        imageInput.value =
+          "";
 
-        featuredInput.value = "";
+        featuredInput.value =
+          "";
 
 
-        imageList.innerHTML = "";
+        renderImages();
 
-        featuredPreview.innerHTML = "";
+        renderFeatured();
 
 
         preview.style.display =
           "none";
-
-
-        previewContent.innerHTML =
-          "";
 
 
         localStorage.removeItem(
@@ -1882,7 +2071,7 @@ order: 10
 
 
         showStatus(
-          "작성 내용을 모두 삭제했습니다."
+          "전체 내용을 삭제했습니다."
         );
 
       }
@@ -1890,12 +2079,11 @@ order: 10
 
 
   /*
-   * --------------------------------
    * 시작
-   * --------------------------------
    */
 
   loadDraft();
 
 })();
+
 </script>
