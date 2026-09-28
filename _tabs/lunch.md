@@ -12,7 +12,7 @@ permalink: /lunch/
 .lunch-page {
   max-width: 680px;
   margin: 0 auto;
-  padding: 12px 16px 70px;
+  padding: 10px 14px 70px;
   text-align: center;
 }
 
@@ -26,11 +26,11 @@ permalink: /lunch/
   justify-content: center;
   padding: 7px 13px;
   border-radius: 999px;
-  background: #f3f4f6;
+  background: #f3f3f3;
   color: #555;
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 1.4px;
+  letter-spacing: 1.5px;
   margin-bottom: 12px;
 }
 
@@ -39,7 +39,7 @@ permalink: /lunch/
   font-size: 30px;
   line-height: 1.25;
   font-weight: 900;
-  letter-spacing: -1.2px;
+  letter-spacing: -1.3px;
 }
 
 .lunch-desc {
@@ -100,11 +100,7 @@ permalink: /lunch/
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    0 12px 30px rgba(0,0,0,.10);
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
+  box-shadow: 0 12px 30px rgba(0,0,0,.10);
 }
 
 .menu-photo img {
@@ -125,10 +121,6 @@ permalink: /lunch/
     opacity: 1;
     transform: scale(1);
   }
-}
-
-.menu-photo-fallback {
-  font-size: 82px;
 }
 
 .menu-kicker {
@@ -361,10 +353,6 @@ permalink: /lunch/
   color: #777;
   font-size: 13px;
   margin: -10px 0 20px;
-}
-
-.result-photo {
-  margin-top: 5px;
 }
 
 .hidden {
@@ -642,9 +630,17 @@ permalink: /lunch/
   ];
 
 
+  /*
+   * 사진 경로
+   * /assets/img/lunch/01.jpg
+   * ~
+   * /assets/img/lunch/71.jpg
+   */
+
   menus.forEach(function (menu) {
 
     menu.img =
+      window.location.origin +
       "/assets/img/lunch/" +
       String(menu.id).padStart(2, "0") +
       ".jpg";
@@ -698,6 +694,11 @@ permalink: /lunch/
     document.getElementById("new-lunch-button");
 
 
+  /*
+   * 음식 사진 표시
+   * 실패했을 때 이모티콘으로 바꾸지 않는다.
+   */
+
   function showMenuPhoto(container, menu) {
 
     container.innerHTML = "";
@@ -706,25 +707,12 @@ permalink: /lunch/
       document.createElement("img");
 
     img.src = menu.img;
+
     img.alt = menu.name;
+
     img.loading = "eager";
 
-    img.onerror = function () {
-
-      container.innerHTML = "";
-
-      const fallback =
-        document.createElement("div");
-
-      fallback.className =
-        "menu-photo-fallback";
-
-      fallback.textContent =
-        menu.emoji || "🍽️";
-
-      container.appendChild(fallback);
-
-    };
+    img.decoding = "async";
 
     container.appendChild(img);
 
@@ -740,11 +728,16 @@ permalink: /lunch/
     params.get("m");
 
 
+  /*
+   * 친구가 받은 링크
+   */
+
   function openReceiver(menu) {
 
     senderView.classList.add("hidden");
 
     receiverView.classList.remove("hidden");
+
 
     giftBox.addEventListener(
       "click",
@@ -752,21 +745,31 @@ permalink: /lunch/
 
         giftBox.classList.add("opening");
 
+
         setTimeout(function () {
 
           giftBox.classList.add("hidden");
 
           giftGuide.classList.add("hidden");
 
+
+          /*
+           * 여기서 해당 메뉴의
+           * 실제 jpg 사진을 불러온다.
+           */
+
           showMenuPhoto(
             resultPhoto,
             menu
           );
 
+
           resultMenuName.textContent =
             menu.name;
 
+
           resultBox.classList.add("show");
+
 
         }, 650);
 
@@ -777,13 +780,19 @@ permalink: /lunch/
   }
 
 
+  /*
+   * 랜덤 메뉴 뽑기
+   */
+
   function pickMenu() {
 
     pickButton.disabled = true;
 
     shareBox.classList.remove("show");
 
+
     let count = 0;
+
 
     const animation =
       setInterval(function () {
@@ -796,19 +805,24 @@ permalink: /lunch/
         const randomMenu =
           menus[randomIndex];
 
+
         showMenuPhoto(
           senderPhoto,
           randomMenu
         );
 
+
         senderMenuName.textContent =
           randomMenu.name;
 
+
         count++;
+
 
         if (count >= 12) {
 
           clearInterval(animation);
+
 
           setTimeout(function () {
 
@@ -820,13 +834,16 @@ permalink: /lunch/
             const finalMenu =
               menus[finalIndex];
 
+
             showMenuPhoto(
               senderPhoto,
               finalMenu
             );
 
+
             senderMenuName.textContent =
               finalMenu.name;
+
 
             const generatedUrl =
               window.location.origin +
@@ -834,15 +851,22 @@ permalink: /lunch/
               "?m=" +
               finalMenu.id;
 
+
             shareUrl.textContent =
               generatedUrl;
 
-            shareBox.classList.add("show");
 
             window.lunchGeneratedUrl =
               generatedUrl;
 
+
+            shareBox.classList.add(
+              "show"
+            );
+
+
             pickButton.disabled = false;
+
 
           }, 300);
 
@@ -853,12 +877,18 @@ permalink: /lunch/
   }
 
 
+  /*
+   * 링크 복사
+   */
+
   function copyLink() {
 
     const url =
       window.lunchGeneratedUrl;
 
+
     if (!url) return;
+
 
     if (
       navigator.clipboard &&
@@ -871,6 +901,7 @@ permalink: /lunch/
 
           copyButton.textContent =
             "✅ 링크가 복사됐어요!";
+
 
           setTimeout(function () {
 
@@ -895,10 +926,15 @@ permalink: /lunch/
   }
 
 
+  /*
+   * 클립보드 보조 기능
+   */
+
   function fallbackCopy(text) {
 
     const textarea =
       document.createElement("textarea");
+
 
     textarea.value = text;
 
@@ -908,11 +944,14 @@ permalink: /lunch/
     textarea.style.opacity =
       "0";
 
+
     document.body.appendChild(
       textarea
     );
 
+
     textarea.select();
+
 
     try {
 
@@ -928,12 +967,17 @@ permalink: /lunch/
 
     }
 
+
     document.body.removeChild(
       textarea
     );
 
   }
 
+
+  /*
+   * 다시 뽑기
+   */
 
   function resetLunch() {
 
@@ -943,6 +987,11 @@ permalink: /lunch/
   }
 
 
+  /*
+   * 받은 친구가
+   * 자기 점심도 뽑는 경우
+   */
+
   function newLunch() {
 
     window.location.href =
@@ -951,26 +1000,38 @@ permalink: /lunch/
   }
 
 
+  /*
+   * 버튼 이벤트
+   */
+
   pickButton.addEventListener(
     "click",
     pickMenu
   );
+
 
   copyButton.addEventListener(
     "click",
     copyLink
   );
 
+
   resetButton.addEventListener(
     "click",
     resetLunch
   );
+
 
   newLunchButton.addEventListener(
     "click",
     newLunch
   );
 
+
+  /*
+   * URL에 ?m=번호가 있으면
+   * 친구에게 받은 화면
+   */
 
   if (menuId) {
 
@@ -982,9 +1043,12 @@ permalink: /lunch/
 
       });
 
+
     if (selectedMenu) {
 
-      openReceiver(selectedMenu);
+      openReceiver(
+        selectedMenu
+      );
 
     } else {
 
@@ -1000,6 +1064,10 @@ permalink: /lunch/
 
   } else {
 
+    /*
+     * 일반 방문 화면
+     */
+
     senderView.classList.remove(
       "hidden"
     );
@@ -1008,12 +1076,18 @@ permalink: /lunch/
       "hidden"
     );
 
+
+    /*
+     * 첫 화면에도 실제 사진 표시
+     */
+
     showMenuPhoto(
       senderPhoto,
       menus[0]
     );
 
   }
+
 
 })();
 
