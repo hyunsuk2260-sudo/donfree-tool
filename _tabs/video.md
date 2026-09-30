@@ -6,8 +6,9 @@ layout: page
 permalink: /video/
 ---
 
-<!-- 🚨 여기서부터 markdown="0" (절대 건드리지 마 보호막)을 씌웠습니다! 이제 버튼이 절대 고장 나지 않습니다. -->
-<div markdown="0">
+<!-- 🚨 {% raw %} 부터 {% endraw %} 사이는 깃허브 테마가 절대 건드리지 못하는 절대 보호 구역입니다. -->
+{% raw %}
+<div id="video-downloader-wrapper">
     <!-- 안내문 -->
     <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; line-height: 1.6; border: 1px solid #e9ecef;">
         <h4 style="margin-top: 0; color: #007bff;">🎬 비디오 다운로더 이용 안내</h4>
@@ -22,9 +23,10 @@ permalink: /video/
     </div>
 
     <!-- 입력부 -->
-    <div id="downloader-box" style="text-align: center; margin: 40px 0;">
+    <div style="text-align: center; margin: 40px 0;">
         <input type="text" id="videoUrl" placeholder="다운로드할 동영상 링크를 붙여넣으세요" style="width: 70%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
-        <button id="startBtn" style="padding: 12px 25px; margin-top: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">다운로드 링크 생성</button>
+        <!-- 버튼에 직접 onclick 명령을 달아 무조건 작동하게 고정했습니다 -->
+        <button id="startBtn" onclick="window.startVidDownload()" style="padding: 12px 25px; margin-top: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">다운로드 링크 생성</button>
     </div>
 
     <!-- 대기 시간 및 결과창 -->
@@ -48,76 +50,69 @@ permalink: /video/
         </script>
     </div>
 </div>
-<!-- 🚨 보호막 종료 -->
 
 <script>
-// 점심 메뉴와 동일하게 테마 이동 시에도 버튼이 먹통 되지 않도록 전체 감지 방식을 썼습니다.
-if (!window.videoAppLoaded) {
-    window.videoAppLoaded = true;
+// 전역 함수로 선언하여 테마의 영향을 받지 않습니다.
+window.startVidDownload = function() {
+    var urlInput = document.getElementById('videoUrl').value;
+    if(!urlInput) {
+        alert('링크를 입력해주세요!');
+        return;
+    }
 
-    document.addEventListener('click', function(e) {
-        // 다운로드 링크 생성 버튼 클릭 시
-        var startBtn = e.target.closest('#startBtn');
-        if (startBtn) {
-            var urlInput = document.getElementById('videoUrl').value;
-            if(!urlInput) {
-                alert('링크를 입력해주세요!');
-                return;
-            }
+    var btn = document.getElementById('startBtn');
+    btn.disabled = true;
+    document.getElementById('timer-box').style.display = 'block';
+    document.getElementById('result-box').innerHTML = '';
 
-            startBtn.disabled = true;
-            document.getElementById('timer-box').style.display = 'block';
-            document.getElementById('result-box').innerHTML = '';
+    var timeLeft = 5;
+    document.getElementById('timeCount').innerText = timeLeft;
 
-            var timeLeft = 5;
-            document.getElementById('timeCount').innerText = timeLeft;
+    var timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById('timeCount').innerText = timeLeft;
 
-            var timer = setInterval(function() {
-                timeLeft--;
-                document.getElementById('timeCount').innerText = timeLeft;
-
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    document.getElementById('timer-box').style.display = 'none';
-                    
-                    // 영상 추출 통신 시작
-                    document.getElementById('result-box').innerHTML = '<span style="color: gray;">비디오 파일을 추출하는 중입니다... 잠시만 기다려주세요.</span>';
-                    
-                    var apiUrl = 'https://download-all-in-one-ultimate.p.rapidapi.com/autolink?url=' + encodeURIComponent(urlInput);
-                    
-                    fetch(apiUrl, {
-                        method: 'GET',
-                        headers: {
-                            'x-rapidapi-key': 'cac13e8cc6msha4ee1d5c412b577p1fd49ejsn92b2ab96d0b3',
-                            'x-rapidapi-host': 'download-all-in-one-ultimate.p.rapidapi.com'
-                        }
-                    })
-                    .then(function(response) { return response.json(); })
-                    .then(function(result) {
-                        var downloadLink = '';
-                        if (result && result.medias && result.medias.length > 0) {
-                            downloadLink = result.medias[0].url;
-                        }
-                        
-                        if(downloadLink) {
-                            // 💡 기존 PC의 완벽한 기능은 그대로 두고, 모바일용 download 속성만 딱 추가했습니다!
-                            document.getElementById('result-box').innerHTML = 
-                                '<a href="' + downloadLink + '" download="video.mp4" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 10px;">' +
-                                '📥 비디오 다운로드' +
-                                '</a>';
-                        } else {
-                            document.getElementById('result-box').innerHTML = '<span style="color: red;">비디오 파일을 찾을 수 없습니다. (비공개 영상이거나 잘못된 주소입니다)</span>';
-                        }
-                    })
-                    .catch(function(error) {
-                        document.getElementById('result-box').innerHTML = '<span style="color: red;">서버와 통신 중 오류가 발생했습니다.</span>';
-                    })
-                    .finally(function() {
-                        startBtn.disabled = false;
-                    });
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            document.getElementById('timer-box').style.display = 'none';
+            
+            document.getElementById('result-box').innerHTML = '<span style="color: gray;">비디오 파일을 추출하는 중입니다... 잠시만 기다려주세요.</span>';
+            
+            var apiUrl = 'https://download-all-in-one-ultimate.p.rapidapi.com/autolink?url=' + encodeURIComponent(urlInput);
+            
+            fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key': 'cac13e8cc6msha4ee1d5c412b577p1fd49ejsn92b2ab96d0b3',
+                    'x-rapidapi-host': 'download-all-in-one-ultimate.p.rapidapi.com'
                 }
-            }, 1000);
+            })
+            .then(function(response) { return response.json(); })
+            .then(function(result) {
+                var downloadLink = '';
+                if (result && result.medias && result.medias.length > 0) {
+                    downloadLink = result.medias[0].url;
+                }
+                
+                if(downloadLink) {
+                    // 컴퓨터(클릭 다운로드) + 모바일(download 속성 지원) 모두 작동하는 HTML 코드입니다.
+                    document.getElementById('result-box').innerHTML = 
+                        '<a href="' + downloadLink + '" download="video.mp4" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 10px;">' +
+                        '📥 비디오 다운로드' +
+                        '</a>';
+                } else {
+                    document.getElementById('result-box').innerHTML = '<span style="color: red;">비디오 파일을 찾을 수 없습니다.</span>';
+                }
+            })
+            .catch(function(error) {
+                document.getElementById('result-box').innerHTML = '<span style="color: red;">서버 통신 오류가 발생했습니다.</span>';
+            })
+            .finally(function() {
+                btn.disabled = false;
+            });
         }
-    });
-}
+    }, 1000);
+};
 </script>
+{% endraw %}
+<!-- 🚨 보호막 종료 -->
