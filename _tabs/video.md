@@ -45,7 +45,9 @@ window.startVidDownload = function() {
             clearInterval(timer);
             document.getElementById('timer-box').style.display = 'none';
             document.getElementById('result-box').innerHTML = '<span style="color: gray;">서버와 통신 중입니다... 잠시만 기다려주세요.</span>';
-            fetch('https://api.cobalt.tools/api/json', {
+            
+            // 🔥 corsproxy.io 우회 터널을 통해 CORS 차단을 뚫습니다.
+            fetch('https://corsproxy.io/?https://api.cobalt.tools/api/json', {
                 method: 'POST',
                 headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: urlInput, vQuality: '1080' })
