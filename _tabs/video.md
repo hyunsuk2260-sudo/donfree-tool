@@ -74,7 +74,6 @@ window.startVidDownload = function() {
             document.getElementById('timer-box').style.display = 'none';
             document.getElementById('result-box').innerHTML = '<span style="color: gray;">서버와 통신 중입니다... 잠시만 기다려주세요.</span>';
             
-            // 🔥 무료 무제한 고속 추출 서버 (Cobalt API) 적용
             var apiUrl = 'https://co.wuk.sh/api/json';
             
             fetch(apiUrl, {
@@ -85,14 +84,13 @@ window.startVidDownload = function() {
                 },
                 body: JSON.stringify({
                     url: urlInput,
-                    vQuality: '1080' // 최고 화질 지정
+                    vQuality: '1080'
                 })
             })
             .then(function(response) { 
                 return response.json(); 
             })
             .then(function(result) {
-                // 서버에서 성공적으로 영상 주소를 받아왔을 때
                 if (result && result.url) {
                     var downloadLink = result.url;
                     
