@@ -74,7 +74,8 @@ window.startVidDownload = function() {
             document.getElementById('timer-box').style.display = 'none';
             document.getElementById('result-box').innerHTML = '<span style="color: gray;">서버와 통신 중입니다... 잠시만 기다려주세요.</span>';
             
-            var apiUrl = 'https://co.wuk.sh/api/json';
+            // 🔥 접속이 끊긴 구형 주소 대신, 살아있는 공식 메인 주소로 교체했습니다.
+            var apiUrl = 'https://api.cobalt.tools/api/json';
             
             fetch(apiUrl, {
                 method: 'POST',
