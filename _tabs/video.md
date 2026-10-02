@@ -15,7 +15,7 @@ permalink: /video/
         
         <h5 style="margin-bottom: 5px;">📌 사용 방법</h5>
         <ol style="margin-top: 0; padding-left: 20px;">
-            <li>다운로드하고 싶은 동영상의 공유 주소(URL)를 복사합니다.</li>
+            <li>다운로드하고 싶은 동영상의 공유 주소(URL)를 복사합니다. (인스타는 주소 끝 '?' 뒤를 지우면 좋습니다)</li>
             <li>아래 입력창에 주소를 붙여넣고 <b>'다운로드 링크 생성'</b> 버튼을 클릭합니다.</li>
             <li>생성되는 다운로드 버튼을 눌러 기기에 저장합니다.</li>
         </ol>
@@ -93,30 +93,21 @@ window.startVidDownload = function() {
                 }
                 
                 if(downloadLink) {
+                    // 외부 사이트로 보내지 않고 여기서 바로 다운로드 버튼을 띄워줍니다.
                     document.getElementById('result-box').innerHTML = 
                         '<a href="' + downloadLink + '" download="video.mp4" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 10px;">' +
-                        '📥 스마트폰 비디오 저장' +
+                        '📥 비디오 다운로드' +
                         '</a>' +
                         '<p style="font-size: 0.9em; color: #e83e8c; margin-top: 10px; font-weight: bold; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">' +
                         '📱 스마트폰 이용자 필수 팁<br>' +
                         '<span style="color: #555; font-weight: normal;">버튼을 눌렀을 때 영상이 재생된다면, <b>영상을 2~3초간 꾹 누른 뒤 [동영상 다운로드]</b>를 선택하셔야 갤러리에 저장됩니다.</span>' +
                         '</p>';
                 } else {
-                    var fallbackUrl = 'https://cobalt.tools/?url=' + encodeURIComponent(urlInput);
-                    document.getElementById('result-box').innerHTML = 
-                        '<span style="color: red; display: block; margin-bottom: 10px;">이 링크는 특수 암호화되어 기본 엔진으로 직접 다운로드할 수 없습니다.</span>' +
-                        '<a href="' + fallbackUrl + '" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #dc3545; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">' +
-                        '🚀 무제한 특수 엔진으로 추출하기 (클릭)' +
-                        '</a>';
+                    document.getElementById('result-box').innerHTML = '<span style="color: red;">비디오 파일을 찾을 수 없습니다. (지원하지 않는 플랫폼이거나 비공개 영상입니다)</span>';
                 }
             })
             .catch(function(error) {
-                var fallbackUrl = 'https://cobalt.tools/?url=' + encodeURIComponent(urlInput);
-                document.getElementById('result-box').innerHTML = 
-                    '<span style="color: red; display: block; margin-bottom: 10px;">서버 통신 오류가 발생했습니다.</span>' +
-                    '<a href="' + fallbackUrl + '" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #dc3545; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">' +
-                    '🚀 무제한 특수 엔진으로 추출하기 (클릭)' +
-                    '</a>';
+                document.getElementById('result-box').innerHTML = '<span style="color: red;">서버 통신 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</span>';
             })
             .finally(function() {
                 btn.disabled = false;
