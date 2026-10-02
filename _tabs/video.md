@@ -14,7 +14,7 @@ permalink: /video/
         <ol style="margin-top: 0; padding-left: 20px;">
             <li>다운로드하고 싶은 동영상의 공유 주소(URL)를 복사합니다.</li>
             <li>아래 입력창에 주소를 붙여넣고 <b>'다운로드 링크 생성'</b> 버튼을 클릭합니다.</li>
-            <li>생성되는 다운로드 버튼을 눌러 기기에 저장합니다.</li>
+            <li>결과 화면에 나타나는 안내에 따라 기기에 저장합니다.</li>
         </ol>
     </div>
     <div style="text-align: center; margin: 40px 0;">
@@ -66,7 +66,7 @@ window.startVidDownload = function() {
                     downloadLink = result.medias[0].url;
                 }
                 if(downloadLink) {
-                    document.getElementById('result-box').innerHTML = '<a href="' + downloadLink + '" download="video.mp4" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 10px;">📥 비디오 다운로드</a><p style="font-size: 0.9em; color: #e83e8c; margin-top: 10px; font-weight: bold; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">📱 스마트폰 이용자 필수 팁<br><span style="color: #555; font-weight: normal;">버튼을 눌렀을 때 영상이 재생된다면, <b>영상을 2~3초간 꾹 누른 뒤 [동영상 다운로드]</b>를 선택하셔야 갤러리에 저장됩니다.</span></p>';
+                    document.getElementById('result-box').innerHTML = '<div style="margin-bottom:15px;"><video width="100%" controls style="border-radius:8px; max-height:400px; background:#000;"><source src="' + downloadLink + '" type="video/mp4"></video></div><a href="' + downloadLink + '" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 10px;">🔗 영상 원본 링크 열기</a><p style="font-size: 0.9em; color: #333; margin-top: 10px; background-color: #f8f9fa; padding: 15px; border-radius: 5px; text-align:left; line-height:1.6;">📱 <b>스마트폰(모바일) 저장 확실한 방법!</b><br>🟢 <b>갤럭시(삼성) 폰:</b> 위 재생 화면의 오른쪽 아래 <b>점 3개(⋮) 메뉴</b>를 누르고 <b>[다운로드]</b>를 클릭하세요.<br>🍎 <b>아이폰(애플):</b> 위 <b>[🔗 영상 원본 링크 열기]</b> 버튼을 누른 후, 사파리 하단의 <b>공유 버튼(네모에 위쪽 화살표 ⬆️)</b>을 누르고 <b>[파일에 저장]</b>을 선택하세요.</p>';
                 } else {
                     document.getElementById('result-box').innerHTML = '<span style="color: red;">비디오 파일을 찾을 수 없습니다. (지원하지 않는 플랫폼이거나 비공개 영상입니다)</span>';
                 }
